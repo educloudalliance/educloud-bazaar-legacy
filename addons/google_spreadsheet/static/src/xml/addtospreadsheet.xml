@@ -1,5 +1,0 @@
-<template>
-<div t-name="SearchView.addtogooglespreadsheet" class="oe_searchview_dashboard">
-    <h4>Add to Google Spreadsheet</h4>
-</div>
-</template>
