@@ -46,6 +46,7 @@ settings_local.py
 /sites/basaar/public/
 /sites/basaar/whoosh_index/
 /sites/basaar/logs/
+/sites/basaar/build/
 /sites/demo/*.sqlite
 /sites/demo/assets/
 /sites/demo/public/
