@@ -41,6 +41,11 @@ settings_local.py
 /sites/sandbox/public/
 /sites/sandbox/whoosh_index/
 /sites/sandbox/logs/
+/sites/basaar/*.sqlite
+/sites/basaar/assets/
+/sites/basaar/public/
+/sites/basaar/whoosh_index/
+/sites/basaar/logs/
 /sites/demo/*.sqlite
 /sites/demo/assets/
 /sites/demo/public/
