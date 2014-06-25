@@ -23,6 +23,6 @@ After installation, "vagrant ssh" to Virtualbox
 
 cd basaar && python sites/basaar/manage.py runserver 0.0.0.0:8000
 
-Open browser http://localhost:8000/
+Open browser [http://localhost:8000/](http://localhost:8000)
 
 Voíla, you have Basaar Demo running locally!
