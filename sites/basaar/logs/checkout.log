@@ -1,0 +1,4 @@
+INFO 2014-06-23 19:09:05,803 views Order #100002: beginning submission process for basket #2
+INFO 2014-06-23 19:09:05,804 views Order #100002: payment successful, placing order
+INFO 2014-06-23 19:09:05,858 mixins Order #100002 - sending ORDER_PLACED messages
+INFO 2014-06-23 19:09:05,859 utils Sending email to vjyrkka@gmail.com

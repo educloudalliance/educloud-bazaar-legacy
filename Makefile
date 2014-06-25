@@ -21,6 +21,23 @@ sandbox: install
 	sites/sandbox/manage.py loaddata countries.json sites/_fixtures/pages.json sites/_fixtures/auth.json sites/_fixtures/ranges.json sites/_fixtures/offers.json
 	sites/sandbox/manage.py clear_index --noinput
 	sites/sandbox/manage.py update_index catalogue
+	
+basaar:	install
+	# Remove media
+	-rm -rf sites/basaar/public/media/images
+	-rm -rf sites/basaar/public/media/cache
+	-rm -rf sites/basaar/public/static
+	-rm -f sites/basaar/db.sqlite
+	# Create database
+	sites/basaar/manage.py syncdb --noinput
+	sites/basaar/manage.py migrate
+	# Import some fixtures. Order is important as JSON fixtures include primary keys
+	sites/basaar/manage.py loaddata sites/basaar/fixtures/variants.json
+	sites/basaar/manage.py oscar_import_catalogue sites/basaar/fixtures/*.csv
+	sites/basaar/manage.py oscar_import_catalogue_images sites/basaar/fixtures/images.tar.gz
+	sites/basaar/manage.py loaddata countries.json sites/_fixtures/pages.json sites/_fixtures/auth.json sites/_fi$
+	sites/basaar/manage.py clear_index --noinput
+	sites/basaar/manage.py update_index catalogue
 
 geoip:
 	wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
