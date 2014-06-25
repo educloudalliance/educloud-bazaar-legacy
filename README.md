@@ -13,6 +13,8 @@ http://ip-193-166-24-116.hosts.forgeservicelab.fi/
 Production (not yet)
 http://basaar.pilvivayla.fi
 
-To build basaar site:
+Basaar environment
+------------------
+Requirements: Virtualbox, Vagrant
 
-make basaar install
+Run "vagrant up" and have a coffee.
