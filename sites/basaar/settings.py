@@ -25,14 +25,16 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MANAGERS = ADMINS
 
+# Use a Sqlite database by default
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite',
+        'NAME': location('db.sqlite'),
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
+        'ATOMIC_REQUESTS': True
     }
 }
 
