@@ -1,0 +1,21 @@
+        <script src="{{ STATIC_URL }}shop/js/bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+        <script src="{{ STATIC_URL }}shop/js/bower_components/jquery-hoverIntent/jquery.hoverIntent.js"></script>
+
+        <script type="text/javascript">
+
+            // Animations
+            $('#menu').addClass('animated fadeInLeft');
+            $('.menu-header').addClass('animated fadeInDown');
+            $('.menu-options').addClass('animated fadeInUp');
+            $('.content-column').addClass('animated fadeInUp');
+
+            function openSubMenu() {
+                $(this).children('.drawer').show('slide');    
+            };
+            function closeSubMenu() {
+                $(this).children('.drawer').hide('slide'); 
+            };
+            
+            $('.menu-option').hoverIntent( openSubMenu, closeSubMenu );
+            
+        </script>

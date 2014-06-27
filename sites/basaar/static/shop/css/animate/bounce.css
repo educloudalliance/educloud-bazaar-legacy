@@ -1,0 +1,84 @@
+@-webkit-keyframes bounce {
+  /* line 2, ../../sass/animate/bounce.scss */
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+  }
+
+  /* line 3, ../../sass/animate/bounce.scss */
+  40% {
+    -webkit-transform: translateY(-30px);
+  }
+
+  /* line 4, ../../sass/animate/bounce.scss */
+  60% {
+    -webkit-transform: translateY(-15px);
+  }
+}
+
+@-moz-keyframes bounce {
+  /* line 8, ../../sass/animate/bounce.scss */
+  0%, 20%, 50%, 80%, 100% {
+    -moz-transform: translateY(0);
+  }
+
+  /* line 9, ../../sass/animate/bounce.scss */
+  40% {
+    -moz-transform: translateY(-30px);
+  }
+
+  /* line 10, ../../sass/animate/bounce.scss */
+  60% {
+    -moz-transform: translateY(-15px);
+  }
+}
+
+@-ms-keyframes bounce {
+  /* line 14, ../../sass/animate/bounce.scss */
+  0%, 20%, 50%, 80%, 100% {
+    -ms-transform: translateY(0);
+  }
+
+  /* line 15, ../../sass/animate/bounce.scss */
+  40% {
+    -ms-transform: translateY(-30px);
+  }
+
+  /* line 16, ../../sass/animate/bounce.scss */
+  60% {
+    -ms-transform: translateY(-15px);
+  }
+}
+
+@-o-keyframes bounce {
+  /* line 20, ../../sass/animate/bounce.scss */
+  0%, 20%, 50%, 80%, 100% {
+    -o-transform: translateY(0);
+  }
+
+  /* line 21, ../../sass/animate/bounce.scss */
+  40% {
+    -o-transform: translateY(-30px);
+  }
+
+  /* line 22, ../../sass/animate/bounce.scss */
+  60% {
+    -o-transform: translateY(-15px);
+  }
+}
+
+@keyframes bounce {
+  /* line 25, ../../sass/animate/bounce.scss */
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+
+  /* line 26, ../../sass/animate/bounce.scss */
+  40% {
+    transform: translateY(-30px);
+  }
+
+  /* line 27, ../../sass/animate/bounce.scss */
+  60% {
+    transform: translateY(-15px);
+  }
+}

@@ -1,0 +1,41 @@
+$icon-font-path: "/bower/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+
+// bower:scss
+//@import 'vendor/bower/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss';
+// endbower
+@import 'fontface';
+
+
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic);
+@import url(http://fonts.googleapis.com/css?family=Nunito:400,300,700);
+@include fontFace('Sanchez','fonts/Sanchez');
+
+
+$default-font: Ubuntu, Helvetica, sans-serif;
+
+$font-body: Nunito, Helvetica, sans-serif;
+
+$r2500-content-width: 2500px;
+$r1920-content-width: 1920px;
+$r1440-content-width: 1440px;
+$r1280-content-width: 1280px;
+$r1024-content-width: 1024px;
+$r1024-content-width: 1024px;
+$r800-content-width: 800px;
+
+$menu-width: 61px;
+$menu-padding-x: 10px;
+$menu-padding-y: 20px;
+$bridge-height: 3px;
+
+$header-height: 236px;
+
+$nav-height: 25px;
+
+$blue-main: rgb(55,169,224);
+$green-main: rgb(46,237,196);
+$green-main-a85: rgba(46,237,196,0.85);
+$light-gray: rgb(204,204,204);
+$dark-gray: rgb(102,102,102);
+
+$banner-color: #ffffff;

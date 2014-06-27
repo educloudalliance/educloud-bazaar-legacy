@@ -1,0 +1,136 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-24 12:29+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: settings.py:64
+msgid "British English"
+msgstr ""
+
+#: settings.py:65
+msgid "Simplified Chinese"
+msgstr ""
+
+#: settings.py:66
+msgid "Dutch"
+msgstr ""
+
+#: settings.py:67
+msgid "Italian"
+msgstr ""
+
+#: settings.py:68
+msgid "Polish"
+msgstr ""
+
+#: settings.py:69
+msgid "Russian"
+msgstr ""
+
+#: settings.py:70
+msgid "Slovak"
+msgstr ""
+
+#: settings.py:71
+msgid "Brazilian Portuguese"
+msgstr ""
+
+#: settings.py:72
+msgid "French"
+msgstr ""
+
+#: settings.py:73
+msgid "Finnish"
+msgstr ""
+
+#: settings.py:74
+msgid "German"
+msgstr ""
+
+#: settings.py:75
+msgid "Korean"
+msgstr ""
+
+#: settings.py:76
+msgid "Ukrainian"
+msgstr ""
+
+#: settings.py:77
+msgid "Spanish"
+msgstr ""
+
+#: settings.py:78
+msgid "Danish"
+msgstr ""
+
+#: settings.py:79
+msgid "Arabic"
+msgstr ""
+
+#: settings.py:80
+msgid "Catalan"
+msgstr ""
+
+#: settings.py:81
+msgid "Czech"
+msgstr ""
+
+#: settings.py:82
+msgid "Greek"
+msgstr ""
+
+#: templates/gateway/email.txt:2
+#, python-format
+msgid ""
+"\n"
+"A dashboard user has been created for you with credentials:\n"
+"\n"
+"- Email: %(email)s\n"
+"- Password: %(password)s\n"
+"\n"
+"Sign into the dashboard here:\n"
+"http://sandbox.oscar.tangentlabs.co.uk/dashboard/\n"
+"\n"
+"Feel free to play around with the dashboard, although please don't deface "
+"the\n"
+"public-facing pages.\n"
+"\n"
+"Best wishes,\n"
+"Oscar Team, Tangent Labs\n"
+msgstr ""
+
+#: templates/gateway/form.html:5 templates/gateway/form.html.py:14
+msgid "Dashboard access"
+msgstr ""
+
+msgid "Account"
+msgstr "Tili"
+
+#: templates/gateway/form.html:11
+msgid "Koti"
+msgstr ""
+
+#: templates/gateway/form.html:20
+msgid ""
+"Let us know your email address and we'll create a dashboard user for you and "
+"email you the details."
+msgstr ""
+
+#: templates/gateway/form.html:23
+msgid "Send email"
+msgstr ""

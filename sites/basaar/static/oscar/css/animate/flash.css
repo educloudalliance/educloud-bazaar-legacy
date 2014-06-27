@@ -1,0 +1,59 @@
+@-webkit-keyframes flash {
+  /* line 2, ../../sass/animate/flash.scss */
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+
+  /* line 3, ../../sass/animate/flash.scss */
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes flash {
+  /* line 7, ../../sass/animate/flash.scss */
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+
+  /* line 8, ../../sass/animate/flash.scss */
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+@-ms-keyframes flash {
+  /* line 12, ../../sass/animate/flash.scss */
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+
+  /* line 13, ../../sass/animate/flash.scss */
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+@-o-keyframes flash {
+  /* line 17, ../../sass/animate/flash.scss */
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+
+  /* line 18, ../../sass/animate/flash.scss */
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+@keyframes flash {
+  /* line 22, ../../sass/animate/flash.scss */
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+
+  /* line 23, ../../sass/animate/flash.scss */
+  25%, 75% {
+    opacity: 0;
+  }
+}

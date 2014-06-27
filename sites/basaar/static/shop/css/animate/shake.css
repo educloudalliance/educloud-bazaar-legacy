@@ -1,0 +1,84 @@
+@-webkit-keyframes shake {
+  /* line 2, ../../sass/animate/shake.scss */
+  0%, 100% {
+    -webkit-transform: translateX(0);
+  }
+
+  /* line 3, ../../sass/animate/shake.scss */
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translateX(-10px);
+  }
+
+  /* line 4, ../../sass/animate/shake.scss */
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translateX(10px);
+  }
+}
+
+@-moz-keyframes shake {
+  /* line 8, ../../sass/animate/shake.scss */
+  0%, 100% {
+    -moz-transform: translateX(0);
+  }
+
+  /* line 9, ../../sass/animate/shake.scss */
+  10%, 30%, 50%, 70%, 90% {
+    -moz-transform: translateX(-10px);
+  }
+
+  /* line 10, ../../sass/animate/shake.scss */
+  20%, 40%, 60%, 80% {
+    -moz-transform: translateX(10px);
+  }
+}
+
+@-ms-keyframes shake {
+  /* line 14, ../../sass/animate/shake.scss */
+  0%, 100% {
+    -ms-transform: translateX(0);
+  }
+
+  /* line 15, ../../sass/animate/shake.scss */
+  10%, 30%, 50%, 70%, 90% {
+    -ms-transform: translateX(-10px);
+  }
+
+  /* line 16, ../../sass/animate/shake.scss */
+  20%, 40%, 60%, 80% {
+    -ms-transform: translateX(10px);
+  }
+}
+
+@-o-keyframes shake {
+  /* line 20, ../../sass/animate/shake.scss */
+  0%, 100% {
+    -o-transform: translateX(0);
+  }
+
+  /* line 21, ../../sass/animate/shake.scss */
+  10%, 30%, 50%, 70%, 90% {
+    -o-transform: translateX(-10px);
+  }
+
+  /* line 22, ../../sass/animate/shake.scss */
+  20%, 40%, 60%, 80% {
+    -o-transform: translateX(10px);
+  }
+}
+
+@keyframes shake {
+  /* line 26, ../../sass/animate/shake.scss */
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  /* line 27, ../../sass/animate/shake.scss */
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-10px);
+  }
+
+  /* line 28, ../../sass/animate/shake.scss */
+  20%, 40%, 60%, 80% {
+    transform: translateX(10px);
+  }
+}

@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+{% load compress %}
+{% load promotion_tags %}
+
+{% block layout %}
+
+    <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="flexItem"></div>
+    <div class="screen flex-container">
+        {% include "partials/pv_menu.html" %}
+
+        <div class="menu-block">
+        </div>
+        <div id="content" class="content-column flexItem">
+            <div class="header">
+                <!--
+                <p>Welcome to the</p>
+                <h1>Bazaar!</h1>
+                <p>The new home for digital educational material.</p>
+            -->
+            </div>
+            <div class="nav flex-container">
+                <div class="flexItem2 flex-container">
+                    <div>Filter content by tags:
+                        <input/></div>
+                    <div>Recommended:
+                        <div class="tag">biology
+                            <div>x</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flexItem">
+                </div>
+            </div>
+            {% block content %}{% endblock %}
+            <div class="flex-container">
+                <div id="content-column" class="flexItem2">
+                    <h1>Most Appreciated by Teachers</h1>
+
+                    <div class="flex-container flex-wrap">
+                        <div class="flexItem2 appBox">
+                            <h1>Mitosis App</h1>
+
+                            <p class="price">€9.99</p>
+
+                            <div class="icon"
+                                 style="background-image:url({{ STATIC_URL }}shop/img/ApplicationIconTEST.png)"></div>
+                            <p class="provider"><a href="#">by Sanoma</a></p>
+
+                            <p class="topic">Biology</p>
+
+                            <p class="grade">Grade</p>
+
+                            <p class="rating"><img src="{{ STATIC_URL }}shop/img/RatingIcons.png"></p>
+
+                            <p class="more"><img src="{{ STATIC_URL }}shop/img/MoreIconTest.png"></p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="flexItem2 appBox">
+                            <h1>Mitosis App</h1>
+
+                            <p class="price">€9.99</p>
+
+                            <div class="icon"
+                                 style="background-image:url({{ STATIC_URL }}shop/img/ApplicationIconTEST.png)"></div>
+                            <p class="provider"><a href="#">by Sanoma</a></p>
+
+                            <p class="topic">Biology</p>
+
+                            <p class="grade">Grade</p>
+
+                            <p class="rating"><img src="{{ STATIC_URL }}shop/img/RatingIcons.png"></p>
+
+                            <p class="more"><img src="{{ STATIC_URL }}shop/img/MoreIconTest.png"></p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="flexItem2 appBox">
+                            <h1>Mitosis App</h1>
+
+                            <p class="price">€9.99</p>
+
+                            <div class="icon"
+                                 style="background-image:url({{ STATIC_URL }}shop/img/ApplicationIconTEST.png)"></div>
+                            <p class="provider"><a href="#">by Sanoma</a></p>
+
+                            <p class="topic">Biology</p>
+
+                            <p class="grade">Grade</p>
+
+                            <p class="rating"><img src="{{ STATIC_URL }}shop/img/RatingIcons.png"></p>
+
+                            <p class="more"><img src="{{ STATIC_URL }}shop/img/MoreIconTest.png"></p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="flexItem2 appBox">
+                            <h1>Mitosis App</h1>
+
+                            <p class="price">€9.99</p>
+
+                            <div class="icon"
+                                 style="background-image:url({{ STATIC_URL }}shop/img/ApplicationIconTEST.png)"></div>
+                            <p class="provider"><a href="#">by Sanoma</a></p>
+
+                            <p class="topic">Biology</p>
+
+                            <p class="grade">Grade</p>
+
+                            <p class="rating"><img src="{{ STATIC_URL }}shop/img/RatingIcons.png"></p>
+
+                            <p class="more"><img src="{{ STATIC_URL }}shop/img/MoreIconTest.png"></p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="flexItem2 appBox">
+                            <h1>Mitosis App</h1>
+
+                            <p class="price">€9.99</p>
+
+                            <div class="icon"
+                                 style="background-image:url({{ STATIC_URL }}shop/img/ApplicationIconTEST.png)"></div>
+                            <p class="provider"><a href="#">by Sanoma</a></p>
+
+                            <p class="topic">Biology</p>
+
+                            <p class="grade">Grade</p>
+
+                            <p class="rating"><img src="{{ STATIC_URL }}shop/img/RatingIcons.png"></p>
+
+                            <p class="more"><img src="{{ STATIC_URL }}shop/img/MoreIconTest.png"></p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="flexItem2 appBox">
+                            <h1>Mitosis App</h1>
+
+                            <p class="price">€9.99</p>
+
+                            <div class="icon"
+                                 style="background-image:url({{ STATIC_URL }}shop/img/ApplicationIconTEST.png)"></div>
+                            <p class="provider"><a href="#">by Sanoma</a></p>
+
+                            <p class="topic">Biology</p>
+
+                            <p class="grade">Grade</p>
+
+                            <p class="rating"><img src="{{ STATIC_URL }}shop/img/RatingIcons.png"></p>
+
+                            <p class="more"><img src="{{ STATIC_URL }}shop/img/MoreIconTest.png"></p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="flexItem2 appBox">
+                            <h1>Mitosis App</h1>
+
+                            <p class="price">€9.99</p>
+
+                            <div class="icon"
+                                 style="background-image:url({{ STATIC_URL }}shop/img/ApplicationIconTEST.png)"></div>
+                            <p class="provider"><a href="#">by Sanoma</a></p>
+
+                            <p class="topic">Biology</p>
+
+                            <p class="grade">Grade</p>
+
+                            <p class="rating"><img src="{{ STATIC_URL }}shop/img/RatingIcons.png"></p>
+
+                            <p class="more"><img src="{{ STATIC_URL }}shop/img/MoreIconTest.png"></p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="flexItem2 appBox">
+                            <h1>Mitosis App</h1>
+
+                            <p class="price">€9.99</p>
+
+                            <div class="icon"
+                                 style="background-image:url({{ STATIC_URL }}shop/img/ApplicationIconTEST.png)"></div>
+                            <p class="provider"><a href="#">by Sanoma</a></p>
+
+                            <p class="topic">Biology</p>
+
+                            <p class="grade">Grade</p>
+
+                            <p class="rating"><img src="{{ STATIC_URL }}shop/img/RatingIcons.png"></p>
+
+                            <p class="more"><img src="{{ STATIC_URL }}shop/img/MoreIconTest.png"></p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="flexItem2 appBox">
+                            <h1>Mitosis App</h1>
+
+                            <p class="price">€9.99</p>
+
+                            <div class="icon"
+                                 style="background-image:url({{ STATIC_URL }}shop/img/ApplicationIconTEST.png)"></div>
+                            <p class="provider"><a href="#">by Sanoma</a></p>
+
+                            <p class="topic">Biology</p>
+
+                            <p class="grade">Grade</p>
+
+                            <p class="rating"><img src="{{ STATIC_URL }}shop/img/RatingIcons.png"></p>
+
+                            <p class="more"><img src="{{ STATIC_URL }}shop/img/MoreIconTest.png"></p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="flexItem2 appBox">
+                            <h1>Mitosis App</h1>
+
+                            <p class="price">€9.99</p>
+
+                            <div class="icon"
+                                 style="background-image:url({{ STATIC_URL }}shop/img/ApplicationIconTEST.png)"></div>
+                            <p class="provider"><a href="#">by Sanoma</a></p>
+
+                            <p class="topic">Biology</p>
+
+                            <p class="grade">Grade</p>
+
+                            <p class="rating"><img src="{{ STATIC_URL }}shop/img/RatingIcons.png"></p>
+
+                            <p class="more"><img src="{{ STATIC_URL }}shop/img/MoreIconTest.png"></p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="flexItem2 appBox">
+                            <h1>Mitosis App</h1>
+
+                            <p class="price">€9.99</p>
+
+                            <div class="icon"
+                                 style="background-image:url({{ STATIC_URL }}shop/img/ApplicationIconTEST.png)"></div>
+                            <p class="provider"><a href="#">by Sanoma</a></p>
+
+                            <p class="topic">Biology</p>
+
+                            <p class="grade">Grade</p>
+
+                            <p class="rating"><img src="{{ STATIC_URL }}shop/img/RatingIcons.png"></p>
+
+                            <p class="more"><img src="{{ STATIC_URL }}shop/img/MoreIconTest.png"></p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="flexItem2 appBox">
+                            <h1>Mitosis App</h1>
+
+                            <p class="price">€9.99</p>
+
+                            <div class="icon"
+                                 style="background-image:url({{ STATIC_URL }}shop/img/ApplicationIconTEST.png)"></div>
+                            <p class="provider"><a href="#">by Sanoma</a></p>
+
+                            <p class="topic">Biology</p>
+
+                            <p class="grade">Grade</p>
+
+                            <p class="rating"><img src="{{ STATIC_URL }}shop/img/RatingIcons.png"></p>
+
+                            <p class="more"><img src="{{ STATIC_URL }}shop/img/MoreIconTest.png"></p>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="flexItem2 appBox">
+                            <h1>Mitosis App</h1>
+
+                            <p class="price">€9.99</p>
+
+                            <div class="icon"
+                                 style="background-image:url({{ STATIC_URL }}shop/img/ApplicationIconTEST.png)"></div>
+                            <p class="provider"><a href="#">by Sanoma</a></p>
+
+                            <p class="topic">Biology</p>
+
+                            <p class="grade">Grade</p>
+
+                            <p class="rating"><img src="{{ STATIC_URL }}shop/img/RatingIcons.png"></p>
+
+                            <p class="more"><img src="{{ STATIC_URL }}shop/img/MoreIconTest.png"></p>
+                        </div>
+                        <div class="divider-line"></div>
+
+
+                        <div class="divider-line"></div>
+                    </div>
+                </div>
+
+
+                <div id="blog-column" class="flexItem">
+                    <h1>Blogs</h1>
+
+                    <div class="blog-post">
+                        <h2><a href="#">First post</a></h2>
+
+                        <h3><a href="#">by Author</a></h3>
+
+                        <p>Bacon ipsum dolor sit amet ut officia pastrami t-bone frankfurter chicken sint pork nisi
+                            shankle dolore meatball. Tempor in excepteur reprehenderit. Ullamco anim pork boudin<a
+                                    href="#">...</a>
+                    </div>
+                    <div class="blog-post">
+                        <h2><a href="#">Second post</a></h2>
+
+                        <h3><a href="#">by Author</a></h3>
+
+                        <p>Bacon ipsum dolor sit amet ut officia pastrami t-bone frankfurter chicken sint pork nisi
+                            shankle dolore meatball. Tempor in excepteur reprehenderit. Ullamco anim pork boudin<a
+                                    href="#">...</a>
+                    </div>
+                    <h1>Q&A</h1>
+
+                    <div class="qaa">
+                        abc
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="flexItem"></div>
+    {% include "extras/extrascripts.html" %}
+
+{% endblock %}

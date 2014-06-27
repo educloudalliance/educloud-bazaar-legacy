@@ -17,25 +17,25 @@ ALLOWED_HOSTS = ['latest.oscarcommerce.com',
                  'master.oscarcommerce.com']
 
 ADMINS = (
-    ('David Winterbottom', 'david.winterbottom@tangentlabs.co.uk'),
+    ('Admin Adminton', 'admin@admin.com'),
 )
+
 EMAIL_SUBJECT_PREFIX = '[Oscar sandbox] '
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MANAGERS = ADMINS
 
-# Use a Sqlite database by default
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(os.path.dirname(__file__), 'db.sqlite'),
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bazaar',
+        'USER': 'bazaar',
+        'PASSWORD': 'olenomena',
+        'HOST': 'localhost',
         'PORT': '',
-        'ATOMIC_REQUESTS': True
     }
 }
+
 
 CACHES = {
     'default': {
@@ -55,7 +55,7 @@ TIME_ZONE = 'Europe/London'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-gb'
+LANGUAGE_CODE = 'fi'
 
 # Includes all languages that have >50% coverage in Transifex
 # Taken from Django's default setting for LANGUAGES
@@ -70,6 +70,7 @@ LANGUAGES = (
     ('sk', gettext_noop('Slovak')),
     ('pt-br', gettext_noop('Brazilian Portuguese')),
     ('fr', gettext_noop('French')),
+    ('fi', gettext_noop('Finnish')),
     ('de', gettext_noop('German')),
     ('ko', gettext_noop('Korean')),
     ('uk', gettext_noop('Ukrainian')),
@@ -117,7 +118,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '$)a7n&o80u!6y5t-+jrd3)3!%vh&shg$wqpjpxc!ar&p#!)n1a'
+SECRET_KEY = 'zxb+gy#^d!%ty#4+hf_u=jy6)tty962qnhqwcl1c^9i^!j7nx='
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -364,11 +365,18 @@ from oscar.defaults import *
 # Meta
 # ====
 
-OSCAR_SHOP_NAME = 'Basaar'
-OSCAR_SHOP_TAGLINE = 'Demo'
+#OSCAR_SHOP_TAGLINE = 'Bazaar'
+OSCAR_SHOP_NAME = 'Bazaar'
 
 OSCAR_RECENTLY_VIEWED_PRODUCTS = 20
-OSCAR_ALLOW_ANON_CHECKOUT = True
+OSCAR_ALLOW_ANON_CHECKOUT = False
+OSCAR_ALLOW_ANON_REVIEWS = False
+OSCAR_MODERATE_REVIEWS = False
+OSCAR_EAGER_ALERTS = False
+OSCAR_SEND_REGISTRATION_EMAIL = False
+OSCAR_DEFAULT_CURRENCY = 'EUR'
+
+
 
 # This is added to each template context by the core context processor.  It is
 # useful for test/stage/qa sites where you want to show the version of the site
@@ -443,7 +451,7 @@ if not os.path.exists(LOG_ROOT):
 # ====
 
 THUMBNAIL_DEBUG = True
-THUMBNAIL_KEY_PREFIX = 'oscar-sandbox'
+THUMBNAIL_KEY_PREFIX = 'bazaar-'
 
 # Use a custom KV store to handle integrity error
 THUMBNAIL_KVSTORE = 'oscar.sorl_kvstore.ConcurrentKVStore'
