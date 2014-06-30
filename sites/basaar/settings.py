@@ -312,6 +312,8 @@ INSTALLED_APPS = [
     'south',
     'compressor',       # Oscar's templates use compressor
     'apps.gateway',     # For allowing dashboard access
+    'apps.api',
+    'rest_framework',
 ]
 from oscar import get_core_apps
 INSTALLED_APPS = INSTALLED_APPS + get_core_apps()
