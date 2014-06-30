@@ -205,11 +205,14 @@ img {
             margin-top: $nav-height / 2;
             color: #fff;
             font-family: $font-body;
+            overflow: hidden;
 
             div {
                 border-radius: 5px;
             }
             .flexItem2 {
+                flex-basis: $basis-content-column;
+                -webkit-flex-basis: $basis-content-column;
                 line-height: $nav-height;
                 background: $blue-main;
                 font-size: 14px;
@@ -226,6 +229,8 @@ img {
                 }
             }
             .flexItem {
+                flex-basis: $basis-blog-column;
+                -webkit-flex-basis: $basis-blog-column;
                 background: rgb(231,174,123);
             }
             input {
@@ -264,22 +269,19 @@ img {
                 padding-left: 10px;
             }
             #content-column {
+                flex-basis: $basis-content-column;
+                -webkit-flex-basis: $basis-content-column;
                 div {
-                    justify-content: flex-start;
-                    -webkit-justify-content: flex-start;
-                }
-                .divider-line {
-                    width: 1px;
-                    height: 240px;
-                    background: $light-gray;
+                    justify-content: space-around;
+                    -webkit-justify-content: space-around;
                 }
                 .appBox{
-                    flex-basis: 120px;
-                    -webkit-flex-basis: 120px;
-                    border-top: 1px solid $light-gray;
                     text-align: center;
-                    margin: 0px 4px;
+                    margin: 4px 4px;
+                    padding: 5px;
                     color: $dark-gray;
+                    border: 1px solid $light-gray;
+                    border-radius: 5px;
                     a {
                         text-decoration: underline;
                         color: $dark-gray;
@@ -321,10 +323,12 @@ img {
                         margin: 0px;
                     }
                     .rating {
+                        margin: 0px;
 
                     }
                     .more {
                         text-align: right;
+                        margin: 0px;
                     }
                 }
             }
@@ -335,6 +339,8 @@ img {
             }
 
             #blog-column {
+                flex-basis: $basis-blog-column;
+                -webkit-flex-basis: $basis-blog-column;
                 margin: 5px 0px;
                 border-left: 1px solid $light-gray;
                 padding: 0px;

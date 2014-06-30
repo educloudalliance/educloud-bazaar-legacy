@@ -55,3 +55,6 @@ settings_local.py
 /sites/us/public/
 /sites/us/logs/
 sites/puppet/modules/
+
+# Frontend dev files
+*.scssc
