@@ -20,14 +20,16 @@
         <![endif]-->
 
         {% block favicon %}
-            <link rel="shortcut icon" href="{% static "shop/favicon.ico" %}" />
+            <link rel="shortcut icon" href="{% static "shop/favicon.png" %}" />
         {% endblock %}
 
         {% block mainstyles %}
             {% block styles %}
                 {% compress css %}
+                <!--
                         <link rel="stylesheet" type="text/css" href="{% static "oscar/css/styles.css" %}" />
                         <link rel="stylesheet" type="text/css" href="{% static "oscar/css/responsive.css" %}" />
+                    -->
                         <link rel="stylesheet" href="{% static "shop/css/main.css" %}">
                 {% endcompress %}
             {% endblock %}
