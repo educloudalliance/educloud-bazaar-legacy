@@ -7634,34 +7634,39 @@ img {
   margin-top: 12.5px;
   color: #fff;
   font-family: Nunito, Helvetica, sans-serif;
+  overflow: hidden;
 }
-/* line 209, ../sass/main.scss */
+/* line 210, ../sass/main.scss */
 .screen #content .nav div {
   border-radius: 5px;
 }
-/* line 212, ../sass/main.scss */
+/* line 213, ../sass/main.scss */
 .screen #content .nav .flexItem2 {
+  flex-basis: 250px;
+  -webkit-flex-basis: 250px;
   line-height: 25px;
   background: #37a9e0;
   font-size: 14px;
   margin: 0px;
 }
-/* line 218, ../sass/main.scss */
+/* line 221, ../sass/main.scss */
 .screen #content .nav .flexItem2 a {
   color: #ffffff;
   height: 25px;
   padding: 0px;
 }
-/* line 223, ../sass/main.scss */
+/* line 226, ../sass/main.scss */
 .screen #content .nav .flexItem2 a:hover {
   color: #ffffff;
   background: rgba(0, 0, 0, 0.2);
 }
-/* line 228, ../sass/main.scss */
+/* line 231, ../sass/main.scss */
 .screen #content .nav .flexItem {
+  flex-basis: 200px;
+  -webkit-flex-basis: 200px;
   background: #e7ae7b;
 }
-/* line 231, ../sass/main.scss */
+/* line 236, ../sass/main.scss */
 .screen #content .nav input {
   margin: 5px 5px;
   font-size: 12px;
@@ -7670,7 +7675,7 @@ img {
   padding: 0px 4px;
   width: 100px;
 }
-/* line 239, ../sass/main.scss */
+/* line 244, ../sass/main.scss */
 .screen #content .nav .tag {
   position: relative;
   display: inline-block;
@@ -7681,7 +7686,7 @@ img {
   padding: 2px 10px 2px 7px;
   margin: 2px 5px;
 }
-/* line 248, ../sass/main.scss */
+/* line 253, ../sass/main.scss */
 .screen #content .nav .tag div {
   position: absolute;
   top: 0px;
@@ -7689,56 +7694,55 @@ img {
   font-size: 9pt;
   line-height: 9pt;
 }
-/* line 258, ../sass/main.scss */
+/* line 263, ../sass/main.scss */
 .screen #content .flex-container {
   font-family: Nunito, Helvetica, sans-serif;
 }
-/* line 261, ../sass/main.scss */
+/* line 266, ../sass/main.scss */
 .screen #content .flex-container #content-column > h1 {
   font-size: 14px;
   font-style: oblique;
   padding-left: 10px;
 }
-/* line 267, ../sass/main.scss */
-.screen #content .flex-container #content-column div {
-  justify-content: flex-start;
-  -webkit-justify-content: flex-start;
-}
 /* line 271, ../sass/main.scss */
-.screen #content .flex-container #content-column .divider-line {
-  width: 1px;
-  height: 240px;
-  background: #cccccc;
+.screen #content .flex-container #content-column {
+  flex-basis: 250px;
+  -webkit-flex-basis: 250px;
 }
-/* line 276, ../sass/main.scss */
+/* line 274, ../sass/main.scss */
+.screen #content .flex-container #content-column div {
+  justify-content: space-around;
+  -webkit-justify-content: space-around;
+}
+/* line 278, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox {
-  flex-basis: 120px;
-  -webkit-flex-basis: 120px;
-  border-top: 1px solid #cccccc;
   text-align: center;
-  margin: 0px 4px;
+  margin: 4px 4px;
+  padding: 5px;
   color: #666666;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
 }
-/* line 283, ../sass/main.scss */
+/* line 285, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox a {
   text-decoration: underline;
   color: #666666;
 }
-/* line 287, ../sass/main.scss */
+/* line 289, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox h1 {
   font-size: 14pt;
   font-weight: 700;
   margin: 0px;
   padding-top: 15px;
 }
-/* line 293, ../sass/main.scss */
+/* line 295, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox .price {
   font-size: 12pt;
   font-weight: 500;
   font-style: oblique;
   margin: 0px;
 }
-/* line 299, ../sass/main.scss */
+/* line 301, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox .icon {
   height: 64px;
   width: 64px;
@@ -7747,68 +7751,75 @@ img {
   background-repeat: no-repeat;
   background-position: center;
 }
-/* line 307, ../sass/main.scss */
+/* line 309, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox .provider {
   font-size: 9pt;
   font-weight: 300;
   font-style: oblique;
   margin: 0px;
 }
-/* line 313, ../sass/main.scss */
+/* line 315, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox .topic {
   font-size: 12pt;
   font-weight: 500;
   margin: 0px;
 }
-/* line 318, ../sass/main.scss */
+/* line 320, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox .grade {
   font-size: 12pt;
   font-weight: 500;
   margin: 0px;
 }
-/* line 326, ../sass/main.scss */
+/* line 325, ../sass/main.scss */
+.screen #content .flex-container #content-column .appBox .rating {
+  margin: 0px;
+}
+/* line 329, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox .more {
   text-align: right;
+  margin: 0px;
 }
-/* line 331, ../sass/main.scss */
+/* line 335, ../sass/main.scss */
 .screen #content .flex-container #blog-column > h1 {
   font-size: 18px;
   font-style: oblique;
   padding-left: 10px;
 }
-/* line 337, ../sass/main.scss */
+/* line 341, ../sass/main.scss */
 .screen #content .flex-container #blog-column {
+  flex-basis: 200px;
+  -webkit-flex-basis: 200px;
   margin: 5px 0px;
   border-left: 1px solid #cccccc;
   padding: 0px;
   color: #666666;
 }
-/* line 342, ../sass/main.scss */
+/* line 348, ../sass/main.scss */
 .screen #content .flex-container #blog-column a {
   color: #666666;
 }
-/* line 345, ../sass/main.scss */
+/* line 351, ../sass/main.scss */
 .screen #content .flex-container #blog-column h2 {
   margin: 0px;
   font-size: 12pt;
   font-style: oblique;
 }
-/* line 350, ../sass/main.scss */
+/* line 356, ../sass/main.scss */
 .screen #content .flex-container #blog-column h3 {
   margin: 0px;
   font-size: 11pt;
   font-style: oblique;
   font-weight: 300;
 }
-/* line 356, ../sass/main.scss */
+/* line 362, ../sass/main.scss */
 .screen #content .flex-container #blog-column .blog-post {
   padding: 8px;
 }
-/* line 358, ../sass/main.scss */
+/* line 364, ../sass/main.scss */
 .screen #content .flex-container #blog-column .blog-post p {
   font-size: 10pt;
 }
-/* line 365, ../sass/main.scss */
+/* line 371, ../sass/main.scss */
 .screen #content .flex-container #blog-column .qaa {
   padding: 8px;
   height: 200px;
@@ -7817,13 +7828,13 @@ img {
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* line 382, ../sass/main.scss */
+  /* line 388, ../sass/main.scss */
   .container {
     max-width: 730px;
   }
 
   /* Remove the padding we set earlier */
-  /* line 388, ../sass/main.scss */
+  /* line 394, ../sass/main.scss */
   .header,
   .footer {
     padding-left: 0;
@@ -7831,13 +7842,13 @@ img {
   }
 
   /* Space out the masthead */
-  /* line 394, ../sass/main.scss */
+  /* line 400, ../sass/main.scss */
   .header {
     /*margin-bottom: 30px;*/
   }
 
   /* Remove the bottom border on the jumbotron for visual effect */
-  /* line 399, ../sass/main.scss */
+  /* line 405, ../sass/main.scss */
   .jumbotron {
     border-bottom: 0;
   }
