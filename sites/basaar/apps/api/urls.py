@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     # ex: /
     #url (r'^users/$', views.UserViewSet.as_view()),
     url(r'^', include(router.urls)),
-    url(r'^cms/(?P<cmsurl>\w+)', views.CMSView.as_view()),
+    url(r'^cms/', views.CMSView.as_view()),
     #url(r'^cms/', views.CMSView.as_view()),
 
 )
