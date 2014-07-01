@@ -32,54 +32,62 @@ class GroupViewSet(viewsets.ModelViewSet):
 # and resources
 class CMSView(APIView):
     permission_classes = (permissions.AllowAny,)    #CHANGE TO AUTHENTICATED LATER
-    def get(self, request, cmsurl):
-        #get the collection and resource names from url:
-        splitpath = request.path.split('/')
+
+    def splitUrl(self, url):
+        splitpath = url.split('/')
         splitpath = splitpath[3:]
         splitpath = filter(None,splitpath)
-        tempTokens = []
+        return splitpath
+
+    def get(self, request, cmsurl):
+        #get the collection and resource names from url:
+        splitpath = self.splitUrl(request.path)
+        materialTokens = []
         leftoverTokens=[]
         tempCollections = []
         jsonResponseStr = []
         length = 0
 
-        tempCollObj = models.MaterialCollections.objects.get(slug=splitpath[0])
+        try:
+            tempCollObj = models.MaterialCollections.objects.get(slug=splitpath[0])
+        except models.MaterialCollections.DoesNotExist:
+            return Response('404 line 54')
+
         try:
             firstToken = models.hasCollection.objects.get(childID=tempCollObj.id)
-            if firstToken:
-                return Response('404')
+            return Response('404 line 56')
         except models.hasCollection.DoesNotExist:
-            #checks whether url has correct collection names or not and if item is specfied then it is saved in leftovertokens variable
+
+            #checks whether url has correct collection names or not and if item is specfied then it is saved in materialTokens variable
             for eachToken in splitpath:
                 try:
                     temp = models.MaterialCollections.objects.get(slug=eachToken)
                 except models.MaterialCollections.DoesNotExist:
-                    tempTokens.append(eachToken)
+                    materialTokens.append(eachToken)
 
-            #more than one item is specified in url then error is returned
-            if len(tempTokens) >1:
-                return Response('404')
+            #more than one materialitem is specified in url then error is returned
+            if len(materialTokens) >1:
+                return Response('404 line 68')
 
-            if len(tempTokens) ==1:
-                lefttokens = tempTokens
-                if tempTokens[0] !=  splitpath[len(splitpath)-1]:
+            #there is one materialitem in the url
+            if len(materialTokens) ==1:
+                lefttokens = materialTokens
+
+                #check if the last part of the url is the materialitem
+                if materialTokens[0] !=  splitpath[len(splitpath)-1]:
                     return Response('404')
 
-                for eachToken in lefttokens:
-                    try:
-                        tempItemObj = models.MaterialItem.objects.get(slug=eachToken)
-
-                    except models.MaterialItem.DoesNotExist:
-                        leftoverTokens.append(eachToken)
-
-                if len(leftoverTokens) >0:
+                try:
+                    materialItemObj = models.MaterialItem.objects.get(slug=materialTokens[0])
+                except models.MaterialItem.DoesNotExist:
                     return Response('404')
+
                 #to get all collection objects
                 for eachToken in splitpath[:-1]:
                     try:
                         tempCollections.append(models.MaterialCollections.objects.get(slug=eachToken))
                     except models.MaterialCollections.DoesNotExist:
-                        tempTokens.append(eachToken)
+                        materialTokens.append(eachToken)
 
                 #check all collections are interconnected if more than one collection is specified
                 if len(tempCollections) >1:
@@ -90,26 +98,31 @@ class CMSView(APIView):
                         except models.hasCollection.DoesNotExist:
                             return Response('404')
 
-                    if tempItemObj.collectionId.id == tempCollections[length].id:
-                        jsonResponseStr.append(tempItemObj.mTitle + "  " + tempItemObj.description +"  " + tempItemObj.itemType)
+                    #check if the materialitem is connected to the last collection
+                    if materialItemObj.collectionId.id == tempCollections[length].id:
+                        jsonResponseStr.append(materialItemObj.mTitle + "  " + materialItemObj.description +"  " + materialItemObj.itemType)
                     else:
                         return Response('404')
-                 #if only one collection is present then check it is connected with item
+
+                #if only one collection is present then check it is connected with item
                 elif len(tempCollections) ==1:
-                   if tempItemObj.collectionId.id != tempCollections[0].id:
+                   if materialItemObj.collectionId.id != tempCollections[0].id:
                        return Response('404')
                    else:
-                       jsonResponseStr.append(tempItemObj.mTitle + "  " + tempItemObj.description + "  " +tempItemObj.itemType)
+                       jsonResponseStr.append(materialItemObj.mTitle + "  " + materialItemObj.description + "  " +materialItemObj.itemType)
 
             else:
+                #if there is no materialitems, we should still return collection information
                 for eachToken in splitpath:
                     try:
                         tempCollections.append(models.MaterialCollections.objects.get(slug=eachToken))
                     except models.MaterialCollections.DoesNotExist:
-                        tempTokens.append(eachToken)
+                        materialTokens.append(eachToken)
 
                 if len(tempCollections) >1:
                     length =len(tempCollections)-1
+
+                    #check if the collections are connected to each other
                     for i in range(length):
                         try:
                             temp = models.hasCollection.objects.get(parentID=tempCollections[i].id, childID=tempCollections[i+1].id)
