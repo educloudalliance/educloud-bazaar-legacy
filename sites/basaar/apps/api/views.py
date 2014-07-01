@@ -39,6 +39,26 @@ class CMSView(APIView):
         splitpath = filter(None,splitpath)
         return splitpath
 
+    def isValidCompanyCollection(self, splitpath):
+        try:
+            tempCollObjects = models.MaterialCollections.objects.get(slug=splitpath[0])
+        except models.MaterialCollections.DoesNotExist:
+            return Response('404 line 54')
+        return tempCollObjects
+
+    #checks whether url has correct collection names or not and if item is specified then it is saved in materialTokens variable
+    def isValidCollections(self, splitpath):
+        tempmaterialTokens = []
+        for eachToken in splitpath:
+            try:
+                temp = models.MaterialCollections.objects.get(slug=eachToken)
+            except models.MaterialCollections.DoesNotExist:
+                tempmaterialTokens.append(eachToken)
+        #more than one materialitem is specified in url then error is returned
+        if len(tempmaterialTokens) >1:
+            return Response('404 line 68')
+        return tempmaterialTokens
+
     def get(self, request, cmsurl):
         #get the collection and resource names from url:
         splitpath = self.splitUrl(request.path)
@@ -48,26 +68,13 @@ class CMSView(APIView):
         jsonResponseStr = []
         length = 0
 
-        try:
-            tempCollObj = models.MaterialCollections.objects.get(slug=splitpath[0])
-        except models.MaterialCollections.DoesNotExist:
-            return Response('404 line 54')
+        tempCollObj = self.isValidCompanyCollection(splitpath)
 
         try:
             firstToken = models.hasCollection.objects.get(childID=tempCollObj.id)
             return Response('404 line 56')
         except models.hasCollection.DoesNotExist:
-
-            #checks whether url has correct collection names or not and if item is specfied then it is saved in materialTokens variable
-            for eachToken in splitpath:
-                try:
-                    temp = models.MaterialCollections.objects.get(slug=eachToken)
-                except models.MaterialCollections.DoesNotExist:
-                    materialTokens.append(eachToken)
-
-            #more than one materialitem is specified in url then error is returned
-            if len(materialTokens) >1:
-                return Response('404 line 68')
+            materialTokens = self.isValidCollections(splitpath)
 
             #there is one materialitem in the url
             if len(materialTokens) ==1:
@@ -135,6 +142,23 @@ class CMSView(APIView):
 
         return Response(jsonResponseStr)
         #raise Http404
+
+    def post(self,request, cmsurl):
+        splitpath = self.splitUrl(request.path)
+        materialTokens = []
+        leftoverTokens=[]
+        tempCollections = []
+        jsonResponseStr = []
+        length = 0
+
+        tempCollObj = self.isValidCompanyCollection(splitpath)
+
+        try:
+            firstToken = models.hasCollection.objects.get(childID=tempCollObj.id)
+            return Response('404 line 155')
+        except models.hasCollection.DoesNotExist:
+            materialTokens = self.isValidCollections(splitpath)
+            
 
 
 
