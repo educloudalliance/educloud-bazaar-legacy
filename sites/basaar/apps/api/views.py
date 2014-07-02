@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
+from django.db.models import Count
 from rest_framework import viewsets
-from apps.api.serializers import UserSerializer, GroupSerializer
+from apps.api.serializers import UserSerializer, GroupSerializer, CollectionSerializer, MaterialItemSerializer
+
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
@@ -104,6 +106,29 @@ class CMSView(APIView):
                 return False
          return True
 
+    #finds the children of the given collection
+    def findCollectionChildren(self, collection):
+        try:
+            children = models.MaterialItem.objects.get(collectionId=collection)
+            return children
+        except models.MaterialItem.DoesNotExist:
+            return []
+
+    #finds the subcollections of the collection:
+    def findSubcollections(self, collection):
+        try:
+            hasColl = models.hasCollection.objects.filter(parentID=collection)
+            subColls = []
+            for i in range(0, hasColl.count()):
+                try:
+                    subColls.append( models.MaterialCollections.objects.filter(pk=hasColl[i].childID))
+                except models.MaterialCollections.DoesNotExist:
+                    pass
+            return subColls
+        except models.hasCollection.DoesNotExist:
+            return []
+
+
     def get(self, request):
         #get the collection and resource names from url:
         splitpath = self.splitUrl(request.path)
@@ -146,6 +171,7 @@ class CMSView(APIView):
                 #get all materialCollection objects
                 tempCollections = self.getMaterialCollectionObjects(splitpath[:-1])
 
+                serializer = MaterialItemSerializer(materialItemObj, many=False)
                 #check all collections are interconnected if more than one collection is specified
                 if len(tempCollections) >1:
                     length =len(tempCollections)-1
@@ -154,9 +180,10 @@ class CMSView(APIView):
                     if not successFlag:
                         return Response('404 line 153')
 
+
                     #check if the materialitem is connected to the last collection
                     if materialItemObj.collectionId.id == tempCollections[length].id:
-                        jsonResponseStr.append(materialItemObj.mTitle + "  " + materialItemObj.description +"  " + materialItemObj.itemType)
+                        jsonResponseStr.append(serializer.data)
                     else:
                         return Response('404')
 
@@ -165,13 +192,19 @@ class CMSView(APIView):
                    if materialItemObj.collectionId.id != tempCollections[0].id:
                        return Response('404')
                    else:
-                       jsonResponseStr.append(materialItemObj.mTitle + "  " + materialItemObj.description + "  " +materialItemObj.itemType)
+                       jsonResponseStr.append(serializer.data)
 
             else:
                 #if there is no materialitems, we should still return collection information
                 # so we get all materialCollection objects
-                tempCollections = self.getMaterialCollectionObjects(splitpath)
 
+                tempCollections = self.getMaterialCollectionObjects(splitpath)
+                children = self.findSubcollections(tempCollections[-1])
+
+
+                serializer = CollectionSerializer(children, many=False)
+                return Response(serializer.data)
+                
                 if len(tempCollections) >1:
                     length =len(tempCollections)-1
                     #check if the collections are connected to each other
@@ -179,10 +212,10 @@ class CMSView(APIView):
                     if not successFlag:
                         return Response('404 line 179')
 
-                    jsonResponseStr.append(tempCollections[length].cTitle + " collection")
+                    jsonResponseStr.append(serializer.data)
                 elif len(tempCollections) ==1:
                     length =1
-                    jsonResponseStr.append(tempCollections[0].cTitle + " collection")
+                    jsonResponseStr.append(serializer.data) #tempCollections[0].cTitle + " collection")
 
         return Response(jsonResponseStr)
         #raise Http404
