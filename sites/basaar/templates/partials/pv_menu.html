@@ -14,7 +14,7 @@
         <div class="menu-option flex-container-vertical">
             <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/ProfileIcon.png');"></div>
             <div class="drawer">
-                Profile
+                {% include "partials/nav_accounts.html" %}
             </div>
         </div>
         <div class="menu-option flex-container-vertical">
@@ -33,7 +33,7 @@
         <div class="menu-option flex-container-vertical">
             <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/SupportIconTEMP.png');"></div>
             <div class="drawer">
-                Support
+                {% include "partials/mini_basket.html" %}
             </div>
         </div>
         {% block mini_basket %}{% endblock %}

@@ -14,6 +14,9 @@
 
     <div class="menu-block">
     </div>
+    <div style="position: absolute; left: 4em" class="langBox">
+        {% include "partials/lang.html" %}
+    </div>
     <div id="content" class="content-column flexItem">
         <div class="header">
             <!--
@@ -22,16 +25,15 @@
             <p>The new home for digital educational material.</p>
         -->
         </div>
+        {% block navigation %}
         {% include "partials/nav_primary.html" %}
+        {% endblock %}
         <div class="flex-container  flex-wrap">
             <div id="content-column" class="flexItem2">
                 {% block content %}{% endblock %}
             </div>
-            <!-- content-column-end -->
-
-
             <div id="blog-column" class="flexItem">
-                <h1>Blogs</h1>
+                <h1>Blogs</h1>fgdfgdfgdfgdfgdf
 
                 <div class="blog-post">
                     <h2><a href="#">First post</a></h2>
@@ -62,6 +64,7 @@
     </div>
 </div>
 <div class="flexItem"></div>
+{% include "partials/footer.html" %}
 {% include "extras/extrascripts.html" %}
 
 {% endblock %}
