@@ -205,19 +205,19 @@ img {
             margin-top: $nav-height / 2;
             color: #fff;
             font-family: $font-body;
-            overflow: hidden;
+            border-radius: 5px;
+            background: $blue-main;
 
-            div {
-                border-radius: 5px;
-            }
-            .flexItem2 {
-                flex-basis: $basis-content-column;
-                -webkit-flex-basis: $basis-content-column;
+            .flexItem {
+                padding: 0px 5px;
                 line-height: $nav-height;
-                background: $blue-main;
                 font-size: 14px;
                 margin: 0px;
-
+                font-size: 0px;
+                span {
+                    font-size: 15px;
+                    float: left;
+                }
                 a {
                     color: #ffffff;
                     height: $nav-height;
@@ -227,21 +227,70 @@ img {
                     color: #ffffff;
                     background: rgba(0,0,0,0.2);
                 }
-            }
-            .flexItem {
-                flex-basis: $basis-blog-column;
-                -webkit-flex-basis: $basis-blog-column;
-                background: rgb(231,174,123);
+                div {
+                    display: inline-block;
+                }
             }
             input {
-                margin: 5px 5px;
-                font-size: 12px;
+                display: inline-block;
+                float: left;
+                margin: 5px;
+                font-size: 10px;
                 border: none;
                 color: #000;
-                padding: 0px 4px;
+                padding: 0px 4px 0px 4px;
                 width: 100px;
+                height: $nav-height - 10;
+                border-radius: 5px;
+            }
+            .recommendations{
+                float: left;
+            }
+            #filters{
+                .items {
+                    text-align: center;
+                    font-size: 12pt;
+                    list-style: none;
+                    padding: 0px;
+                    margin: 0px;
+                    li {
+                        -webkit-flex: 1;
+                        flex: 1;
+                    
+                        position: relative;
+                        display: inline-block;
+                        cursor: pointer;
+                        width: 100%;
+                        padding: 0px;
+                        height: $nav-height;
+                        line-height: $nav-height;
+                        ul{
+                            width: 100%;
+                            display: none;
+                            text-align: left;
+                            background: $blue-main;
+                            position: absolute;
+                            top: $nav-height;
+                            left: 0px;
+                            list-style: none;
+                            padding: 0px;
+                            margin: 0px;
+                            li{
+                                background: rgba(255,255,255,0.15);
+                                padding: 4px 7px;
+
+                            }
+
+                        }
+                    }
+                    li:hover {
+                        background: rgba(255,255,255,0.3);
+                    }
+                }
+
             }
             .tag{
+                display: inline-block;
                 position: relative;
                 display: inline-block;
                 background: #ffffff;

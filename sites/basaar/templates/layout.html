@@ -22,16 +22,44 @@
             -->
             </div>
             <div class="nav flex-container flex-wrap">
-                <div class="flexItem2 flex-container">
-                    <div>Filter content by tags:
-                        <input/></div>
-                    <div>Recommended:
-                        <div class="tag">biology
+
+                <div id="filters" class="flexItem2">
+                    <ul class="items flex-container">
+                        <li>Subjects
+                            <ul>
+                                <li>biology</li>
+                                <li>maths</li>
+                                <li>english</li>
+                                <li>geography</li>
+                            </ul>
+                        </li>
+                        <li>Grade
+                            <ul>
+                                <li>1-3</li>
+                                <li>4-6</li>
+                                <li>7-9</li>
+                            </ul>
+                        </li>
+                        <li>Type
+                            <ul>
+                                <li>books</li>
+                                <li>exercises</li>
+                                <li>games</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="flexItem">
+                    <span>Filter</span>
+                        
+                    <input/>
+
+                    <div class="recommendations">Recommended:
+                        <div class="tag">mitosis
                             <div>x</div>
                         </div>
                     </div>
-                </div>
-                <div class="flexItem">
                 </div>
             </div>
             {% block content %}{% endblock %}

@@ -7634,49 +7634,99 @@ img {
   margin-top: 12.5px;
   color: #fff;
   font-family: Nunito, Helvetica, sans-serif;
-  overflow: hidden;
-}
-/* line 210, ../sass/main.scss */
-.screen #content .nav div {
   border-radius: 5px;
-}
-/* line 213, ../sass/main.scss */
-.screen #content .nav .flexItem2 {
-  flex-basis: 250px;
-  -webkit-flex-basis: 250px;
-  line-height: 25px;
   background: #37a9e0;
+}
+/* line 211, ../sass/main.scss */
+.screen #content .nav .flexItem {
+  padding: 0px 5px;
+  line-height: 25px;
   font-size: 14px;
   margin: 0px;
+  font-size: 0px;
+}
+/* line 217, ../sass/main.scss */
+.screen #content .nav .flexItem span {
+  font-size: 15px;
+  float: left;
 }
 /* line 221, ../sass/main.scss */
-.screen #content .nav .flexItem2 a {
+.screen #content .nav .flexItem a {
   color: #ffffff;
   height: 25px;
   padding: 0px;
 }
 /* line 226, ../sass/main.scss */
-.screen #content .nav .flexItem2 a:hover {
+.screen #content .nav .flexItem a:hover {
   color: #ffffff;
   background: rgba(0, 0, 0, 0.2);
 }
-/* line 231, ../sass/main.scss */
-.screen #content .nav .flexItem {
-  flex-basis: 200px;
-  -webkit-flex-basis: 200px;
-  background: #e7ae7b;
+/* line 230, ../sass/main.scss */
+.screen #content .nav .flexItem div {
+  display: inline-block;
 }
-/* line 236, ../sass/main.scss */
+/* line 234, ../sass/main.scss */
 .screen #content .nav input {
-  margin: 5px 5px;
-  font-size: 12px;
+  display: inline-block;
+  float: left;
+  margin: 5px;
+  font-size: 10px;
   border: none;
   color: #000;
-  padding: 0px 4px;
+  padding: 0px 4px 0px 4px;
   width: 100px;
+  height: 15px;
+  border-radius: 5px;
 }
-/* line 244, ../sass/main.scss */
+/* line 246, ../sass/main.scss */
+.screen #content .nav .recommendations {
+  float: left;
+}
+/* line 250, ../sass/main.scss */
+.screen #content .nav #filters .items {
+  text-align: center;
+  font-size: 12pt;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+/* line 256, ../sass/main.scss */
+.screen #content .nav #filters .items li {
+  -webkit-flex: 1;
+  flex: 1;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+  padding: 0px;
+  height: 25px;
+  line-height: 25px;
+}
+/* line 267, ../sass/main.scss */
+.screen #content .nav #filters .items li ul {
+  width: 100%;
+  display: none;
+  text-align: left;
+  background: #37a9e0;
+  position: absolute;
+  top: 25px;
+  left: 0px;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+/* line 278, ../sass/main.scss */
+.screen #content .nav #filters .items li ul li {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px 7px;
+}
+/* line 286, ../sass/main.scss */
+.screen #content .nav #filters .items li:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+/* line 292, ../sass/main.scss */
 .screen #content .nav .tag {
+  display: inline-block;
   position: relative;
   display: inline-block;
   background: #ffffff;
@@ -7686,7 +7736,7 @@ img {
   padding: 2px 10px 2px 7px;
   margin: 2px 5px;
 }
-/* line 253, ../sass/main.scss */
+/* line 302, ../sass/main.scss */
 .screen #content .nav .tag div {
   position: absolute;
   top: 0px;
@@ -7694,27 +7744,27 @@ img {
   font-size: 9pt;
   line-height: 9pt;
 }
-/* line 263, ../sass/main.scss */
+/* line 312, ../sass/main.scss */
 .screen #content .flex-container {
   font-family: Nunito, Helvetica, sans-serif;
 }
-/* line 266, ../sass/main.scss */
+/* line 315, ../sass/main.scss */
 .screen #content .flex-container #content-column > h1 {
   font-size: 14px;
   font-style: oblique;
   padding-left: 10px;
 }
-/* line 271, ../sass/main.scss */
+/* line 320, ../sass/main.scss */
 .screen #content .flex-container #content-column {
   flex-basis: 250px;
   -webkit-flex-basis: 250px;
 }
-/* line 274, ../sass/main.scss */
+/* line 323, ../sass/main.scss */
 .screen #content .flex-container #content-column div {
   justify-content: space-around;
   -webkit-justify-content: space-around;
 }
-/* line 278, ../sass/main.scss */
+/* line 327, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox {
   text-align: center;
   margin: 4px 4px;
@@ -7723,26 +7773,26 @@ img {
   border: 1px solid #cccccc;
   border-radius: 5px;
 }
-/* line 285, ../sass/main.scss */
+/* line 334, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox a {
   text-decoration: underline;
   color: #666666;
 }
-/* line 289, ../sass/main.scss */
+/* line 338, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox h1 {
   font-size: 14pt;
   font-weight: 700;
   margin: 0px;
   padding-top: 15px;
 }
-/* line 295, ../sass/main.scss */
+/* line 344, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox .price {
   font-size: 12pt;
   font-weight: 500;
   font-style: oblique;
   margin: 0px;
 }
-/* line 301, ../sass/main.scss */
+/* line 350, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox .icon {
   height: 64px;
   width: 64px;
@@ -7751,41 +7801,41 @@ img {
   background-repeat: no-repeat;
   background-position: center;
 }
-/* line 309, ../sass/main.scss */
+/* line 358, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox .provider {
   font-size: 9pt;
   font-weight: 300;
   font-style: oblique;
   margin: 0px;
 }
-/* line 315, ../sass/main.scss */
+/* line 364, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox .topic {
   font-size: 12pt;
   font-weight: 500;
   margin: 0px;
 }
-/* line 320, ../sass/main.scss */
+/* line 369, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox .grade {
   font-size: 12pt;
   font-weight: 500;
   margin: 0px;
 }
-/* line 325, ../sass/main.scss */
+/* line 374, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox .rating {
   margin: 0px;
 }
-/* line 329, ../sass/main.scss */
+/* line 378, ../sass/main.scss */
 .screen #content .flex-container #content-column .appBox .more {
   text-align: right;
   margin: 0px;
 }
-/* line 335, ../sass/main.scss */
+/* line 384, ../sass/main.scss */
 .screen #content .flex-container #blog-column > h1 {
   font-size: 18px;
   font-style: oblique;
   padding-left: 10px;
 }
-/* line 341, ../sass/main.scss */
+/* line 390, ../sass/main.scss */
 .screen #content .flex-container #blog-column {
   flex-basis: 200px;
   -webkit-flex-basis: 200px;
@@ -7794,32 +7844,32 @@ img {
   padding: 0px;
   color: #666666;
 }
-/* line 348, ../sass/main.scss */
+/* line 397, ../sass/main.scss */
 .screen #content .flex-container #blog-column a {
   color: #666666;
 }
-/* line 351, ../sass/main.scss */
+/* line 400, ../sass/main.scss */
 .screen #content .flex-container #blog-column h2 {
   margin: 0px;
   font-size: 12pt;
   font-style: oblique;
 }
-/* line 356, ../sass/main.scss */
+/* line 405, ../sass/main.scss */
 .screen #content .flex-container #blog-column h3 {
   margin: 0px;
   font-size: 11pt;
   font-style: oblique;
   font-weight: 300;
 }
-/* line 362, ../sass/main.scss */
+/* line 411, ../sass/main.scss */
 .screen #content .flex-container #blog-column .blog-post {
   padding: 8px;
 }
-/* line 364, ../sass/main.scss */
+/* line 413, ../sass/main.scss */
 .screen #content .flex-container #blog-column .blog-post p {
   font-size: 10pt;
 }
-/* line 371, ../sass/main.scss */
+/* line 420, ../sass/main.scss */
 .screen #content .flex-container #blog-column .qaa {
   padding: 8px;
   height: 200px;
@@ -7828,13 +7878,13 @@ img {
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* line 388, ../sass/main.scss */
+  /* line 437, ../sass/main.scss */
   .container {
     max-width: 730px;
   }
 
   /* Remove the padding we set earlier */
-  /* line 394, ../sass/main.scss */
+  /* line 443, ../sass/main.scss */
   .header,
   .footer {
     padding-left: 0;
@@ -7842,13 +7892,13 @@ img {
   }
 
   /* Space out the masthead */
-  /* line 400, ../sass/main.scss */
+  /* line 449, ../sass/main.scss */
   .header {
     /*margin-bottom: 30px;*/
   }
 
   /* Remove the bottom border on the jumbotron for visual effect */
-  /* line 405, ../sass/main.scss */
+  /* line 454, ../sass/main.scss */
   .jumbotron {
     border-bottom: 0;
   }

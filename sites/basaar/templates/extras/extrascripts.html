@@ -15,7 +15,14 @@
             function closeSubMenu() {
                 $(this).children('.drawer').hide('slide'); 
             };
+            function openFilterSubitems() {
+                $(this).children('ul').show('fade');    
+            };
+            function closeFilterSubitems() {
+                $(this).children('ul').hide('fade'); 
+            };
             
             $('.menu-option').hoverIntent( openSubMenu, closeSubMenu );
+            $('.items li').hoverIntent( openFilterSubitems, closeFilterSubitems );
             
         </script>
