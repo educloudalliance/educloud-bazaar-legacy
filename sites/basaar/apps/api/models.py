@@ -11,6 +11,7 @@ class MaterialCollections(models.Model):
     createdAt =  models.DateTimeField(auto_now_add=True)
     lastModified = models.DateField(auto_now_add=True)
     createdBy = models.ForeignKey(User)
+    uniqueTitle = models.CharField(max_length=8000)
     slug = AutoSlugField(populate_from='cTitle')
 
     def __str__(self):
@@ -36,6 +37,7 @@ class MaterialItem(models.Model):
     numberOfLikes = models.IntegerField(default=0)
     collectionId= models.ForeignKey(MaterialCollections, default=MaterialCollections.defaultValue)
     author = models.ForeignKey(User)
+    uniqueTitle = models.CharField(max_length=8000)
     slug = AutoSlugField(populate_from='mTitle')
 
     def __str__(self):
