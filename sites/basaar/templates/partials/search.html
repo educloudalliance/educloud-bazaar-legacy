@@ -1,0 +1,12 @@
+{% load i18n %}
+Filter content by tags:
+<form method="get" action="{% url 'search:search' %}" class="navbar-form pull-right">
+    {{ search_form.q }}
+</form>
+
+<div>Recommended:
+    <div class="tag">biology
+        <div>x</div>
+    </div>
+</div>
+

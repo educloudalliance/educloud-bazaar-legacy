@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load compress %}
+{% load promotion_tags %}
+
+{% block layout %}
+
+    <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="flexItem"></div>
+    <div class="screen flex-container">
+        {% include "partials/pv_menu.html" %}
+
+        <div class="menu-block">
+        </div>
+        <div id="content" class="content-column flexItem">
+            <div class="header">
+                <!--
+                <p>Welcome to the</p>
+                <h1>Bazaar!</h1>
+                <p>The new home for digital educational material.</p>
+            -->
+            </div>
+            {% block navigation %}
+                {% include "partials/nav_primary.html" %}
+            {% endblock %}
+            <div id="content_inner">
+                {% block content %}{% endblock %}
+            </div>
+            <div class="flex-container  flex-wrap">
+                <div id="blog-column" class="flexItem">
+                    <h1>Blogs</h1>
+
+                    <div class="blog-post">
+                        <h2><a href="#">First post</a></h2>
+
+                        <h3><a href="#">by Author</a></h3>
+
+                        <p>Bacon ipsum dolor sit amet ut officia pastrami t-bone frankfurter chicken sint pork nisi
+                            shankle dolore meatball. Tempor in excepteur reprehenderit. Ullamco anim pork boudin<a
+                                    href="#">...</a>
+                    </div>
+                    <div class="blog-post">
+                        <h2><a href="#">Second post</a></h2>
+
+                        <h3><a href="#">by Author</a></h3>
+
+                        <p>Bacon ipsum dolor sit amet ut officia pastrami t-bone frankfurter chicken sint pork nisi
+                            shankle dolore meatball. Tempor in excepteur reprehenderit. Ullamco anim pork boudin<a
+                                    href="#">...</a>
+                    </div>
+                    <h1>Q&A</h1>
+
+                    <div class="qaa">
+                        abc
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="flexItem"></div>
+    {% include "partials/footer.html" %}
+    {% include "extras/extrascripts.html" %}
+
+{% endblock %}

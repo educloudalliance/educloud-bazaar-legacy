@@ -20,7 +20,7 @@ ADMINS = (
     ('Admin Adminton', 'admin@admin.com'),
 )
 
-EMAIL_SUBJECT_PREFIX = '[Oscar sandbox] '
+EMAIL_SUBJECT_PREFIX = '[Basaar] '
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MANAGERS = ADMINS
@@ -321,7 +321,7 @@ INSTALLED_APPS = INSTALLED_APPS + get_core_apps()
 # Add Oscar's custom auth backend so users can sign in using their email
 # address.
 AUTHENTICATION_BACKENDS = (
-    'oscar.apps.customer.auth_backends.EmailBackend',
+    'oscar.apps.customer.auth_backends.Emailbackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
