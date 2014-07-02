@@ -31,90 +31,154 @@ class GroupViewSet(viewsets.ModelViewSet):
 # this view is used to handle all CMS interaction through collections
 # and resources
 class CMSView(APIView):
-    permission_classes = (permissions.AllowAny,)    #CHANGE TO AUTHENTICATED LATER
-    def get(self, request, cmsurl):
-        #get the collection and resource names from url:
-        splitpath = request.path.split('/')
+    permission_classes = (permissions.AllowAny,)    #TODO::CHANGE TO AUTHENTICATED LATER
+
+    def splitUrl(self, url):
+        splitpath = url.lower().split('/')
         splitpath = splitpath[3:]
         splitpath = filter(None,splitpath)
-        tempTokens = []
+        return splitpath
+
+    def isValidCompanyCollection(self, firstCollectionnameInUrl):
+        try:
+            tempCollObjects = models.MaterialCollections.objects.get(slug=firstCollectionnameInUrl)
+        except models.MaterialCollections.DoesNotExist:
+            return False
+        return True
+
+    #Get MaterialCollection Object
+    def getMaterialCollectionObject(self, collectionToken):
+        try:
+            tempCollObject = models.MaterialCollections.objects.get(slug=collectionToken)
+        except models.MaterialCollections.DoesNotExist:
+            return Response('404 line 53')
+        return tempCollObject
+
+    #to get all collection objects
+    def getMaterialCollectionObjects(self,collectionNameArray):
+        tempCollections = []
+        for eachToken in collectionNameArray:
+            try:
+                tempCollections.append(self.getMaterialCollectionObject(eachToken))
+            except models.MaterialCollections.DoesNotExist:
+                materialTokens.append(eachToken) #TODO:: replace this line with system exit
+        return tempCollections
+    #checks whether url has correct collection names or not and if item is specified then it is saved in materialTokens variable
+    def isValidCollections(self, splitpath):
+        tempmaterialTokens = []
+        for eachToken in splitpath:
+            try:
+                temp = models.MaterialCollections.objects.get(slug=eachToken)
+            except models.MaterialCollections.DoesNotExist:
+                tempmaterialTokens.append(eachToken)
+        return tempmaterialTokens
+
+    #check if the last part of the url is the materialitem
+    def isValidLastTokenAsItem(self,firstMaterialToken, lastUrlToken):
+        if firstMaterialToken !=  lastUrlToken:
+            return False
+        return True
+
+    #checks whether materialItemToken is present in materialItem table
+    def isvalidMaterialItem(self,materialItemToken):
+        try:
+            materialItemObj = models.MaterialItem.objects.get(slug=materialItemToken)
+            return True
+        except models.MaterialItem.DoesNotExist:
+            return False
+
+    #returns the materialItem Object from DB
+    def getMaterialItemObject(self,materialItemToken):
+        try:
+            materialItemObj = models.MaterialItem.objects.get(slug=materialItemToken)
+            return materialItemObj
+        except models.MaterialItem.DoesNotExist:
+            return False #TODO :: replace with system exit functionality
+
+    def isCollectionsInterconnected(self, collectionsArray):
+         length = len(collectionsArray)-1
+         for i in range(length):
+            try:
+                temp = models.hasCollection.objects.get(parentID=collectionsArray[i].id, childID=collectionsArray[i+1].id)
+            except models.hasCollection.DoesNotExist:
+                return False
+         return True
+
+    def get(self, request):
+        #get the collection and resource names from url:
+        splitpath = self.splitUrl(request.path)
+        materialTokens = []
         leftoverTokens=[]
         tempCollections = []
         jsonResponseStr = []
         length = 0
+        successFlag = ''
 
-        tempCollObj = models.MaterialCollections.objects.get(slug=splitpath[0])
+        successFlag = self.isValidCompanyCollection(splitpath[0])
+        if not successFlag:
+            return Response('404 line 91')
+
+        tempCollObj = self.getMaterialCollectionObject(splitpath[0])
+
         try:
             firstToken = models.hasCollection.objects.get(childID=tempCollObj.id)
-            if firstToken:
-                return Response('404')
+            return Response('404 line 97')
         except models.hasCollection.DoesNotExist:
-            #checks whether url has correct collection names or not and if item is specfied then it is saved in leftovertokens variable
-            for eachToken in splitpath:
-                try:
-                    temp = models.MaterialCollections.objects.get(slug=eachToken)
-                except models.MaterialCollections.DoesNotExist:
-                    tempTokens.append(eachToken)
 
-            #more than one item is specified in url then error is returned
-            if len(tempTokens) >1:
-                return Response('404')
+            materialTokens = self.isValidCollections(splitpath)
+            #more than one materialitem is specified in url then error is returned
+            if len(materialTokens) >1:
+                return Response('404 line 103')
 
-            if len(tempTokens) ==1:
-                lefttokens = tempTokens
-                if tempTokens[0] !=  splitpath[len(splitpath)-1]:
-                    return Response('404')
+            #there is one materialitem in the url
+            if len(materialTokens) == 1:
+                #check if the last part of the url is the materialitem
+                successFlag = self.isValidLastTokenAsItem(materialTokens[0],splitpath[len(splitpath)-1])
+                if not successFlag :
+                    return Response('404 line 110')
 
-                for eachToken in lefttokens:
-                    try:
-                        tempItemObj = models.MaterialItem.objects.get(slug=eachToken)
-
-                    except models.MaterialItem.DoesNotExist:
-                        leftoverTokens.append(eachToken)
-
-                if len(leftoverTokens) >0:
-                    return Response('404')
-                #to get all collection objects
-                for eachToken in splitpath[:-1]:
-                    try:
-                        tempCollections.append(models.MaterialCollections.objects.get(slug=eachToken))
-                    except models.MaterialCollections.DoesNotExist:
-                        tempTokens.append(eachToken)
+                #check whether Material Item exists or not
+                successFlag = self.isvalidMaterialItem(materialTokens[0])
+                if not successFlag :
+                    return Response('404 line 114')
+                else:
+                    materialItemObj = self.getMaterialItemObject(materialTokens[0])
+                #get all materialCollection objects
+                tempCollections = self.getMaterialCollectionObjects(splitpath[:-1])
 
                 #check all collections are interconnected if more than one collection is specified
                 if len(tempCollections) >1:
                     length =len(tempCollections)-1
-                    for i in range(length):
-                        try:
-                            temp = models.hasCollection.objects.get(parentID=tempCollections[i].id, childID=tempCollections[i+1].id)
-                        except models.hasCollection.DoesNotExist:
-                            return Response('404')
+                    #checking collections are interconnected
+                    successFlag = self.isCollectionsInterconnected(tempCollections)
+                    if not successFlag:
+                        return Response('404 line 153')
 
-                    if tempItemObj.collectionId.id == tempCollections[length].id:
-                        jsonResponseStr.append(tempItemObj.mTitle + "  " + tempItemObj.description +"  " + tempItemObj.itemType)
+                    #check if the materialitem is connected to the last collection
+                    if materialItemObj.collectionId.id == tempCollections[length].id:
+                        jsonResponseStr.append(materialItemObj.mTitle + "  " + materialItemObj.description +"  " + materialItemObj.itemType)
                     else:
                         return Response('404')
-                 #if only one collection is present then check it is connected with item
+
+                #if only one collection is present then check it is connected with item
                 elif len(tempCollections) ==1:
-                   if tempItemObj.collectionId.id != tempCollections[0].id:
+                   if materialItemObj.collectionId.id != tempCollections[0].id:
                        return Response('404')
                    else:
-                       jsonResponseStr.append(tempItemObj.mTitle + "  " + tempItemObj.description + "  " +tempItemObj.itemType)
+                       jsonResponseStr.append(materialItemObj.mTitle + "  " + materialItemObj.description + "  " +materialItemObj.itemType)
 
             else:
-                for eachToken in splitpath:
-                    try:
-                        tempCollections.append(models.MaterialCollections.objects.get(slug=eachToken))
-                    except models.MaterialCollections.DoesNotExist:
-                        tempTokens.append(eachToken)
+                #if there is no materialitems, we should still return collection information
+                # so we get all materialCollection objects
+                tempCollections = self.getMaterialCollectionObjects(splitpath)
 
                 if len(tempCollections) >1:
                     length =len(tempCollections)-1
-                    for i in range(length):
-                        try:
-                            temp = models.hasCollection.objects.get(parentID=tempCollections[i].id, childID=tempCollections[i+1].id)
-                        except models.hasCollection.DoesNotExist:
-                            return Response('404')
+                    #check if the collections are connected to each other
+                    successFlag = self.isCollectionsInterconnected(tempCollections)
+                    if not successFlag:
+                        return Response('404 line 179')
+
                     jsonResponseStr.append(tempCollections[length].cTitle + " collection")
                 elif len(tempCollections) ==1:
                     length =1
@@ -122,6 +186,23 @@ class CMSView(APIView):
 
         return Response(jsonResponseStr)
         #raise Http404
+
+    def post(self,request):
+        splitpath = self.splitUrl(request.path)
+        materialTokens = []
+        leftoverTokens=[]
+        tempCollections = []
+        jsonResponseStr = []
+        length = 0
+
+        tempCollObj = self.isValidCompanyCollection(splitpath)
+
+        try:
+            firstToken = models.hasCollection.objects.get(childID=tempCollObj.id)
+            return Response('404 line 155')
+        except models.hasCollection.DoesNotExist:
+            materialTokens = self.isValidCollections(splitpath)
+
 
 
 
