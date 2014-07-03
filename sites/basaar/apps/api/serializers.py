@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from apps.api.models import MaterialItem
+from apps.api.models import MaterialItem, APIObject
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -20,5 +20,12 @@ class MaterialItemSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = MaterialItem
         fields = ('mTitle', 'description', 'materialUrl', 'materialType',
-        'materialUrl',)
+        'materialUrl', 'iconUrl', 'screenshotUrls', 'videoUrls', 'moreInfoUrl', 'bazaarUrl',
+        'version', 'status', 'createdAt', 'price', 'language', 'issn')
         #read_only_fields = ('mTitle', 'slug')
+
+
+class APIObjectSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = APIObject
+        fields = ('uniquePath', 'objectType', )

@@ -3,13 +3,16 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 from django.db.models import Count
 from rest_framework import viewsets
-from apps.api.serializers import UserSerializer, GroupSerializer, MaterialItemSerializer
+from apps.api.serializers import UserSerializer, GroupSerializer, MaterialItemSerializer, APIObjectSerializer
 
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
 from apps.api import models
+from datetime import datetime
 import json
+from django.template.defaultfilters import slugify
+
 from django.http import Http404
 
 
@@ -40,10 +43,21 @@ class CMSView(APIView):
         splitpath = url.lower().split('/')
         splitpath = splitpath[0:]
         splitpath = filter(None,splitpath)
+
+        for x in range(0, len(splitpath)):
+            splitpath[x] = slugify(splitpath[x])    #remove bad characters from url
         return splitpath
 
+    def slugifyWholeUrl(self, url):
+        urlarray = self.splitUrl(url)
+        url= urlarray[0]
+        for i in range(1, len(urlarray)):
+            url += "/" + urlarray[i]
+
+        return url
+
     def checkIfAlreadyInDb(self, path):
-        return models.APIObject.objects.filter(uniquePath=path).exists()
+        return models.APIObject.objects.filter(uniquePath=self.slugifyWholeUrl(path)).exists()
 
     #make sure there isn't items in the middle of the given path
     def checkIfItemsInPostPath(self, path):
@@ -90,21 +104,86 @@ class CMSView(APIView):
         #entries.append(data)
         #take json-array of the pushes and take the forces:
 
+
         theList = data["items"]
-        names = ""
+        createdItems = []
+        #TODO: WRITE A PROPER SERIALIZER FOR THIS!!!!!!!!!!!!!!!!!
         for x in theList:
             #create new item
             item = models.MaterialItem.create()
+            item.mTitle = x["title"]
+            item.description = x["description"]
+            item.materialUrl = x["materialUrl"]
+            item.materialType = x["materialType"]
+            item.iconUrl = x["iconUrl"]
+            item.moreInfoUrl = x["moreInfoUrl"]
+            item.bazaarUrl = x["bazaarUrl"]         #TODO: THIS IS PROBLEMATIC
+            item.version = x["version"]
+            item.status = x["status"]
+            item.price = x["price"]
+            item.language = x["language"]
+            item.issn = x["issn"]
+            item.author = User.objects.get(username="admin")    #TODO: User should be set to authenticated user when authentication is done
+
+            try:
+                item.createdAt = datetime.strptime(x["creationDate"], "%Y-%m-%d")
+            except ValueError:
+                #item.delete()
+                return "Items created: " + createdItems + " ERROR: Creationdate field was in wrong format. Should be yyyy-mm-dd"
+
+            #note that these are PickleFields which include arrays of strings.
+            item.screenshotUrls = x["screenshotUrls"]
+            item.videoUrls = x["videoUrls"]
+            #TODO: TAGS ARE STILL MISSING
+
+
+            if self.checkIfAlreadyInDb(path + "/" + slugify(item.mTitle)):
+                return "ERROR: Can't post because an object already exists in this URL. Items created: " + unicode(createdItems)
+            createdItems.append(item.mTitle)
             item.save()
 
+            #add APIObject for this materialItem
+            finalUrl = path + "/" + slugify(item.mTitle)
+            newColl = models.APIObject.create(finalUrl, path, "item")
+            newColl.materialItem = item
+            newColl.save()
 
-            names += x["title"]
 
-
-        return names
+        return "Items created: " + unicode(createdItems)
 
     def get(self, request):
-        return Response('WORK IN PROGRESS')
+        url = request.path
+        url = url[len("/api/cms/"):] #slice the useless part away
+        #slice the trailing:
+        url = url.strip("/")
+
+        try:
+            target = models.APIObject.objects.get(uniquePath=url)
+
+            #check is the APIObject collection or item:
+            if target.objectType == "item":
+                #return JSON data of the materialItem:
+                serializer = MaterialItemSerializer(target.materialItem)
+                return Response(serializer.data)
+            else:
+                #find objects in this collection
+                children = models.APIObject.objects.filter(parentPath=target.uniquePath)
+                serializer = APIObjectSerializer(children, many=True)
+                return Response(serializer.data)
+
+
+        except models.APIObject.DoesNotExist:
+            return Response("404: No such collection or materialItem.")
+
+
+
+
+
+
+
+
+
+
 
     def post(self,request):
         url = request.path
@@ -112,8 +191,7 @@ class CMSView(APIView):
         #return Response(str(type(request.DATA["title"])))
         #return Response(request.DATA)
         #check if the object exists in the db already:
-        if self.checkIfAlreadyInDb(url):
-            return Response("ERROR: Can't post because an object already exists in this URL. " + url)
+
 
         if self.checkIfItemsInPostPath(url):
             return Response("ERROR: There is an item in middle of the path. Item's can't have children.")
