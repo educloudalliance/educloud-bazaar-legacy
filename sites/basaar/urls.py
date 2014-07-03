@@ -10,8 +10,8 @@ from oscar.views import handler500, handler404, handler403  # noqa
 from apps.sitemaps import base_sitemaps
 from apps.api import *
 
-
 admin.autodiscover()
+
 
 urlpatterns = [
     # Include admin as convenience. It's unsupported and you should
@@ -25,8 +25,8 @@ urlpatterns = [
         'sitemaps': base_sitemaps}),
     url(r'^sitemap-(?P<section>.+)\.xml$',
         'django.contrib.sitemaps.views.sitemap', {'sitemaps': base_sitemaps}),
-
     #
+    url(r'^ajax/$', 'apps.ajax.home.loadItems'),
 ]
 
 # Prefix Oscar URLs with language codes
@@ -51,3 +51,4 @@ if settings.DEBUG:
         url(r'^500$', handler500),
         url(r'^__debug__/', include(debug_toolbar.urls)),
     ]
+
