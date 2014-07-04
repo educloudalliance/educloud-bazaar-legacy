@@ -100,11 +100,6 @@ class CMSView(APIView):
 
 
     def postMaterialItem(self, path, data):
-        #entries = []
-        #entries.append(data)
-        #take json-array of the pushes and take the forces:
-
-
         theList = data["items"]
         createdItems = []
         #TODO: WRITE A PROPER SERIALIZER FOR THIS!!!!!!!!!!!!!!!!!
@@ -205,20 +200,6 @@ class CMSView(APIView):
         return Response(createdCollections + " --- " + createdItems)
 
 
-        """splitpath = self.splitUrl(request.path)
-        materialTokens = []
-        leftoverTokens=[]
-        tempCollections = []
-        jsonResponseStr = []
-        length = 0
-
-        tempCollObj = self.isValidCompanyCollection(splitpath)
-
-        try:
-            firstToken = models.hasCollection.objects.get(childID=tempCollObj.id)
-            return Response('404 line 155')
-        except models.hasCollection.DoesNotExist:
-            materialTokens = self.isValidCollections(splitpath)"""
 
 
 
