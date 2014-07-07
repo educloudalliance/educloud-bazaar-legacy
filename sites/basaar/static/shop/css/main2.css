@@ -7387,12 +7387,12 @@ th {
   backface-visibility: hidden;
 }
 
-/* line 5, ../sass/main.scss */
+/* line 5, ../sass/main2.scss */
 * {
   box-sizing: border-box;
 }
 
-/* line 9, ../sass/main.scss */
+/* line 9, ../sass/main2.scss */
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -7400,17 +7400,23 @@ th {
   padding: 0.2em 0;
 }
 
-/* line 16, ../sass/main.scss */
+/* line 15, ../sass/main2.scss */
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 19, ../sass/main2.scss */
 body {
   font-family: Ubuntu, Helvetica, sans-serif;
 }
 
-/* line 20, ../sass/main.scss */
+/* line 23, ../sass/main2.scss */
 textarea, input {
   outline: none;
 }
 
-/* line 22, ../sass/main.scss */
+/* line 25, ../sass/main2.scss */
 .flex-container {
   display: -webkit-flex !important;
   display: flex !important;
@@ -7422,7 +7428,7 @@ textarea, input {
   /*align-content: flex-start | flex-end | center | space-between | space-around | stretch;*/
 }
 
-/* line 33, ../sass/main.scss */
+/* line 36, ../sass/main2.scss */
 .flex-container-vertical {
   display: -webkit-flex !important;
   display: flex !important;
@@ -7433,208 +7439,105 @@ textarea, input {
   flex-direction: column;
 }
 
-/* line 42, ../sass/main.scss */
+/* line 45, ../sass/main2.scss */
 .flex-wrap {
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
 }
 
-/* line 46, ../sass/main.scss */
+/* line 49, ../sass/main2.scss */
 .flexItem {
   -webkit-flex: 1;
   flex: 1;
 }
 
-/* line 50, ../sass/main.scss */
+/* line 53, ../sass/main2.scss */
 .flexItem2 {
   -webkit-flex: 2;
   flex: 2;
 }
 
-/* line 54, ../sass/main.scss */
+/* line 57, ../sass/main2.scss */
 .flexItem3 {
   -webkit-flex: 3;
   flex: 3;
 }
 
-/* line 58, ../sass/main.scss */
+/* line 61, ../sass/main2.scss */
 .flexItem4 {
   -webkit-flex: 4;
   flex: 4;
 }
 
-/* line 63, ../sass/main.scss */
+/* line 65, ../sass/main2.scss */
+.flexItem5 {
+  -webkit-flex: 5;
+  flex: 5;
+}
+
+/* line 70, ../sass/main2.scss */
 img {
   height: 100%;
 }
 
-/* line 67, ../sass/main.scss */
-.screen {
-  width: 841px;
-}
-@media screen and (min-width: 800px) {
-  /* line 67, ../sass/main.scss */
-  .screen {
-    width: 617px;
-  }
-}
-@media screen and (min-width: 1024px) {
-  /* line 67, ../sass/main.scss */
-  .screen {
-    width: 841px;
-  }
-}
-@media screen and (min-width: 1280px) {
-  /* line 67, ../sass/main.scss */
-  .screen {
-    width: 1097px;
-  }
-}
-@media screen and (min-width: 1440px) {
-  /* line 67, ../sass/main.scss */
-  .screen {
-    width: 1257px;
-  }
-}
-@media screen and (min-width: 1920px) {
-  /* line 67, ../sass/main.scss */
-  .screen {
-    width: 1737px;
-  }
-}
-@media screen and (min-width: 2500px) {
-  /* line 67, ../sass/main.scss */
-  .screen {
-    width: 2317px;
-  }
-}
-/* line 88, ../sass/main.scss */
-.screen #menu {
-  width: 61px;
-  left: 0px;
-  justify-content: space-between;
-  -webkit-justify-content: space-between;
-  text-align: center;
-  z-index: 100;
+/* line 74, ../sass/main2.scss */
+#menubar {
   background: #37a9e0;
-}
-/* line 97, ../sass/main.scss */
-.screen #menu .menu-icon {
-  margin: 20px 10px;
-  width: 41px;
-  height: 41px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-}
-/* line 106, ../sass/main.scss */
-.screen #menu .menu-options {
-  width: 61px;
-  border-radius: 0px 0px 5px 5px;
-  justify-content: space-around;
-  -webkit-justify-content: space-around;
-}
-/* line 112, ../sass/main.scss */
-.screen #menu .menu-options .menu-separator {
-  background: #fff;
-  height: 2px;
-  border-radius: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-/* line 119, ../sass/main.scss */
-.screen #menu .menu-options .menu-option {
-  position: relative;
-  text-align: center;
-  justify-content: center;
-  -webkit-justify-content: center;
-}
-/* line 124, ../sass/main.scss */
-.screen #menu .menu-options .menu-option .bridge {
-  display: none;
-  position: absolute;
-  top: 61px;
+  color: white;
   width: 100%;
-  height: 3px;
-  background: rgba(46, 237, 196, 0.85);
 }
-/* line 132, ../sass/main.scss */
-.screen #menu .menu-options .menu-option .drawer {
-  position: absolute;
-  top: 0px;
-  left: 61px;
-  display: none;
-  background: rgba(46, 237, 196, 0.85);
-  height: 100%;
-  width: 500px;
-  border-radius: 0px 10px 10px 0px;
-  overflow: hidden;
-}
-/* line 145, ../sass/main.scss */
-.screen #menu .menu-options .menu-option:hover {
-  background: rgba(255, 255, 255, 0.35);
-}
-/* line 148, ../sass/main.scss */
-.screen #menu .menu-options .menu-option-active {
-  background: rgba(255, 255, 255, 0.2);
-}
-/* line 153, ../sass/main.scss */
-.screen #menu .drawer-search input {
-  background: white;
-  border: none;
-  margin: 12px 5px;
-  font-size: 20px;
-  padding: 0px 10px;
-}
-/* line 163, ../sass/main.scss */
-.screen #content {
-  position: relative;
-}
-/* line 166, ../sass/main.scss */
-.screen #content .header {
-  font-family: Nunito, Helvetica, sans-serif;
-  font-weight: 400;
-  height: 60px;
+/* line 78, ../sass/main2.scss */
+#menubar #uppermenu {
+  height: 61px;
   text-align: center;
-  /*background: $banner-color;*/
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 10px;
 }
-/* line 176, ../sass/main.scss */
-.screen #content .header h2 {
-  font-weight: 700;
-  margin: 0px;
-  font-size: 24pt;
-  line-height: 60px;
-}
-/* line 183, ../sass/main.scss */
-.screen #content .header .menu-header {
-  height: 60px;
+/* line 82, ../sass/main2.scss */
+#menubar #uppermenu .menu-header {
+  height: 61px;
   background: rgba(255, 255, 255, 0.95);
   justify-content: flex-start;
   -webkit-justify-content: flex-start;
 }
-/* line 188, ../sass/main.scss */
-.screen #content .header .menu-header .menu-head-icon {
-  width: 60px;
-  height: 60px;
+/* line 87, ../sass/main2.scss */
+#menubar #uppermenu .menu-header .menu-head-icon {
+  width: 61px;
+  height: 61px;
   background-size: 400%;
   background-repeat: no-repeat;
-  background-position: 10px 0px;
+  background-position: 5px 5px;
 }
-/* line 198, ../sass/main.scss */
-.screen #content .nav {
-  height: 61px;
-  color: #fff;
-  font-family: Nunito, Helvetica, sans-serif;
-  border-radius: 5px 5px 5px 0px;
-  background: #37a9e0;
+/* line 96, ../sass/main2.scss */
+#menubar #uppermenu #sitetitle h1 {
+  margin: 0px;
+  line-height: 61px;
 }
-/* line 204, ../sass/main.scss */
-.screen #content .nav .menu-icon {
+/* line 101, ../sass/main2.scss */
+#menubar #uppermenu #newsfeedShortcuts {
+  line-height: 61px;
+}
+/* line 103, ../sass/main2.scss */
+#menubar #uppermenu #newsfeedShortcuts a {
+  text-decoration: none;
+  color: white;
+}
+/* line 109, ../sass/main2.scss */
+#menubar #uppermenu #generalSearch {
+  line-height: 61px;
+}
+/* line 111, ../sass/main2.scss */
+#menubar #uppermenu #generalSearch input {
+  color: black;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 0px 5px;
+  width: 90%;
+}
+/* line 119, ../sass/main2.scss */
+#menubar #uppermenu #icons {
+  line-height: 61px;
+}
+/* line 123, ../sass/main2.scss */
+#menubar #uppermenu .menu-icon {
   margin: 10px 10px;
   width: 41px;
   height: 41px;
@@ -7642,73 +7545,45 @@ img {
   background-repeat: no-repeat;
   background-position: center;
 }
-/* line 213, ../sass/main.scss */
-.screen #content .nav .flexItem span {
-  font-size: 15px;
-  float: left;
+/* line 133, ../sass/main2.scss */
+#menubar #downmenu {
+  height: 30.5px;
+  background: rgba(255, 255, 255, 0.2);
 }
-/* line 217, ../sass/main.scss */
-.screen #content .nav .flexItem a {
-  color: #ffffff;
-  height: 61px;
-  padding: 0px;
-}
-/* line 222, ../sass/main.scss */
-.screen #content .nav .flexItem a:hover {
-  color: #ffffff;
-  background: rgba(0, 0, 0, 0.2);
-}
-/* line 227, ../sass/main.scss */
-.screen #content .nav input {
-  display: inline-block;
-  float: left;
-  margin: 0px 3px;
-  font-size: 12px;
-  border: none;
-  color: #000;
-  padding: 0px 4px 0px 4px;
-  border-radius: 5px;
-  width: 60%;
-}
-/* line 238, ../sass/main.scss */
-.screen #content .nav .recommendations {
-  float: left;
-}
-/* line 242, ../sass/main.scss */
-.screen #content .nav #filters .items {
+/* line 138, ../sass/main2.scss */
+#menubar #downmenu #filters .items {
   text-align: center;
   font-size: 12pt;
   list-style: none;
   padding: 0px;
   margin: 0px;
 }
-/* line 248, ../sass/main.scss */
-.screen #content .nav #filters .items li ul {
+/* line 144, ../sass/main2.scss */
+#menubar #downmenu #filters .items li ul {
   width: 100%;
   display: none;
   text-align: left;
   background: #37a9e0;
   position: absolute;
-  top: 61px;
+  top: 30.5px;
   left: 0px;
   list-style: none;
   padding: 0px;
   margin: 0px;
 }
-/* line 259, ../sass/main.scss */
-.screen #content .nav #filters .items li ul li {
+/* line 155, ../sass/main2.scss */
+#menubar #downmenu #filters .items li ul li {
   height: 30.5px;
   line-height: 30.5px;
-  background: rgba(255, 255, 255, 0.15);
   padding: 1px 7px;
   margin: 0px;
 }
-/* line 267, ../sass/main.scss */
-.screen #content .nav #filters .items li ul li:hover {
+/* line 162, ../sass/main2.scss */
+#menubar #downmenu #filters .items li ul li:hover {
   background: rgba(255, 255, 255, 0.3);
 }
-/* line 273, ../sass/main.scss */
-.screen #content .nav #filters .items > li {
+/* line 168, ../sass/main2.scss */
+#menubar #downmenu #filters .items > li {
   -webkit-flex: 1;
   flex: 1;
   position: relative;
@@ -7716,17 +7591,36 @@ img {
   cursor: pointer;
   width: 100%;
   padding: 0px;
-  height: 61px;
-  line-height: 61px;
+  height: 30.5px;
+  line-height: 30.5px;
 }
-/* line 288, ../sass/main.scss */
-.screen #content .nav #filters2 div.label {
-  margin: 0px;
-  padding: 3px;
+/* line 185, ../sass/main2.scss */
+#menubar #tagsFilter #addTags form {
+  display: inline-block;
+  line-height: 30.5px;
+}
+/* line 188, ../sass/main2.scss */
+#menubar #tagsFilter #addTags form input {
+  margin: 0px 3px;
   font-size: 10pt;
+  padding: 1px 5px;
+  border: none;
+  color: #000;
+  border-radius: 5px;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.85);
 }
-/* line 293, ../sass/main.scss */
-.screen #content .nav #filters2 .tag {
+/* line 200, ../sass/main2.scss */
+#menubar #tagsFilter #addTags .label {
+  float: left;
+  margin: 0px;
+  padding: 0px 3px 0px 0px;
+  font-size: 10pt;
+  line-height: 30.5px;
+  height: 30.5px;
+}
+/* line 209, ../sass/main2.scss */
+#menubar #tagsFilter .tag {
   display: inline-block;
   position: relative;
   background: #ffffff;
@@ -7736,107 +7630,64 @@ img {
   padding: 2px 10px 2px 7px;
   margin: 2px 5px;
 }
-/* line 302, ../sass/main.scss */
-.screen #content .nav #filters2 .tag div {
+/* line 218, ../sass/main2.scss */
+#menubar #tagsFilter .tag div {
   position: absolute;
   top: 0px;
   right: 2px;
   font-size: 9pt;
   line-height: 9pt;
 }
-/* line 313, ../sass/main.scss */
-.screen #content .flex-container {
-  font-family: Nunito, Helvetica, sans-serif;
+
+/* line 229, ../sass/main2.scss */
+#content {
+  width: 932.5px;
+  /*
+  @media screen and (min-width: $r800-content-width) {
+      width: $r800-content-width - $menu-width * 1.5;
+  }
+  */
+  border-left: 1px solid #aaa;
+  border-right: 1px solid #aaa;
 }
-/* line 316, ../sass/main.scss */
-.screen #content .flex-container #content-column > h1 {
-  font-size: 14px;
-  font-style: oblique;
-  padding-left: 10px;
+@media screen and (min-width: 1024px) {
+  /* line 229, ../sass/main2.scss */
+  #content {
+    width: 932.5px;
+  }
 }
-/* line 321, ../sass/main.scss */
-.screen #content .flex-container #content-column {
-  flex-basis: 250px;
-  -webkit-flex-basis: 250px;
+@media screen and (min-width: 1280px) {
+  /* line 229, ../sass/main2.scss */
+  #content {
+    width: 1188.5px;
+  }
 }
-/* line 324, ../sass/main.scss */
-.screen #content .flex-container #content-column div {
-  justify-content: space-around;
-  -webkit-justify-content: space-around;
+@media screen and (min-width: 1440px) {
+  /* line 229, ../sass/main2.scss */
+  #content {
+    width: 1348.5px;
+  }
 }
-/* line 328, ../sass/main.scss */
-.screen #content .flex-container #content-column .appBox {
-  text-align: center;
-  margin: 4px 4px;
-  padding: 5px;
-  color: #666666;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
+@media screen and (min-width: 1920px) {
+  /* line 229, ../sass/main2.scss */
+  #content {
+    width: 1828.5px;
+  }
 }
-/* line 335, ../sass/main.scss */
-.screen #content .flex-container #content-column .appBox a {
-  text-decoration: underline;
-  color: #666666;
+@media screen and (min-width: 2500px) {
+  /* line 229, ../sass/main2.scss */
+  #content {
+    width: 2408.5px;
+  }
 }
-/* line 339, ../sass/main.scss */
-.screen #content .flex-container #content-column .appBox h1 {
-  font-size: 14pt;
-  font-weight: 700;
-  margin: 0px;
-  padding-top: 15px;
-}
-/* line 345, ../sass/main.scss */
-.screen #content .flex-container #content-column .appBox .price {
-  font-size: 12pt;
-  font-weight: 500;
-  font-style: oblique;
-  margin: 0px;
-}
-/* line 351, ../sass/main.scss */
-.screen #content .flex-container #content-column .appBox .icon {
-  height: 64px;
-  width: 64px;
-  margin: 0px auto;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-/* line 359, ../sass/main.scss */
-.screen #content .flex-container #content-column .appBox .provider {
-  font-size: 9pt;
-  font-weight: 300;
-  font-style: oblique;
-  margin: 0px;
-}
-/* line 365, ../sass/main.scss */
-.screen #content .flex-container #content-column .appBox .topic {
-  font-size: 12pt;
-  font-weight: 500;
-  margin: 0px;
-}
-/* line 370, ../sass/main.scss */
-.screen #content .flex-container #content-column .appBox .grade {
-  font-size: 12pt;
-  font-weight: 500;
-  margin: 0px;
-}
-/* line 375, ../sass/main.scss */
-.screen #content .flex-container #content-column .appBox .rating {
-  margin: 0px;
-}
-/* line 379, ../sass/main.scss */
-.screen #content .flex-container #content-column .appBox .more {
-  text-align: right;
-  margin: 0px;
-}
-/* line 385, ../sass/main.scss */
-.screen #content .flex-container #blog-column > h1 {
+/* line 255, ../sass/main2.scss */
+#content #blog-column > h1 {
   font-size: 18px;
   font-style: oblique;
   padding-left: 10px;
 }
-/* line 391, ../sass/main.scss */
-.screen #content .flex-container #blog-column {
+/* line 261, ../sass/main2.scss */
+#content #blog-column {
   flex-basis: 200px;
   -webkit-flex-basis: 200px;
   margin: 5px 0px;
@@ -7844,52 +7695,47 @@ img {
   padding: 0px;
   color: #666666;
 }
-/* line 398, ../sass/main.scss */
-.screen #content .flex-container #blog-column a {
+/* line 268, ../sass/main2.scss */
+#content #blog-column a {
   color: #666666;
 }
-/* line 401, ../sass/main.scss */
-.screen #content .flex-container #blog-column h2 {
+/* line 271, ../sass/main2.scss */
+#content #blog-column h2 {
   margin: 0px;
   font-size: 12pt;
   font-style: oblique;
 }
-/* line 406, ../sass/main.scss */
-.screen #content .flex-container #blog-column h3 {
+/* line 276, ../sass/main2.scss */
+#content #blog-column h3 {
   margin: 0px;
   font-size: 11pt;
   font-style: oblique;
   font-weight: 300;
 }
-/* line 412, ../sass/main.scss */
-.screen #content .flex-container #blog-column .blog-post {
+/* line 282, ../sass/main2.scss */
+#content #blog-column .blog-post {
   padding: 8px;
 }
-/* line 414, ../sass/main.scss */
-.screen #content .flex-container #blog-column .blog-post p {
+/* line 284, ../sass/main2.scss */
+#content #blog-column .blog-post p {
   font-size: 10pt;
 }
-/* line 421, ../sass/main.scss */
-.screen #content .flex-container #blog-column .qaa {
+/* line 291, ../sass/main2.scss */
+#content #blog-column .qaa {
   padding: 8px;
   height: 800px;
   background: #eaeaea;
 }
-/* line 427, ../sass/main.scss */
-.screen #content .flex-container #content-column, .screen #content .flex-container #blog-column {
-  overflow: scroll;
-  height: 100%;
-}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* line 442, ../sass/main.scss */
+  /* line 306, ../sass/main2.scss */
   .container {
     max-width: 730px;
   }
 
   /* Remove the padding we set earlier */
-  /* line 448, ../sass/main.scss */
+  /* line 312, ../sass/main2.scss */
   .header,
   .footer {
     padding-left: 0;
@@ -7897,13 +7743,13 @@ img {
   }
 
   /* Space out the masthead */
-  /* line 454, ../sass/main.scss */
+  /* line 318, ../sass/main2.scss */
   .header {
     /*margin-bottom: 30px;*/
   }
 
   /* Remove the bottom border on the jumbotron for visual effect */
-  /* line 459, ../sass/main.scss */
+  /* line 323, ../sass/main2.scss */
   .jumbotron {
     border-bottom: 0;
   }

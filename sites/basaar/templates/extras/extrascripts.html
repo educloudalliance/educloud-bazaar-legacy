@@ -1,28 +1,47 @@
-        <script src="{{ STATIC_URL }}shop/js/bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-        <script src="{{ STATIC_URL }}shop/js/bower_components/jquery-hoverIntent/jquery.hoverIntent.js"></script>
+<script src="{{ STATIC_URL }}shop/js/bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script src="{{ STATIC_URL }}shop/js/bower_components/jquery-hoverIntent/jquery.hoverIntent.js"></script>
 
-        <script type="text/javascript">
+<script type="text/javascript">
 
-            // Animations
-            $('#menu').addClass('animated fadeInLeft');
-            $('.menu-header').addClass('animated fadeInDown');
-            $('.menu-options').addClass('animated fadeInUp');
-            $('.content-column').addClass('animated fadeInUp');
+    // Animations
+    $('#content').addClass('animated fadeInDown');
 
-            function openSubMenu() {
-                $(this).children('.drawer').show('slide');    
-            };
-            function closeSubMenu() {
-                $(this).children('.drawer').hide('slide'); 
-            };
-            function openFilterSubitems() {
-                $(this).children('ul').show('fade');    
-            };
-            function closeFilterSubitems() {
-                $(this).children('ul').hide('fade'); 
-            };
-            
-            $('.menu-option').hoverIntent( openSubMenu, closeSubMenu );
-            $('.items li').hoverIntent( openFilterSubitems, closeFilterSubitems );
-            
-        </script>
+    //Unused functions. Could be removed later
+    function openSubMenu() {
+        $(this).children('.drawer').show('slide');    
+    };
+    function closeSubMenu() {
+        $(this).children('.drawer').hide('slide'); 
+    };
+    function openFilterSubitems() {
+        $(this).children('ul').show('fade');    
+    };
+    function closeFilterSubitems() {
+        $(this).children('ul').hide('fade'); 
+    };
+
+    // Toggle menu drawers
+    $('.menu-option').click(function(){
+        if($(this).children('.drawer').is(":visible")){
+            $('.drawer').hide('slide');
+        } else {
+            $('.drawer').hide('slide');
+            $(this).children('.drawer').show('slide');    
+        }
+    });
+    
+    //$('.menu-option').hoverIntent( openSubMenu, closeSubMenu );
+    $('.items li').hoverIntent( openFilterSubitems, closeFilterSubitems );
+    
+    adjustHeight = function adjustHeight() {
+        $('#content-column, #blog-column').css('height',$(window).height() - 132);
+    }
+
+    $(document).ready(function(){
+        adjustHeight();
+        //$(".nav").sticky({topSpacing:0});
+        //$("#menu").sticky({topSpacing:61});
+      });
+    $( window ).resize(adjustHeight);
+
+</script>

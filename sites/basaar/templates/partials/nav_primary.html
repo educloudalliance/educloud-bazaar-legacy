@@ -3,7 +3,12 @@
 {% load i18n %}
 <div class="nav flex-container flex-wrap">
 
-    <div id="filters" class="flexItem2">
+    <div class="menu-option flex-container-vertical">
+        <a href="/">
+        <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/BazaarCloudIcon.png');"></div>
+        </a>
+    </div>
+    <div id="filters" class="flexItem">
         <ul class="items flex-container">
             <li>Subjects
                 <ul>
@@ -29,5 +34,7 @@
             </li>
         </ul>
     </div>
-{% include "partials/search.html" %}
+    <div id="filters2" class="flexItem flex-container">
+        {% include "partials/search.html" %}
+    </div>
 </div>

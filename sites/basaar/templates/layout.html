@@ -10,21 +10,18 @@
 <![endif]-->
 <div class="flexItem"></div>
 <div class="screen flex-container">
-    {% include "partials/pv_menu.html" %}
 
-    <div class="menu-block">
-    </div>
     <div id="content" class="content-column flexItem">
-        <div class="header">
-            <!--
-            <p>Welcome to the</p>
-            <h1>Bazaar!</h1>
-            <p>The new home for digital educational material.</p>
-        -->
+        <div class="header flex-container">
+            <div class="menu-header flex-container">
+                <div class="menu-head-icon" style="background-image:url('{{ STATIC_URL }}shop/img/PilvivaylaLogo.png');"></div>
+            </div>
+            <h2 class="flexItem">Bazaar</h2>
         </div>
         {% include "partials/nav_primary.html" %}
-        <div class="flex-container  flex-wrap">
-            <div id="content-column" class="flexItem2">
+        <div class="flex-container flex-wrap">
+            {% include "partials/pv_menu.html" %}
+            <div id="content-column" class="flexItem4">
                 {% block content %}{% endblock %}
             </div>
             <!-- content-column-end -->

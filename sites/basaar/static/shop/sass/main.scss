@@ -51,15 +51,14 @@ textarea, input { outline: none; }
     -webkit-flex: 2;
     flex: 2;
 }
-.sticky {
-    position: fixed;
-    width: 100%;
-    left: 0;
-    top: $menu-width;
-    z-index: 100;
-    border-top: 0;
+.flexItem3{
+    -webkit-flex: 3;
+    flex: 3;
 }
-
+.flexItem4{
+    -webkit-flex: 4;
+    flex: 4;
+}
 
 img {
     height: 100%;
@@ -87,26 +86,13 @@ img {
     }
 
     #menu {
-        position: fixed;
         width: $menu-width;
         left: 0px;
         justify-content: space-between;
         -webkit-justify-content: space-between;
         text-align: center;
         z-index: 100;
-        .menu-header {
-            height: 100%;
-            background: rgba(255,255,255,0.95);
-            justify-content: flex-start;
-            -webkit-justify-content: flex-start;
-            .menu-head-icon {
-                width: $menu-width * 4;
-                height: $menu-width + 10;
-                background-size: 410%;
-                background-repeat: no-repeat;
-                background-position: 5px 10px;
-            }
-        }
+        background: $blue-main;
 
         .menu-icon {
             margin: $menu-padding-y $menu-padding-x;
@@ -115,11 +101,11 @@ img {
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
+            cursor: pointer;
         }
         .menu-options {
             width: $menu-width;
-            background: $blue-main;
-            border-bottom-right-radius: 5px;
+            border-radius: 0px 0px 5px 5px;
             justify-content: space-around;
             -webkit-justify-content: space-around;
 
@@ -174,10 +160,6 @@ img {
         }
     }
 
-    .menu-block {
-        /* width: $menu-width * 1.1; */
-    }
-
     #content {
         position: relative;
 
@@ -187,33 +169,47 @@ img {
             height: $header-height;
             text-align: center;
             /*background: $banner-color;*/
-            background-image: url('../img/BannerTest.png');
             background-size: 100% 100%;
             background-repeat: no-repeat;
             background-position: center;
             border-radius: 10px;
-            h1 {
-                font-family: Sanchez;
+            h2 {
                 font-weight: 700;
                 margin: 0px;
-                font-size: 60pt;
+                font-size: 24pt;
+                line-height: $header-height;
+            }
+
+            .menu-header {
+                height: $header-height;
+                background: rgba(255,255,255,0.95);
+                justify-content: flex-start;
+                -webkit-justify-content: flex-start;
+                .menu-head-icon {
+                    width: $header-height;
+                    height: $header-height;
+                    background-size: 400%;
+                    background-repeat: no-repeat;
+                    background-position: 10px 0px;
+                }
             }
         }
 
         .nav {
             height: $nav-height;
-            margin-top: $nav-height / 2;
             color: #fff;
             font-family: $font-body;
-            border-radius: 5px;
+            border-radius: 5px 5px 5px 0px;
             background: $blue-main;
-
+            .menu-icon {
+                margin: $menu-padding-x $menu-padding-x;
+                width: $menu-width - $menu-padding-x * 2;
+                height: $menu-width - $menu-padding-x * 2;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
             .flexItem {
-                padding: 0px 5px;
-                line-height: $nav-height;
-                font-size: 14px;
-                margin: 0px;
-                font-size: 0px;
                 span {
                     font-size: 15px;
                     float: left;
@@ -227,21 +223,17 @@ img {
                     color: #ffffff;
                     background: rgba(0,0,0,0.2);
                 }
-                div {
-                    display: inline-block;
-                }
             }
             input {
                 display: inline-block;
                 float: left;
-                margin: 5px;
-                font-size: 10px;
+                margin: 0px 3px;
+                font-size: 12px;
                 border: none;
                 color: #000;
                 padding: 0px 4px 0px 4px;
-                width: 100px;
-                height: $nav-height - 10;
                 border-radius: 5px;
+                width: 60%;
             }
             .recommendations{
                 float: left;
@@ -253,58 +245,67 @@ img {
                     list-style: none;
                     padding: 0px;
                     margin: 0px;
-                    li {
-                        -webkit-flex: 1;
-                        flex: 1;
-                    
-                        position: relative;
-                        display: inline-block;
-                        cursor: pointer;
+                    li ul{
                         width: 100%;
+                        display: none;
+                        text-align: left;
+                        background: $blue-main;
+                        position: absolute;
+                        top: $nav-height;
+                        left: 0px;
+                        list-style: none;
                         padding: 0px;
-                        height: $nav-height;
-                        line-height: $nav-height;
-                        ul{
-                            width: 100%;
-                            display: none;
-                            text-align: left;
-                            background: $blue-main;
-                            position: absolute;
-                            top: $nav-height;
-                            left: 0px;
-                            list-style: none;
-                            padding: 0px;
+                        margin: 0px;
+                        li{
+                            height: $nav-height / 2;
+                            line-height: $nav-height / 2;
+                            background: rgba(255,255,255,0.15);
+                            padding: 1px 7px;
                             margin: 0px;
-                            li{
-                                background: rgba(255,255,255,0.15);
-                                padding: 4px 7px;
-
-                            }
 
                         }
+                        li:hover {
+                            background: rgba(255,255,255,0.3);
+                        }
+
                     }
-                    li:hover {
-                        background: rgba(255,255,255,0.3);
-                    }
+                }
+                .items > li {
+                    -webkit-flex: 1;
+                    flex: 1;
+                
+                    position: relative;
+                    display: inline-block;
+                    cursor: pointer;
+                    width: 100%;
+                    padding: 0px;
+                    height: $nav-height;
+                    line-height: $nav-height;
                 }
 
             }
-            .tag{
-                display: inline-block;
-                position: relative;
-                display: inline-block;
-                background: #ffffff;
-                color: #222222;
-                font-size: 8pt;
-                line-height: 8pt;
-                padding: 2px 10px 2px 7px;
-                margin: 2px 5px;
-                div {
-                    position: absolute;
-                    top: 0px;
-                    right: 2px;
-                    font-size: 9pt;
-                    line-height: 9pt;
+            #filters2{
+                div.label {
+                    margin: 0px;
+                    padding: 3px;
+                    font-size: 10pt;
+                }
+                .tag{
+                    display: inline-block;
+                    position: relative;
+                    background: #ffffff;
+                    color: #222222;
+                    font-size: 8pt;
+                    line-height: 8pt;
+                    padding: 2px 10px 2px 7px;
+                    margin: 2px 5px;
+                    div {
+                        position: absolute;
+                        top: 0px;
+                        right: 2px;
+                        font-size: 9pt;
+                        line-height: 9pt;
+                    }
                 }
             }
         }
@@ -419,9 +420,13 @@ img {
                 }
                 .qaa {
                     padding: 8px;
-                    height: 200px;
+                    height: 800px;
                     background: #eaeaea;
                 }
+            }
+            #content-column, #blog-column {
+                overflow: scroll;
+                height: 100%;
             }
         }
     }

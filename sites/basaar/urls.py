@@ -4,6 +4,8 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.conf.urls.static import static
 
+from django.views.generic import TemplateView
+
 from oscar.app import shop
 from oscar.views import handler500, handler404, handler403  # noqa
 
@@ -27,6 +29,7 @@ urlpatterns = [
         'django.contrib.sitemaps.views.sitemap', {'sitemaps': base_sitemaps}),
     #
     url(r'^ajax/$', 'apps.ajax.home.loadItems'),
+    url(r'^test/', TemplateView.as_view(template_name='base2.html')),
 ]
 
 # Prefix Oscar URLs with language codes

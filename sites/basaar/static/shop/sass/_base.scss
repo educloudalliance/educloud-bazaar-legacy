@@ -30,9 +30,9 @@ $bridge-height: 3px;
 $basis-content-column: 250px;
 $basis-blog-column: 200px;
 
-$header-height: 236px;
+$header-height: 60px;
 
-$nav-height: 25px;
+$nav-height: $menu-width;
 
 $blue-main: rgb(55,169,224);
 $green-main: rgb(46,237,196);
