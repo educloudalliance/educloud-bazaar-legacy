@@ -1,40 +1,99 @@
 {% load currency_filters %}
 {% load category_tags %}
 {% load i18n %}
-<div class="nav flex-container flex-wrap">
+<div id="menubar" class="flex-container-vertical">
+    <div id="uppermenu" class="flex-container">
+        <div class="menu-header flex-container">
+            <div class="menu-head-icon" style="background-image:url('{{ STATIC_URL }}shop/img/PilvivaylaLogo.png');"></div>
+        </div>
+        <div id="sitetitle" class="flexItem2">
+            <h1>Bazaar</h1>
+        </div>
+        <div class="flexItem"></div>
+        <div id="newsfeedShortcuts" class="flexItem flex-container">
+            <div class="flexItem">
+                <a href="#">
+                    Q&amp;A
+                </a>
+            </div>
+            <div class="flexItem">
+                <a href="#">
+                    Blog
+                </a>
+            </div>
+        </div>
+        <div class="flexItem"></div>
+        <div id="generalSearch" class="flexItem2 flex-container">
+            <div class="flexItem">
+                <form method="get" action="{% url 'search:search' %}" class="navbar-form pull-right">
+                    {{ search_form.q }}
+                </form>
+            </div>
+            <div>
+                <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/SearchIcon.png');"></div>
+            </div>
+        </div>
+        <div class="flexItem"></div>
+        <div id="icons" class="flexItem2 flex-container">
+            <div class="flexItem">
+                 <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/SupportIconTEMP.png');"></div>
+            </div>
+            <div class="flexItem">
+                 <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/SupportIconTEMP.png');"></div>
+            </div>
+            <div class="flexItem">
+                 <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/QandAIcon.png');"></div>
+            </div>
+            <div class="flexItem">
+                <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/ProfileIcon.png');"></div>
+            </div>
+            <div class="flexItem">
+                FI
+            </div>
+        </div>
+    </div>
 
-    <div class="menu-option flex-container-vertical">
-        <a href="/">
-        <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/BazaarCloudIcon.png');"></div>
-        </a>
-    </div>
-    <div id="filters" class="flexItem">
-        <ul class="items flex-container">
-            <li>Subjects
-                <ul>
-                    <li>biology</li>
-                    <li>maths</li>
-                    <li>english</li>
-                    <li>geography</li>
-                </ul>
-            </li>
-            <li>Grade
-                <ul>
-                    <li>1-3</li>
-                    <li>4-6</li>
-                    <li>7-9</li>
-                </ul>
-            </li>
-            <li>Type
-                <ul>
-                    <li>books</li>
-                    <li>exercises</li>
-                    <li>games</li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <div id="filters2" class="flexItem flex-container">
-        {% include "partials/search.html" %}
+    <div id="downmenu" class="flex-container">
+        <div id="filters" class="flexItem">
+            <ul class="items flex-container">
+                <li>Subjects
+                    <ul>
+                        <li>biology</li>
+                        <li>maths</li>
+                        <li>english</li>
+                        <li>geography</li>
+                    </ul>
+                </li>
+                <li>Grade
+                    <ul>
+                        <li>1-3</li>
+                        <li>4-6</li>
+                        <li>7-9</li>
+                    </ul>
+                </li>
+                <li>Type
+                    <ul>
+                        <li>books</li>
+                        <li>exercises</li>
+                        <li>games</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="tagsFilter" class="flexItem2 flex-container">
+            <div id="addTags">
+                <div class="label">Filter content by tags:</div>
+                <form method="get" action="{% url 'search:search' %}" class="navbar-form pull-right">
+                    {{ search_form.q }}
+                </form>
+            </div>
+
+            <div class="flexItem">
+                <div class="tag">biology
+                    <div>x</div>
+                </div>
+            </div>
+        </div>
+        <div class="flexItem"></div>
     </div>
 </div>

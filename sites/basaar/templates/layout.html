@@ -8,26 +8,20 @@
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
-<div class="flexItem"></div>
-<div class="screen flex-container">
 
-    <div id="content" class="content-column flexItem">
-        <div class="header flex-container">
-            <div class="menu-header flex-container">
-                <div class="menu-head-icon" style="background-image:url('{{ STATIC_URL }}shop/img/PilvivaylaLogo.png');"></div>
-            </div>
-            <h2 class="flexItem">Bazaar</h2>
-        </div>
-        {% include "partials/nav_primary.html" %}
+{% include "partials/nav_primary.html" %}
+
+<div class="flexItem flex-container">
+    <div class="flexItem"></div>
+    <div id="content">
         <div class="flex-container flex-wrap">
-            {% include "partials/pv_menu.html" %}
-            <div id="content-column" class="flexItem4">
+            <div id="content-column" class="flexItem5">
                 {% block content %}{% endblock %}
             </div>
-            <!-- content-column-end -->
-
-
             <div id="blog-column" class="flexItem">
+                <h1>Newsfeed</h1>
+
+
                 <h1>Blogs</h1>
 
                 <div class="blog-post">
@@ -54,11 +48,11 @@
                     abc
                 </div>
             </div>
+
         </div>
-
     </div>
+    <div class="flexItem"></div>
 </div>
-<div class="flexItem"></div>
-{% include "extras/extrascripts.html" %}
 
+{% include "extras/extrascripts.html" %}
 {% endblock %}

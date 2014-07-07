@@ -6,42 +6,17 @@
     // Animations
     $('#content').addClass('animated fadeInDown');
 
-    //Unused functions. Could be removed later
-    function openSubMenu() {
-        $(this).children('.drawer').show('slide');    
-    };
-    function closeSubMenu() {
-        $(this).children('.drawer').hide('slide'); 
-    };
+    $(document).ready(function(){
+        $("#menubar").sticky({topSpacing:0});
+      });
+
     function openFilterSubitems() {
         $(this).children('ul').show('fade');    
     };
     function closeFilterSubitems() {
         $(this).children('ul').hide('fade'); 
     };
-
-    // Toggle menu drawers
-    $('.menu-option').click(function(){
-        if($(this).children('.drawer').is(":visible")){
-            $('.drawer').hide('slide');
-        } else {
-            $('.drawer').hide('slide');
-            $(this).children('.drawer').show('slide');    
-        }
-    });
     
-    //$('.menu-option').hoverIntent( openSubMenu, closeSubMenu );
     $('.items li').hoverIntent( openFilterSubitems, closeFilterSubitems );
-    
-    adjustHeight = function adjustHeight() {
-        $('#content-column, #blog-column').css('height',$(window).height() - 132);
-    }
-
-    $(document).ready(function(){
-        adjustHeight();
-        //$(".nav").sticky({topSpacing:0});
-        //$("#menu").sticky({topSpacing:61});
-      });
-    $( window ).resize(adjustHeight);
 
 </script>
