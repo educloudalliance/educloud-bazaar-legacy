@@ -3,12 +3,16 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 from django.db.models import Count
 from rest_framework import viewsets
-from apps.api.serializers import UserSerializer, GroupSerializer, CollectionSerializer, MaterialItemSerializer
+from apps.api.serializers import UserSerializer, GroupSerializer, MaterialItemSerializer, APIObjectSerializer
 
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
 from apps.api import models
+from datetime import datetime
+import json
+from django.template.defaultfilters import slugify
+
 from django.http import Http404
 
 
@@ -37,204 +41,165 @@ class CMSView(APIView):
 
     def splitUrl(self, url):
         splitpath = url.lower().split('/')
-        splitpath = splitpath[3:]
+        splitpath = splitpath[0:]
         splitpath = filter(None,splitpath)
+
+        for x in range(0, len(splitpath)):
+            splitpath[x] = slugify(splitpath[x])    #remove bad characters from url
         return splitpath
 
-    def isValidCompanyCollection(self, firstCollectionnameInUrl):
-        try:
-            tempCollObjects = models.MaterialCollections.objects.get(slug=firstCollectionnameInUrl)
-        except models.MaterialCollections.DoesNotExist:
-            return False
-        return True
+    def slugifyWholeUrl(self, url):
+        urlarray = self.splitUrl(url)
+        url= urlarray[0]
+        for i in range(1, len(urlarray)):
+            url += "/" + urlarray[i]
 
-    #Get MaterialCollection Object
-    def getMaterialCollectionObject(self, collectionToken):
-        try:
-            tempCollObject = models.MaterialCollections.objects.get(slug=collectionToken)
-        except models.MaterialCollections.DoesNotExist:
-            return Response('404 line 53')
-        return tempCollObject
+        return url
 
-    #to get all collection objects
-    def getMaterialCollectionObjects(self,collectionNameArray):
-        tempCollections = []
-        for eachToken in collectionNameArray:
+    def checkIfAlreadyInDb(self, path):
+        return models.APIObject.objects.filter(uniquePath=self.slugifyWholeUrl(path)).exists()
+
+    #make sure there isn't items in the middle of the given path
+    def checkIfItemsInPostPath(self, path):
+        urlTokens = self.splitUrl(path)
+        pathSoFar = "" #urlTokens[0]
+        for i in range(0, len(urlTokens)):
+
+            if models.APIObject.objects.filter(uniquePath=pathSoFar, objectType="item").exists():
+                #we found an object which is an item and in middle of the given path.
+                #because items can't have children, this is an ERROR condition.
+                return True
+            else:
+                pathSoFar += "/" + urlTokens[i]
+
+    #after we have verified that the url can be used to create new item or collection, check
+    #the path and list not existing collections to be created.
+    #If collection exists already, nothing happens.
+    def createCollections(self, path):
+        urlTokens = self.splitUrl(path)
+        parentPathSoFar = ""
+        pathSoFar = urlTokens[0]
+        createdCollection = []
+        for i in range(1, len(urlTokens)+1):
+            if models.APIObject.objects.filter(uniquePath=pathSoFar, objectType="collection").exists():
+                #the collection exists, therefore it doesn't need to be created.
+                parentPathSoFar = pathSoFar
+                if i < len(urlTokens):
+                    pathSoFar += "/" + urlTokens[i] #move to the next
+            else:
+                #the collection doesn't exist yet so create it:
+                newColl = models.APIObject.create(pathSoFar, parentPathSoFar, "collection")
+                newColl.save()
+                parentPathSoFar = pathSoFar
+                createdCollection.append(pathSoFar)
+
+                if i < len(urlTokens):
+                    pathSoFar += "/" + urlTokens[i] #move to the next
+
+        return "Created collections: " + str(createdCollection)
+
+
+    def postMaterialItem(self, path, data):
+        theList = data["items"]
+        createdItems = []
+        #TODO: WRITE A PROPER SERIALIZER FOR THIS!!!!!!!!!!!!!!!!!
+        for x in theList:
+            #create new item
+            item = models.MaterialItem.create()
+            item.mTitle = x["title"]
+            item.description = x["description"]
+            item.materialUrl = x["materialUrl"]
+            item.materialType = x["materialType"]
+            item.iconUrl = x["iconUrl"]
+            item.moreInfoUrl = x["moreInfoUrl"]
+            item.bazaarUrl = x["bazaarUrl"]         #TODO: THIS IS PROBLEMATIC
+            item.version = x["version"]
+            item.status = x["status"]
+            item.price = x["price"]
+            item.language = x["language"]
+            item.issn = x["issn"]
+            item.author = User.objects.get(username="admin")    #TODO: User should be set to authenticated user when authentication is done
+
             try:
-                tempCollections.append(self.getMaterialCollectionObject(eachToken))
-            except models.MaterialCollections.DoesNotExist:
-                materialTokens.append(eachToken) #TODO:: replace this line with system exit
-        return tempCollections
-    #checks whether url has correct collection names or not and if item is specified then it is saved in materialTokens variable
-    def isValidCollections(self, splitpath):
-        tempmaterialTokens = []
-        for eachToken in splitpath:
-            try:
-                temp = models.MaterialCollections.objects.get(slug=eachToken)
-            except models.MaterialCollections.DoesNotExist:
-                tempmaterialTokens.append(eachToken)
-        return tempmaterialTokens
+                item.createdAt = datetime.strptime(x["creationDate"], "%Y-%m-%d")
+            except ValueError:
+                #item.delete()
+                return "Items created: " + createdItems + " ERROR: Creationdate field was in wrong format. Should be yyyy-mm-dd"
 
-    #check if the last part of the url is the materialitem
-    def isValidLastTokenAsItem(self,firstMaterialToken, lastUrlToken):
-        if firstMaterialToken !=  lastUrlToken:
-            return False
-        return True
+            #note that these are PickleFields which include arrays of strings.
+            item.screenshotUrls = x["screenshotUrls"]
+            item.videoUrls = x["videoUrls"]
+            #TODO: TAGS ARE STILL MISSING
 
-    #checks whether materialItemToken is present in materialItem table
-    def isvalidMaterialItem(self,materialItemToken):
-        try:
-            materialItemObj = models.MaterialItem.objects.get(slug=materialItemToken)
-            return True
-        except models.MaterialItem.DoesNotExist:
-            return False
 
-    #returns the materialItem Object from DB
-    def getMaterialItemObject(self,materialItemToken):
-        try:
-            materialItemObj = models.MaterialItem.objects.get(slug=materialItemToken)
-            return materialItemObj
-        except models.MaterialItem.DoesNotExist:
-            return False #TODO :: replace with system exit functionality
+            if self.checkIfAlreadyInDb(path + "/" + slugify(item.mTitle)):
+                return "ERROR: Can't post because an object already exists in this URL. Items created: " + unicode(createdItems)
+            createdItems.append(item.mTitle)
+            item.save()
 
-    def isCollectionsInterconnected(self, collectionsArray):
-         length = len(collectionsArray)-1
-         for i in range(length):
-            try:
-                temp = models.hasCollection.objects.get(parentID=collectionsArray[i].id, childID=collectionsArray[i+1].id)
-            except models.hasCollection.DoesNotExist:
-                return False
-         return True
+            #add APIObject for this materialItem
+            finalUrl = path + "/" + slugify(item.mTitle)
+            newColl = models.APIObject.create(finalUrl, path, "item")
+            newColl.materialItem = item
+            newColl.save()
 
-    #finds the children of the given collection
-    def findCollectionChildren(self, collection):
-        try:
-            children = models.MaterialItem.objects.get(collectionId=collection)
-            return children
-        except models.MaterialItem.DoesNotExist:
-            return []
 
-    #finds the subcollections of the collection:
-    def findSubcollections(self, collection):
-        try:
-            hasColl = models.hasCollection.objects.filter(parentID=collection)
-            subColls = []
-            for i in range(0, hasColl.count()):
-                try:
-                    subColls.append( models.MaterialCollections.objects.filter(pk=hasColl[i].childID))
-                except models.MaterialCollections.DoesNotExist:
-                    pass
-            return subColls
-        except models.hasCollection.DoesNotExist:
-            return []
-
+        return "Items created: " + unicode(createdItems)
 
     def get(self, request):
-        #get the collection and resource names from url:
-        splitpath = self.splitUrl(request.path)
-        materialTokens = []
-        leftoverTokens=[]
-        tempCollections = []
-        jsonResponseStr = []
-        length = 0
-        successFlag = ''
-
-        successFlag = self.isValidCompanyCollection(splitpath[0])
-        if not successFlag:
-            return Response('404 line 91')
-
-        tempCollObj = self.getMaterialCollectionObject(splitpath[0])
+        url = request.path
+        url = url[len("/api/cms/"):] #slice the useless part away
+        #slice the trailing:
+        url = url.strip("/")
 
         try:
-            firstToken = models.hasCollection.objects.get(childID=tempCollObj.id)
-            return Response('404 line 97')
-        except models.hasCollection.DoesNotExist:
+            target = models.APIObject.objects.get(uniquePath=url)
 
-            materialTokens = self.isValidCollections(splitpath)
-            #more than one materialitem is specified in url then error is returned
-            if len(materialTokens) >1:
-                return Response('404 line 103')
-
-            #there is one materialitem in the url
-            if len(materialTokens) == 1:
-                #check if the last part of the url is the materialitem
-                successFlag = self.isValidLastTokenAsItem(materialTokens[0],splitpath[len(splitpath)-1])
-                if not successFlag :
-                    return Response('404 line 110')
-
-                #check whether Material Item exists or not
-                successFlag = self.isvalidMaterialItem(materialTokens[0])
-                if not successFlag :
-                    return Response('404 line 114')
-                else:
-                    materialItemObj = self.getMaterialItemObject(materialTokens[0])
-                #get all materialCollection objects
-                tempCollections = self.getMaterialCollectionObjects(splitpath[:-1])
-
-                serializer = MaterialItemSerializer(materialItemObj, many=False)
-                #check all collections are interconnected if more than one collection is specified
-                if len(tempCollections) >1:
-                    length =len(tempCollections)-1
-                    #checking collections are interconnected
-                    successFlag = self.isCollectionsInterconnected(tempCollections)
-                    if not successFlag:
-                        return Response('404 line 153')
-
-
-                    #check if the materialitem is connected to the last collection
-                    if materialItemObj.collectionId.id == tempCollections[length].id:
-                        jsonResponseStr.append(serializer.data)
-                    else:
-                        return Response('404')
-
-                #if only one collection is present then check it is connected with item
-                elif len(tempCollections) ==1:
-                   if materialItemObj.collectionId.id != tempCollections[0].id:
-                       return Response('404')
-                   else:
-                       jsonResponseStr.append(serializer.data)
-
-            else:
-                #if there is no materialitems, we should still return collection information
-                # so we get all materialCollection objects
-
-                tempCollections = self.getMaterialCollectionObjects(splitpath)
-                children = self.findSubcollections(tempCollections[-1])
-
-
-                serializer = CollectionSerializer(children, many=False)
+            #check is the APIObject collection or item:
+            if target.objectType == "item":
+                #return JSON data of the materialItem:
+                serializer = MaterialItemSerializer(target.materialItem)
                 return Response(serializer.data)
-                
-                if len(tempCollections) >1:
-                    length =len(tempCollections)-1
-                    #check if the collections are connected to each other
-                    successFlag = self.isCollectionsInterconnected(tempCollections)
-                    if not successFlag:
-                        return Response('404 line 179')
+            else:
+                #find objects in this collection
+                children = models.APIObject.objects.filter(parentPath=target.uniquePath)
+                serializer = APIObjectSerializer(children, many=True)
+                return Response(serializer.data)
 
-                    jsonResponseStr.append(serializer.data)
-                elif len(tempCollections) ==1:
-                    length =1
-                    jsonResponseStr.append(serializer.data) #tempCollections[0].cTitle + " collection")
 
-        return Response(jsonResponseStr)
-        #raise Http404
+        except models.APIObject.DoesNotExist:
+            return Response("404: No such collection or materialItem.")
+
+
+
+
+
+
+
+
+
+
 
     def post(self,request):
-        splitpath = self.splitUrl(request.path)
-        materialTokens = []
-        leftoverTokens=[]
-        tempCollections = []
-        jsonResponseStr = []
-        length = 0
+        url = request.path
+        url = url[len("/api/cms/"):] #slice the useless part away
+        #return Response(str(type(request.DATA["title"])))
+        #return Response(request.DATA)
+        #check if the object exists in the db already:
 
-        tempCollObj = self.isValidCompanyCollection(splitpath)
 
-        try:
-            firstToken = models.hasCollection.objects.get(childID=tempCollObj.id)
-            return Response('404 line 155')
-        except models.hasCollection.DoesNotExist:
-            materialTokens = self.isValidCollections(splitpath)
+        if self.checkIfItemsInPostPath(url):
+            return Response("ERROR: There is an item in middle of the path. Item's can't have children.")
+
+        #create collections if needed
+        createdCollections = self.createCollections(url)
+
+        #try to create a new item:
+        createdItems = self.postMaterialItem(url, request.DATA)
+
+        return Response(createdCollections + " --- " + createdItems)
+
+
 
 
 
