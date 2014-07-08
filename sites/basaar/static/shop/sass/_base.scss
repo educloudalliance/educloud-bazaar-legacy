@@ -6,12 +6,12 @@ $icon-font-path: "/bower/bootstrap-sass-official/vendor/assets/fonts/bootstrap/"
 @import 'fontface';
 
 
-@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic);
-@import url(http://fonts.googleapis.com/css?family=Nunito:400,300,700);
+@import url(//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic);
+@import url(//fonts.googleapis.com/css?family=Nunito:400,300,700);
 @include fontFace('Sanchez','fonts/Sanchez');
 
 
-$default-font: Ubuntu, Helvetica, sans-serif;
+$default-font: Nunito, Helvetica, sans-serif;
 
 $font-body: Nunito, Helvetica, sans-serif;
 

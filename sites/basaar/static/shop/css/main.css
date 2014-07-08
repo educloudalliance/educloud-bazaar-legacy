@@ -1,6 +1,6 @@
 @charset "UTF-8";
-@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic);
-@import url(http://fonts.googleapis.com/css?family=Nunito:400,300,700);
+@import url(//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic);
+@import url(//fonts.googleapis.com/css?family=Nunito:400,300,700);
 @font-face {
   font-family: "Sanchez";
   src: url("fonts/Sanchez.eot");
@@ -7408,7 +7408,7 @@ html, body {
 
 /* line 19, ../sass/main.scss */
 body {
-  font-family: Ubuntu, Helvetica, sans-serif;
+  font-family: Nunito, Helvetica, sans-serif;
 }
 
 /* line 23, ../sass/main.scss */
