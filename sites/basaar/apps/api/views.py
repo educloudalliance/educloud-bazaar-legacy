@@ -64,13 +64,17 @@ class CMSView(APIView):
         urlTokens = self.splitUrl(path)
         pathSoFar = "" #urlTokens[0]
         for i in range(0, len(urlTokens)):
-
+            print pathSoFar
+            pathSoFar = pathSoFar.strip("/")
             if models.APIObject.objects.filter(uniquePath=pathSoFar, objectType="item").exists():
                 #we found an object which is an item and in middle of the given path.
                 #because items can't have children, this is an ERROR condition.
                 return True
             else:
                 pathSoFar += "/" + urlTokens[i]
+
+        print "Lopuksi: " + pathSoFar
+        return False
 
     #after we have verified that the url can be used to create new item or collection, check
     #the path and list not existing collections to be created.
@@ -132,14 +136,14 @@ class CMSView(APIView):
             #TODO: TAGS ARE STILL MISSING
 
 
-            if self.checkIfAlreadyInDb(path + "/" + slugify(item.mTitle)):
+            if self.checkIfAlreadyInDb(slugify(path) + "/" + slugify(item.mTitle)):
                 return "ERROR: Can't post because an object already exists in this URL. Items created: " + unicode(createdItems)
             createdItems.append(item.mTitle)
             item.save()
 
             #add APIObject for this materialItem
-            finalUrl = path + "/" + slugify(item.mTitle)
-            newColl = models.APIObject.create(finalUrl, path, "item")
+            finalUrl = slugify(path) + "/" + slugify(item.mTitle)
+            newColl = models.APIObject.create(finalUrl, slugify(path), "item")
             newColl.materialItem = item
             newColl.save()
 
@@ -151,6 +155,10 @@ class CMSView(APIView):
         url = url[len("/api/cms/"):] #slice the useless part away
         #slice the trailing:
         url = url.strip("/")
+
+        print url
+        if url == "":
+            return Response("Error: The url is empty.")
 
         try:
             target = models.APIObject.objects.get(uniquePath=url)
@@ -174,20 +182,15 @@ class CMSView(APIView):
 
 
 
-
-
-
-
-
-
     def post(self,request):
         url = request.path
         url = url[len("/api/cms/"):] #slice the useless part away
-        #return Response(str(type(request.DATA["title"])))
-        #return Response(request.DATA)
+        url = url.strip("/")
+        print url
+        if url == "":
+            return Response("Error: The url is empty.")
         #check if the object exists in the db already:
-
-
+        url = self.slugifyWholeUrl(url)
         if self.checkIfItemsInPostPath(url):
             return Response("ERROR: There is an item in middle of the path. Item's can't have children.")
 
