@@ -123,11 +123,11 @@ img {
         }
         .menu-icon {
             @media screen and (max-width: $r1024-content-width) {
-                width: $nav-height / 2 - $menu-padding-x;
+                width: $nav-height / 2;
             }
-            margin: $menu-padding-x $menu-padding-x;
-            width: $nav-height - $menu-padding-x * 2;
-            height: $nav-height - $menu-padding-x * 2;
+            margin: 0px;
+            width: $nav-height;
+            height: $nav-height;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;

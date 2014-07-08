@@ -7539,9 +7539,9 @@ img {
 }
 /* line 124, ../sass/main.scss */
 #menubar #uppermenu .menu-icon {
-  margin: 10px 10px;
-  width: 41px;
-  height: 41px;
+  margin: 0px;
+  width: 61px;
+  height: 61px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -7549,7 +7549,7 @@ img {
 @media screen and (max-width: 1024px) {
   /* line 124, ../sass/main.scss */
   #menubar #uppermenu .menu-icon {
-    width: 20.5px;
+    width: 30.5px;
   }
 }
 /* line 137, ../sass/main.scss */
