@@ -158,8 +158,6 @@ img {
     }
 }
 
-    
-
 #language-selector {
     position: fixed;
     z-index: 200;
@@ -169,13 +167,38 @@ img {
     min-width: 50px;
     padding: 5px;
     cursor: pointer;
+    text-align: right;
+    color: $gray;
+    .menu-icon > svg {
+        height: 11pt;
+        width: 11pt;
+        padding-top: 3px;
+        margin: 0px 0px -3px 5px;
+    }
+    .menu-icon:hover {
+        color: $blue-main;
+        svg text {
+            fill: $blue-main;
+        }
+        svg path {
+            stroke: $blue-main;
+        }
+    }
     .menu-box {
         display: none;
         font-size: 10pt;
+        border: 1px solid $gray;
+        border-radius: 3px;
+        padding: 8px 3px;
+        background: white;
+        button {
+            color: black;
+        }
     }
 }
+
 #uppermenu {
-    color: $dark-gray;
+    color: $gray;
     z-index: 100;
     height: $nav-height;
     background: rgba(255,255,255,0.85);
@@ -192,11 +215,16 @@ img {
             padding: 0px 13px;
             margin: 0px;
             text-transform: uppercase;
-            color: $dark-gray;
             height: $nav-height;
             line-height: $nav-height;
             cursor: pointer;
             position: relative;
+            > svg {
+                height: 14pt;
+                width: 14pt;
+                margin: 0px 0px -3px 10px;
+                padding-top: 3px;
+            }
             ul{
                 width: 100%;
                 display: none;
@@ -224,7 +252,13 @@ img {
             }
         }
         #menu-subjects:hover, #menu-grades:hover, #menu-types:hover {
-                background: rgba(55,55,55,0.1);
+            color: $blue-main;
+            svg text {
+                fill: $blue-main;
+            }
+            svg path {
+                stroke: $blue-main;
+            }
         }
 
     }
@@ -257,6 +291,10 @@ img {
 #tagsFilter{
     flex-basis: $basis-blog-column;
     -webkit-flex-basis: $basis-blog-column;
+    align-items: center;
+    -webkit-align-items: center;
+    align-content: center;
+    -webkit-align-content: center;
     .tag{
         display: inline-block;
         position: relative;
@@ -264,8 +302,8 @@ img {
         color: white;
         font-size: 9pt;
         line-height: 9pt;
-        padding: 4px 10px 4px 7px;
-        margin: 2px 5px;
+        padding: 2px 11px 2px 4px;
+        margin: 2px;
         border-radius: 3px;
         div {
             position: absolute;
@@ -315,7 +353,38 @@ img {
         margin: 0px;
         padding: 0px;
         color: $dark-gray;
-        background: #eaeaea;
+        background: $light-gray;
+
+        #accordion-switch {
+            position: relative;
+            text-align: center;
+            height: $tab-header-height;
+            width: $tab-header-height * 0.7;
+            left: -$tab-header-height * 0.7;
+            background: $light-gray;
+            border-radius: 50% 0px 0px 50%;
+            cursor: pointer;
+            img {
+                height: $tab-header-height * 0.4;
+                margin-top: $tab-header-height * 0.3;
+            }
+        }
+
+        .tabs {
+            text-align: center;
+            height: $tab-header-height;
+            background-color: $gray;
+            margin-top: -$tab-header-height;
+            
+            .tab {
+                line-height: $tab-header-height;
+                font-size: 16pt;
+            }
+            .tab.active {
+                background-color: $light-gray;
+            }
+        }
+
         a {
             color: $dark-gray;
         }

@@ -2,7 +2,7 @@
 {% load category_tags %}
 {% load i18n %}
 <div id="language-selector">
-     <div class="menu-icon">{{LANGUAGE_CODE}}&nbsp;▾</div>
+     <div class="menu-icon">{{LANGUAGE_CODE}}<img class="svg" src="{{ STATIC_URL }}shop/img/FilterIcon.svg"/></div>
      <div class="menu-box language-box">
         {% if LANGUAGES|length > 1 %}
         <form id="language_selector" class="pull-left navbar-form" action="{% url 'set_language' %}" method="post">
@@ -24,7 +24,7 @@
 <div id="uppermenu" class="flex-container sticky">
     <div id="filters" class="flexItem5 flex-container">
         <div class="flexItem"></div>
-            <div id="menu-subjects">Subjects&nbsp;▾
+            <div id="menu-subjects">Subjects<img class="svg" src="{{ STATIC_URL }}shop/img/FilterIcon.svg"/>
                 <ul>
                     <li>biology</li>
                     <li>maths</li>
@@ -32,14 +32,14 @@
                     <li>geography</li>
                 </ul>
             </div>
-            <div id="menu-grades">Grade&nbsp;▾
+            <div id="menu-grades">Grade<img class="svg" src="{{ STATIC_URL }}shop/img/FilterIcon.svg"/>
                 <ul>
                     <li>1-3</li>
                     <li>4-6</li>
                     <li>7-9</li>
                 </ul>
             </div>
-            <div id="menu-types">Type&nbsp;▾
+            <div id="menu-types">Type<img class="svg" src="{{ STATIC_URL }}shop/img/FilterIcon.svg"/>
                 <ul>
                     <li>books</li>
                     <li>exercises</li>
@@ -53,11 +53,15 @@
             </form>
         </div>
     </div>
-    <div id="tagsFilter" class="flexItem flex-container">
-        <div class="flexItem">
-            <div class="tag">biology
+    <div id="tagsFilter" class="flexItem flex-container flex-wrap">
+            <div class="tag">mitosis
                 <div>x</div>
             </div>
-        </div>
+            <div class="tag">cells
+                <div>x</div>
+            </div>
+            <div class="tag">division
+                <div>x</div>
+            </div>
     </div>
 </div>
