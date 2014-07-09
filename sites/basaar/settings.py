@@ -314,7 +314,7 @@ INSTALLED_APPS = [
     'apps.gateway',     # For allowing dashboard access
     'apps.api',
     'rest_framework',
-
+    'apps.catalogue',
 ]
 from oscar import get_core_apps
 INSTALLED_APPS = INSTALLED_APPS + get_core_apps()

@@ -8,6 +8,8 @@ from apps.api.serializers import UserSerializer, GroupSerializer, MaterialItemSe
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
+#from apps.catalogue import models as catalogueModels
+from oscar.core.loading import get_class, get_model
 from apps.api import models
 from datetime import datetime
 import json
@@ -15,6 +17,10 @@ from django.template.defaultfilters import slugify
 
 from django.http import Http404
 
+
+Product = get_model('catalogue', 'Product')
+Category = get_model('catalogue', 'Category')
+ProductClass = get_model('catalogue', 'ProductClass')
 
 # Create your views here.
 # API-views
@@ -106,6 +112,7 @@ class CMSView(APIView):
     def postMaterialItem(self, path, data):
         theList = data["items"]
         createdItems = []
+        createdProduct = []
         #TODO: WRITE A PROPER SERIALIZER FOR THIS!!!!!!!!!!!!!!!!!
         for x in theList:
             #create new item
@@ -123,6 +130,12 @@ class CMSView(APIView):
             item.language = x["language"]
             item.issn = x["issn"]
             item.author = User.objects.get(username="admin")    #TODO: User should be set to authenticated user when authentication is done
+
+
+            #PRODUCT EXPERIMENT
+            games = ProductClass.objects.get(name='Games')
+            p = Product(title=x["title"], product_class=games)
+            p.save()
 
             try:
                 item.createdAt = datetime.strptime(x["creationDate"], "%Y-%m-%d")
