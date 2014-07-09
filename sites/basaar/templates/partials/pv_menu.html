@@ -1,4 +1,56 @@
 {% load i18n %}
+
+<div id="pvmenushadow"></div>
+<div id="pvmenu" class="flex-container-vertical">
+    <div class="menu-header flex-container">
+        <div class="menu-head-icon" style="background-image:url('{{ STATIC_URL }}shop/img/PilvivaylaLogotype_IncludingBazaar.svg');"></div>
+    </div>
+    <div id="icons" class="flex-container-vertical">
+        <div class="flexItem">
+             <a href="/">
+                <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/Bazaar_Home.Icon.svg');"></div>
+             </a>
+        </div>
+        <div>
+            <div class="menu-separator"></div>
+        </div>
+        <div class="flexItem">
+             <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/Bazaar_Profile.Icon.svg');"></div>
+             <div class="menu-box">Content</div>
+        </div>
+        <div class="flexItem">
+             <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/Bazaar_ShoppingBasket.Icon.svg');"></div>
+             <div class="menu-box">Content</div>
+        </div>
+        <div class="flexItem">
+             <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/Bazaar_SearchBar.Icon.svg');"></div>
+             <div class="menu-box">
+                <form method="get" action="{% url 'search:search' %}" class="navbar-form pull-right">
+                    {{ search_form.q }}
+                </form>
+            </div>
+        </div>
+        <div>
+            <div class="menu-separator"></div>
+        </div>
+    </div>
+    <!--
+    <div id="newsfeedShortcuts" class="flexItem flex-container-vertical">
+        <div class="flexItem">
+            <a href="#">
+                Q&amp;A
+            </a>
+        </div>
+        <div class="flexItem">
+            <a href="#">
+                Blog
+            </a>
+        </div>
+    </div>
+-->
+    <div class="flexItem"></div>
+</div>
+<!--
 <div id="menu" class="flex-container-vertical">
     
     <div class="menu-options flex-container-vertical">
@@ -40,3 +92,4 @@
     <div class="flexItem">
     </div>
 </div>
+    -->

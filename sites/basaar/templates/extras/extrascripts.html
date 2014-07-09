@@ -7,8 +7,8 @@
     $('#content').addClass('animated fadeInDown');
 
     $(document).ready(function(){
-        $("#menubar").sticky({topSpacing:0});
-      });
+        //$("#uppermenu").sticky({topSpacing:0});
+    });
 
     function openFilterSubitems() {
         $(this).children('ul').show('fade');    
@@ -17,6 +17,15 @@
         $(this).children('ul').hide('fade'); 
     };
     
-    $('.items li').hoverIntent( openFilterSubitems, closeFilterSubitems );
-
+    $('.menu-icon').click(function() {
+        if($(this).siblings().first().is(":visible")) {
+            $('.menu-box').hide();
+        } else {
+            $('.menu-box').hide();
+            $(this).siblings().show('fade');
+        }
+    });
+    
+    $('#menu-subjects, #menu-grades, #menu-types').hoverIntent( openFilterSubitems, closeFilterSubitems );
+    
 </script>

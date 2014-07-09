@@ -1,96 +1,63 @@
 {% load currency_filters %}
 {% load category_tags %}
 {% load i18n %}
-<div id="menubar" class="flex-container-vertical">
-    <div id="uppermenu" class="flex-container">
-        <div class="menu-header flex-container">
-            <div class="menu-head-icon" style="background-image:url('{{ STATIC_URL }}shop/img/PilvivaylaLogo.png');"></div>
-        </div>
-        <div id="sitetitle" class="flexItem2">
-            <h1>Bazaar</h1>
-        </div>
+<div id="language-selector">
+     <div class="menu-icon">{{LANGUAGE_CODE}}&nbsp;▾</div>
+     <div class="menu-box language-box">
+        {% if LANGUAGES|length > 1 %}
+        <form id="language_selector" class="pull-left navbar-form" action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ language_neutral_url_path }}" />
+            <select name="language">
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE%} selected="selected"{% endif %}>
+                        {{ language.name_local }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button class="btn" type="submit">{% trans "Go" %}</button>
+        </form>
+        {% endif %}
+     </div>
+</div>
+<div id="uppermenu" class="flex-container sticky">
+    <div id="filters" class="flexItem5 flex-container">
         <div class="flexItem"></div>
-        <div id="newsfeedShortcuts" class="flexItem flex-container">
-            <div class="flexItem">
-                <a href="#">
-                    Q&amp;A
-                </a>
+            <div id="menu-subjects">Subjects&nbsp;▾
+                <ul>
+                    <li>biology</li>
+                    <li>maths</li>
+                    <li>english</li>
+                    <li>geography</li>
+                </ul>
             </div>
-            <div class="flexItem">
-                <a href="#">
-                    Blog
-                </a>
+            <div id="menu-grades">Grade&nbsp;▾
+                <ul>
+                    <li>1-3</li>
+                    <li>4-6</li>
+                    <li>7-9</li>
+                </ul>
             </div>
-        </div>
-        <div class="flexItem"></div>
-        <div id="generalSearch" class="flexItem2 flex-container">
-            <div class="flexItem">
-                <form method="get" action="{% url 'search:search' %}" class="navbar-form pull-right">
-                    {{ search_form.q }}
-                </form>
+            <div id="menu-types">Type&nbsp;▾
+                <ul>
+                    <li>books</li>
+                    <li>exercises</li>
+                    <li>games</li>
+                </ul>
             </div>
-            <div>
-                <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/Bazaar_SearchBar.Icon.svg');"></div>
-            </div>
-        </div>
-        <div class="flexItem"></div>
-        <div id="icons" class="flexItem2 flex-container">
-            <div class="flexItem">
-                 <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/Bazaar_ShoppingBasket.Icon.svg');"></div>
-            </div>
-            <div class="flexItem">
-                 <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/Bazaar_Profile.Icon.svg');"></div>
-            </div>
-            <div class="flexItem">
-                 <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/Bazaar_Home.Icon.svg');"></div>
-            </div>
-            <div class="flexItem">
-                FI
-            </div>
+        <div id="addTags">
+            <div class="label">Filter content by tags:</div>
+            <form method="get" action="{% url 'search:search' %}" class="navbar-form pull-right">
+                {{ search_form.q }}
+            </form>
         </div>
     </div>
-
-    <div id="downmenu" class="flex-container">
-        <div id="filters" class="flexItem">
-            <ul class="items flex-container">
-                <li>Subjects
-                    <ul>
-                        <li>biology</li>
-                        <li>maths</li>
-                        <li>english</li>
-                        <li>geography</li>
-                    </ul>
-                </li>
-                <li>Grade
-                    <ul>
-                        <li>1-3</li>
-                        <li>4-6</li>
-                        <li>7-9</li>
-                    </ul>
-                </li>
-                <li>Type
-                    <ul>
-                        <li>books</li>
-                        <li>exercises</li>
-                        <li>games</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div id="tagsFilter" class="flexItem2 flex-container">
-            <div id="addTags">
-                <div class="label">Filter content by tags:</div>
-                <form method="get" action="{% url 'search:search' %}" class="navbar-form pull-right">
-                    {{ search_form.q }}
-                </form>
-            </div>
-
-            <div class="flexItem">
-                <div class="tag">biology
-                    <div>x</div>
-                </div>
+    <div id="tagsFilter" class="flexItem flex-container">
+        <div class="flexItem">
+            <div class="tag">biology
+                <div>x</div>
             </div>
         </div>
-        <div class="flexItem"></div>
     </div>
 </div>

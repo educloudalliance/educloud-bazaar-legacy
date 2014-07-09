@@ -41,14 +41,13 @@
         {% block extrahead %}
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
             <script src="{% static "shop/js/modernizr/modernizr.js" %}"></script>
-            <script src="{% static "shop/js/jquery.sticky.js" %}"></script>
             <script src="{% static "shop/js/jquery-ajax/jquery.ajax.min.js" %}"></script>
             <script src="{% static "shop/js/bower_components/jquery-ui/ui/minified/jquery-ui.min.js"%}"></script>
             <script src="{% static "shop/js/bower_components/jquery-hoverIntent/jquery.hoverIntent.js"%}"></script>
         {% endblock %}
     </head>
 
-    <body class="flex-container-vertical" id="{% block body_id %}default{% endblock %}" class="{% block body_class %}default{% endblock %}">
+    <body class="flex-container" id="{% block body_id %}default{% endblock %}" class="{% block body_class %}default{% endblock %}">
         {# Main content goes in this 'layout' block #}
         {% block layout %}
         {% endblock %}
