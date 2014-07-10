@@ -75,9 +75,9 @@ class MaterialItem(models.Model):
 #this is a model which is used to describe the API-structure
 class APINode(models.Model):
     uniquePath = models.CharField(max_length=8000)
-    parentPath = models.CharField(max_length=8000)
+    parentPath = models.CharField(max_length=8000, blank=True)
     objectType = models.CharField(max_length=20)
-    materialItem = models.ForeignKey(MaterialItem, null=True)
+    materialItem = models.ForeignKey(MaterialItem, blank=True, null=True)
     owner = models.ForeignKey(User)
 
     def __str__(self):
