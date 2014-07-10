@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.api.models import MaterialItem, Tags, Comment, Ratings, ProviderOrganization, APIObject
+from apps.api.models import MaterialItem, Tags, Comment, Ratings, ProviderOrganization, APINode
 # Register your models here.
 class api(admin.ModelAdmin):
     admin.site.register(MaterialItem)
@@ -9,4 +9,4 @@ class api(admin.ModelAdmin):
     admin.site.register(ProviderOrganization)
     #admin.site.register(MaterialCollections)
     #admin.site.register(hasCollection)
-    admin.site.register(APIObject)
+    admin.site.register(APINode)

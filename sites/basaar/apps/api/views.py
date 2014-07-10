@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 from django.db.models import Count
 from rest_framework import viewsets
-from apps.api.serializers import UserSerializer, GroupSerializer, MaterialItemSerializer, APIObjectSerializer
+from apps.api.serializers import UserSerializer, GroupSerializer, MaterialItemSerializer, APINodeSerializer
 
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
@@ -14,6 +14,9 @@ from apps.api import models
 from datetime import datetime
 import json
 from django.template.defaultfilters import slugify
+from rest_framework import authentication, permissions
+from rest_framework.authentication import OAuth2Authentication, BasicAuthentication, SessionAuthentication
+from apps.api.permissions import IsOwner
 
 from django.http import Http404
 
@@ -21,6 +24,13 @@ from django.http import Http404
 Product = get_model('catalogue', 'Product')
 Category = get_model('catalogue', 'Category')
 ProductClass = get_model('catalogue', 'ProductClass')
+
+class AuthException(Exception):
+    def __init__(self):
+        pass
+    def __str__(self):
+        return repr("Authorization error")
+
 
 # Create your views here.
 # API-views
@@ -43,7 +53,11 @@ class GroupViewSet(viewsets.ModelViewSet):
 # this view is used to handle all CMS interaction through collections
 # and resources
 class CMSView(APIView):
-    permission_classes = (permissions.AllowAny,)    #TODO::CHANGE TO AUTHENTICATED LATER
+    #authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
+    #permission_classes = ( IsOwner, ) #permissions.IsAuthenticatedOrReadOnly,
+    authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
+
 
     def splitUrl(self, url):
         splitpath = url.lower().split('/')
@@ -63,7 +77,7 @@ class CMSView(APIView):
         return url
 
     def checkIfAlreadyInDb(self, path):
-        return models.APIObject.objects.filter(uniquePath=self.slugifyWholeUrl(path)).exists()
+        return models.APINode.objects.filter(uniquePath=self.slugifyWholeUrl(path)).exists()
 
     #make sure there isn't items in the middle of the given path
     def checkIfItemsInPostPath(self, path):
@@ -72,7 +86,7 @@ class CMSView(APIView):
         for i in range(0, len(urlTokens)):
             print pathSoFar
             pathSoFar = pathSoFar.strip("/")
-            if models.APIObject.objects.filter(uniquePath=pathSoFar, objectType="item").exists():
+            if models.APINode.objects.filter(uniquePath=pathSoFar, objectType="item").exists():
                 #we found an object which is an item and in middle of the given path.
                 #because items can't have children, this is an ERROR condition.
                 return True
@@ -82,23 +96,36 @@ class CMSView(APIView):
         print "Lopuksi: " + pathSoFar
         return False
 
+
     #after we have verified that the url can be used to create new item or collection, check
     #the path and list not existing collections to be created.
     #If collection exists already, nothing happens.
-    def createCollections(self, path):
+    def createCollections(self, path, request):
         urlTokens = self.splitUrl(path)
         parentPathSoFar = ""
         pathSoFar = urlTokens[0]
         createdCollection = []
         for i in range(1, len(urlTokens)+1):
-            if models.APIObject.objects.filter(uniquePath=pathSoFar, objectType="collection").exists():
+
+            try:
+                node = models.APINode.objects.get(uniquePath=pathSoFar, objectType="collection")
+                #if models.APINode.objects.filter(uniquePath=pathSoFar, objectType="collection").exists():
+
+                perm = IsOwner()
+                if not perm.has_object_permission(request, self, node):
+                    raise AuthException()
+
                 #the collection exists, therefore it doesn't need to be created.
                 parentPathSoFar = pathSoFar
                 if i < len(urlTokens):
                     pathSoFar += "/" + urlTokens[i] #move to the next
-            else:
+
+
+
+            except models.APINode.DoesNotExist:
                 #the collection doesn't exist yet so create it:
-                newColl = models.APIObject.create(pathSoFar, parentPathSoFar, "collection")
+                newColl = models.APINode.create(pathSoFar, parentPathSoFar, "collection")
+                newColl.owner = request.user
                 newColl.save()
                 parentPathSoFar = pathSoFar
                 createdCollection.append(pathSoFar)
@@ -109,8 +136,8 @@ class CMSView(APIView):
         return "Created collections: " + str(createdCollection)
 
 
-    def postMaterialItem(self, path, data):
-        theList = data["items"]
+    def postMaterialItem(self, path, request):
+        theList = request.DATA["items"]
         createdItems = []
         createdProduct = []
         #TODO: WRITE A PROPER SERIALIZER FOR THIS!!!!!!!!!!!!!!!!!
@@ -130,7 +157,6 @@ class CMSView(APIView):
             item.language = x["language"]
             item.issn = x["issn"]
             item.author = User.objects.get(username="admin")    #TODO: User should be set to authenticated user when authentication is done
-
 
             #PRODUCT EXPERIMENT
             games = ProductClass.objects.get(name='Games')
@@ -154,10 +180,11 @@ class CMSView(APIView):
             createdItems.append(item.mTitle)
             item.save()
 
-            #add APIObject for this materialItem
-            finalUrl = slugify(path) + "/" + slugify(item.mTitle)
-            newColl = models.APIObject.create(finalUrl, slugify(path), "item")
+            #add APINode for this materialItem
+            finalUrl = path + "/" + slugify(item.mTitle)
+            newColl = models.APINode.create(finalUrl, path, "item")
             newColl.materialItem = item
+            newColl.owner = request.user
             newColl.save()
 
 
@@ -174,21 +201,22 @@ class CMSView(APIView):
             return Response("Error: The url is empty.")
 
         try:
-            target = models.APIObject.objects.get(uniquePath=url)
-
-            #check is the APIObject collection or item:
+            target = models.APINode.objects.get(uniquePath=url)
+            perm = IsOwner()
+            perm.has_object_permission(request, self, target)
+            #check is the APINode collection or item:
             if target.objectType == "item":
                 #return JSON data of the materialItem:
                 serializer = MaterialItemSerializer(target.materialItem)
                 return Response(serializer.data)
             else:
                 #find objects in this collection
-                children = models.APIObject.objects.filter(parentPath=target.uniquePath)
-                serializer = APIObjectSerializer(children, many=True)
+                children = models.APINode.objects.filter(parentPath=target.uniquePath)
+                serializer = APINodeSerializer(children, many=True)
                 return Response(serializer.data)
 
 
-        except models.APIObject.DoesNotExist:
+        except models.APINode.DoesNotExist:
             return Response("404: No such collection or materialItem.")
 
 
@@ -200,24 +228,25 @@ class CMSView(APIView):
         url = url[len("/api/cms/"):] #slice the useless part away
         url = url.strip("/")
         print url
+
         if url == "":
             return Response("Error: The url is empty.")
         #check if the object exists in the db already:
         url = self.slugifyWholeUrl(url)
+
+
         if self.checkIfItemsInPostPath(url):
             return Response("ERROR: There is an item in middle of the path. Item's can't have children.")
 
+
+
         #create collections if needed
-        createdCollections = self.createCollections(url)
+        try:
+            createdCollections = self.createCollections(url, request)
+        except AuthException:
+            return Response("ERROR: You are not the owner of a node in path.")
 
         #try to create a new item:
-        createdItems = self.postMaterialItem(url, request.DATA)
+        createdItems = self.postMaterialItem(url, request)
 
         return Response(createdCollections + " --- " + createdItems)
-
-
-
-
-
-
-

@@ -25,3 +25,8 @@ urlpatterns = patterns('',
     #url(r'^cms/', views.CMSView.as_view()),
 
 )
+
+urlpatterns += patterns('',
+    url(r'^api-auth/', include('rest_framework.urls',
+                               namespace='rest_framework')),
+)
