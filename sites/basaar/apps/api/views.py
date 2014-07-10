@@ -336,8 +336,9 @@ class CMSView(APIView):
             item.issn = x["issn"]
             item.author = User.objects.get(username="admin")    #TODO: User should be set to authenticated user when authentication is done
             item.save()
+
             #PRODUCT EXPERIMENT
-            #Update the product table of oscar after modifying the exisiting models
+            #TODO::Update the product table of oscar after modifying the exisiting models
             """
             downloads = ProductClass.objects.get(name='downloads')
             p = Product.objects.get(title=x["title"],product_class=downloads)
@@ -354,3 +355,31 @@ class CMSView(APIView):
             f.partner_sku=x["issn"]
             f.save()
             """
+
+    def delete(self,request):
+        isValid = self.isValidUrl(request.path)
+        if not isValid:
+            return Response("Error: The url is empty.")
+        url = self.trimTheUrl(request.path)
+        #print url
+
+        if not self.checkJsonData(request):
+            return Response("No JSON data available")
+
+        theList = request.DATA["items"]
+        inValidItems = []
+        for eachItem in theList:
+            finalUrl = url + "/" + slugify(eachItem["title"])
+            if not models.APINode.objects.filter(uniquePath=finalUrl).exists():
+                inValidItems.append(eachItem["title"])
+            else:
+                self.deleteExisitingItem(finalUrl,eachItem)
+
+        return Response(len(inValidItems))
+
+    def deleteExisitingItem(self,finalUrl,x):
+        itemNode = models.APINode.objects.get(uniquePath=finalUrl)
+        itemNode.materialItem.delete()
+        itemNode.delete()
+        #item.delete()
+        #itemNode.delete()
