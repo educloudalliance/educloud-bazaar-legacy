@@ -4,7 +4,7 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
 <rect x="11.142" y="49.919" fill="none" width="48.723" height="13.991"/>
-<text transform="matrix(1.0033 0 0 1 16.0653 59.1478)" fill="#808080" font-family="'Caecilia-Bold'" font-size="12">Basaar</text>
+<text transform="matrix(1.0033 0 0 1 16.0653 59.1478)" fill="#808080" font-family="'Nunito', sans-serif" font-size="12" style="font-weight: bold;">Basaar</text>
 <g>
 	<polygon fill="#FFFFFF" points="31.407,35.091 36.97,35.114 36.97,41.312 41.668,41.312 34.199,48.827 26.605,41.312 
 		31.407,41.312 	"/>
