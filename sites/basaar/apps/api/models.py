@@ -77,7 +77,7 @@ class APINode(models.Model):
     uniquePath = models.CharField(max_length=8000)
     parentPath = models.CharField(max_length=8000, blank=True)
     objectType = models.CharField(max_length=20)
-    materialItem = models.ForeignKey(MaterialItem, blank=True, null=True)
+    materialItem = models.ForeignKey(MaterialItem, blank=True, null=True) #TODO:: materialItem is replaced with product table of oscar
     owner = models.ForeignKey(User)
 
     def __str__(self):

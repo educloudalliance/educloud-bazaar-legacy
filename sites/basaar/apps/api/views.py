@@ -83,6 +83,23 @@ class CMSView(APIView):
 
         return url
 
+    #check whether there is empty strings in the url
+    def isValidUrl(self,path):
+        splitpath = self.trimTheUrl(path)
+        print splitpath
+        if len(splitpath) == 0:
+            return False
+        return True
+
+    #trim unnecessary part of url
+    def trimTheUrl(self,path):
+        url = path
+        url = url[len("/api/cms/"):] #slice the useless part away
+        #slice the trailing:
+        url = url.strip("/")
+
+        return  url
+
     def checkIfAlreadyInDb(self, path):
         return models.APINode.objects.filter(uniquePath=self.slugifyWholeUrl(path)).exists()
 
@@ -149,6 +166,16 @@ class CMSView(APIView):
 
         return "Created collections: " + str(createdCollection)
 
+    #check whether json has items or not
+    def checkJsonData(self,request):
+        theList = request.DATA
+        if len(theList) == 0:
+            return False
+        try:
+            theItems = request.DATA["items"]
+        except:
+            return  False
+        return True
 
     def postMaterialItem(self, path, request):
         theList = request.DATA["items"]
@@ -208,15 +235,14 @@ class CMSView(APIView):
 
         return "Items created: " + unicode(createdItems)
 
-    def get(self, request):
-        url = request.path
-        url = url[len("/api/cms/"):] #slice the useless part away
-        #slice the trailing:
-        url = url.strip("/")
 
-        print url
-        if url == "":
+    def get(self, request):
+        isValid = self.isValidUrl(request.path)
+        if not isValid:
             return Response("Error: The url is empty.")
+
+        url = self.trimTheUrl(request.path)
+        print url
 
         try:
             target = models.APINode.objects.get(uniquePath=url)
@@ -239,24 +265,23 @@ class CMSView(APIView):
 
 
 
-
-
     def post(self,request):
-        url = request.path
-        url = url[len("/api/cms/"):] #slice the useless part away
-        url = url.strip("/")
+        isValid = self.isValidUrl(request.path)
+        if not isValid:
+            return Response("Error: The url is empty 262.")
+
+        if not self.checkJsonData(request):
+            return Response("No JSON data available")
+
+        url = self.trimTheUrl(request.path)
         print url
 
-        if url == "":
-            return Response("Error: The url is empty.")
         #check if the object exists in the db already:
         url = self.slugifyWholeUrl(url)
 
 
         if self.checkIfItemsInPostPath(url):
             return Response("ERROR: There is an item in middle of the path. Item's can't have children.")
-
-
 
         #create collections if needed
         try:
@@ -274,7 +299,58 @@ class CMSView(APIView):
 
 
     def put(self,request):
-        url = request.path
-        url = url[len("/api/cms/"):] #slice the useless part away
-        url = url.strip("/")
+        isValid = self.isValidUrl(request.path)
+        if not isValid:
+            return Response("Error: The url is empty.")
+        url = self.trimTheUrl(request.path)
         print url
+
+        if not self.checkJsonData(request):
+            return Response("No JSON data available")
+
+        theList = request.DATA["items"]
+        inValidItems = []
+        for eachItem in theList:
+            finalUrl = url + "/" + slugify(eachItem["title"])
+            if not models.APINode.objects.filter(uniquePath=finalUrl).exists():
+                inValidItems.append(eachItem["title"])
+            else:
+                self.updateExisitingItem(finalUrl,eachItem)
+
+        return Response(len(inValidItems))
+
+    def updateExisitingItem(self,finalUrl,x):
+            itemNode = models.APINode.objects.get(uniquePath=finalUrl)
+            item = itemNode.materialItem
+            #item = models.MaterialItem.objects.get(id = itemNode.materialItem)
+            item.description = x["description"]
+            item.materialUrl = x["materialUrl"]
+            item.materialType = x["materialType"]
+            item.iconUrl = x["iconUrl"]
+            item.moreInfoUrl = x["moreInfoUrl"]
+            item.bazaarUrl = x["bazaarUrl"]         #TODO: THIS IS PROBLEMATIC
+            item.version = x["version"]
+            item.status = x["status"]
+            item.price = x["price"]
+            item.language = x["language"]
+            item.issn = x["issn"]
+            item.author = User.objects.get(username="admin")    #TODO: User should be set to authenticated user when authentication is done
+            item.save()
+            #PRODUCT EXPERIMENT
+            #Update the product table of oscar after modifying the exisiting models
+            """
+            downloads = ProductClass.objects.get(name='downloads')
+            p = Product.objects.get(title=x["title"],product_class=downloads)
+            p.description=x["description"]
+            p.materialUrl=x["materialUrl"]
+            p.iconUrl=x["iconUrl"]
+            p.moreInfoUrl=x["moreInfoUrl"]
+            p.save()
+
+            f = StockRecord.objects.get(product=p)
+            f.partner=author
+            f.price_excl_tax=x["price"]
+            f.price_retail=x["price"]
+            f.partner_sku=x["issn"]
+            f.save()
+            """
