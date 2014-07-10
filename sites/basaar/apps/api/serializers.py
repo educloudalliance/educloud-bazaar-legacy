@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from apps.api.models import MaterialItem, APIObject
+from apps.api.models import MaterialItem, APINode
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -25,7 +25,7 @@ class MaterialItemSerializer(serializers.HyperlinkedModelSerializer):
         #read_only_fields = ('mTitle', 'slug')
 
 
-class APIObjectSerializer(serializers.HyperlinkedModelSerializer):
+class APINodeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = APIObject
+        model = APINode
         fields = ('uniquePath', 'objectType', )

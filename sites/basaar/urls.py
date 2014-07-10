@@ -27,6 +27,7 @@ urlpatterns = [
         'django.contrib.sitemaps.views.sitemap', {'sitemaps': base_sitemaps}),
     #
     url(r'^ajax/$', 'apps.ajax.home.loadItems'),
+    url(r'^oauth2/', include('provider.oauth2.urls', namespace='oauth2')),
 ]
 
 # Prefix Oscar URLs with language codes

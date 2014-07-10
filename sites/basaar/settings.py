@@ -315,6 +315,8 @@ INSTALLED_APPS = [
     'apps.api',
     'rest_framework',
     'apps.catalogue',
+    'provider',
+    'provider.oauth2',
 ]
 from oscar import get_core_apps
 INSTALLED_APPS = INSTALLED_APPS + get_core_apps()
@@ -325,6 +327,26 @@ AUTHENTICATION_BACKENDS = (
     'oscar.apps.customer.auth_backends.Emailbackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+"""
+REST_FRAMEWORK = (
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',
+    'rest_framework.permissions.DjangoModelPermissions',),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+    'rest_framework.authentication.OAuth2Authentication',),
+    'PAGINATE_BY': 10,
+
+)
+"""
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',
+    'rest_framework.permissions.DjangoModelPermissions',),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+    'rest_framework.authentication.OAuth2Authentication',),
+    'PAGINATE_BY': 10,
+
+}
 
 LOGIN_REDIRECT_URL = '/'
 APPEND_SLASH = True
