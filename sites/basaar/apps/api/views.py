@@ -33,6 +33,11 @@ class AuthException(Exception):
     def __str__(self):
         return repr("Authorization error")
 
+class RootException(Exception):
+    def __init__(self):
+        pass
+    def __str__(self):
+        return repr("Cannot create Root-nodes")
 
 # Create your views here.
 # API-views
@@ -107,6 +112,13 @@ class CMSView(APIView):
         parentPathSoFar = ""
         pathSoFar = urlTokens[0]
         createdCollection = []
+
+        #check if the first collection exists. If not, throw exception:
+        if models.APINode.objects.filter(uniquePath=pathSoFar, objectType="collection").exists() == False:
+            raise RootException()
+
+
+
         for i in range(1, len(urlTokens)+1):
 
             try:
@@ -165,7 +177,7 @@ class CMSView(APIView):
             p = Product(title=x["title"], description=x["description"], materialUrl=x["materialUrl"], iconUrl=x["iconUrl"], moreInfoUrl=x["moreInfoUrl"],  product_class=downloads)
             p.save()
             #Add fullfilment into database
-            author = Partner.objects.get(name="rovio")
+            author = Partner.objects.get(name=self.splitUrl(path)[0])
             f = StockRecord(product=p, partner=author, price_excl_tax=x["price"], price_retail=x["price"], partner_sku=x["issn"])
             f.save()
 
@@ -248,7 +260,10 @@ class CMSView(APIView):
 
         #create collections if needed
         try:
-            createdCollections = self.createCollections(url, request)
+            try:
+                createdCollections = self.createCollections(url, request)
+            except RootException:
+                return Response("ERROR: Can't create new root nodes.")
         except AuthException:
             return Response("ERROR: You are not the owner of a node in path.")
 
@@ -256,3 +271,10 @@ class CMSView(APIView):
         createdItems = self.postMaterialItem(url, request)
 
         return Response(createdCollections + " --- " + createdItems)
+
+
+    def put(self,request):
+        url = request.path
+        url = url[len("/api/cms/"):] #slice the useless part away
+        url = url.strip("/")
+        print url
