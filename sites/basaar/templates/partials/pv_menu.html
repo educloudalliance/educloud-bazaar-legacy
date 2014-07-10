@@ -8,23 +8,23 @@
     <div id="icons" class="flex-container-vertical">
         <div class="flexItem">
              <a href="/">
-                <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/Bazaar_Home.Icon.svg');"></div>
+                <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_Home.Icon.svg"/>
              </a>
         </div>
         <div>
             <div class="menu-separator"></div>
         </div>
         <div class="flexItem">
-             <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/Bazaar_Profile.Icon.svg');"></div>
-             <div class="menu-box">Content</div>
+            <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_Profile.Icon.svg"/>
+            <div class="menu-box">{% include "partials/nav_accounts.html" %}</div>
         </div>
         <div class="flexItem">
-             <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/Bazaar_ShoppingBasket.Icon.svg');"></div>
-             <div class="menu-box">Content</div>
+            <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_ShoppingBasket.Icon.svg"/>
+            <div class="menu-box">{% include "partials/mini_basket.html" %}</div>
         </div>
         <div class="flexItem">
-             <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/Bazaar_SearchBar.Icon.svg');"></div>
-             <div class="menu-box">
+            <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_Search.svg"/>
+            <div class="menu-box">
                 <form method="get" action="{% url 'search:search' %}" class="navbar-form pull-right">
                     {{ search_form.q }}
                 </form>
@@ -34,62 +34,5 @@
             <div class="menu-separator"></div>
         </div>
     </div>
-    <!--
-    <div id="newsfeedShortcuts" class="flexItem flex-container-vertical">
-        <div class="flexItem">
-            <a href="#">
-                Q&amp;A
-            </a>
-        </div>
-        <div class="flexItem">
-            <a href="#">
-                Blog
-            </a>
-        </div>
-    </div>
--->
     <div class="flexItem"></div>
 </div>
-<!--
-<div id="menu" class="flex-container-vertical">
-    
-    <div class="menu-options flex-container-vertical">
-        <div class="menu-separator"></div>
-        <div class="menu-option flex-container-vertical">
-            <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/ProfileIcon.png');"></div>
-            <div class="drawer">
-                {% include "partials/nav_accounts.html" %}
-            </div>
-        </div>
-        <div class="menu-option flex-container-vertical">
-            <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/SearchIcon.png');"></div>
-            <div class="drawer">
-                <div class="flex-container drawer-search">
-                    <div class="menu-icon"
-                         style="background-image:url('{{ STATIC_URL }}shop/img/SearchIcon.png');"></div>
-                    <input class="flexItem" type="search" name="search" placeholder="Search...">
-
-                    <div class="menu-icon"
-                         style="background-image:url('{{ STATIC_URL }}shop/img/SupportIconTEMP.png');"></div>
-                </div>
-            </div>
-        </div>
-        <div class="menu-option flex-container-vertical">
-            <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/SupportIconTEMP.png');"></div>
-            <div class="drawer">
-                {% include "partials/mini_basket.html" %}
-            </div>
-        </div>
-        {% block mini_basket %}{% endblock %}
-        <div class="menu-separator"></div>
-        <div class="menu-option flex-container-vertical">
-            <div class="menu-icon" style="background-image:url('{{ STATIC_URL }}shop/img/QandAIcon.png');"></div>
-            <div class="drawer">
-                Questions and Answers
-            </div>
-        </div>
-    </div>
-    <div class="flexItem">
-    </div>
-</div>
-    -->
