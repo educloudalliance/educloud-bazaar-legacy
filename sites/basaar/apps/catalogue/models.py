@@ -18,10 +18,11 @@ class ProductCategory(AbstractProductCategory):
 
 
 class Product(AbstractProduct):
-    @classmethod
-    def create(cls):
-        obj = cls()
-        return obj
+    video_url = models.URLField(blank=True)
+    materialUrl = models.URLField()
+    iconUrl = models.URLField(blank=True)
+    moreInfoUrl = models.URLField(blank=True)
+
 
 class ProductAttribute(AbstractProductAttribute):
     pass

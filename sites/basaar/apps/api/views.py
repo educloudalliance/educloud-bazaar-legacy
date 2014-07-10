@@ -24,6 +24,8 @@ from django.http import Http404
 Product = get_model('catalogue', 'Product')
 Category = get_model('catalogue', 'Category')
 ProductClass = get_model('catalogue', 'ProductClass')
+Partner = get_model('partner', 'Partner')
+StockRecord = get_model('partner', 'StockRecord')
 
 class AuthException(Exception):
     def __init__(self):
@@ -139,7 +141,6 @@ class CMSView(APIView):
     def postMaterialItem(self, path, request):
         theList = request.DATA["items"]
         createdItems = []
-        createdProduct = []
         #TODO: WRITE A PROPER SERIALIZER FOR THIS!!!!!!!!!!!!!!!!!
         for x in theList:
             #create new item
@@ -159,9 +160,14 @@ class CMSView(APIView):
             item.author = User.objects.get(username="admin")    #TODO: User should be set to authenticated user when authentication is done
 
             #PRODUCT EXPERIMENT
-            games = ProductClass.objects.get(name='Games')
-            p = Product(title=x["title"], product_class=games)
+            #Add product into database
+            downloads = ProductClass.objects.get(name='downloads')
+            p = Product(title=x["title"], description=x["description"], materialUrl=x["materialUrl"], iconUrl=x["iconUrl"], moreInfoUrl=x["moreInfoUrl"],  product_class=downloads)
             p.save()
+            #Add fullfilment into database
+            author = Partner.objects.get(name="rovio")
+            f = StockRecord(product=p, partner=author, price_excl_tax=x["price"], price_retail=x["price"], partner_sku=x["issn"])
+            f.save()
 
             try:
                 item.createdAt = datetime.strptime(x["creationDate"], "%Y-%m-%d")
