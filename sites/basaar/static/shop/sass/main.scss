@@ -115,30 +115,36 @@ img {
             width: 150px;
         }
     }
-    #icons {
-        line-height: $nav-height;
-
+    #icons div.flexItem{
+        padding: ($menu-icons-gap / 2) 0px;
+        cursor: pointer;
     }
     .menu-separator {
         height: 2px;
         background: white;
-        width: $menu-width - $menu-width/3;
-        margin-left: $menu-width/6;
+        width: $menu-icons-width;
+        margin-left: ($menu-width - $menu-icons-width) / 2;
+        margin-top: $menu-icons-gap / 2;
+        margin-bottom: $menu-icons-gap / 2;
         border-radius: 5px;
     }
     .menu-icon {
         @media screen and (max-width: $r1024-content-width) {
         }
         margin: 0px;
-        width: $menu-width;
-        height: $nav-height;
+        width: $menu-icons-width;
+        height: $menu-icons-width;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        cursor: pointer;
     }
-    .menu-icon:hover {
-        background-color: rgba(255,255,255,0.3);
+    #icons div.flexItem:hover {
+        svg path.hoverable {
+            fill: $green-main;
+        }
+        svg circle.hoverable {
+            stroke: $green-main;
+        }
     }
     #icons > .flexItem {
         position: relative;
@@ -150,11 +156,10 @@ img {
         left: $menu-width;
         background: $green-main-a85;
         color: black;
-        border-radius: 5px;
-        border: 2px solid #666;
-        height: 100px;
-        max-width: 250px;
-        z-index: 110;
+        border-radius: 0px 5px 5px 0px;
+        min-height: $menu-icons-width + $menu-icons-gap;
+        min-width: 300px;
+        z-index: 200;
     }
 }
 
@@ -405,13 +410,15 @@ img {
                 font-size: 10pt;
             }
 
-
-
         }
         .qaa {
             padding: 8px;
             height: 800px;
         }
+    }
+
+    #content-column {
+        padding: 23px 15px;
     }
 }
 

@@ -37,6 +37,23 @@
         });
 
         $('#accordion-switch').click(toggleAccordion);
+
+        $('#icons div.flexItem').click(function() {
+            if($(this).find('.menu-box').is(":visible")) {
+                $('.menu-box').hide();
+            } else {
+                $('.menu-box').hide();
+                $(this).find('.menu-box').show('slide');
+            }
+        });
+        $('#language-selector').click(function() {
+            if($(this).find('.menu-box').is(":visible")) {
+                $('.menu-box').hide();
+            } else {
+                $('.menu-box').hide();
+                $(this).find('.menu-box').show('fade');
+            }
+        });
     });
 
     function openFilterSubitems() {
@@ -46,21 +63,14 @@
         $(this).children('ul').hide('fade'); 
     };
     
-    $('.menu-icon').click(function() {
-        if($(this).siblings().first().is(":visible")) {
-            $('.menu-box').hide();
-        } else {
-            $('.menu-box').hide();
-            $(this).siblings().show('fade');
-        }
-    });
+    
 
     function toggleAccordion() {
         if ($('#blog-column').css('max-width') != '0px'){
             $('#blog-column').css('max-width', '0px');
             $('#accordion-switch img').attr('src','{{ STATIC_URL }}shop/img/OpenBlog.svg');
         } else {
-            $('#blog-column').css('max-width', 'none');
+            $('#blog-column').css('max-width', '');
             $('#accordion-switch img').attr('src','{{ STATIC_URL }}shop/img/CloseBlog.svg');
         }
     }
