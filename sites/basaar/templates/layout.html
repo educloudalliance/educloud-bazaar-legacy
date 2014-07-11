@@ -9,6 +9,7 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
+<div class="barshadow"></div>
 {% include "partials/pv_menu.html" %}
 
 {% include "partials/nav_primary.html" %}
@@ -18,44 +19,10 @@
             {% block content %}{% endblock %}
         </div>
 
-        <div id="blog-column" class="flexItem flex-container-vertical">
-            <div id="accordion-switch">
-                <img src="{{ STATIC_URL }}shop/img/CloseBlog.svg"/>
-            </div>
-            <div class="tabs flex-container">
-                <div class="tab flexItem active">Blog</div>
-                <div class="tab flexItem">Q&A</div>
-            </div>
-            <div class="tab-content flexItem">
-                <h1>Blogs</h1>
-
-                <div class="blog-post">
-                    <h2><a href="#">First post</a></h2>
-
-                    <h3><a href="#">by Author</a></h3>
-
-                    <p>Bacon ipsum dolor sit amet ut officia pastrami t-bone frankfurter chicken sint pork nisi
-                        shankle dolore meatball. Tempor in excepteur reprehenderit. Ullamco anim pork boudin<a
-                                href="#">...</a>
-                </div>
-                <div class="blog-post">
-                    <h2><a href="#">Second post</a></h2>
-
-                    <h3><a href="#">by Author</a></h3>
-
-                    <p>Bacon ipsum dolor sit amet ut officia pastrami t-bone frankfurter chicken sint pork nisi
-                        shankle dolore meatball. Tempor in excepteur reprehenderit. Ullamco anim pork boudin<a
-                                href="#">...</a>
-                </div>
-                <h1>Q&A</h1>
-
-                <div class="qaa">
-                    abc
-                </div>
-            </div>
-        </div>
+        {% include "partials/sidebar.html" %}
     </div>
 </div>
+<div class="barshadow"></div>
 
 {% include "extras/extrascripts.html" %}
 {% endblock %}

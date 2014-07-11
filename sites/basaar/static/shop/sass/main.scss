@@ -71,7 +71,7 @@ img {
     height: 100%;
 }
 
-#pvmenushadow {
+.barshadow {
     width: $menu-width;
     height: 100%;
 }
@@ -124,7 +124,6 @@ img {
         background: white;
         width: $menu-icons-width;
         margin-left: ($menu-width - $menu-icons-width) / 2;
-        margin-top: $menu-icons-gap / 2;
         margin-bottom: $menu-icons-gap / 2;
         border-radius: 5px;
     }
@@ -346,13 +345,13 @@ img {
     }
     */
 
-    #blog-column > h1 {
+    #sidebar > h1 {
         font-size: 18px;
         font-style: oblique;
         padding-left: 10px;
     }
 
-    #blog-column {
+    #sidebar {
         flex-basis: $basis-blog-column;
         -webkit-flex-basis: $basis-blog-column;
         margin: 0px;
