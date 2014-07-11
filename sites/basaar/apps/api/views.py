@@ -278,6 +278,8 @@ class CMSView(APIView):
 
         #check if the object exists in the db already:
         url = self.slugifyWholeUrl(url)
+        if models.APINode.objects.filter(uniquePath=url).exists():
+            return Response("ERROR: Material item with the same url already exists in the db. " + url)
 
 
         if self.checkIfItemsInPostPath(url):
