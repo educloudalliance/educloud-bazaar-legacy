@@ -13,10 +13,10 @@
     padding: 0.2em 0;
 }
 html, body {
-    height: 100%;
     width: 100%;
 }
 body {
+    height: 0px; //Fix for weird bug
     font-family: $default-font;
 }
 
@@ -440,6 +440,7 @@ img {
 
             li {
                 display: inline-block;
+                text-align: center;
                 border: 1px solid $light-gray;
             }
 

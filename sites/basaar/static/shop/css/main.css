@@ -7402,12 +7402,12 @@ th {
 
 /* line 15, ../sass/main.scss */
 html, body {
-  height: 100%;
   width: 100%;
 }
 
-/* line 19, ../sass/main.scss */
+/* line 18, ../sass/main.scss */
 body {
+  height: 0px;
   font-family: Nunito, Helvetica, sans-serif;
 }
 
@@ -7893,18 +7893,19 @@ img {
 /* line 441, ../sass/main.scss */
 #content #content-column ol.productlist li {
   display: inline-block;
+  text-align: center;
   border: 1px solid #e6e6e6;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* line 457, ../sass/main.scss */
+  /* line 458, ../sass/main.scss */
   .container {
     max-width: 730px;
   }
 
   /* Remove the padding we set earlier */
-  /* line 463, ../sass/main.scss */
+  /* line 464, ../sass/main.scss */
   .header,
   .footer {
     padding-left: 0;
@@ -7912,13 +7913,13 @@ img {
   }
 
   /* Space out the masthead */
-  /* line 469, ../sass/main.scss */
+  /* line 470, ../sass/main.scss */
   .header {
     /*margin-bottom: 30px;*/
   }
 
   /* Remove the bottom border on the jumbotron for visual effect */
-  /* line 474, ../sass/main.scss */
+  /* line 475, ../sass/main.scss */
   .jumbotron {
     border-bottom: 0;
   }
