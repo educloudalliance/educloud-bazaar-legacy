@@ -54,6 +54,8 @@
                 $(this).find('.menu-box').show('fade');
             }
         });
+
+        toggleAccordion();
     });
 
     function openFilterSubitems() {
@@ -66,11 +68,15 @@
     
 
     function toggleAccordion() {
-        if ($('#blog-column').css('max-width') != '0px'){
-            $('#blog-column').css('max-width', '0px');
+        if ($('#sidebar').css('max-width') != '50px'){
+            $('#sidebar').css('max-width', '50px');
+            $('#sidebarshadow').css('width', '50px');
+            $('#sidebar .tab-content .blog-post').hide();
             $('#accordion-switch img').attr('src','{{ STATIC_URL }}shop/img/OpenBlog.svg');
         } else {
-            $('#blog-column').css('max-width', '');
+            $('#sidebar').css('max-width', '400px');
+            $('#sidebarshadow').css('width', '400px');
+            $('#sidebar .tab-content .blog-post').show();
             $('#accordion-switch img').attr('src','{{ STATIC_URL }}shop/img/CloseBlog.svg');
         }
     }

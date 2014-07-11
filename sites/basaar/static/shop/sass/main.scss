@@ -213,7 +213,9 @@ img {
     left: $menu-width;
 
     #filters{
+        
         #menu-subjects, #menu-grades, #menu-types {
+
             text-align: center;
             font-size: 14pt;
             padding: 0px 13px;
@@ -228,6 +230,13 @@ img {
                 width: 14pt;
                 margin: 0px 0px -3px 10px;
                 padding-top: 3px;
+            }
+            @media screen and (max-width: $r1024-content-width) {
+                padding: 0px;
+                > svg {
+                    margin: 0px 7px -3px 0px;
+                    
+                }
             }
             ul{
                 width: 100%;
@@ -267,9 +276,16 @@ img {
 
     }
     #addTags{
+        @media screen and (max-width: 1100px) {
+            text-align: right;
+        }
         form {
             display: inline-block;
             line-height: $nav-height;
+            @media screen and (max-width: 1100px) {
+                line-height: $nav-height / 3;
+                height: $nav-height / 3;
+            }
             input {
                 margin: 0px;
                 font-size: 10pt;
@@ -289,6 +305,13 @@ img {
             font-size: 14pt;
             line-height: $nav-height;
             height: $nav-height;
+            @media screen and (max-width: 1100px) {
+                float: none;
+                padding: 0px 0px 0px 13px;
+                line-height: $nav-height / 2;
+                height: $nav-height / 2;
+            
+            }
         }
     }
 }
@@ -316,6 +339,78 @@ img {
             font-size: 9pt;
             line-height: 9pt;
         }
+    }
+}
+
+#sidebar {
+    /*
+    flex-basis: $basis-blog-column;
+    -webkit-flex-basis: $basis-blog-column;
+    */
+    position: fixed;
+    right: 0px;
+    top: $nav-height;
+    max-width: 400px;
+    margin: 0px;
+    padding: 0px;
+    color: $dark-gray;
+    background: $light-gray;
+    z-index: 300;
+
+    #accordion-switch {
+        position: relative;
+        text-align: center;
+        height: $tab-header-height;
+        width: $tab-header-height * 0.7;
+        left: -$tab-header-height * 0.7;
+        background: $light-gray;
+        border-radius: 50% 0px 0px 50%;
+        cursor: pointer;
+        img {
+            height: $tab-header-height * 0.4;
+            margin-top: $tab-header-height * 0.3;
+        }
+    }
+
+    .tabs {
+        text-align: center;
+        height: $tab-header-height;
+        background-color: $gray;
+        margin-top: -$tab-header-height;
+        
+        .tab {
+            line-height: $tab-header-height;
+            font-size: 16pt;
+        }
+        .tab.active {
+            background-color: $light-gray;
+        }
+    }
+
+    a {
+        color: $dark-gray;
+    }
+    h2 {
+        margin: 0px;
+        font-size: 12pt;
+        font-style: oblique;
+    }
+    h3 {
+        margin: 0px;
+        font-size: 11pt;
+        font-style: oblique;
+        font-weight: 300;
+    }
+    .blog-post{
+        padding: 8px;
+        p {
+            font-size: 10pt;
+        }
+
+    }
+    .qaa {
+        padding: 8px;
+        height: 800px;
     }
 }
 
@@ -349,71 +444,6 @@ img {
         font-size: 18px;
         font-style: oblique;
         padding-left: 10px;
-    }
-
-    #sidebar {
-        flex-basis: $basis-blog-column;
-        -webkit-flex-basis: $basis-blog-column;
-        margin: 0px;
-        padding: 0px;
-        color: $dark-gray;
-        background: $light-gray;
-
-        #accordion-switch {
-            position: relative;
-            text-align: center;
-            height: $tab-header-height;
-            width: $tab-header-height * 0.7;
-            left: -$tab-header-height * 0.7;
-            background: $light-gray;
-            border-radius: 50% 0px 0px 50%;
-            cursor: pointer;
-            img {
-                height: $tab-header-height * 0.4;
-                margin-top: $tab-header-height * 0.3;
-            }
-        }
-
-        .tabs {
-            text-align: center;
-            height: $tab-header-height;
-            background-color: $gray;
-            margin-top: -$tab-header-height;
-            
-            .tab {
-                line-height: $tab-header-height;
-                font-size: 16pt;
-            }
-            .tab.active {
-                background-color: $light-gray;
-            }
-        }
-
-        a {
-            color: $dark-gray;
-        }
-        h2 {
-            margin: 0px;
-            font-size: 12pt;
-            font-style: oblique;
-        }
-        h3 {
-            margin: 0px;
-            font-size: 11pt;
-            font-style: oblique;
-            font-weight: 300;
-        }
-        .blog-post{
-            padding: 8px;
-            p {
-                font-size: 10pt;
-            }
-
-        }
-        .qaa {
-            padding: 8px;
-            height: 800px;
-        }
     }
 
     #content-column {

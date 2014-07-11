@@ -7639,7 +7639,7 @@ img {
   right: 0px;
   left: 50px;
 }
-/* line 216, ../sass/main.scss */
+/* line 217, ../sass/main.scss */
 #uppermenu #filters #menu-subjects, #uppermenu #filters #menu-grades, #uppermenu #filters #menu-types {
   text-align: center;
   font-size: 14pt;
@@ -7651,14 +7651,24 @@ img {
   cursor: pointer;
   position: relative;
 }
-/* line 226, ../sass/main.scss */
+/* line 228, ../sass/main.scss */
 #uppermenu #filters #menu-subjects > svg, #uppermenu #filters #menu-grades > svg, #uppermenu #filters #menu-types > svg {
   height: 14pt;
   width: 14pt;
   margin: 0px 0px -3px 10px;
   padding-top: 3px;
 }
-/* line 232, ../sass/main.scss */
+@media screen and (max-width: 1024px) {
+  /* line 217, ../sass/main.scss */
+  #uppermenu #filters #menu-subjects, #uppermenu #filters #menu-grades, #uppermenu #filters #menu-types {
+    padding: 0px;
+  }
+  /* line 236, ../sass/main.scss */
+  #uppermenu #filters #menu-subjects > svg, #uppermenu #filters #menu-grades > svg, #uppermenu #filters #menu-types > svg {
+    margin: 0px 7px -3px 0px;
+  }
+}
+/* line 241, ../sass/main.scss */
 #uppermenu #filters #menu-subjects ul, #uppermenu #filters #menu-grades ul, #uppermenu #filters #menu-types ul {
   width: 100%;
   display: none;
@@ -7671,7 +7681,7 @@ img {
   padding: 0px;
   margin: 0px;
 }
-/* line 243, ../sass/main.scss */
+/* line 252, ../sass/main.scss */
 #uppermenu #filters #menu-subjects ul li, #uppermenu #filters #menu-grades ul li, #uppermenu #filters #menu-types ul li {
   color: black;
   text-transform: none;
@@ -7680,28 +7690,41 @@ img {
   padding: 1px 7px;
   margin: 0px;
 }
-/* line 252, ../sass/main.scss */
+/* line 261, ../sass/main.scss */
 #uppermenu #filters #menu-subjects ul li:hover, #uppermenu #filters #menu-grades ul li:hover, #uppermenu #filters #menu-types ul li:hover {
   background: rgba(255, 255, 255, 0.3);
 }
-/* line 258, ../sass/main.scss */
+/* line 267, ../sass/main.scss */
 #uppermenu #filters #menu-subjects:hover, #uppermenu #filters #menu-grades:hover, #uppermenu #filters #menu-types:hover {
   color: #37a9e0;
 }
-/* line 260, ../sass/main.scss */
+/* line 269, ../sass/main.scss */
 #uppermenu #filters #menu-subjects:hover svg text, #uppermenu #filters #menu-grades:hover svg text, #uppermenu #filters #menu-types:hover svg text {
   fill: #37a9e0;
 }
-/* line 263, ../sass/main.scss */
+/* line 272, ../sass/main.scss */
 #uppermenu #filters #menu-subjects:hover svg path, #uppermenu #filters #menu-grades:hover svg path, #uppermenu #filters #menu-types:hover svg path {
   stroke: #37a9e0;
 }
-/* line 270, ../sass/main.scss */
+@media screen and (max-width: 1100px) {
+  /* line 278, ../sass/main.scss */
+  #uppermenu #addTags {
+    text-align: right;
+  }
+}
+/* line 282, ../sass/main.scss */
 #uppermenu #addTags form {
   display: inline-block;
   line-height: 80px;
 }
-/* line 273, ../sass/main.scss */
+@media screen and (max-width: 1100px) {
+  /* line 282, ../sass/main.scss */
+  #uppermenu #addTags form {
+    line-height: 26.66667px;
+    height: 26.66667px;
+  }
+}
+/* line 289, ../sass/main.scss */
 #uppermenu #addTags form input {
   margin: 0px;
   font-size: 10pt;
@@ -7712,7 +7735,7 @@ img {
   width: 105px;
   background: #666666;
 }
-/* line 285, ../sass/main.scss */
+/* line 301, ../sass/main.scss */
 #uppermenu #addTags .label {
   float: left;
   margin: 0px;
@@ -7721,8 +7744,17 @@ img {
   line-height: 80px;
   height: 80px;
 }
+@media screen and (max-width: 1100px) {
+  /* line 301, ../sass/main.scss */
+  #uppermenu #addTags .label {
+    float: none;
+    padding: 0px 0px 0px 13px;
+    line-height: 40px;
+    height: 40px;
+  }
+}
 
-/* line 295, ../sass/main.scss */
+/* line 318, ../sass/main.scss */
 #tagsFilter {
   flex-basis: 200px;
   -webkit-flex-basis: 200px;
@@ -7731,7 +7763,7 @@ img {
   align-content: center;
   -webkit-align-content: center;
 }
-/* line 302, ../sass/main.scss */
+/* line 325, ../sass/main.scss */
 #tagsFilter .tag {
   display: inline-block;
   position: relative;
@@ -7743,7 +7775,7 @@ img {
   margin: 2px;
   border-radius: 3px;
 }
-/* line 312, ../sass/main.scss */
+/* line 335, ../sass/main.scss */
 #tagsFilter .tag div {
   position: absolute;
   top: 0px;
@@ -7752,7 +7784,86 @@ img {
   line-height: 9pt;
 }
 
-/* line 322, ../sass/main.scss */
+/* line 345, ../sass/main.scss */
+#sidebar {
+  /*
+  flex-basis: $basis-blog-column;
+  -webkit-flex-basis: $basis-blog-column;
+  */
+  position: fixed;
+  right: 0px;
+  top: 80px;
+  max-width: 400px;
+  margin: 0px;
+  padding: 0px;
+  color: #666666;
+  background: #e6e6e6;
+  z-index: 300;
+}
+/* line 360, ../sass/main.scss */
+#sidebar #accordion-switch {
+  position: relative;
+  text-align: center;
+  height: 50px;
+  width: 35px;
+  left: -35px;
+  background: #e6e6e6;
+  border-radius: 50% 0px 0px 50%;
+  cursor: pointer;
+}
+/* line 369, ../sass/main.scss */
+#sidebar #accordion-switch img {
+  height: 20px;
+  margin-top: 15px;
+}
+/* line 375, ../sass/main.scss */
+#sidebar .tabs {
+  text-align: center;
+  height: 50px;
+  background-color: #b3b3b3;
+  margin-top: -50px;
+}
+/* line 381, ../sass/main.scss */
+#sidebar .tabs .tab {
+  line-height: 50px;
+  font-size: 16pt;
+}
+/* line 385, ../sass/main.scss */
+#sidebar .tabs .tab.active {
+  background-color: #e6e6e6;
+}
+/* line 390, ../sass/main.scss */
+#sidebar a {
+  color: #666666;
+}
+/* line 393, ../sass/main.scss */
+#sidebar h2 {
+  margin: 0px;
+  font-size: 12pt;
+  font-style: oblique;
+}
+/* line 398, ../sass/main.scss */
+#sidebar h3 {
+  margin: 0px;
+  font-size: 11pt;
+  font-style: oblique;
+  font-weight: 300;
+}
+/* line 404, ../sass/main.scss */
+#sidebar .blog-post {
+  padding: 8px;
+}
+/* line 406, ../sass/main.scss */
+#sidebar .blog-post p {
+  font-size: 10pt;
+}
+/* line 411, ../sass/main.scss */
+#sidebar .qaa {
+  padding: 8px;
+  height: 800px;
+}
+
+/* line 417, ../sass/main.scss */
 #content {
   width: 100%;
   padding-top: 80px;
@@ -7778,97 +7889,26 @@ img {
   }
   */
 }
-/* line 348, ../sass/main.scss */
+/* line 443, ../sass/main.scss */
 #content #sidebar > h1 {
   font-size: 18px;
   font-style: oblique;
   padding-left: 10px;
 }
-/* line 354, ../sass/main.scss */
-#content #sidebar {
-  flex-basis: 200px;
-  -webkit-flex-basis: 200px;
-  margin: 0px;
-  padding: 0px;
-  color: #666666;
-  background: #e6e6e6;
-}
-/* line 362, ../sass/main.scss */
-#content #sidebar #accordion-switch {
-  position: relative;
-  text-align: center;
-  height: 50px;
-  width: 35px;
-  left: -35px;
-  background: #e6e6e6;
-  border-radius: 50% 0px 0px 50%;
-  cursor: pointer;
-}
-/* line 371, ../sass/main.scss */
-#content #sidebar #accordion-switch img {
-  height: 20px;
-  margin-top: 15px;
-}
-/* line 377, ../sass/main.scss */
-#content #sidebar .tabs {
-  text-align: center;
-  height: 50px;
-  background-color: #b3b3b3;
-  margin-top: -50px;
-}
-/* line 383, ../sass/main.scss */
-#content #sidebar .tabs .tab {
-  line-height: 50px;
-  font-size: 16pt;
-}
-/* line 387, ../sass/main.scss */
-#content #sidebar .tabs .tab.active {
-  background-color: #e6e6e6;
-}
-/* line 392, ../sass/main.scss */
-#content #sidebar a {
-  color: #666666;
-}
-/* line 395, ../sass/main.scss */
-#content #sidebar h2 {
-  margin: 0px;
-  font-size: 12pt;
-  font-style: oblique;
-}
-/* line 400, ../sass/main.scss */
-#content #sidebar h3 {
-  margin: 0px;
-  font-size: 11pt;
-  font-style: oblique;
-  font-weight: 300;
-}
-/* line 406, ../sass/main.scss */
-#content #sidebar .blog-post {
-  padding: 8px;
-}
-/* line 408, ../sass/main.scss */
-#content #sidebar .blog-post p {
-  font-size: 10pt;
-}
-/* line 413, ../sass/main.scss */
-#content #sidebar .qaa {
-  padding: 8px;
-  height: 800px;
-}
-/* line 419, ../sass/main.scss */
+/* line 449, ../sass/main.scss */
 #content #content-column {
   padding: 23px 15px;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* line 431, ../sass/main.scss */
+  /* line 461, ../sass/main.scss */
   .container {
     max-width: 730px;
   }
 
   /* Remove the padding we set earlier */
-  /* line 437, ../sass/main.scss */
+  /* line 467, ../sass/main.scss */
   .header,
   .footer {
     padding-left: 0;
@@ -7876,13 +7916,13 @@ img {
   }
 
   /* Space out the masthead */
-  /* line 443, ../sass/main.scss */
+  /* line 473, ../sass/main.scss */
   .header {
     /*margin-bottom: 30px;*/
   }
 
   /* Remove the bottom border on the jumbotron for visual effect */
-  /* line 448, ../sass/main.scss */
+  /* line 478, ../sass/main.scss */
   .jumbotron {
     border-bottom: 0;
   }
