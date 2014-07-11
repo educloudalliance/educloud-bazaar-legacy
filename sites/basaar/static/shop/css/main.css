@@ -7832,83 +7832,79 @@ img {
 #sidebar .tabs .tab.active {
   background-color: #e6e6e6;
 }
-/* line 390, ../sass/main.scss */
+/* line 389, ../sass/main.scss */
+#sidebar > h1 {
+  font-size: 18px;
+  font-style: oblique;
+  padding-left: 10px;
+}
+/* line 395, ../sass/main.scss */
 #sidebar a {
   color: #666666;
 }
-/* line 393, ../sass/main.scss */
+/* line 398, ../sass/main.scss */
 #sidebar h2 {
   margin: 0px;
   font-size: 12pt;
   font-style: oblique;
 }
-/* line 398, ../sass/main.scss */
+/* line 403, ../sass/main.scss */
 #sidebar h3 {
   margin: 0px;
   font-size: 11pt;
   font-style: oblique;
   font-weight: 300;
 }
-/* line 404, ../sass/main.scss */
+/* line 409, ../sass/main.scss */
 #sidebar .blog-post {
   padding: 8px;
 }
-/* line 406, ../sass/main.scss */
+/* line 411, ../sass/main.scss */
 #sidebar .blog-post p {
   font-size: 10pt;
 }
-/* line 411, ../sass/main.scss */
+/* line 416, ../sass/main.scss */
 #sidebar .qaa {
   padding: 8px;
   height: 800px;
 }
 
-/* line 417, ../sass/main.scss */
+/* line 422, ../sass/main.scss */
 #content {
   width: 100%;
   padding-top: 80px;
-  /*
-  width: $r1024-content-width - $menu-width * 1.5;
-  @media screen and (min-width: $r800-content-width) {
-      width: $r800-content-width - $menu-width * 1.5;
-  }
-  @media screen and (min-width: $r1024-content-width) {
-      width: $r1024-content-width - $menu-width * 1.5;
-  }
-  @media screen and (min-width: $r1280-content-width) {
-      width: $r1280-content-width - $menu-width * 1.5;
-  }
-  @media screen and (min-width: $r1440-content-width) {
-      width: $r1440-content-width - $menu-width * 1.5;
-  }
-  @media screen and (min-width: $r1920-content-width) {
-      width: $r1920-content-width - $menu-width * 1.5;
-  }
-  @media screen and (min-width: $r2500-content-width) {
-      width: $r2500-content-width - $menu-width * 1.5;
-  }
-  */
+  z-index: -10;
 }
-/* line 443, ../sass/main.scss */
-#content #sidebar > h1 {
-  font-size: 18px;
-  font-style: oblique;
-  padding-left: 10px;
-}
-/* line 449, ../sass/main.scss */
+/* line 428, ../sass/main.scss */
 #content #content-column {
   padding: 23px 15px;
+}
+/* line 431, ../sass/main.scss */
+#content #content-column section {
+  width: 100%;
+}
+/* line 435, ../sass/main.scss */
+#content #content-column ol.productlist {
+  list-style: none;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+/* line 441, ../sass/main.scss */
+#content #content-column ol.productlist li {
+  display: inline-block;
+  border: 1px solid #e6e6e6;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* line 461, ../sass/main.scss */
+  /* line 457, ../sass/main.scss */
   .container {
     max-width: 730px;
   }
 
   /* Remove the padding we set earlier */
-  /* line 467, ../sass/main.scss */
+  /* line 463, ../sass/main.scss */
   .header,
   .footer {
     padding-left: 0;
@@ -7916,13 +7912,13 @@ img {
   }
 
   /* Space out the masthead */
-  /* line 473, ../sass/main.scss */
+  /* line 469, ../sass/main.scss */
   .header {
     /*margin-bottom: 30px;*/
   }
 
   /* Remove the bottom border on the jumbotron for visual effect */
-  /* line 478, ../sass/main.scss */
+  /* line 474, ../sass/main.scss */
   .jumbotron {
     border-bottom: 0;
   }

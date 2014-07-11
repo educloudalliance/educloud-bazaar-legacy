@@ -4,7 +4,7 @@
 <script type="text/javascript">
 
     // Animations
-    $('#content').addClass('animated fadeInDown');
+    //$('#content').addClass('animated fadeInDown');
 
     $(document).ready(function(){
         $('img.svg').each(function(){
@@ -72,11 +72,13 @@
             $('#sidebar').css('max-width', '50px');
             $('#sidebarshadow').css('width', '50px');
             $('#sidebar .tab-content .blog-post').hide();
+            $('#sidebar .tab').hide();
             $('#accordion-switch img').attr('src','{{ STATIC_URL }}shop/img/OpenBlog.svg');
         } else {
             $('#sidebar').css('max-width', '400px');
             $('#sidebarshadow').css('width', '400px');
             $('#sidebar .tab-content .blog-post').show();
+            $('#sidebar .tab').show();
             $('#accordion-switch img').attr('src','{{ STATIC_URL }}shop/img/CloseBlog.svg');
         }
     }

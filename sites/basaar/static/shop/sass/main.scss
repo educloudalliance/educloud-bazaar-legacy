@@ -386,6 +386,11 @@ img {
             background-color: $light-gray;
         }
     }
+    > h1 {
+        font-size: 18px;
+        font-style: oblique;
+        padding-left: 10px;
+    }
 
     a {
         color: $dark-gray;
@@ -417,37 +422,28 @@ img {
 #content {
     width: 100%;
     padding-top: $nav-height;
+    z-index: -10;
     
-    /*
-    width: $r1024-content-width - $menu-width * 1.5;
-    @media screen and (min-width: $r800-content-width) {
-        width: $r800-content-width - $menu-width * 1.5;
-    }
-    @media screen and (min-width: $r1024-content-width) {
-        width: $r1024-content-width - $menu-width * 1.5;
-    }
-    @media screen and (min-width: $r1280-content-width) {
-        width: $r1280-content-width - $menu-width * 1.5;
-    }
-    @media screen and (min-width: $r1440-content-width) {
-        width: $r1440-content-width - $menu-width * 1.5;
-    }
-    @media screen and (min-width: $r1920-content-width) {
-        width: $r1920-content-width - $menu-width * 1.5;
-    }
-    @media screen and (min-width: $r2500-content-width) {
-        width: $r2500-content-width - $menu-width * 1.5;
-    }
-    */
-
-    #sidebar > h1 {
-        font-size: 18px;
-        font-style: oblique;
-        padding-left: 10px;
-    }
 
     #content-column {
         padding: 23px 15px;
+
+        section {
+            width: 100%;
+        }
+
+        ol.productlist {
+            list-style: none;
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+
+            li {
+                display: inline-block;
+                border: 1px solid $light-gray;
+            }
+
+        }
     }
 }
 
