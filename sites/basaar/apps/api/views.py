@@ -299,6 +299,7 @@ class CMSView(APIView):
 
 
     def put(self,request):
+        inValidItemsNames = ""
         isValid = self.isValidUrl(request.path)
         if not isValid:
             return Response("Error: The url is empty.")
@@ -316,8 +317,13 @@ class CMSView(APIView):
                 inValidItems.append(eachItem["title"])
             else:
                 self.updateExisitingItem(finalUrl,eachItem)
-
-        return Response(len(inValidItems))
+        if len(inValidItems) == 0:
+            return Response("Successfully deleted data")
+        else:
+            for eachItem in inValidItems:
+                inValidItemsNames += eachItem
+                inValidItemsNames += ",  "
+            return Response("items not found:"+inValidItemsNames)
 
     def updateExisitingItem(self,finalUrl,x):
             itemNode = models.APINode.objects.get(uniquePath=finalUrl)
@@ -357,6 +363,7 @@ class CMSView(APIView):
             """
 
     def delete(self,request):
+        inValidItemsNames = ""
         isValid = self.isValidUrl(request.path)
         if not isValid:
             return Response("Error: The url is empty.")
@@ -375,7 +382,13 @@ class CMSView(APIView):
             else:
                 self.deleteExisitingItem(finalUrl,eachItem)
 
-        return Response(len(inValidItems))
+        if len(inValidItems) == 0:
+            return Response("Successfully deleted data")
+        else:
+            for eachItem in inValidItems:
+                inValidItemsNames += eachItem
+                inValidItemsNames += ",  "
+            return Response("items not found:"+inValidItemsNames)
 
     def deleteExisitingItem(self,finalUrl,x):
         itemNode = models.APINode.objects.get(uniquePath=finalUrl)
