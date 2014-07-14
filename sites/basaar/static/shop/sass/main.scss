@@ -201,8 +201,6 @@ textarea, input { outline: none; }
     color: $gray;
     z-index: 100;
     height: $nav-height;
-    background: rgba(255,255,255,0.95);
-    border-bottom: 1px solid white;
     position: fixed;
     top: 0px;
     right: 0px;
@@ -430,23 +428,55 @@ textarea, input { outline: none; }
     #content-column {
         padding: 23px 15px;
 
-        section {
+        section.product-section {
             width: 100%;
-        }
+            
+            ol.productlist {
+                list-style: none;
+                width: 100%;
+                padding: 0px;
+                margin: 0px;
 
-        ol.productlist {
-            list-style: none;
-            width: 100%;
-            padding: 0px;
-            margin: 0px;
+                li {
+                    text-align: center;
+                    border: 1px solid $light-gray;
+                    flex-basis: $basis-product-item;
+                    -webkit-flex-basis: $basis-product-item;
+                }
 
-            li {
-                display: inline-block;
-                text-align: center;
-                border: 1px solid $light-gray;
             }
-
         }
+
+        article.product_page {
+            color: $dark-gray;
+
+            .main {
+                .title {
+                    text-align: left;
+                    h1 {
+                        font-size: 28pt;
+                    }
+                }
+                .price {
+                    text-align: right;
+                    padding-right: 1em;
+
+                }
+                .product-action-box{
+                    //width: $product-action-box-width;
+                    background: $light-gray;
+                }
+                
+            }
+            h2 {
+                font-size: 19pt;
+            }
+            p {
+                font-size: 13pt;
+
+            }
+        }
+
     }
 }
 

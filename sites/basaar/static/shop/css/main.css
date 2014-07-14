@@ -7624,8 +7624,6 @@ textarea, input {
   color: #b3b3b3;
   z-index: 100;
   height: 80px;
-  background: rgba(255, 255, 255, 0.95);
-  border-bottom: 1px solid white;
   position: fixed;
   top: 0px;
   right: 0px;
@@ -7638,7 +7636,7 @@ textarea, input {
   background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 30%, #ffffff 100%);
   background-image: linear-gradient(top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 30%, #ffffff 100%);
 }
-/* line 216, ../sass/main.scss */
+/* line 214, ../sass/main.scss */
 #uppermenu #filters #menu-subjects, #uppermenu #filters #menu-grades, #uppermenu #filters #menu-types {
   text-align: center;
   font-size: 14pt;
@@ -7650,7 +7648,7 @@ textarea, input {
   cursor: pointer;
   position: relative;
 }
-/* line 227, ../sass/main.scss */
+/* line 225, ../sass/main.scss */
 #uppermenu #filters #menu-subjects > svg, #uppermenu #filters #menu-grades > svg, #uppermenu #filters #menu-types > svg {
   height: 14pt;
   width: 14pt;
@@ -7658,16 +7656,16 @@ textarea, input {
   padding-top: 3px;
 }
 @media screen and (max-width: 1024px) {
-  /* line 216, ../sass/main.scss */
+  /* line 214, ../sass/main.scss */
   #uppermenu #filters #menu-subjects, #uppermenu #filters #menu-grades, #uppermenu #filters #menu-types {
     padding: 0px;
   }
-  /* line 235, ../sass/main.scss */
+  /* line 233, ../sass/main.scss */
   #uppermenu #filters #menu-subjects > svg, #uppermenu #filters #menu-grades > svg, #uppermenu #filters #menu-types > svg {
     margin: 0px 7px -3px 0px;
   }
 }
-/* line 240, ../sass/main.scss */
+/* line 238, ../sass/main.scss */
 #uppermenu #filters #menu-subjects ul, #uppermenu #filters #menu-grades ul, #uppermenu #filters #menu-types ul {
   width: 100%;
   display: none;
@@ -7680,7 +7678,7 @@ textarea, input {
   padding: 0px;
   margin: 0px;
 }
-/* line 251, ../sass/main.scss */
+/* line 249, ../sass/main.scss */
 #uppermenu #filters #menu-subjects ul li, #uppermenu #filters #menu-grades ul li, #uppermenu #filters #menu-types ul li {
   color: black;
   text-transform: none;
@@ -7689,41 +7687,41 @@ textarea, input {
   padding: 1px 7px;
   margin: 0px;
 }
-/* line 260, ../sass/main.scss */
+/* line 258, ../sass/main.scss */
 #uppermenu #filters #menu-subjects ul li:hover, #uppermenu #filters #menu-grades ul li:hover, #uppermenu #filters #menu-types ul li:hover {
   background: rgba(255, 255, 255, 0.3);
 }
-/* line 266, ../sass/main.scss */
+/* line 264, ../sass/main.scss */
 #uppermenu #filters #menu-subjects:hover, #uppermenu #filters #menu-grades:hover, #uppermenu #filters #menu-types:hover {
   color: #37a9e0;
 }
-/* line 268, ../sass/main.scss */
+/* line 266, ../sass/main.scss */
 #uppermenu #filters #menu-subjects:hover svg text, #uppermenu #filters #menu-grades:hover svg text, #uppermenu #filters #menu-types:hover svg text {
   fill: #37a9e0;
 }
-/* line 271, ../sass/main.scss */
+/* line 269, ../sass/main.scss */
 #uppermenu #filters #menu-subjects:hover svg path, #uppermenu #filters #menu-grades:hover svg path, #uppermenu #filters #menu-types:hover svg path {
   stroke: #37a9e0;
 }
 @media screen and (max-width: 1100px) {
-  /* line 277, ../sass/main.scss */
+  /* line 275, ../sass/main.scss */
   #uppermenu #addTags {
     text-align: right;
   }
 }
-/* line 281, ../sass/main.scss */
+/* line 279, ../sass/main.scss */
 #uppermenu #addTags form {
   display: inline-block;
   line-height: 80px;
 }
 @media screen and (max-width: 1100px) {
-  /* line 281, ../sass/main.scss */
+  /* line 279, ../sass/main.scss */
   #uppermenu #addTags form {
     line-height: 26.66667px;
     height: 26.66667px;
   }
 }
-/* line 288, ../sass/main.scss */
+/* line 286, ../sass/main.scss */
 #uppermenu #addTags form input {
   margin: 0px;
   font-size: 10pt;
@@ -7734,7 +7732,7 @@ textarea, input {
   width: 105px;
   background: #666666;
 }
-/* line 300, ../sass/main.scss */
+/* line 298, ../sass/main.scss */
 #uppermenu #addTags .label {
   float: left;
   margin: 0px;
@@ -7744,7 +7742,7 @@ textarea, input {
   height: 80px;
 }
 @media screen and (max-width: 1100px) {
-  /* line 300, ../sass/main.scss */
+  /* line 298, ../sass/main.scss */
   #uppermenu #addTags .label {
     float: none;
     padding: 0px 0px 0px 13px;
@@ -7753,7 +7751,7 @@ textarea, input {
   }
 }
 
-/* line 317, ../sass/main.scss */
+/* line 315, ../sass/main.scss */
 #tagsFilter {
   flex-basis: 200px;
   -webkit-flex-basis: 200px;
@@ -7762,7 +7760,7 @@ textarea, input {
   align-content: center;
   -webkit-align-content: center;
 }
-/* line 324, ../sass/main.scss */
+/* line 322, ../sass/main.scss */
 #tagsFilter .tag {
   display: inline-block;
   position: relative;
@@ -7774,7 +7772,7 @@ textarea, input {
   margin: 2px;
   border-radius: 3px;
 }
-/* line 334, ../sass/main.scss */
+/* line 332, ../sass/main.scss */
 #tagsFilter .tag div {
   position: absolute;
   top: 0px;
@@ -7783,7 +7781,7 @@ textarea, input {
   line-height: 9pt;
 }
 
-/* line 344, ../sass/main.scss */
+/* line 342, ../sass/main.scss */
 #sidebar {
   /*
   flex-basis: $basis-blog-column;
@@ -7799,7 +7797,7 @@ textarea, input {
   background: #e6e6e6;
   z-index: 300;
 }
-/* line 359, ../sass/main.scss */
+/* line 357, ../sass/main.scss */
 #sidebar #accordion-switch {
   position: relative;
   text-align: center;
@@ -7810,104 +7808,134 @@ textarea, input {
   border-radius: 50% 0px 0px 50%;
   cursor: pointer;
 }
-/* line 368, ../sass/main.scss */
+/* line 366, ../sass/main.scss */
 #sidebar #accordion-switch img {
   height: 20px;
   margin-top: 15px;
 }
-/* line 374, ../sass/main.scss */
+/* line 372, ../sass/main.scss */
 #sidebar .tabs {
   text-align: center;
   height: 50px;
   background-color: #b3b3b3;
   margin-top: -50px;
 }
-/* line 380, ../sass/main.scss */
+/* line 378, ../sass/main.scss */
 #sidebar .tabs .tab {
   line-height: 50px;
   font-size: 16pt;
   cursor: pointer;
 }
-/* line 385, ../sass/main.scss */
+/* line 383, ../sass/main.scss */
 #sidebar .tabs .tab:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
-/* line 389, ../sass/main.scss */
+/* line 387, ../sass/main.scss */
 #sidebar .tabs .tab.active {
   background-color: #e6e6e6;
 }
-/* line 393, ../sass/main.scss */
+/* line 391, ../sass/main.scss */
 #sidebar > h1 {
   font-size: 18px;
   padding-left: 10px;
 }
-/* line 398, ../sass/main.scss */
+/* line 396, ../sass/main.scss */
 #sidebar a {
   color: #666666;
   text-decoration: none;
 }
-/* line 402, ../sass/main.scss */
+/* line 400, ../sass/main.scss */
 #sidebar h2 {
   margin: 0px;
   font-size: 12pt;
 }
-/* line 406, ../sass/main.scss */
+/* line 404, ../sass/main.scss */
 #sidebar h3 {
   margin: 0px;
   font-size: 11pt;
   font-weight: 300;
 }
-/* line 411, ../sass/main.scss */
+/* line 409, ../sass/main.scss */
 #sidebar .posts, #sidebar .kysy {
   padding: 8px;
 }
-/* line 413, ../sass/main.scss */
+/* line 411, ../sass/main.scss */
 #sidebar .posts p, #sidebar .kysy p {
   font-size: 10pt;
 }
-/* line 418, ../sass/main.scss */
+/* line 416, ../sass/main.scss */
 #sidebar .qaa {
   padding: 8px;
   height: 800px;
 }
 
-/* line 424, ../sass/main.scss */
+/* line 422, ../sass/main.scss */
 #content {
   width: 100%;
   padding-top: 80px;
   z-index: -10;
 }
-/* line 430, ../sass/main.scss */
+/* line 428, ../sass/main.scss */
 #content #content-column {
   padding: 23px 15px;
 }
-/* line 433, ../sass/main.scss */
-#content #content-column section {
+/* line 431, ../sass/main.scss */
+#content #content-column section.product-section {
   width: 100%;
 }
-/* line 437, ../sass/main.scss */
-#content #content-column ol.productlist {
+/* line 434, ../sass/main.scss */
+#content #content-column section.product-section ol.productlist {
   list-style: none;
   width: 100%;
   padding: 0px;
   margin: 0px;
 }
-/* line 443, ../sass/main.scss */
-#content #content-column ol.productlist li {
-  display: inline-block;
+/* line 440, ../sass/main.scss */
+#content #content-column section.product-section ol.productlist li {
   text-align: center;
   border: 1px solid #e6e6e6;
+  flex-basis: 200px;
+  -webkit-flex-basis: 200px;
+}
+/* line 450, ../sass/main.scss */
+#content #content-column article.product_page {
+  color: #666666;
+}
+/* line 454, ../sass/main.scss */
+#content #content-column article.product_page .main .title {
+  text-align: left;
+}
+/* line 456, ../sass/main.scss */
+#content #content-column article.product_page .main .title h1 {
+  font-size: 28pt;
+}
+/* line 460, ../sass/main.scss */
+#content #content-column article.product_page .main .price {
+  text-align: right;
+  padding-right: 1em;
+}
+/* line 465, ../sass/main.scss */
+#content #content-column article.product_page .main .product-action-box {
+  background: #e6e6e6;
+}
+/* line 471, ../sass/main.scss */
+#content #content-column article.product_page h2 {
+  font-size: 19pt;
+}
+/* line 474, ../sass/main.scss */
+#content #content-column article.product_page p {
+  font-size: 13pt;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* line 460, ../sass/main.scss */
+  /* line 490, ../sass/main.scss */
   .container {
     max-width: 730px;
   }
 
   /* Remove the padding we set earlier */
-  /* line 466, ../sass/main.scss */
+  /* line 496, ../sass/main.scss */
   .header,
   .footer {
     padding-left: 0;
@@ -7915,13 +7943,13 @@ textarea, input {
   }
 
   /* Space out the masthead */
-  /* line 472, ../sass/main.scss */
+  /* line 502, ../sass/main.scss */
   .header {
     /*margin-bottom: 30px;*/
   }
 
   /* Remove the bottom border on the jumbotron for visual effect */
-  /* line 477, ../sass/main.scss */
+  /* line 507, ../sass/main.scss */
   .jumbotron {
     border-bottom: 0;
   }
