@@ -30,6 +30,7 @@ $header-height: 60px;
 
 $menu-width: 50px;
 $menu-icons-width: 24px;
+$menu-icons-padding: ($menu-width - $menu-icons-width) / 2;
 $menu-icons-gap: 24px;
 $nav-height: 80px;
 $tab-header-height: 50px;

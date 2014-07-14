@@ -7387,12 +7387,12 @@ th {
   backface-visibility: hidden;
 }
 
-/* line 5, ../sass/main.scss */
+/* line 6, ../sass/main.scss */
 * {
   box-sizing: border-box;
 }
 
-/* line 9, ../sass/main.scss */
+/* line 10, ../sass/main.scss */
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -7400,23 +7400,23 @@ th {
   padding: 0.2em 0;
 }
 
-/* line 15, ../sass/main.scss */
+/* line 16, ../sass/main.scss */
 html, body {
   width: 100%;
 }
 
-/* line 18, ../sass/main.scss */
+/* line 19, ../sass/main.scss */
 body {
   height: 0px;
   font-family: Nunito, Helvetica, sans-serif;
 }
 
-/* line 23, ../sass/main.scss */
+/* line 24, ../sass/main.scss */
 textarea, input {
   outline: none;
 }
 
-/* line 25, ../sass/main.scss */
+/* line 26, ../sass/main.scss */
 .flex-container {
   display: -webkit-flex !important;
   display: flex !important;
@@ -7428,7 +7428,7 @@ textarea, input {
   /*align-content: flex-start | flex-end | center | space-between | space-around | stretch;*/
 }
 
-/* line 36, ../sass/main.scss */
+/* line 37, ../sass/main.scss */
 .flex-container-vertical {
   display: -webkit-flex !important;
   display: flex !important;
@@ -7439,54 +7439,49 @@ textarea, input {
   flex-direction: column;
 }
 
-/* line 45, ../sass/main.scss */
+/* line 46, ../sass/main.scss */
 .flex-wrap {
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
 }
 
-/* line 49, ../sass/main.scss */
+/* line 50, ../sass/main.scss */
 .flexItem {
   -webkit-flex: 1;
   flex: 1;
 }
 
-/* line 53, ../sass/main.scss */
+/* line 54, ../sass/main.scss */
 .flexItem2 {
   -webkit-flex: 2;
   flex: 2;
 }
 
-/* line 57, ../sass/main.scss */
+/* line 58, ../sass/main.scss */
 .flexItem3 {
   -webkit-flex: 3;
   flex: 3;
 }
 
-/* line 61, ../sass/main.scss */
+/* line 62, ../sass/main.scss */
 .flexItem4 {
   -webkit-flex: 4;
   flex: 4;
 }
 
-/* line 65, ../sass/main.scss */
+/* line 66, ../sass/main.scss */
 .flexItem5 {
   -webkit-flex: 5;
   flex: 5;
 }
 
-/* line 70, ../sass/main.scss */
-img {
-  height: 100%;
-}
-
-/* line 74, ../sass/main.scss */
+/* line 72, ../sass/main.scss */
 .barshadow {
   width: 50px;
   height: 100%;
 }
 
-/* line 78, ../sass/main.scss */
+/* line 76, ../sass/main.scss */
 #pvmenu {
   position: fixed;
   left: 0px;
@@ -7496,14 +7491,14 @@ img {
   width: 50px;
   text-align: center;
 }
-/* line 87, ../sass/main.scss */
+/* line 85, ../sass/main.scss */
 #pvmenu .menu-header {
   width: 50px;
-  background: rgba(255, 255, 255, 0.95);
+  background: white;
   justify-content: flex-start;
   -webkit-justify-content: flex-start;
 }
-/* line 92, ../sass/main.scss */
+/* line 90, ../sass/main.scss */
 #pvmenu .menu-header .menu-head-icon {
   width: 50px;
   height: 80px;
@@ -7511,20 +7506,20 @@ img {
   background-repeat: no-repeat;
   background-position: center;
 }
-/* line 100, ../sass/main.scss */
+/* line 98, ../sass/main.scss */
 #pvmenu #newsfeedShortcuts {
   line-height: 80px;
 }
-/* line 102, ../sass/main.scss */
+/* line 100, ../sass/main.scss */
 #pvmenu #newsfeedShortcuts a {
   text-decoration: none;
   color: white;
 }
-/* line 108, ../sass/main.scss */
+/* line 106, ../sass/main.scss */
 #pvmenu #generalSearch {
   line-height: 80px;
 }
-/* line 110, ../sass/main.scss */
+/* line 108, ../sass/main.scss */
 #pvmenu #generalSearch input {
   color: black;
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -7532,12 +7527,7 @@ img {
   padding: 0px 5px;
   width: 150px;
 }
-/* line 118, ../sass/main.scss */
-#pvmenu #icons div.flexItem {
-  padding: 12px 0px;
-  cursor: pointer;
-}
-/* line 122, ../sass/main.scss */
+/* line 116, ../sass/main.scss */
 #pvmenu .menu-separator {
   height: 2px;
   background: white;
@@ -7546,28 +7536,30 @@ img {
   margin-bottom: 12px;
   border-radius: 5px;
 }
-/* line 130, ../sass/main.scss */
+/* line 124, ../sass/main.scss */
 #pvmenu .menu-icon {
+  cursor: pointer;
   margin: 0px;
   width: 24px;
   height: 24px;
+  margin: 12px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
-/* line 141, ../sass/main.scss */
-#pvmenu #icons div.flexItem:hover svg path.hoverable {
+/* line 137, ../sass/main.scss */
+#pvmenu #icons svg:hover path.hoverable {
   fill: #2eedc4;
 }
-/* line 144, ../sass/main.scss */
-#pvmenu #icons div.flexItem:hover svg circle.hoverable {
+/* line 140, ../sass/main.scss */
+#pvmenu #icons svg:hover circle.hoverable {
   stroke: #2eedc4;
 }
-/* line 148, ../sass/main.scss */
+/* line 144, ../sass/main.scss */
 #pvmenu #icons > .flexItem {
   position: relative;
 }
-/* line 151, ../sass/main.scss */
+/* line 147, ../sass/main.scss */
 #pvmenu .menu-box {
   display: none;
   position: absolute;
@@ -7581,7 +7573,7 @@ img {
   z-index: 200;
 }
 
-/* line 165, ../sass/main.scss */
+/* line 161, ../sass/main.scss */
 #language-selector {
   position: fixed;
   z-index: 200;
@@ -7594,26 +7586,26 @@ img {
   text-align: right;
   color: #b3b3b3;
 }
-/* line 176, ../sass/main.scss */
+/* line 172, ../sass/main.scss */
 #language-selector .menu-icon > svg {
   height: 11pt;
   width: 11pt;
   padding-top: 3px;
   margin: 0px 0px -3px 5px;
 }
-/* line 182, ../sass/main.scss */
+/* line 178, ../sass/main.scss */
 #language-selector .menu-icon:hover {
   color: #37a9e0;
 }
-/* line 184, ../sass/main.scss */
+/* line 180, ../sass/main.scss */
 #language-selector .menu-icon:hover svg text {
   fill: #37a9e0;
 }
-/* line 187, ../sass/main.scss */
+/* line 183, ../sass/main.scss */
 #language-selector .menu-icon:hover svg path {
   stroke: #37a9e0;
 }
-/* line 191, ../sass/main.scss */
+/* line 187, ../sass/main.scss */
 #language-selector .menu-box {
   display: none;
   font-size: 10pt;
@@ -7622,24 +7614,31 @@ img {
   padding: 8px 3px;
   background: white;
 }
-/* line 198, ../sass/main.scss */
+/* line 194, ../sass/main.scss */
 #language-selector .menu-box button {
   color: black;
 }
 
-/* line 204, ../sass/main.scss */
+/* line 200, ../sass/main.scss */
 #uppermenu {
   color: #b3b3b3;
   z-index: 100;
   height: 80px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid white;
   position: fixed;
   top: 0px;
   right: 0px;
   left: 50px;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFFFFFF', endColorstr='#FFFFFFFF');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0.9)), color-stop(30%, rgba(255, 255, 255, 0.9)), color-stop(100%, #ffffff));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 30%, #ffffff 100%);
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 30%, #ffffff 100%);
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 30%, #ffffff 100%);
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 30%, #ffffff 100%);
 }
-/* line 217, ../sass/main.scss */
+/* line 216, ../sass/main.scss */
 #uppermenu #filters #menu-subjects, #uppermenu #filters #menu-grades, #uppermenu #filters #menu-types {
   text-align: center;
   font-size: 14pt;
@@ -7651,7 +7650,7 @@ img {
   cursor: pointer;
   position: relative;
 }
-/* line 228, ../sass/main.scss */
+/* line 227, ../sass/main.scss */
 #uppermenu #filters #menu-subjects > svg, #uppermenu #filters #menu-grades > svg, #uppermenu #filters #menu-types > svg {
   height: 14pt;
   width: 14pt;
@@ -7659,16 +7658,16 @@ img {
   padding-top: 3px;
 }
 @media screen and (max-width: 1024px) {
-  /* line 217, ../sass/main.scss */
+  /* line 216, ../sass/main.scss */
   #uppermenu #filters #menu-subjects, #uppermenu #filters #menu-grades, #uppermenu #filters #menu-types {
     padding: 0px;
   }
-  /* line 236, ../sass/main.scss */
+  /* line 235, ../sass/main.scss */
   #uppermenu #filters #menu-subjects > svg, #uppermenu #filters #menu-grades > svg, #uppermenu #filters #menu-types > svg {
     margin: 0px 7px -3px 0px;
   }
 }
-/* line 241, ../sass/main.scss */
+/* line 240, ../sass/main.scss */
 #uppermenu #filters #menu-subjects ul, #uppermenu #filters #menu-grades ul, #uppermenu #filters #menu-types ul {
   width: 100%;
   display: none;
@@ -7681,7 +7680,7 @@ img {
   padding: 0px;
   margin: 0px;
 }
-/* line 252, ../sass/main.scss */
+/* line 251, ../sass/main.scss */
 #uppermenu #filters #menu-subjects ul li, #uppermenu #filters #menu-grades ul li, #uppermenu #filters #menu-types ul li {
   color: black;
   text-transform: none;
@@ -7690,41 +7689,41 @@ img {
   padding: 1px 7px;
   margin: 0px;
 }
-/* line 261, ../sass/main.scss */
+/* line 260, ../sass/main.scss */
 #uppermenu #filters #menu-subjects ul li:hover, #uppermenu #filters #menu-grades ul li:hover, #uppermenu #filters #menu-types ul li:hover {
   background: rgba(255, 255, 255, 0.3);
 }
-/* line 267, ../sass/main.scss */
+/* line 266, ../sass/main.scss */
 #uppermenu #filters #menu-subjects:hover, #uppermenu #filters #menu-grades:hover, #uppermenu #filters #menu-types:hover {
   color: #37a9e0;
 }
-/* line 269, ../sass/main.scss */
+/* line 268, ../sass/main.scss */
 #uppermenu #filters #menu-subjects:hover svg text, #uppermenu #filters #menu-grades:hover svg text, #uppermenu #filters #menu-types:hover svg text {
   fill: #37a9e0;
 }
-/* line 272, ../sass/main.scss */
+/* line 271, ../sass/main.scss */
 #uppermenu #filters #menu-subjects:hover svg path, #uppermenu #filters #menu-grades:hover svg path, #uppermenu #filters #menu-types:hover svg path {
   stroke: #37a9e0;
 }
 @media screen and (max-width: 1100px) {
-  /* line 278, ../sass/main.scss */
+  /* line 277, ../sass/main.scss */
   #uppermenu #addTags {
     text-align: right;
   }
 }
-/* line 282, ../sass/main.scss */
+/* line 281, ../sass/main.scss */
 #uppermenu #addTags form {
   display: inline-block;
   line-height: 80px;
 }
 @media screen and (max-width: 1100px) {
-  /* line 282, ../sass/main.scss */
+  /* line 281, ../sass/main.scss */
   #uppermenu #addTags form {
     line-height: 26.66667px;
     height: 26.66667px;
   }
 }
-/* line 289, ../sass/main.scss */
+/* line 288, ../sass/main.scss */
 #uppermenu #addTags form input {
   margin: 0px;
   font-size: 10pt;
@@ -7735,7 +7734,7 @@ img {
   width: 105px;
   background: #666666;
 }
-/* line 301, ../sass/main.scss */
+/* line 300, ../sass/main.scss */
 #uppermenu #addTags .label {
   float: left;
   margin: 0px;
@@ -7745,7 +7744,7 @@ img {
   height: 80px;
 }
 @media screen and (max-width: 1100px) {
-  /* line 301, ../sass/main.scss */
+  /* line 300, ../sass/main.scss */
   #uppermenu #addTags .label {
     float: none;
     padding: 0px 0px 0px 13px;
@@ -7754,7 +7753,7 @@ img {
   }
 }
 
-/* line 318, ../sass/main.scss */
+/* line 317, ../sass/main.scss */
 #tagsFilter {
   flex-basis: 200px;
   -webkit-flex-basis: 200px;
@@ -7763,7 +7762,7 @@ img {
   align-content: center;
   -webkit-align-content: center;
 }
-/* line 325, ../sass/main.scss */
+/* line 324, ../sass/main.scss */
 #tagsFilter .tag {
   display: inline-block;
   position: relative;
@@ -7775,7 +7774,7 @@ img {
   margin: 2px;
   border-radius: 3px;
 }
-/* line 335, ../sass/main.scss */
+/* line 334, ../sass/main.scss */
 #tagsFilter .tag div {
   position: absolute;
   top: 0px;
@@ -7784,7 +7783,7 @@ img {
   line-height: 9pt;
 }
 
-/* line 345, ../sass/main.scss */
+/* line 344, ../sass/main.scss */
 #sidebar {
   /*
   flex-basis: $basis-blog-column;
@@ -7800,7 +7799,7 @@ img {
   background: #e6e6e6;
   z-index: 300;
 }
-/* line 360, ../sass/main.scss */
+/* line 359, ../sass/main.scss */
 #sidebar #accordion-switch {
   position: relative;
   text-align: center;
@@ -7811,86 +7810,89 @@ img {
   border-radius: 50% 0px 0px 50%;
   cursor: pointer;
 }
-/* line 369, ../sass/main.scss */
+/* line 368, ../sass/main.scss */
 #sidebar #accordion-switch img {
   height: 20px;
   margin-top: 15px;
 }
-/* line 375, ../sass/main.scss */
+/* line 374, ../sass/main.scss */
 #sidebar .tabs {
   text-align: center;
   height: 50px;
   background-color: #b3b3b3;
   margin-top: -50px;
 }
-/* line 381, ../sass/main.scss */
+/* line 380, ../sass/main.scss */
 #sidebar .tabs .tab {
   line-height: 50px;
   font-size: 16pt;
+  cursor: pointer;
 }
 /* line 385, ../sass/main.scss */
+#sidebar .tabs .tab:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+/* line 389, ../sass/main.scss */
 #sidebar .tabs .tab.active {
   background-color: #e6e6e6;
 }
-/* line 389, ../sass/main.scss */
+/* line 393, ../sass/main.scss */
 #sidebar > h1 {
   font-size: 18px;
-  font-style: oblique;
   padding-left: 10px;
 }
-/* line 395, ../sass/main.scss */
+/* line 398, ../sass/main.scss */
 #sidebar a {
   color: #666666;
+  text-decoration: none;
 }
-/* line 398, ../sass/main.scss */
+/* line 402, ../sass/main.scss */
 #sidebar h2 {
   margin: 0px;
   font-size: 12pt;
-  font-style: oblique;
 }
-/* line 403, ../sass/main.scss */
+/* line 406, ../sass/main.scss */
 #sidebar h3 {
   margin: 0px;
   font-size: 11pt;
-  font-style: oblique;
   font-weight: 300;
 }
-/* line 409, ../sass/main.scss */
-#sidebar .blog-post {
+/* line 411, ../sass/main.scss */
+#sidebar .posts, #sidebar .kysy {
   padding: 8px;
 }
-/* line 411, ../sass/main.scss */
-#sidebar .blog-post p {
+/* line 413, ../sass/main.scss */
+#sidebar .posts p, #sidebar .kysy p {
   font-size: 10pt;
 }
-/* line 416, ../sass/main.scss */
+/* line 418, ../sass/main.scss */
 #sidebar .qaa {
   padding: 8px;
   height: 800px;
 }
 
-/* line 422, ../sass/main.scss */
+/* line 424, ../sass/main.scss */
 #content {
   width: 100%;
   padding-top: 80px;
   z-index: -10;
 }
-/* line 428, ../sass/main.scss */
+/* line 430, ../sass/main.scss */
 #content #content-column {
   padding: 23px 15px;
 }
-/* line 431, ../sass/main.scss */
+/* line 433, ../sass/main.scss */
 #content #content-column section {
   width: 100%;
 }
-/* line 435, ../sass/main.scss */
+/* line 437, ../sass/main.scss */
 #content #content-column ol.productlist {
   list-style: none;
   width: 100%;
   padding: 0px;
   margin: 0px;
 }
-/* line 441, ../sass/main.scss */
+/* line 443, ../sass/main.scss */
 #content #content-column ol.productlist li {
   display: inline-block;
   text-align: center;
@@ -7899,13 +7901,13 @@ img {
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* line 458, ../sass/main.scss */
+  /* line 460, ../sass/main.scss */
   .container {
     max-width: 730px;
   }
 
   /* Remove the padding we set earlier */
-  /* line 464, ../sass/main.scss */
+  /* line 466, ../sass/main.scss */
   .header,
   .footer {
     padding-left: 0;
@@ -7913,13 +7915,13 @@ img {
   }
 
   /* Space out the masthead */
-  /* line 470, ../sass/main.scss */
+  /* line 472, ../sass/main.scss */
   .header {
     /*margin-bottom: 30px;*/
   }
 
   /* Remove the bottom border on the jumbotron for visual effect */
-  /* line 475, ../sass/main.scss */
+  /* line 477, ../sass/main.scss */
   .jumbotron {
     border-bottom: 0;
   }

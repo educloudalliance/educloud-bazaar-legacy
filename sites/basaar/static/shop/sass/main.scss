@@ -1,6 +1,7 @@
 @import "base";
 @import "normalize";
 @import "animate/animate";
+@import "compass";
 
 * {
   box-sizing: border-box;
@@ -67,9 +68,6 @@ textarea, input { outline: none; }
     flex: 5;
 }
 
-img {
-    height: 100%;
-}
 
 .barshadow {
     width: $menu-width;
@@ -86,7 +84,7 @@ img {
 
     .menu-header {
         width: $menu-width;
-        background: rgba(255,255,255,0.95);
+        background: white;
         justify-content: flex-start;
         -webkit-justify-content: flex-start;
         .menu-head-icon {
@@ -115,33 +113,31 @@ img {
             width: 150px;
         }
     }
-    #icons div.flexItem{
-        padding: ($menu-icons-gap / 2) 0px;
-        cursor: pointer;
-    }
     .menu-separator {
         height: 2px;
         background: white;
         width: $menu-icons-width;
-        margin-left: ($menu-width - $menu-icons-width) / 2;
+        margin-left: $menu-icons-padding;
         margin-bottom: $menu-icons-gap / 2;
         border-radius: 5px;
     }
     .menu-icon {
         @media screen and (max-width: $r1024-content-width) {
         }
+        cursor: pointer;
         margin: 0px;
         width: $menu-icons-width;
         height: $menu-icons-width;
+        margin: ($menu-icons-gap / 2);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
     }
-    #icons div.flexItem:hover {
-        svg path.hoverable {
+    #icons svg:hover {
+        path.hoverable {
             fill: $green-main;
         }
-        svg circle.hoverable {
+        circle.hoverable {
             stroke: $green-main;
         }
     }
@@ -205,12 +201,15 @@ img {
     color: $gray;
     z-index: 100;
     height: $nav-height;
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.95);
     border-bottom: 1px solid white;
     position: fixed;
     top: 0px;
     right: 0px;
     left: $menu-width;
+    @include filter-gradient(#ffffff, #ffffff, vertical);
+    @include background-image(linear-gradient(top,  rgba(255,255,255,0.9) 0%,rgba(255,255,255,0.9) 30%,rgba(255,255,255,1) 100%));
+
 
     #filters{
         
@@ -381,6 +380,11 @@ img {
         .tab {
             line-height: $tab-header-height;
             font-size: 16pt;
+            cursor: pointer;
+        }
+        .tab:hover {
+            background-color: rgba(255,255,255,0.3);
+
         }
         .tab.active {
             background-color: $light-gray;
@@ -388,25 +392,23 @@ img {
     }
     > h1 {
         font-size: 18px;
-        font-style: oblique;
         padding-left: 10px;
     }
 
     a {
         color: $dark-gray;
+        text-decoration: none;
     }
     h2 {
         margin: 0px;
         font-size: 12pt;
-        font-style: oblique;
     }
     h3 {
         margin: 0px;
         font-size: 11pt;
-        font-style: oblique;
         font-weight: 300;
     }
-    .blog-post{
+    .posts, .kysy{
         padding: 8px;
         p {
             font-size: 10pt;
