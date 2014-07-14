@@ -8,6 +8,7 @@
 {% load display_tags %}
 {% load i18n %}
 {% load purchase_info_tags %}
+{% load thumbnail %}
 
 {% block title %}
     {{ product.title }} | {{ block.super }}
@@ -75,11 +76,37 @@
                         </div>
                     </div>
                     <div class="flex-container">
-                        {% block product_gallery %}
-                        <div class="span6">
-                            {% include "catalogue/partials/gallery.html" %}
+                        <div class="thumbnail">
+                            {% with all_images=product.images.all %}
+                                {% with image=product.primary_image %}
+                                    {% thumbnail image.original "440x400" upscale=False as thumb %}
+                                        <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
+                                    {% endthumbnail %}
+                                {% endwith %}
+                            {% endwith %}
                         </div>
-                        {% endblock %}
+                        <div class="flexItem flex-container-vertical summary">
+                            <div class="owner flexItem">
+                                by Owner
+                            </div>
+                            <div class="rating flexItem">
+                                102 Likes
+                            </div>
+                            <div class="flex-container flexItem">
+                                <div class="flexItem subject">
+                                    <h3>Subject</h3>
+                                    <p>Biology</p>
+                                </div>
+                                <div class="flexItem grade">
+                                    <h3>Grade</h3>
+                                    <p>7</p>
+                                </div>
+                                <div class="flexItem type">
+                                    <h3>Type</h3>
+                                    <p>Animation</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
                 </div>
@@ -89,98 +116,97 @@
                     {% endblock %}
                 </div>
             </div>
-
-            <hr>
-            {% block product_description %}
-                {% if product.description %}
-                <div id="product_description" class="sub-header">
+            <div id="product_description" class="">
+                {% block product_description %}
+                    {% if product.description %}
                     <h2>{% trans "Product Description" %}</h2>
-                </div>
-                <p>{{ product.description|safe }}</p>
-                {% endif %}
-            {% endblock %}
-
-            <hr>
-            {% block product_info %}
-            <div class="sub-header">
-                <h2>{% trans "Product Information" %}</h2>
+                    <p>{{ product.description|safe }}</p>
+                    {% endif %}
+                {% endblock %}
             </div>
-            <table class="table table-striped table-condensed">
-                {% if product.upc %}
-                <tr>
-                    <th>{% trans "UPC" %}</th><td>{{ product.upc }}</td>
-                </tr>
-                {% endif %}
-                <tr>
-                    <th>{% trans "Product Type" %}</th><td>{{ product.get_product_class.name }}</td>
-                </tr>
-
-                {% purchase_info_for_product request product as session %}
-                {% if session.price.exists %}
+            <div id="product_information" class="">
+                {% block product_info %}
+                <h2>{% trans "Product Information" %}</h2>
+                <table class="table table-striped table-condensed">
+                    {% if product.upc %}
                     <tr>
-                        <th>{% trans "Price (excl. tax)" %}</th><td>{{ session.price.excl_tax|currency:session.price.currency }}</td>
+                        <th>{% trans "UPC" %}</th><td>{{ product.upc }}</td>
                     </tr>
-                    {% if session.price.is_tax_known %}
-                        <tr>
-                            <th>{% trans "Price (incl. tax)" %}</th><td>{{ session.price.incl_tax|currency:session.price.currency }}</td>
-                        </tr>
-                        <tr>
-                            <th>{% trans "Tax" %}</th><td>{{ session.price.tax|currency:session.price.currency }}</td>
-                        </tr>
                     {% endif %}
                     <tr>
-                        <th>{% trans "Availability" %}</th>
-                        <td>{{ session.availability.message }}</td>
+                        <th>{% trans "Product Type" %}</th><td>{{ product.get_product_class.name }}</td>
                     </tr>
-                {% endif %}
-                {% for av in product.attribute_values.all %}
+
+                    {% purchase_info_for_product request product as session %}
+                    {% if session.price.exists %}
+                        <tr>
+                            <th>{% trans "Price (excl. tax)" %}</th><td>{{ session.price.excl_tax|currency:session.price.currency }}</td>
+                        </tr>
+                        {% if session.price.is_tax_known %}
+                            <tr>
+                                <th>{% trans "Price (incl. tax)" %}</th><td>{{ session.price.incl_tax|currency:session.price.currency }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "Tax" %}</th><td>{{ session.price.tax|currency:session.price.currency }}</td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <th>{% trans "Availability" %}</th>
+                            <td>{{ session.availability.message }}</td>
+                        </tr>
+                    {% endif %}
+                    {% for av in product.attribute_values.all %}
+                        <tr>
+                            <th>{{ av.attribute.name }}</th>
+                            <td>{{ av.value_as_html }}</td>
+                        </tr>
+                    {% endfor %}
+                    {% iffeature "reviews" %}
+                        <tr>
+                            <th>{% trans "Number of reviews" %}</th>
+                            <td>{{ product.num_approved_reviews }}</td>
+                        </tr>
+                    {% endiffeature %}
                     <tr>
-                        <th>{{ av.attribute.name }}</th>
-                        <td>{{ av.value_as_html }}</td>
+                        <td></td>
+                        <td></td>
                     </tr>
-                {% endfor %}
+                </table>
+                {% endblock %}
+            </div>
+
+            <div id="product_images" class="">
+                <h2>{% trans "Screen Shots" %}</h2>
+                {% include "catalogue/partials/gallery.html" %}
+            </div>
+            <div id="product_reviews" class="">
                 {% iffeature "reviews" %}
-                    <tr>
-                        <th>{% trans "Number of reviews" %}</th>
-                        <td>{{ product.num_approved_reviews }}</td>
-                    </tr>
+                    {% if product.rating != None %}
+                        <h4 class="star-rating {{ product.rating|as_stars }}">
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+
+                            <small><a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}">
+                                {% blocktrans count product.num_approved_reviews as num_reviews %}
+                                1 customer review
+                                {% plural %}
+                                {{ num_reviews }} customer reviews
+                                {% endblocktrans %}
+                            </a></small>
+                            &nbsp;
+                    {% else %}
+                        <h4>
+                    {% endif %}
+                    {% if product|is_review_permitted:user %}
+                        <a id="write_review" href="{% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id %}#addreview" class="btn btn-success btn-small">
+                            {% trans "Write a review" %}
+                        </a>
+                    {% endif %}
+                    </h4>
                 {% endiffeature %}
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-            {% endblock %}
-            {% iffeature "reviews" %}
-                {% if product.rating != None %}
-                    <h4 class="star-rating {{ product.rating|as_stars }}">
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-
-                        <small><a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}">
-                            {% blocktrans count product.num_approved_reviews as num_reviews %}
-                            1 customer review
-                            {% plural %}
-                            {{ num_reviews }} customer reviews
-                            {% endblocktrans %}
-                        </a></small>
-                        &nbsp;
-                {% else %}
-                    <h4>
-                {% endif %}
-                {% if product|is_review_permitted:user %}
-                    <a id="write_review" href="{% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id %}#addreview" class="btn btn-success btn-small">
-                        {% trans "Write a review" %}
-                    </a>
-                {% endif %}
-                </h4>
-            {% endiffeature %}
-
-            <hr/>
-
 
         {% endblock %}
 
@@ -218,23 +244,26 @@
             </section>
             {% endblock product_review %}
         {% endiffeature %}
+            </div>
 
         {% with recommended_products=product.recommended_products.all|slice:":6" %}
             {% if recommended_products %}
-                <div class="sub-header">
-                    <h2>{% trans "Recommended items" %}</h2>
-                </div>
-                <ul class="row-fluid">
+            <div id="product_recommended">
+                <h2>{% trans "Recommended items" %}</h2>
+                <ul class="productlist flex-container flex-wrap">
                     {% for product in recommended_products %}
-                    <li class="span2 {% if forloop.counter0|divisibleby:"6" %}no-margin{% endif %}">
+                    <li class="flexItem">
                         {% render_product product %}
                     </li>
                     {% endfor %}
                 </ul>
+            </div>
             {% endif %}
         {% endwith %}
         
+        <div id="product_related">
         {% recently_viewed_products %}
+        </div>
     </div>
 
 </article><!-- End of product page -->

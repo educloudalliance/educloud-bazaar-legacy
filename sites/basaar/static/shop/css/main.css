@@ -7880,62 +7880,99 @@ textarea, input {
   padding: 23px 15px;
 }
 /* line 431, ../sass/main.scss */
-#content #content-column section.product-section {
-  width: 100%;
-}
-/* line 434, ../sass/main.scss */
-#content #content-column section.product-section ol.productlist {
+#content #content-column .productlist {
   list-style: none;
   width: 100%;
   padding: 0px;
   margin: 0px;
 }
-/* line 440, ../sass/main.scss */
-#content #content-column section.product-section ol.productlist li {
+/* line 437, ../sass/main.scss */
+#content #content-column .productlist li {
   text-align: center;
   border: 1px solid #e6e6e6;
   flex-basis: 200px;
   -webkit-flex-basis: 200px;
 }
+/* line 445, ../sass/main.scss */
+#content #content-column section.product-section {
+  width: 100%;
+}
 /* line 450, ../sass/main.scss */
 #content #content-column article.product_page {
   color: #666666;
 }
-/* line 454, ../sass/main.scss */
+/* line 452, ../sass/main.scss */
+#content #content-column article.product_page > .flex-container-vertical > div {
+  border-bottom: 2px solid #e6e6e6;
+}
+/* line 456, ../sass/main.scss */
+#content #content-column article.product_page .main h1, #content #content-column article.product_page .main h2, #content #content-column article.product_page .main h3, #content #content-column article.product_page .main h4, #content #content-column article.product_page .main h5, #content #content-column article.product_page .main h6, #content #content-column article.product_page .main p {
+  margin: 0px;
+}
+/* line 459, ../sass/main.scss */
 #content #content-column article.product_page .main .title {
   text-align: left;
 }
-/* line 456, ../sass/main.scss */
+/* line 461, ../sass/main.scss */
 #content #content-column article.product_page .main .title h1 {
   font-size: 28pt;
+  font-weight: normal;
 }
-/* line 460, ../sass/main.scss */
+/* line 466, ../sass/main.scss */
 #content #content-column article.product_page .main .price {
   text-align: right;
   padding-right: 1em;
 }
-/* line 465, ../sass/main.scss */
+/* line 472, ../sass/main.scss */
+#content #content-column article.product_page .main .thumbnail img {
+  margin-right: 17px;
+  height: 191px;
+  width: 191px;
+  background-color: #666666;
+}
+/* line 479, ../sass/main.scss */
+#content #content-column article.product_page .main .owner {
+  font-size: 19pt;
+  font-weight: lighter;
+}
+/* line 483, ../sass/main.scss */
+#content #content-column article.product_page .main .rating {
+  font-size: 18pt;
+  font-weight: bold;
+}
+/* line 487, ../sass/main.scss */
+#content #content-column article.product_page .main .subject h3, #content #content-column article.product_page .main .grade h3, #content #content-column article.product_page .main .type h3 {
+  font-size: 14pt;
+  font-weight: normal;
+}
+/* line 491, ../sass/main.scss */
+#content #content-column article.product_page .main .subject p, #content #content-column article.product_page .main .grade p, #content #content-column article.product_page .main .type p {
+  font-size: 18pt;
+  font-weight: normal;
+}
+/* line 496, ../sass/main.scss */
 #content #content-column article.product_page .main .product-action-box {
   background: #e6e6e6;
 }
-/* line 471, ../sass/main.scss */
+/* line 501, ../sass/main.scss */
 #content #content-column article.product_page h2 {
   font-size: 19pt;
+  font-weight: normal;
 }
-/* line 474, ../sass/main.scss */
+/* line 505, ../sass/main.scss */
 #content #content-column article.product_page p {
   font-size: 13pt;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* line 490, ../sass/main.scss */
+  /* line 521, ../sass/main.scss */
   .container {
     max-width: 730px;
   }
 
   /* Remove the padding we set earlier */
-  /* line 496, ../sass/main.scss */
+  /* line 527, ../sass/main.scss */
   .header,
   .footer {
     padding-left: 0;
@@ -7943,13 +7980,13 @@ textarea, input {
   }
 
   /* Space out the masthead */
-  /* line 502, ../sass/main.scss */
+  /* line 533, ../sass/main.scss */
   .header {
     /*margin-bottom: 30px;*/
   }
 
   /* Remove the bottom border on the jumbotron for visual effect */
-  /* line 507, ../sass/main.scss */
+  /* line 538, ../sass/main.scss */
   .jumbotron {
     border-bottom: 0;
   }

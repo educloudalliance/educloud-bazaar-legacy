@@ -428,33 +428,39 @@ textarea, input { outline: none; }
     #content-column {
         padding: 23px 15px;
 
+        .productlist {
+            list-style: none;
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+
+            li {
+                text-align: center;
+                border: 1px solid $light-gray;
+                flex-basis: $basis-product-item;
+                -webkit-flex-basis: $basis-product-item;
+            }
+
+        }
         section.product-section {
             width: 100%;
             
-            ol.productlist {
-                list-style: none;
-                width: 100%;
-                padding: 0px;
-                margin: 0px;
-
-                li {
-                    text-align: center;
-                    border: 1px solid $light-gray;
-                    flex-basis: $basis-product-item;
-                    -webkit-flex-basis: $basis-product-item;
-                }
-
-            }
         }
 
         article.product_page {
             color: $dark-gray;
-
+            > .flex-container-vertical > div {
+                border-bottom: 2px solid $light-gray;
+            }
             .main {
+                h1, h2, h3, h4, h5, h6, p {
+                    margin: 0px;
+                }
                 .title {
                     text-align: left;
                     h1 {
                         font-size: 28pt;
+                        font-weight: normal;
                     }
                 }
                 .price {
@@ -462,14 +468,39 @@ textarea, input { outline: none; }
                     padding-right: 1em;
 
                 }
+                .thumbnail{
+                    img {
+                        margin-right: 17px;
+                        height: 191px;
+                        width: 191px;
+                        background-color: $dark-gray;
+                    }
+                }
+                .owner {
+                    font-size: 19pt;
+                    font-weight: lighter;
+                }
+                .rating {
+                    font-size: 18pt;
+                    font-weight: bold;
+                }
+                .subject h3, .grade h3, .type h3 {
+                    font-size: 14pt;
+                    font-weight: normal;
+                }
+                .subject p, .grade p, .type p {
+                    font-size: 18pt;
+                    font-weight: normal;
+                }
+                
                 .product-action-box{
-                    //width: $product-action-box-width;
                     background: $light-gray;
                 }
                 
             }
             h2 {
                 font-size: 19pt;
+                font-weight: normal;
             }
             p {
                 font-size: 13pt;

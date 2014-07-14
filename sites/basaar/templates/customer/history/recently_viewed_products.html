@@ -1,0 +1,14 @@
+{% load i18n %}
+{% load product_tags %}
+
+{% with products_sliced=products|slice:":6" %}
+    {% if products_sliced %}
+        <h2>{% trans 'Products you recently viewed' %}</h2>
+
+        <ul class="productlist flex-container flex-wrap">
+            {% for product in products_sliced %}
+                <li class="flexItem">{% render_product product %}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
