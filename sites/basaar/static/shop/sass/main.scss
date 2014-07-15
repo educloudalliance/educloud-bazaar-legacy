@@ -506,6 +506,24 @@ textarea, input { outline: none; }
                 font-size: 13pt;
 
             }
+            .carousel {
+                .slick-prev::before, .slick-next::before {
+                    color: $dark-gray !important;
+                    background: white;
+                    border-radius: 50%;
+                    font-size: 30px;
+                }
+                img{
+                    max-width: 100%;
+                    margin: auto;
+                }
+                .slick-prev{
+                    left: -5px;
+                }
+                .slick-next{
+                    right: -5px;
+                }
+            }
         }
 
     }

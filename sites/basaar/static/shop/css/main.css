@@ -7963,16 +7963,36 @@ textarea, input {
 #content #content-column article.product_page p {
   font-size: 13pt;
 }
+/* line 510, ../sass/main.scss */
+#content #content-column article.product_page .carousel .slick-prev::before, #content #content-column article.product_page .carousel .slick-next::before {
+  color: #666666 !important;
+  background: white;
+  border-radius: 50%;
+  font-size: 30px;
+}
+/* line 516, ../sass/main.scss */
+#content #content-column article.product_page .carousel img {
+  max-width: 100%;
+  margin: auto;
+}
+/* line 520, ../sass/main.scss */
+#content #content-column article.product_page .carousel .slick-prev {
+  left: -5px;
+}
+/* line 523, ../sass/main.scss */
+#content #content-column article.product_page .carousel .slick-next {
+  right: -5px;
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* line 521, ../sass/main.scss */
+  /* line 539, ../sass/main.scss */
   .container {
     max-width: 730px;
   }
 
   /* Remove the padding we set earlier */
-  /* line 527, ../sass/main.scss */
+  /* line 545, ../sass/main.scss */
   .header,
   .footer {
     padding-left: 0;
@@ -7980,13 +8000,13 @@ textarea, input {
   }
 
   /* Space out the masthead */
-  /* line 533, ../sass/main.scss */
+  /* line 551, ../sass/main.scss */
   .header {
     /*margin-bottom: 30px;*/
   }
 
   /* Remove the bottom border on the jumbotron for visual effect */
-  /* line 538, ../sass/main.scss */
+  /* line 556, ../sass/main.scss */
   .jumbotron {
     border-bottom: 0;
   }
