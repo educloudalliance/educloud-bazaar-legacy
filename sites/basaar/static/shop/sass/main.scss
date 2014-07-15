@@ -187,10 +187,9 @@ textarea, input { outline: none; }
     .menu-box {
         display: none;
         font-size: 10pt;
-        border: 1px solid $gray;
-        border-radius: 3px;
-        padding: 8px 3px;
-        background: white;
+        border-radius: 10px;
+        padding: 10px 5px;
+        background: $blue-main;
         button {
             color: black;
         }
