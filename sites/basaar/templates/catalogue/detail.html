@@ -78,11 +78,15 @@
                     <div class="flex-container">
                         <div class="thumbnail">
                             {% with all_images=product.images.all %}
-                                {% with image=product.primary_image %}
-                                    {% thumbnail image.original "440x400" upscale=False as thumb %}
-                                        <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
-                                    {% endthumbnail %}
-                                {% endwith %}
+                                {% if all_images|length < 1 %}
+                                    <img src="{{ STATIC_URL }}shop/img/noimage.jpg" class="thumbnail">
+                                {% else %}
+                                    {% with image=product.primary_image %}
+                                        {% thumbnail image.original "440x400" upscale=False as thumb %}
+                                            <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
+                                        {% endthumbnail %}
+                                    {% endwith %}
+                                {% endif %}
                             {% endwith %}
                         </div>
                         <div class="flexItem flex-container-vertical summary">
@@ -233,9 +237,9 @@
                         {% endif %}
                     </p>
                 {% else %}
-                    <ol class="unstyled review-list">
-                        {% for review in reviews|slice:":3" %}
-                            <li>
+                    <ol class="flex-container review-list">
+                        {% for review in reviews|slice:":2" %}
+                            <li class="flexItem">
                             {% include 'catalogue/partials/review.html' %}
                             </li>
                         {% endfor %}

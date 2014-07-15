@@ -5,7 +5,7 @@
 {% load staticfiles %}
 
 {% block product %}
-    <article class="product_pod">
+    <article class="product_pod flex-container-vertical">
         {% block product_title %}
             <h3><a href="{{ product.get_absolute_url }}">{{ product.get_title|truncatewords:4 }}</a></h3>
         {% endblock %}
@@ -19,15 +19,23 @@
             </div>
         {% endblock %}
         
-        {% block product_image %}
-            <div class="image_container">
-                {% with image=product.primary_image %}
-                    {% thumbnail image.original "x155" upscale=False as thumb %}
-                    <a href="{{ product.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ product.get_title }}" class="thumbnail"></a>
-                    {% endthumbnail %}
-                {% endwith %}
-            </div>
-        {% endblock %}
+        {% with all_images=product.images.all %}
+            {% if all_images|length < 1 %}
+                <div class="image_container flex-container">
+                    <a href="{{ product.get_absolute_url }}"><img src="{{ STATIC_URL }}shop/img/noimage.jpg" class="thumbnail"></a>
+                </div>
+            {% else %}
+                {% block product_image %}
+                    <div class="image_container flex-container">
+                        {% with image=product.primary_image %}
+                            {% thumbnail image.original "x155" upscale=False as thumb %}
+                            <a href="{{ product.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ product.get_title }}" class="thumbnail"></a>
+                            {% endthumbnail %}
+                        {% endwith %}
+                    </div>
+                {% endblock %}
+            {% endif %}
+        {% endwith %}
 
         {% block product_review %}
             {% iffeature "reviews" %}

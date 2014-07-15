@@ -1,15 +1,7 @@
 @charset "UTF-8";
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 @import url(//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic);
 @import url(//fonts.googleapis.com/css?family=Nunito:400,300,700);
-@font-face {
-  font-family: "Sanchez";
-  src: url("fonts/Sanchez.eot");
-  src: url("fonts/Sanchez.eot?#iefix") format("embedded-opentype"), url("fonts/Sanchez.woff") format("woff"), url("fonts/Sanchez.ttf") format("truetype"), url("fonts/Sanchez.otf") format("opentype"), url("fonts/Sanchez.svg#Sanchez") format("svg");
-  font-style: normal;
-  font-weight: normal;
-}
-
-/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 /* line 9, ../sass/_normalize.scss */
 html {
   font-family: sans-serif;
@@ -267,6 +259,14 @@ table {
 td,
 th {
   padding: 0;
+}
+
+@font-face {
+  font-family: "Sanchez";
+  src: url("fonts/Sanchez.eot");
+  src: url("fonts/Sanchez.eot?#iefix") format("embedded-opentype"), url("fonts/Sanchez.woff") format("woff"), url("fonts/Sanchez.ttf") format("truetype"), url("fonts/Sanchez.otf") format("opentype"), url("fonts/Sanchez.svg#Sanchez") format("svg");
+  font-style: normal;
+  font-weight: normal;
 }
 
 @-webkit-keyframes bounce {
@@ -7880,134 +7880,147 @@ textarea, input {
   padding: 23px 15px;
 }
 /* line 431, ../sass/main.scss */
+#content #content-column article.product_pod {
+  padding: 15px;
+  color: #666666;
+}
+/* line 434, ../sass/main.scss */
+#content #content-column article.product_pod h3 {
+  font-weight: normal;
+  margin: 0px;
+}
+/* line 438, ../sass/main.scss */
+#content #content-column article.product_pod a {
+  text-decoration: none;
+  color: #666666;
+}
+/* line 442, ../sass/main.scss */
+#content #content-column article.product_pod .image_container {
+  justify-content: center;
+  -webkit-justify-content: center;
+  text-align: center;
+}
+/* line 446, ../sass/main.scss */
+#content #content-column article.product_pod .image_container img {
+  max-width: 75%;
+  background-color: #666666;
+}
+/* line 453, ../sass/main.scss */
 #content #content-column .productlist {
   list-style: none;
   width: 100%;
   padding: 0px;
   margin: 0px;
 }
-/* line 437, ../sass/main.scss */
+/* line 459, ../sass/main.scss */
 #content #content-column .productlist li {
-  text-align: center;
   border: 1px solid #e6e6e6;
   flex-basis: 200px;
   -webkit-flex-basis: 200px;
 }
-/* line 445, ../sass/main.scss */
+/* line 464, ../sass/main.scss */
+#content #content-column .productlist li:hover {
+  background: #e6e6e6;
+}
+/* line 469, ../sass/main.scss */
 #content #content-column section.product-section {
   width: 100%;
 }
-/* line 450, ../sass/main.scss */
+/* line 474, ../sass/main.scss */
 #content #content-column article.product_page {
   color: #666666;
 }
-/* line 452, ../sass/main.scss */
+/* line 476, ../sass/main.scss */
 #content #content-column article.product_page > .flex-container-vertical > div {
   border-bottom: 2px solid #e6e6e6;
 }
-/* line 456, ../sass/main.scss */
+/* line 480, ../sass/main.scss */
 #content #content-column article.product_page .main h1, #content #content-column article.product_page .main h2, #content #content-column article.product_page .main h3, #content #content-column article.product_page .main h4, #content #content-column article.product_page .main h5, #content #content-column article.product_page .main h6, #content #content-column article.product_page .main p {
   margin: 0px;
 }
-/* line 459, ../sass/main.scss */
+/* line 483, ../sass/main.scss */
 #content #content-column article.product_page .main .title {
   text-align: left;
 }
-/* line 461, ../sass/main.scss */
+/* line 485, ../sass/main.scss */
 #content #content-column article.product_page .main .title h1 {
   font-size: 28pt;
   font-weight: normal;
 }
-/* line 466, ../sass/main.scss */
+/* line 490, ../sass/main.scss */
 #content #content-column article.product_page .main .price {
   text-align: right;
   padding-right: 1em;
 }
-/* line 472, ../sass/main.scss */
+/* line 496, ../sass/main.scss */
 #content #content-column article.product_page .main .thumbnail img {
   margin-right: 17px;
   height: 191px;
   width: 191px;
   background-color: #666666;
 }
-/* line 479, ../sass/main.scss */
+/* line 503, ../sass/main.scss */
 #content #content-column article.product_page .main .owner {
   font-size: 19pt;
   font-weight: lighter;
 }
-/* line 483, ../sass/main.scss */
+/* line 507, ../sass/main.scss */
 #content #content-column article.product_page .main .rating {
   font-size: 18pt;
   font-weight: bold;
 }
-/* line 487, ../sass/main.scss */
+/* line 511, ../sass/main.scss */
 #content #content-column article.product_page .main .subject h3, #content #content-column article.product_page .main .grade h3, #content #content-column article.product_page .main .type h3 {
   font-size: 14pt;
   font-weight: normal;
 }
-/* line 491, ../sass/main.scss */
+/* line 515, ../sass/main.scss */
 #content #content-column article.product_page .main .subject p, #content #content-column article.product_page .main .grade p, #content #content-column article.product_page .main .type p {
   font-size: 18pt;
   font-weight: normal;
 }
-/* line 496, ../sass/main.scss */
+/* line 520, ../sass/main.scss */
 #content #content-column article.product_page .main .product-action-box {
   background: #e6e6e6;
 }
-/* line 501, ../sass/main.scss */
+/* line 525, ../sass/main.scss */
 #content #content-column article.product_page h2 {
   font-size: 19pt;
   font-weight: normal;
 }
-/* line 505, ../sass/main.scss */
+/* line 529, ../sass/main.scss */
 #content #content-column article.product_page p {
   font-size: 13pt;
 }
-/* line 510, ../sass/main.scss */
+/* line 534, ../sass/main.scss */
 #content #content-column article.product_page .carousel .slick-prev::before, #content #content-column article.product_page .carousel .slick-next::before {
   color: #666666 !important;
   background: white;
   border-radius: 50%;
   font-size: 30px;
 }
-/* line 516, ../sass/main.scss */
+/* line 540, ../sass/main.scss */
 #content #content-column article.product_page .carousel img {
   max-width: 100%;
   margin: auto;
 }
-/* line 520, ../sass/main.scss */
+/* line 544, ../sass/main.scss */
 #content #content-column article.product_page .carousel .slick-prev {
   left: -5px;
 }
-/* line 523, ../sass/main.scss */
+/* line 547, ../sass/main.scss */
 #content #content-column article.product_page .carousel .slick-next {
   right: -5px;
 }
+/* line 551, ../sass/main.scss */
+#content #content-column article.product_page .review-list {
+  list-style: none;
+}
 
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  /* line 539, ../sass/main.scss */
-  .container {
-    max-width: 730px;
-  }
-
-  /* Remove the padding we set earlier */
-  /* line 545, ../sass/main.scss */
-  .header,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  /* Space out the masthead */
-  /* line 551, ../sass/main.scss */
-  .header {
-    /*margin-bottom: 30px;*/
-  }
-
-  /* Remove the bottom border on the jumbotron for visual effect */
-  /* line 556, ../sass/main.scss */
-  .jumbotron {
-    border-bottom: 0;
+@media print {
+  /* line 569, ../sass/main.scss */
+  #pvmenu, #uppermenu, #language-selector, #product_related, #product_recommended {
+    display: none !important;
   }
 }

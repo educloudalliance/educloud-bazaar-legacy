@@ -1,5 +1,5 @@
-@import "base";
 @import "normalize";
+@import "base";
 @import "animate/animate";
 @import "compass";
 
@@ -428,6 +428,28 @@ textarea, input { outline: none; }
     #content-column {
         padding: 23px 15px;
 
+        article.product_pod {
+            padding: 15px;
+            color: $dark-gray;
+            h3 {
+                font-weight: normal;
+                margin: 0px;
+            }
+            a {
+                text-decoration: none;
+                color: $dark-gray;
+            }
+            .image_container {
+                justify-content: center;
+                -webkit-justify-content: center;
+                text-align: center;
+                img {
+                    max-width: 75%;
+                    background-color: $dark-gray;
+                }
+            }
+        }
+
         .productlist {
             list-style: none;
             width: 100%;
@@ -435,10 +457,12 @@ textarea, input { outline: none; }
             margin: 0px;
 
             li {
-                text-align: center;
                 border: 1px solid $light-gray;
                 flex-basis: $basis-product-item;
                 -webkit-flex-basis: $basis-product-item;
+            }
+            li:hover {
+                background: $light-gray;
             }
 
         }
@@ -524,6 +548,9 @@ textarea, input { outline: none; }
                     right: -5px;
                 }
             }
+            .review-list {
+                list-style: none;
+            }
         }
 
     }
@@ -536,24 +563,10 @@ textarea, input { outline: none; }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-    .container {
-        max-width: 730px;
-    }
+}
 
-    /* Remove the padding we set earlier */
-    .header,
-    .footer {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    /* Space out the masthead */
-    .header {
-        /*margin-bottom: 30px;*/
-    }
-
-    /* Remove the bottom border on the jumbotron for visual effect */
-    .jumbotron {
-        border-bottom: 0;
+@media print {
+    #pvmenu, #uppermenu, #language-selector, #product_related, #product_recommended {
+        display: none !important;
     }
 }
