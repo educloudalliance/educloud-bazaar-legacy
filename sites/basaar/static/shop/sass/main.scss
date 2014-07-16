@@ -356,6 +356,7 @@ textarea, input { outline: none; }
     color: $dark-gray;
     background: $light-gray;
     z-index: 300;
+    height: 100%;
 
     #accordion-switch {
         position: relative;
@@ -402,25 +403,6 @@ textarea, input { outline: none; }
                 text-decoration: none;
                 width: 100%;
             }
-        }
-    }
-    .tabs {
-        text-align: center;
-        height: $tab-header-height;
-        background-color: $gray;
-        margin-top: -$tab-header-height;
-        
-        .tab {
-            line-height: $tab-header-height;
-            font-size: 16pt;
-            cursor: pointer;
-        }
-        .tab:hover {
-            background-color: rgba(255,255,255,0.3);
-
-        }
-        .tab.active {
-            background-color: $light-gray;
         }
     }
     > h1 {
@@ -513,7 +495,7 @@ textarea, input { outline: none; }
             }
             #tabs-product {
                 height: $tab-header-height;
-                margin-top: -$tab-header-height;
+                text-align: center;
                 ul {
                     text-align: center;
                     list-style: none;
@@ -539,6 +521,38 @@ textarea, input { outline: none; }
                         width: 100%;
                     }
                 }
+                #addbasket-tab form, #wishlist-tab form {
+                    .totalPriceLabel{
+                        font-size: 16pt;
+                        padding: 15px 0px 0px 0px;
+                    }
+                    .totalPriceValue{
+                        font-size: 16pt;
+                        padding: 0px 0px 15px 0px;
+                    }
+                    .control-group {
+                        font-size: 16pt;
+                        padding: 15px 0px;
+
+                        label, div {
+                            display: inline-block;
+                        }
+                        input {
+                            width: 50px;
+                            border: none;
+                            background: #666;
+                            color: white;
+                            text-align: center;
+                            border-radius: 4px;
+                        }
+                    }
+                    button {
+                        background: $dark-gray;
+                        border: none;
+                        color: white;
+                        padding: 5px 15px;
+                    }
+                }
             }
             .main {
                 h1, h2, h3, h4, h5, h6, p {
@@ -562,6 +576,7 @@ textarea, input { outline: none; }
                         height: 191px;
                         width: 191px;
                         background-color: $dark-gray;
+                        border: 1px solid #666666;
                     }
                 }
                 .owner {
@@ -604,6 +619,7 @@ textarea, input { outline: none; }
                 img{
                     max-width: 100%;
                     margin: auto;
+                    border: 1px solid #666666;
                 }
                 .slick-prev{
                     left: -5px;

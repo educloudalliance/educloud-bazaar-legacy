@@ -7800,8 +7800,9 @@ textarea, input {
   color: #666666;
   background: #e6e6e6;
   z-index: 300;
+  height: 100%;
 }
-/* line 360, ../sass/main.scss */
+/* line 361, ../sass/main.scss */
 #sidebar #accordion-switch {
   position: relative;
   text-align: center;
@@ -7812,288 +7813,304 @@ textarea, input {
   border-radius: 50% 0px 0px 50%;
   cursor: pointer;
 }
-/* line 369, ../sass/main.scss */
+/* line 370, ../sass/main.scss */
 #sidebar #accordion-switch img {
   height: 16px;
   margin-top: 12px;
 }
-/* line 374, ../sass/main.scss */
+/* line 375, ../sass/main.scss */
 #sidebar #accordion-content {
   min-width: 50px;
 }
-/* line 378, ../sass/main.scss */
+/* line 379, ../sass/main.scss */
 #sidebar #tabs-sidebar {
   height: 40px;
   margin-top: -40px;
 }
-/* line 381, ../sass/main.scss */
+/* line 382, ../sass/main.scss */
 #sidebar #tabs-sidebar ul {
   text-align: center;
   list-style: none;
   padding: 0px;
   margin: 0px;
 }
-/* line 386, ../sass/main.scss */
+/* line 387, ../sass/main.scss */
 #sidebar #tabs-sidebar ul li {
   background-color: #b3b3b3;
   line-height: 40px;
   font-size: 12pt;
   cursor: pointer;
 }
-/* line 393, ../sass/main.scss */
+/* line 394, ../sass/main.scss */
 #sidebar #tabs-sidebar ul li:hover {
   background-color: #c7c7c7;
 }
-/* line 397, ../sass/main.scss */
+/* line 398, ../sass/main.scss */
 #sidebar #tabs-sidebar ul li.ui-tabs-active {
   background-color: #e6e6e6;
 }
-/* line 400, ../sass/main.scss */
+/* line 401, ../sass/main.scss */
 #sidebar #tabs-sidebar ul a {
   color: #666666;
   text-decoration: none;
   width: 100%;
 }
-/* line 407, ../sass/main.scss */
-#sidebar .tabs {
-  text-align: center;
-  height: 40px;
-  background-color: #b3b3b3;
-  margin-top: -40px;
-}
-/* line 413, ../sass/main.scss */
-#sidebar .tabs .tab {
-  line-height: 40px;
-  font-size: 16pt;
-  cursor: pointer;
-}
-/* line 418, ../sass/main.scss */
-#sidebar .tabs .tab:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-/* line 422, ../sass/main.scss */
-#sidebar .tabs .tab.active {
-  background-color: #e6e6e6;
-}
-/* line 426, ../sass/main.scss */
+/* line 408, ../sass/main.scss */
 #sidebar > h1 {
   font-size: 18px;
   padding-left: 10px;
 }
-/* line 431, ../sass/main.scss */
+/* line 413, ../sass/main.scss */
 #sidebar a {
   color: #666666;
   text-decoration: none;
 }
-/* line 435, ../sass/main.scss */
+/* line 417, ../sass/main.scss */
 #sidebar h2 {
   margin: 0px;
   font-size: 12pt;
 }
-/* line 439, ../sass/main.scss */
+/* line 421, ../sass/main.scss */
 #sidebar h3 {
   margin: 0px;
   font-size: 11pt;
   font-weight: 300;
 }
-/* line 444, ../sass/main.scss */
+/* line 426, ../sass/main.scss */
 #sidebar .posts, #sidebar .kysy {
   padding: 8px;
 }
-/* line 446, ../sass/main.scss */
+/* line 428, ../sass/main.scss */
 #sidebar .posts p, #sidebar .kysy p {
   font-size: 10pt;
 }
-/* line 451, ../sass/main.scss */
+/* line 433, ../sass/main.scss */
 #sidebar .qaa {
   padding: 8px;
   height: 800px;
 }
 
-/* line 457, ../sass/main.scss */
+/* line 439, ../sass/main.scss */
 #content {
   width: 100%;
   padding-top: 80px;
   z-index: -10;
 }
-/* line 463, ../sass/main.scss */
+/* line 445, ../sass/main.scss */
 #content #content-column {
   padding: 0px 25px 25px 25px;
 }
-/* line 466, ../sass/main.scss */
+/* line 448, ../sass/main.scss */
 #content #content-column article.product_pod {
   padding: 15px;
   color: #666666;
 }
-/* line 469, ../sass/main.scss */
+/* line 451, ../sass/main.scss */
 #content #content-column article.product_pod h3 {
   font-weight: normal;
   margin: 0px;
 }
-/* line 473, ../sass/main.scss */
+/* line 455, ../sass/main.scss */
 #content #content-column article.product_pod a {
   text-decoration: none;
   color: #666666;
 }
-/* line 477, ../sass/main.scss */
+/* line 459, ../sass/main.scss */
 #content #content-column article.product_pod .image_container {
   justify-content: center;
   -webkit-justify-content: center;
   text-align: center;
 }
-/* line 481, ../sass/main.scss */
+/* line 463, ../sass/main.scss */
 #content #content-column article.product_pod .image_container img {
   max-width: 75%;
   background-color: #666666;
 }
-/* line 488, ../sass/main.scss */
+/* line 470, ../sass/main.scss */
 #content #content-column .productlist {
   list-style: none;
   width: 100%;
   padding: 0px;
   margin: 0px;
 }
-/* line 494, ../sass/main.scss */
+/* line 476, ../sass/main.scss */
 #content #content-column .productlist li {
   border: 1px solid #e6e6e6;
   flex-basis: 200px;
   -webkit-flex-basis: 200px;
 }
-/* line 499, ../sass/main.scss */
+/* line 481, ../sass/main.scss */
 #content #content-column .productlist li:hover {
   background: #e6e6e6;
 }
-/* line 504, ../sass/main.scss */
+/* line 486, ../sass/main.scss */
 #content #content-column section.product-section {
   width: 100%;
 }
-/* line 509, ../sass/main.scss */
+/* line 491, ../sass/main.scss */
 #content #content-column article.product_page {
   color: #666666;
 }
-/* line 511, ../sass/main.scss */
+/* line 493, ../sass/main.scss */
 #content #content-column article.product_page > .flex-container-vertical > div {
   border-bottom: 2px solid #e6e6e6;
 }
-/* line 514, ../sass/main.scss */
+/* line 496, ../sass/main.scss */
 #content #content-column article.product_page #tabs-product {
   height: 40px;
-  margin-top: -40px;
+  text-align: center;
 }
-/* line 517, ../sass/main.scss */
+/* line 499, ../sass/main.scss */
 #content #content-column article.product_page #tabs-product ul {
   text-align: center;
   list-style: none;
   padding: 0px;
   margin: 0px;
 }
-/* line 522, ../sass/main.scss */
+/* line 504, ../sass/main.scss */
 #content #content-column article.product_page #tabs-product ul li {
   background-color: #b3b3b3;
   line-height: 40px;
   font-size: 12pt;
   cursor: pointer;
 }
-/* line 529, ../sass/main.scss */
+/* line 511, ../sass/main.scss */
 #content #content-column article.product_page #tabs-product ul li:hover {
   background-color: #c7c7c7;
 }
-/* line 533, ../sass/main.scss */
+/* line 515, ../sass/main.scss */
 #content #content-column article.product_page #tabs-product ul li.ui-tabs-active {
   background-color: #e6e6e6;
 }
-/* line 536, ../sass/main.scss */
+/* line 518, ../sass/main.scss */
 #content #content-column article.product_page #tabs-product ul a {
   color: #666666;
   text-decoration: none;
   width: 100%;
 }
-/* line 544, ../sass/main.scss */
+/* line 525, ../sass/main.scss */
+#content #content-column article.product_page #tabs-product #addbasket-tab form .totalPriceLabel, #content #content-column article.product_page #tabs-product #wishlist-tab form .totalPriceLabel {
+  font-size: 16pt;
+  padding: 15px 0px 0px 0px;
+}
+/* line 529, ../sass/main.scss */
+#content #content-column article.product_page #tabs-product #addbasket-tab form .totalPriceValue, #content #content-column article.product_page #tabs-product #wishlist-tab form .totalPriceValue {
+  font-size: 16pt;
+  padding: 0px 0px 15px 0px;
+}
+/* line 533, ../sass/main.scss */
+#content #content-column article.product_page #tabs-product #addbasket-tab form .control-group, #content #content-column article.product_page #tabs-product #wishlist-tab form .control-group {
+  font-size: 16pt;
+  padding: 15px 0px;
+}
+/* line 537, ../sass/main.scss */
+#content #content-column article.product_page #tabs-product #addbasket-tab form .control-group label, #content #content-column article.product_page #tabs-product #addbasket-tab form .control-group div, #content #content-column article.product_page #tabs-product #wishlist-tab form .control-group label, #content #content-column article.product_page #tabs-product #wishlist-tab form .control-group div {
+  display: inline-block;
+}
+/* line 540, ../sass/main.scss */
+#content #content-column article.product_page #tabs-product #addbasket-tab form .control-group input, #content #content-column article.product_page #tabs-product #wishlist-tab form .control-group input {
+  width: 50px;
+  border: none;
+  background: #666;
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+}
+/* line 549, ../sass/main.scss */
+#content #content-column article.product_page #tabs-product #addbasket-tab form button, #content #content-column article.product_page #tabs-product #wishlist-tab form button {
+  background: #666666;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+}
+/* line 558, ../sass/main.scss */
 #content #content-column article.product_page .main h1, #content #content-column article.product_page .main h2, #content #content-column article.product_page .main h3, #content #content-column article.product_page .main h4, #content #content-column article.product_page .main h5, #content #content-column article.product_page .main h6, #content #content-column article.product_page .main p {
   margin: 0px;
 }
-/* line 547, ../sass/main.scss */
+/* line 561, ../sass/main.scss */
 #content #content-column article.product_page .main .title {
   text-align: left;
 }
-/* line 549, ../sass/main.scss */
+/* line 563, ../sass/main.scss */
 #content #content-column article.product_page .main .title h1 {
   font-size: 28pt;
   font-weight: normal;
 }
-/* line 554, ../sass/main.scss */
+/* line 568, ../sass/main.scss */
 #content #content-column article.product_page .main .price {
   text-align: right;
   padding-right: 1em;
 }
-/* line 560, ../sass/main.scss */
+/* line 574, ../sass/main.scss */
 #content #content-column article.product_page .main .thumbnail img {
   margin-right: 17px;
   height: 191px;
   width: 191px;
   background-color: #666666;
+  border: 1px solid #666666;
 }
-/* line 567, ../sass/main.scss */
+/* line 582, ../sass/main.scss */
 #content #content-column article.product_page .main .owner {
   font-size: 19pt;
   font-weight: lighter;
 }
-/* line 571, ../sass/main.scss */
+/* line 586, ../sass/main.scss */
 #content #content-column article.product_page .main .rating {
   font-size: 18pt;
   font-weight: bold;
 }
-/* line 575, ../sass/main.scss */
+/* line 590, ../sass/main.scss */
 #content #content-column article.product_page .main .subject h3, #content #content-column article.product_page .main .grade h3, #content #content-column article.product_page .main .type h3 {
   font-size: 14pt;
   font-weight: normal;
 }
-/* line 579, ../sass/main.scss */
+/* line 594, ../sass/main.scss */
 #content #content-column article.product_page .main .subject p, #content #content-column article.product_page .main .grade p, #content #content-column article.product_page .main .type p {
   font-size: 18pt;
   font-weight: normal;
 }
-/* line 584, ../sass/main.scss */
+/* line 599, ../sass/main.scss */
 #content #content-column article.product_page .main .product-action-box {
   background: #e6e6e6;
 }
-/* line 589, ../sass/main.scss */
+/* line 604, ../sass/main.scss */
 #content #content-column article.product_page h2 {
   font-size: 19pt;
   font-weight: normal;
 }
-/* line 593, ../sass/main.scss */
+/* line 608, ../sass/main.scss */
 #content #content-column article.product_page p {
   font-size: 13pt;
 }
-/* line 598, ../sass/main.scss */
+/* line 613, ../sass/main.scss */
 #content #content-column article.product_page .carousel .slick-prev::before, #content #content-column article.product_page .carousel .slick-next::before {
   color: #666666 !important;
   background: white;
   border-radius: 50%;
   font-size: 30px;
 }
-/* line 604, ../sass/main.scss */
+/* line 619, ../sass/main.scss */
 #content #content-column article.product_page .carousel img {
   max-width: 100%;
   margin: auto;
+  border: 1px solid #666666;
 }
-/* line 608, ../sass/main.scss */
+/* line 624, ../sass/main.scss */
 #content #content-column article.product_page .carousel .slick-prev {
   left: -5px;
 }
-/* line 611, ../sass/main.scss */
+/* line 627, ../sass/main.scss */
 #content #content-column article.product_page .carousel .slick-next {
   right: -5px;
 }
-/* line 615, ../sass/main.scss */
+/* line 631, ../sass/main.scss */
 #content #content-column article.product_page .review-list {
   list-style: none;
 }
 
 /* Responsive: Portrait tablets and up */
 @media print {
-  /* line 633, ../sass/main.scss */
+  /* line 649, ../sass/main.scss */
   #pvmenu, #uppermenu, #language-selector, #product_related, #product_recommended {
     display: none !important;
   }
