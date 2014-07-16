@@ -72,17 +72,15 @@
 
 
     function toggleAccordion() {
-        if ($('#sidebar').css('max-width') != '50px'){
-            $('#sidebar').css('max-width', '50px');
-            $('#sidebarshadow').css('width', '50px');
-            $('#sidebar .posts, #sidebar .kysy').hide();
-            $('#sidebar .tab').hide();
+        if ($('#sidebar').css('max-width') != '20px'){
+            $('#sidebar').css('max-width', '20px');
+            $('#sidebarshadow').css('width', '20px');
+            $('#tabs-sidebar').hide()
             $('#accordion-switch img').attr('src','{{ STATIC_URL }}shop/img/OpenBlog.png');
         } else {
             $('#sidebar').css('max-width', '400px');
             $('#sidebarshadow').css('width', '400px');
-            $('#sidebar .posts, #sidebar .kysy').show();
-            $('#sidebar .tab').show();
+            $('#tabs-sidebar').show()
             $('#accordion-switch img').attr('src','{{ STATIC_URL }}shop/img/CloseBlog.png');
         }
     }
@@ -92,18 +90,8 @@
         toggleAccordion();
         $('#menu-subjects, #menu-grades, #menu-types').hoverIntent( openFilterSubitems, closeFilterSubitems );
 
-        $('#posts-tab').click(function() {
-            $('.tabs .tab').removeClass('active');
-            $(this).addClass('active');
-            $('.tab-content .kysy').hide();
-            $('.tab-content .posts').show('fade');
-        });
-        $('#kysy-tab').click(function() {
-            $('.tabs .tab').removeClass('active');
-            $(this).addClass('active');
-            $('.tab-content .posts').hide();
-            $('.tab-content .kysy').show('fade');
-        });
+        $('#tabs-product').tabs();
+        $('#tabs-sidebar').tabs();
 
     }
     

@@ -114,10 +114,21 @@
                     </div>
                     
                 </div>
-                <div class="flexItem product-action-box">
-                    {% block product_basket_form %}
-                        {% include "catalogue/partials/add_to_basket_form.html" %}
-                    {% endblock %}
+                <div class="flexItem product-action-box flex-container-vertical">
+                    <div id="tabs-product">
+                      <ul class="flex-container">
+                        <li class="flexItem flex-container"><a href="#addbasket-tab">Add to Basket</a></li>
+                        <li class="flexItem flex-container"><a href="#wishlist-tab">Save Item</a></li>
+                      </ul>
+                      <div id="addbasket-tab">
+                        {% block product_basket_form %}
+                            {% include "catalogue/partials/add_to_basket_form.html" %}
+                        {% endblock %}
+                      </div>
+                      <div id="wishlist-tab">
+                        <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+                      </div>
+                    </div>
                 </div>
             </div>
             <div id="product_description" class="">

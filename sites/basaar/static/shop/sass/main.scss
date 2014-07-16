@@ -21,6 +21,10 @@ body {
     font-family: $default-font;
 }
 
+*:focus {
+    outline: none;
+}
+
 textarea, input { outline: none; }
 
 .flex-container{
@@ -357,8 +361,8 @@ textarea, input { outline: none; }
         position: relative;
         text-align: center;
         height: $tab-header-height;
-        width: $tab-header-height * 0.7;
-        left: -$tab-header-height * 0.7;
+        width: $tab-header-height * 0.6;
+        left: -$tab-header-height * 0.6;
         background: $light-gray;
         border-radius: 50% 0px 0px 50%;
         cursor: pointer;
@@ -367,7 +371,39 @@ textarea, input { outline: none; }
             margin-top: $tab-header-height * 0.3;
         }
     }
+    #accordion-content {
+        min-width: 50px
 
+    }
+    #tabs-sidebar {
+        height: $tab-header-height;
+        margin-top: -$tab-header-height;
+        ul {
+            text-align: center;
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+            li {
+                background-color: $gray;
+                line-height: $tab-header-height;
+                font-size: 12pt;
+                cursor: pointer;
+                
+            }
+            li:hover{
+                background-color: $gray-hover;
+                
+            }
+            li.ui-tabs-active {
+                background-color: $light-gray;
+            }
+            a{
+                color: $dark-gray;
+                text-decoration: none;
+                width: 100%;
+            }
+        }
+    }
     .tabs {
         text-align: center;
         height: $tab-header-height;
@@ -425,7 +461,7 @@ textarea, input { outline: none; }
     
 
     #content-column {
-        padding: 23px 15px;
+        padding: 0px 25px 25px 25px;
 
         article.product_pod {
             padding: 15px;
@@ -474,6 +510,35 @@ textarea, input { outline: none; }
             color: $dark-gray;
             > .flex-container-vertical > div {
                 border-bottom: 2px solid $light-gray;
+            }
+            #tabs-product {
+                height: $tab-header-height;
+                margin-top: -$tab-header-height;
+                ul {
+                    text-align: center;
+                    list-style: none;
+                    padding: 0px;
+                    margin: 0px;
+                    li {
+                        background-color: $gray;
+                        line-height: $tab-header-height;
+                        font-size: 12pt;
+                        cursor: pointer;
+                        
+                    }
+                    li:hover{
+                        background-color: $gray-hover;
+                        
+                    }
+                    li.ui-tabs-active {
+                        background-color: $light-gray;
+                    }
+                    a{
+                        color: $dark-gray;
+                        text-decoration: none;
+                        width: 100%;
+                    }
+                }
             }
             .main {
                 h1, h2, h3, h4, h5, h6, p {
