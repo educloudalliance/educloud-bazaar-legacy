@@ -24,6 +24,17 @@ class Product(AbstractProduct):
     moreInfoUrl = models.URLField(blank=True)
 
 
+class Tags(models.Model):
+    name = models.CharField(max_length=128)
+    createdAt = models.DateTimeField(auto_now_add=True)
+    lastModified = models.DateTimeField(auto_now_add=True)
+    hasTags = models.ManyToManyField(Product)
+
+    def __str__(self):
+        return self.name
+
+
+
 class ProductAttribute(AbstractProductAttribute):
     pass
 
