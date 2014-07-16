@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 from django.db.models import Count
 from rest_framework import viewsets
-from apps.api.serializers import UserSerializer, GroupSerializer, MaterialItemSerializer, APINodeSerializer
-
+from apps.api.serializers import UserSerializer, GroupSerializer, APINodeSerializer, ProductSerializer
+from django.db import IntegrityError
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
@@ -180,10 +180,12 @@ class CMSView(APIView):
     def postMaterialItem(self, path, request):
         theList = request.DATA["items"]
         createdItems = []
+
+
         #TODO: WRITE A PROPER SERIALIZER FOR THIS!!!!!!!!!!!!!!!!!
         for x in theList:
             #create new item
-            item = models.MaterialItem.create()
+            """item = models.MaterialItem.create()
             item.mTitle = x["title"]
             item.description = x["description"]
             item.materialUrl = x["materialUrl"]
@@ -197,38 +199,44 @@ class CMSView(APIView):
             item.language = x["language"]
             item.issn = x["issn"]
             item.author = User.objects.get(username="admin")    #TODO: User should be set to authenticated user when authentication is done
-
+            """
             #PRODUCT EXPERIMENT
+
+
             #Add product into database
-            downloads = ProductClass.objects.get(name='downloads')
-            p = Product(title=x["title"], description=x["description"], materialUrl=x["materialUrl"], iconUrl=x["iconUrl"], moreInfoUrl=x["moreInfoUrl"],  product_class=downloads)
-            p.save()
+            downloads = ProductClass.objects.get(name='downloads')  #TODO: Value should come from material type. Check also existence
+
+            #TODO: Make a proper serializer
+            #TODO: Add oEmbed array thing and TAGS array ja LANGUAGE array
+            #TODO: Remove price from model
+            #TODO: subject=x["subject"]
+            product = Product(title=x["title"], description=x["description"], materialUrl=x["materialUrl"], iconUrl=x["iconUrl"],
+                              moreInfoUrl=x["moreInfoUrl"],  uuid=x["uuid"], version=x["version"], price=x["price"],
+                              maxAge=x["maximumAge"], minAge=x["minimumAge"], contentLicense=x["contentLicense"],
+                              dataLicense=x["dataLicense"], copyrightNotice=x["copyrightNotice"], attributionText=x["attributionText"],
+                              attributionURL=x["attributionURL"], product_class=downloads)    #TODO: product_class on product type
+
             #Add fullfilment into database
             author = Partner.objects.get(name=self.splitUrl(path)[0])
-            f = StockRecord(product=p, partner=author, price_excl_tax=x["price"], price_retail=x["price"], partner_sku=x["issn"])
-            f.save()
 
             try:
-                item.createdAt = datetime.strptime(x["creationDate"], "%Y-%m-%d")
+                product.contributionDate = datetime.strptime(x["contributionDate"], "%Y-%m-%d")
             except ValueError:
-                #item.delete()
-                return "Items created: " + createdItems + " ERROR: Creationdate field was in wrong format. Should be yyyy-mm-dd"
-
-            #note that these are PickleFields which include arrays of strings.
-            item.screenshotUrls = x["screenshotUrls"]
-            item.videoUrls = x["videoUrls"]
-            #TODO: TAGS ARE STILL MISSING
+                return "Items created: " + createdItems + " ERROR: ContributionDate field was in wrong format. Should be yyyy-mm-dd"
 
 
-            if self.checkIfAlreadyInDb(slugify(path) + "/" + slugify(item.mTitle)):
+            if self.checkIfAlreadyInDb(path + "/" + slugify(product.uuid)):
                 return "ERROR: Can't post because an object already exists in this URL. Items created: " + unicode(createdItems)
-            createdItems.append(item.mTitle)
-            item.save()
+
+            createdItems.append(product.title)
+            product.save()
+            f = StockRecord(product=product, partner=author, price_excl_tax=x["price"], price_retail=x["price"], partner_sku=x["uuid"])
+            f.save()
 
             #add APINode for this materialItem
-            finalUrl = path + "/" + slugify(item.mTitle)
+            finalUrl = path + "/" + slugify(product.uuid)
             newColl = models.APINode.create(finalUrl, path, "item")
-            newColl.materialItem = item
+            newColl.materialItem = product
             newColl.owner = request.user
             newColl.save()
 
@@ -251,14 +259,13 @@ class CMSView(APIView):
             #check is the APINode collection or item:
             if target.objectType == "item":
                 #return JSON data of the materialItem:
-                serializer = MaterialItemSerializer(target.materialItem)
+                serializer = ProductSerializer(target.materialItem)
                 return Response(serializer.data)
             else:
                 #find objects in this collection
                 children = models.APINode.objects.filter(parentPath=target.uniquePath)
                 serializer = APINodeSerializer(children, many=True)
                 return Response(serializer.data)
-
 
         except models.APINode.DoesNotExist:
             return Response("404: No such collection or materialItem.")
@@ -278,8 +285,6 @@ class CMSView(APIView):
 
         #check if the object exists in the db already:
         url = self.slugifyWholeUrl(url)
-        if models.APINode.objects.filter(uniquePath=url).exists():
-            return Response("ERROR: Material item with the same url already exists in the db. " + url)
 
 
         if self.checkIfItemsInPostPath(url):
@@ -295,7 +300,10 @@ class CMSView(APIView):
             return Response("ERROR: You are not the owner of a node in path.")
 
         #try to create a new item:
-        createdItems = self.postMaterialItem(url, request)
+        try:
+            createdItems = self.postMaterialItem(url, request)
+        except IntegrityError:
+            return Response("ERROR: There is already a resource with same uuid. uuid must be unique.")
 
         return Response(createdCollections + " --- " + createdItems)
 
@@ -318,7 +326,7 @@ class CMSView(APIView):
             if not models.APINode.objects.filter(uniquePath=finalUrl).exists():
                 inValidItems.append(eachItem["title"])
             else:
-                self.updateExisitingItem(finalUrl,eachItem)
+                self.updateExistingItem(finalUrl,eachItem)
         if len(inValidItems) == 0:
             return Response("Successfully deleted data")
         else:
@@ -327,7 +335,8 @@ class CMSView(APIView):
                 inValidItemsNames += ",  "
             return Response("items not found:"+inValidItemsNames)
 
-    def updateExisitingItem(self,finalUrl,x):
+    def updateExistingItem(self,finalUrl,x):
+            """
             itemNode = models.APINode.objects.get(uniquePath=finalUrl)
             item = itemNode.materialItem
             #item = models.MaterialItem.objects.get(id = itemNode.materialItem)
@@ -344,7 +353,7 @@ class CMSView(APIView):
             item.issn = x["issn"]
             item.author = User.objects.get(username="admin")    #TODO: User should be set to authenticated user when authentication is done
             item.save()
-
+            """
             #PRODUCT EXPERIMENT
             #TODO::Update the product table of oscar after modifying the exisiting models
             """
@@ -363,6 +372,7 @@ class CMSView(APIView):
             f.partner_sku=x["issn"]
             f.save()
             """
+            pass
 
     def delete(self,request):
         inValidItemsNames = ""
