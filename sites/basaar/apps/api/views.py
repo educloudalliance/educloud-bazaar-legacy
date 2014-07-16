@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 from django.db.models import Count
 from rest_framework import viewsets
-from apps.api.serializers import UserSerializer, GroupSerializer, MaterialItemSerializer, APINodeSerializer
+from apps.api.serializers import UserSerializer, GroupSerializer, APINodeSerializer
 
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
@@ -183,7 +183,7 @@ class CMSView(APIView):
         #TODO: WRITE A PROPER SERIALIZER FOR THIS!!!!!!!!!!!!!!!!!
         for x in theList:
             #create new item
-            item = models.MaterialItem.create()
+            """item = models.MaterialItem.create()
             item.mTitle = x["title"]
             item.description = x["description"]
             item.materialUrl = x["materialUrl"]
@@ -197,7 +197,7 @@ class CMSView(APIView):
             item.language = x["language"]
             item.issn = x["issn"]
             item.author = User.objects.get(username="admin")    #TODO: User should be set to authenticated user when authentication is done
-
+            """
             #PRODUCT EXPERIMENT
             #Add product into database
             downloads = ProductClass.objects.get(name='downloads')
@@ -207,28 +207,28 @@ class CMSView(APIView):
             author = Partner.objects.get(name=self.splitUrl(path)[0])
             f = StockRecord(product=p, partner=author, price_excl_tax=x["price"], price_retail=x["price"], partner_sku=x["issn"])
             f.save()
-
+            """
             try:
                 item.createdAt = datetime.strptime(x["creationDate"], "%Y-%m-%d")
             except ValueError:
                 #item.delete()
                 return "Items created: " + createdItems + " ERROR: Creationdate field was in wrong format. Should be yyyy-mm-dd"
-
+            """
             #note that these are PickleFields which include arrays of strings.
-            item.screenshotUrls = x["screenshotUrls"]
-            item.videoUrls = x["videoUrls"]
+            #item.screenshotUrls = x["screenshotUrls"]
+            #item.videoUrls = x["videoUrls"]
             #TODO: TAGS ARE STILL MISSING
 
 
-            if self.checkIfAlreadyInDb(slugify(path) + "/" + slugify(item.mTitle)):
-                return "ERROR: Can't post because an object already exists in this URL. Items created: " + unicode(createdItems)
-            createdItems.append(item.mTitle)
-            item.save()
+            #if self.checkIfAlreadyInDb(slugify(path) + "/" + slugify(item.mTitle)):
+            #    return "ERROR: Can't post because an object already exists in this URL. Items created: " + unicode(createdItems)
+            createdItems.append(p.title)
+            #item.save()
 
             #add APINode for this materialItem
             finalUrl = path + "/" + slugify(item.mTitle)
             newColl = models.APINode.create(finalUrl, path, "item")
-            newColl.materialItem = item
+            newColl.materialItem = p
             newColl.owner = request.user
             newColl.save()
 
@@ -251,14 +251,13 @@ class CMSView(APIView):
             #check is the APINode collection or item:
             if target.objectType == "item":
                 #return JSON data of the materialItem:
-                serializer = MaterialItemSerializer(target.materialItem)
-                return Response(serializer.data)
+                #serializer = MaterialItemSerializer(target.materialItem)
+                return Response("huuu")
             else:
                 #find objects in this collection
                 children = models.APINode.objects.filter(parentPath=target.uniquePath)
                 serializer = APINodeSerializer(children, many=True)
                 return Response(serializer.data)
-
 
         except models.APINode.DoesNotExist:
             return Response("404: No such collection or materialItem.")
@@ -328,6 +327,7 @@ class CMSView(APIView):
             return Response("items not found:"+inValidItemsNames)
 
     def updateExisitingItem(self,finalUrl,x):
+            """
             itemNode = models.APINode.objects.get(uniquePath=finalUrl)
             item = itemNode.materialItem
             #item = models.MaterialItem.objects.get(id = itemNode.materialItem)
@@ -344,7 +344,7 @@ class CMSView(APIView):
             item.issn = x["issn"]
             item.author = User.objects.get(username="admin")    #TODO: User should be set to authenticated user when authentication is done
             item.save()
-
+            """
             #PRODUCT EXPERIMENT
             #TODO::Update the product table of oscar after modifying the exisiting models
             """
@@ -363,6 +363,7 @@ class CMSView(APIView):
             f.partner_sku=x["issn"]
             f.save()
             """
+            pass
 
     def delete(self,request):
         inValidItemsNames = ""
