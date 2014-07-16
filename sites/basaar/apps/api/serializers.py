@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from apps.api.models import APINode
+from oscar.core.loading import get_class, get_model
+
+Product = get_model('catalogue', 'Product')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -24,6 +27,14 @@ class MaterialItemSerializer(serializers.HyperlinkedModelSerializer):
         'version', 'status', 'createdAt', 'price', 'language', 'issn')
         #read_only_fields = ('mTitle', 'slug')
 """
+
+class ProductSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Product
+        fields = ('uuid', 'title', 'description', 'materialUrl', 'iconUrl', 'moreInfoUrl', 'version',
+        'price', 'contributionDate', 'maxAge', 'minAge', 'contentLicense',
+        'dataLicense', 'copyrightNotice', 'attributionText', 'attributionURL',)
+        #read_only_fields = ('mTitle', 'slug')
 
 class APINodeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
