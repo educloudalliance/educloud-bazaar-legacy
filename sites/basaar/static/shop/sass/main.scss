@@ -394,26 +394,28 @@ textarea, input { outline: none; }
     height: 100%;
 
     #accordion-switch {
-        position: relative;
+        position: absolute;
         text-align: center;
+        width: $tab-header-height * 5;
         height: $tab-header-height;
-        width: $tab-header-height * 0.6;
-        left: -$tab-header-height * 0.6;
-        background: $light-gray;
-        border-radius: 50% 0px 0px 50%;
+        line-height: $tab-header-height;
+        left: -$tab-header-height*3;
+        top: $tab-header-height*2;
+        background: $orange;
+        text-transform: uppercase;
         cursor: pointer;
+        color: white;
         img {
             height: $tab-header-height * 0.4;
             margin-top: $tab-header-height * 0.3;
         }
-    }
-    #accordion-content {
-        min-width: 50px
+        transform:rotate(90deg);
+        -ms-transform:rotate(90deg);
+        -webkit-transform:rotate(90deg);
 
     }
     #tabs-sidebar {
         height: $tab-header-height;
-        margin-top: -$tab-header-height;
         ul {
             text-align: center;
             list-style: none;

@@ -81,9 +81,9 @@
 
 
     function toggleAccordion() {
-        if ($('#sidebar').css('max-width') != '20px'){
-            $('#sidebar').css('max-width', '20px');
-            $('#sidebarshadow').css('width', '20px');
+        if ($('#sidebar').css('max-width') != '0px'){
+            $('#sidebar').css('max-width', '0px');
+            $('#sidebarshadow').css('width', '50px');
             $('#tabs-sidebar').hide();
             $('#accordion-switch img').attr('src','{{ STATIC_URL }}shop/img/OpenBlog.png');
         } else {
