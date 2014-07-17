@@ -112,7 +112,10 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <div style="font-size: 24pt;">
+                        &nbsp;
+                    </div>
+
                 </div>
                 <div class="flexItem product-action-box flex-container-vertical">
                     <div id="tabs-product">
@@ -120,14 +123,14 @@
                         <li class="flexItem flex-container"><a href="#addbasket-tab">Add to Basket</a></li>
                         <li class="flexItem flex-container"><a href="#wishlist-tab">Save Item</a></li>
                       </ul>
+                      {% block product_basket_form %}
                       <div id="addbasket-tab">
-                        {% block product_basket_form %}
-                            {% include "catalogue/partials/add_to_basket_form.html" %}
-                        {% endblock %}
+                        {% include "catalogue/partials/add_to_basket_form.html" %}
                       </div>
                       <div id="wishlist-tab">
-                        <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+                        {% include "catalogue/partials/add_to_wishlist_form.html" %}
                       </div>
+                      {% endblock %}
                     </div>
                 </div>
             </div>

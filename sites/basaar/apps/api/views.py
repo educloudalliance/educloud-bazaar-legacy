@@ -1,3 +1,5 @@
+import urllib2
+import uuid as libuuid
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
@@ -211,12 +213,15 @@ class CMSView(APIView):
             #Add product into database
             downloads = ProductClass.objects.get(name='downloads')  #TODO: Value should come from material type. Check also existence
 
+            #Create unique UPC
+            createdUPC = self.createUPC()
+
             #TODO: Make a proper serializer
             #TODO: Add oEmbed array thing and TAGS array ja LANGUAGE array
             #TODO: Remove price from model
             #TODO: subject=x["subject"]
-            product = Product(title=x["title"], description=x["description"], materialUrl=x["materialUrl"], iconUrl=x["iconUrl"],
-                              moreInfoUrl=x["moreInfoUrl"],  uuid=x["uuid"], version=x["version"], price=x["price"],
+            product = Product(title=x["title"], upc=createdUPC, description=x["description"], materialUrl=x["materialUrl"],
+                              moreInfoUrl=x["moreInfoUrl"],  uuid=x["uuid"], version=x["version"],
                               maxAge=x["maximumAge"], minAge=x["minimumAge"], contentLicense=x["contentLicense"],
                               dataLicense=x["dataLicense"], copyrightNotice=x["copyrightNotice"], attributionText=x["attributionText"],
                               attributionURL=x["attributionURL"], product_class=downloads)    #TODO: product_class on product type
@@ -234,6 +239,11 @@ class CMSView(APIView):
                 return "ERROR: Can't post because an object already exists in this URL. Items created: " + unicode(createdItems)
 
             createdItems.append(product.title)
+
+
+            #Download icon
+            self.downloadIcon(x["iconUrl"], createdUPC)
+
             product.save()
             f = StockRecord(product=product, partner=author, price_excl_tax=x["price"], price_retail=x["price"], partner_sku=x["uuid"])
             f.save()
@@ -366,7 +376,6 @@ class CMSView(APIView):
             p = Product.objects.get(title=x["title"],product_class=downloads)
             p.description=x["description"]
             p.materialUrl=x["materialUrl"]
-            p.iconUrl=x["iconUrl"]
             p.moreInfoUrl=x["moreInfoUrl"]
             p.save()
 
@@ -413,3 +422,50 @@ class CMSView(APIView):
         itemNode.delete()
         #item.delete()
         #itemNode.delete()
+
+    #Download icon into static folder
+    def downloadIcon(self, url, iconName):
+        #TODO Image resizing
+        allowedMimes = ['image/gif', 'image/jpeg', 'image/png']
+
+        try:
+            urlOpener = urllib2.build_opener()
+            page = urlOpener.open(url)
+
+            #Get headers
+            headers = page.info()
+
+            if headers['content-type'] in allowedMimes:
+                image = page.read()
+                iconName = iconName + url[-4:]
+                #TODO .jpeg?
+                filename = 'static/shop/img/icons/' + iconName
+                fout = open(filename, "wb")
+                fout.write(image)
+                fout.close()
+            else:
+                return False
+
+        except urllib2.URLError, e:
+            #TODO better error handling
+            if e.code == 404:
+                #TODO return 404 error ?
+                return False
+            else:
+                return False
+        except:
+                return False
+
+
+    #Create unique UPC for material
+    def createUPC(self):
+        UPC = str(libuuid.uuid4())
+        UPC = UPC.replace("-", "")
+        UPC = UPC[0:10]
+
+        while models.Product.objects.filter(upc=UPC).exists():
+            UPC = str(libuuid.uuid4())
+            UPC = UPC.replace("-", "")
+            UPC = UPC[0:15]
+
+        return UPC
