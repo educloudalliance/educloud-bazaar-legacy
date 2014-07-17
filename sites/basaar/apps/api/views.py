@@ -127,6 +127,11 @@ class CMSView(APIView):
             else:
                 pathSoFar += "/" + urlTokens[i]
 
+        if models.APINode.objects.filter(uniquePath=pathSoFar, objectType="item").exists():
+            #we found an object which is an item and in middle of the given path.
+            #because items can't have children, this is an ERROR condition.
+            return True
+
         print "Lopuksi: " + pathSoFar
         return False
 
