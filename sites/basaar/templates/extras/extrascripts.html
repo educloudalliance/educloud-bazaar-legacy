@@ -44,9 +44,11 @@
 
         $('#language-selector').click(function() {
             if($(this).find('.menu-box').is(":visible")) {
-                $('.menu-box').hide();
+                $('.menu-box').hide('fade');
+                $('#icons > .flexItem').removeClass('active');
             } else {
-                $('.menu-box').hide();
+                $('.menu-box').hide('fade');
+                $('#icons > .flexItem').removeClass('active');
                 $(this).find('.menu-box').show('fade');
             }
         });
@@ -63,10 +65,17 @@
     
     function toggleMenuItem() {
         if($(this).parent().find('.menu-box').is(":visible")) {
-            $('.menu-box').hide();
+            $('.menu-box').hide('fade');
+            $('#icons > .flexItem').removeClass('active');
+            $('.menu-box-content').hide();
         } else {
-            $('.menu-box').hide();
-            $(this).parent().find('.menu-box').show('slide');
+            $('.menu-box').hide('fade');
+            $('#icons > .flexItem').removeClass('active');
+            $('.menu-box-content').hide();
+            $(this).parent().addClass('active');
+            $(this).parent().find('.menu-box').show('slide', function() {
+                $(this).parent().find('.menu-box-content').slideDown();
+            });
         }
     }
 
@@ -75,12 +84,12 @@
         if ($('#sidebar').css('max-width') != '20px'){
             $('#sidebar').css('max-width', '20px');
             $('#sidebarshadow').css('width', '20px');
-            $('#tabs-sidebar').hide()
+            $('#tabs-sidebar').hide();
             $('#accordion-switch img').attr('src','{{ STATIC_URL }}shop/img/OpenBlog.png');
         } else {
             $('#sidebar').css('max-width', '400px');
             $('#sidebarshadow').css('width', '400px');
-            $('#tabs-sidebar').show()
+            $('#tabs-sidebar').show('fade');
             $('#accordion-switch img').attr('src','{{ STATIC_URL }}shop/img/CloseBlog.png');
         }
     }
@@ -88,10 +97,10 @@
     function preparePage(){
 
         toggleAccordion();
-        $('#menu-subjects, #menu-grades, #menu-types').hoverIntent( openFilterSubitems, closeFilterSubitems );
+        $('#menu-subjects, #menu-grades, #menu-types, #menu-publishers').hoverIntent( openFilterSubitems, closeFilterSubitems );
 
-        $('#tabs-product').tabs();
-        $('#tabs-sidebar').tabs();
+        $('#tabs-product').tabs({show: 'fade'});
+        $('#tabs-sidebar').tabs({show: 'fade'});
 
         $('#tabs-product form input').change(function(){
             calculateTotalPrice($(this).val(),$(this).parents('form').find('.totalPriceValue'))

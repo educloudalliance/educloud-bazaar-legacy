@@ -34,10 +34,14 @@ $menu-width: 50px;
 $menu-icons-width: 24px;
 $menu-icons-padding: ($menu-width - $menu-icons-width) / 2;
 $menu-icons-gap: 24px;
+$menu-box-bridge-width: 5px;
 $nav-height: 80px;
 $tab-header-height: 40px;
 
+$orange: rgb(242,66,71);
 $blue-main: rgb(55,169,224);
+$blue-main-hover: rgb(89,178,226);
+$light-blue: rgb(167,216,240);
 $green-main: rgb(46,237,196);
 $green-main-a85: rgba(46,237,196,0.85);
 $light-gray: rgb(230,230,230);

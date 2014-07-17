@@ -62,4 +62,4 @@ sites/puppet/modules/
 /sites/basaar/apps/api/migrations/
 
 #icons
-/sites/basaar/static/shop/img/icons/
+/sites/basaar/static/shop/img/icons/*

@@ -243,7 +243,8 @@ class CMSView(APIView):
             createdItems.append(product.title)
 
             #Download icon
-            self.downloadIcon(x["iconUrl"], createdUPC)
+            if x["iconUrl"] is not None:
+                self.downloadIcon(x["iconUrl"], createdUPC)
 
             product.save()
             #create language, Tags and EmbeddedMedia models
@@ -461,7 +462,9 @@ class CMSView(APIView):
 
         try:
             urlOpener = urllib2.build_opener()
-            page = urlOpener.open(url)
+
+            #Timeout 20s
+            page = urlOpener.open(url, None, 20)
 
             #Get headers
             headers = page.info()
