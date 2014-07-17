@@ -24,6 +24,8 @@ from django.http import Http404
 
 
 Product = get_model('catalogue', 'Product')
+Language = get_model('catalogue', 'Language')
+Tag = get_model('catalogue', 'Tags')
 Category = get_model('catalogue', 'Category')
 ProductClass = get_model('catalogue', 'ProductClass')
 Partner = get_model('partner', 'Partner')
@@ -240,11 +242,40 @@ class CMSView(APIView):
 
             createdItems.append(product.title)
 
-
             #Download icon
             self.downloadIcon(x["iconUrl"], createdUPC)
 
             product.save()
+            #create language, Tags and EmbeddedMedia models
+            langList = x["language"]
+            for lan in langList:
+                print lan["lang"]
+                #check if the language is already in db, if not create it
+                if Language.objects.filter(name=lan["lang"]).exists():
+                    l = Language.objects.get(name=lan["lang"])
+                    l.hasLanguage.add(product)
+                else:
+                    langEntry = Language.create()
+                    langEntry.name = lan["lang"]
+                    langEntry.save()
+                    langEntry.hasLanguage.add(product)
+
+            #tags creation
+            tagList = x["tags"]
+            for tag in tagList:
+                print tag["tag"]
+                #check if the tag is already in db, if not create it
+                if Tag.objects.filter(name=tag["tag"]).exists():
+                    t = Tag.objects.get(name=tag["tag"])
+                    t.hasTag.add(product)
+                else:
+                    tagEntry = Tag.create()
+                    tagEntry.name = tag["tag"]
+                    tagEntry.save()
+                    tagEntry.hasTags.add(product)
+
+
+
             f = StockRecord(product=product, partner=author, price_excl_tax=x["price"], price_retail=x["price"], partner_sku=x["uuid"])
             f.save()
 
@@ -448,7 +479,7 @@ class CMSView(APIView):
 
         except urllib2.URLError, e:
             #TODO better error handling
-            if e.code == 404:
+            if e == 404:
                 #TODO return 404 error ?
                 return False
             else:

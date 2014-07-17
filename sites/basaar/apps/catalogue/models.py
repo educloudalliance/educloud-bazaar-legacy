@@ -36,6 +36,11 @@ class Language(models.Model):
     def __str__(self):
         return self.name
 
+    @classmethod
+    def create(cls):
+        obj = cls()
+        return obj
+
 
 class EmbeddedMedia(models.Model):
     url = models.URLField(max_length=4000)
@@ -43,6 +48,11 @@ class EmbeddedMedia(models.Model):
 
     def __str__(self):
         return self.url
+
+    @classmethod
+    def create(cls):
+        obj = cls()
+        return obj
 
 
 class Tags(models.Model):
@@ -53,6 +63,11 @@ class Tags(models.Model):
 
     def __str__(self):
         return self.name
+
+    @classmethod
+    def create(cls):
+        obj = cls()
+        return obj
 
 
 
