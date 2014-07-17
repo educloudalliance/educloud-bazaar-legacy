@@ -237,7 +237,8 @@ class CMSView(APIView):
 
 
             #Download icon
-            self.downloadIcon(x["iconUrl"], createdUPC)
+            if x["iconUrl"] is not None:
+                self.downloadIcon(x["iconUrl"], createdUPC)
 
             product.save()
             f = StockRecord(product=product, partner=author, price_excl_tax=x["price"], price_retail=x["price"], partner_sku=x["uuid"])
@@ -425,7 +426,9 @@ class CMSView(APIView):
 
         try:
             urlOpener = urllib2.build_opener()
-            page = urlOpener.open(url)
+
+            #Timeout 20s
+            page = urlOpener.open(url, None, 20)
 
             #Get headers
             headers = page.info()
@@ -443,7 +446,7 @@ class CMSView(APIView):
 
         except urllib2.URLError, e:
             #TODO better error handling
-            if e.code == 404:
+            if e == 404:
                 #TODO return 404 error ?
                 return False
             else:
