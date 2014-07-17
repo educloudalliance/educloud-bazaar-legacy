@@ -93,6 +93,13 @@
         $('#tabs-product').tabs();
         $('#tabs-sidebar').tabs();
 
+        $('#tabs-product form input').change(function(){
+            calculateTotalPrice($(this).val(),$(this).parents('form').find('.totalPriceValue'))
+        });
+
+    }
+    function calculateTotalPrice(quantity, resultSelector){
+        resultSelector.text((individualPrice * quantity).toFixed(2));
     }
     
 
