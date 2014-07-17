@@ -24,6 +24,9 @@ body {
 *:focus {
     outline: none;
 }
+a {
+    color: $orange;
+}
 
 textarea, input { outline: none; }
 
@@ -122,7 +125,7 @@ textarea, input { outline: none; }
         background: white;
         width: $menu-icons-width;
         margin-left: $menu-icons-padding;
-        margin-bottom: $menu-icons-gap / 2;
+        margin-bottom: ($menu-width - $menu-icons-width) / 2;
         border-radius: 5px;
     }
     .menu-icon {
@@ -130,35 +133,67 @@ textarea, input { outline: none; }
         }
         cursor: pointer;
         margin: 0px;
-        width: $menu-icons-width;
-        height: $menu-icons-width;
-        margin: ($menu-icons-gap / 2);
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
+        width: $menu-width;
+        height: $menu-width;
+        padding: (($menu-width - $menu-icons-width) / 2);
     }
-    #icons svg:hover {
+    #icons > .flexItem:hover {
+        background: $blue-main-hover;
+    /*
         path.hoverable {
             fill: $green-main;
         }
         circle.hoverable {
             stroke: $green-main;
         }
+    */
+    }
+    #icons > .flexItem.active {
+        background: $light-blue;
+        width: $menu-width + $menu-box-bridge-width;
+    }
+    #icons > .flexItem.active:hover {
+        background: $light-blue;
     }
     #icons > .flexItem {
+        max-height: $menu-width;
+        width: $menu-width;
         position: relative;
+        -webkit-transition: all 0.1s; /* For Safari 3.1 to 6.0 */
+        transition: all 0.1s;
     }
     .menu-box {
         display: none;
         position: absolute;
         top: 0px;
-        left: $menu-width;
-        background: $green-main-a85;
-        color: black;
-        border-radius: 0px 5px 5px 0px;
+        left: $menu-width + $menu-box-bridge-width;
+        color: $dark-gray;
         min-height: $menu-icons-width + $menu-icons-gap;
         min-width: 300px;
         z-index: 200;
+        border-right: 1px solid $light-blue;
+        border-left: 1px solid $light-blue;
+        .menu-box-header {
+            background: $light-blue;
+            height: $menu-width;
+            line-height: $menu-icons-width + $menu-icons-gap;
+            font-size: 16pt;
+        }
+        .menu-box-content {
+            display: none;
+            background: white;
+            .menu-box-footer {
+                background: $light-blue;
+                height: $menu-width;
+            }
+        }
+        .menu-bridge{
+            position: absolute;
+            background: $light-blue;
+            height: $menu-width;
+            width: $menu-box-bridge-width;
+            left: -$menu-box-bridge-width;
+        }
     }
 }
 
@@ -214,7 +249,7 @@ textarea, input { outline: none; }
 
     #filters{
         
-        #menu-subjects, #menu-grades, #menu-types {
+        #menu-subjects, #menu-grades, #menu-types, #menu-publishers {
 
             text-align: center;
             font-size: 14pt;
@@ -231,7 +266,7 @@ textarea, input { outline: none; }
                 margin: 0px 0px -3px 10px;
                 padding-top: 3px;
             }
-            @media screen and (max-width: $r1024-content-width) {
+            @media screen and (max-width: $r1280-content-width) {
                 padding: 0px;
                 > svg {
                     margin: 0px 7px -3px 0px;
@@ -242,7 +277,7 @@ textarea, input { outline: none; }
                 width: 100%;
                 display: none;
                 text-align: left;
-                background: $green-main-a85;
+                background: $light-blue;
                 position: absolute;
                 top: $nav-height;
                 left: 0px;
@@ -264,7 +299,7 @@ textarea, input { outline: none; }
 
             }
         }
-        #menu-subjects:hover, #menu-grades:hover, #menu-types:hover {
+        #menu-subjects:hover, #menu-grades:hover, #menu-types:hover, #menu-publishers:hover {
             color: $blue-main;
             svg text {
                 fill: $blue-main;
@@ -276,13 +311,13 @@ textarea, input { outline: none; }
 
     }
     #addTags{
-        @media screen and (max-width: 1100px) {
+        @media screen and (max-width: $r1280-content-width) {
             text-align: right;
         }
         form {
             display: inline-block;
             line-height: $nav-height;
-            @media screen and (max-width: 1100px) {
+            @media screen and (max-width: $r1280-content-width) {
                 line-height: $nav-height / 3;
                 height: $nav-height / 3;
             }
