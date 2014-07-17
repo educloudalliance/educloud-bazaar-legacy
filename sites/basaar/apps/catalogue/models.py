@@ -44,7 +44,7 @@ class Language(models.Model):
 
 class EmbeddedMedia(models.Model):
     url = models.URLField(max_length=4000)
-    hasMedia = models.ManyToManyField(Product)
+    product = models.ForeignKey(Product)
 
     def __str__(self):
         return self.url

@@ -26,6 +26,7 @@ from django.http import Http404
 Product = get_model('catalogue', 'Product')
 Language = get_model('catalogue', 'Language')
 Tag = get_model('catalogue', 'Tags')
+EmbeddedMedia = get_model('catalogue', 'EmbeddedMedia')
 Category = get_model('catalogue', 'Category')
 ProductClass = get_model('catalogue', 'ProductClass')
 Partner = get_model('partner', 'Partner')
@@ -268,12 +269,22 @@ class CMSView(APIView):
                 #check if the tag is already in db, if not create it
                 if Tag.objects.filter(name=tag["tag"]).exists():
                     t = Tag.objects.get(name=tag["tag"])
-                    t.hasTag.add(product)
+                    t.hasTags.add(product)
                 else:
                     tagEntry = Tag.create()
                     tagEntry.name = tag["tag"]
                     tagEntry.save()
                     tagEntry.hasTags.add(product)
+
+
+            #oEmbed
+            embedList = x["embedMedia"]
+            for media in embedList:
+                print media["url"]
+                embedEntry = EmbeddedMedia.create()
+                embedEntry.url = media["url"]
+                embedEntry.product = product
+                embedEntry.save()
 
 
 
