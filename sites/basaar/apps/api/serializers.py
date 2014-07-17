@@ -31,7 +31,7 @@ class MaterialItemSerializer(serializers.HyperlinkedModelSerializer):
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
-        fields = ('uuid', 'title', 'description', 'materialUrl', 'iconUrl', 'moreInfoUrl', 'version',
+        fields = ('uuid', 'title', 'description', 'materialUrl', 'moreInfoUrl', 'version',
         'price', 'contributionDate', 'maxAge', 'minAge', 'contentLicense',
         'dataLicense', 'copyrightNotice', 'attributionText', 'attributionURL',)
         #read_only_fields = ('mTitle', 'slug')

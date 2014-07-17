@@ -39,3 +39,4 @@ djangorestframework>=2.3.14
 markdown>=2.4.1
 django-filter>=0.7
 django-autoslug>=1.7.2
+django-oembed==0.1.3

@@ -58,3 +58,8 @@ sites/puppet/modules/
 
 # Frontend dev files
 *.scssc
+/sites/basaar/apps/catalogue/migrations/
+/sites/basaar/apps/api/migrations/
+
+#icons
+/sites/basaar/static/shop/img/icons/
