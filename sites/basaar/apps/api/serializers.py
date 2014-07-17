@@ -37,6 +37,8 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         #read_only_fields = ('mTitle', 'slug')
 
 class APINodeSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = APINode
-        fields = ('uniquePath', 'objectType', )
+        fields = ('uniquePath', 'objectType')
+        depth = 2
