@@ -6,6 +6,7 @@
     // Animations
     //$('#content').addClass('animated fadeInDown');
 
+    var accordionSwitchHeight = $('#accordion-switch').css('height');
     $(document).ready(function(){
         $('img.svg').each(function(){
             var $img = $(this);
@@ -40,7 +41,13 @@
 
         });
 
-        $('#accordion-switch').click(toggleAccordion);
+        
+        if(hideExtra){
+            hideExtraMenus();
+        } else {
+            $('#accordion-switch').click(toggleAccordion);
+            toggleAccordion();
+        }
 
         $('#language-selector').click(function() {
             if($(this).find('.menu-box').is(":visible")) {
@@ -81,22 +88,31 @@
 
 
     function toggleAccordion() {
-        if ($('#sidebar').css('max-width') != '0px'){
-            $('#sidebar').css('max-width', '0px');
-            $('#sidebarshadow').css('width', '50px');
-            $('#tabs-sidebar').hide();
-            $('#accordion-switch img').attr('src','{{ STATIC_URL }}shop/img/OpenBlog.png');
+        if ($('#accordion-content').is(":visible")){
+            //$('#sidebarshadow').css('width', '50px');
+            $('#sidebarshadow').animate({'width': '50px'},300);
+            $('#accordion-switch > p').show('fade');
+            $('#accordion-switch').animate({'height': accordionSwitchHeight},300);
+            $('.animated-button').removeClass('close');
+            $('#accordion-content').hide();
         } else {
-            $('#sidebar').css('max-width', '400px');
-            $('#sidebarshadow').css('width', '400px');
-            $('#tabs-sidebar').show('fade');
-            $('#accordion-switch img').attr('src','{{ STATIC_URL }}shop/img/CloseBlog.png');
+            //$('#sidebarshadow').css('width', '400px');
+            $('#sidebarshadow').animate({'width': '400px'},300);
+            $('#accordion-content').show('slide', {direction: 'right'}, 300);
+            $('#accordion-switch > p').hide();
+            $('#accordion-switch').animate({'height': '40px'},300);
+            $('.animated-button').addClass('close');
         }
+    }
+    function hideExtraMenus(){
+        $('#sidebarshadow').css('width','50px');
+        $('#sidebar').remove();
+        $('#uppermenu').remove();
     }
 
     function preparePage(){
 
-        toggleAccordion();
+
         $('#menu-subjects, #menu-grades, #menu-types, #menu-publishers').hoverIntent( openFilterSubitems, closeFilterSubitems );
 
         $('#tabs-product').tabs({show: 'fade'});
