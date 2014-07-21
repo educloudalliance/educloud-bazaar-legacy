@@ -16,10 +16,7 @@
 {% include "partials/sidebar.html" %}
 <div class="flexItem flex-container">
     <div id="content" class="flex-container flex-wrap">
-        <div id="content-column" class="flexItem5">
-            {% block content %}{% endblock %}
-        </div>
-
+        {% block content %}{% endblock %}
     </div>
 </div>
 <div id="sidebarshadow" class="barshadow"></div>

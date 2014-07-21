@@ -1,4 +1,5 @@
 import urllib2
+from django.views.decorators.csrf import csrf_exempt
 import uuid as libuuid
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -64,6 +65,8 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 # this view is used to handle all CMS interaction through collections
 # and resources
+
+
 class CMSView(APIView):
     """
     Returns a list of all items and collections in the provided collection in url if url
@@ -338,7 +341,7 @@ class CMSView(APIView):
             return Response("404: No such collection or materialItem.")
 
 
-
+    @csrf_exempt
     def post(self,request):
         isValid = self.isValidUrl(request.path)
         if not isValid:
