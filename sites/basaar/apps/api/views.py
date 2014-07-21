@@ -219,7 +219,11 @@ class CMSView(APIView):
 
 
             #Add product into database
-            downloads = ProductClass.objects.get(name='downloads')  #TODO: Value should come from material type. Check also existence
+            try:
+                itemClass = ProductClass.objects.get(name=x["productType"])
+            #TODO Create better error handling
+            except:
+                return "Product Class cannot be found"
 
             #Create unique UPC
             createdUPC = self.createUPC()
@@ -232,7 +236,7 @@ class CMSView(APIView):
                               moreInfoUrl=x["moreInfoUrl"],  uuid=x["uuid"], version=x["version"],
                               maxAge=x["maximumAge"], minAge=x["minimumAge"], contentLicense=x["contentLicense"],
                               dataLicense=x["dataLicense"], copyrightNotice=x["copyrightNotice"], attributionText=x["attributionText"],
-                              attributionURL=x["attributionURL"], product_class=downloads)    #TODO: product_class on product type
+                              attributionURL=x["attributionURL"], product_class=itemClass)    #TODO: product_class on product type
 
             #Add fullfilment into database
             author = Partner.objects.get(name=self.splitUrl(path)[0])
