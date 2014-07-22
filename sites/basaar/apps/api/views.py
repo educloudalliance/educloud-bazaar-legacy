@@ -451,6 +451,7 @@ class CMSView(APIView):
 
         obj.save()
 
+    """
     def delete(self,request):
         inValidItemsNames = ""
         isValid = self.isValidUrl(request.path)
@@ -478,7 +479,7 @@ class CMSView(APIView):
                 inValidItemsNames += eachItem
                 inValidItemsNames += ",  "
             return Response("items not found:"+inValidItemsNames)
-
+    """
     def deleteExisitingItem(self,finalUrl,x):
         itemNode = models.APINode.objects.get(uniquePath=finalUrl)
         itemNode.materialItem.delete()
