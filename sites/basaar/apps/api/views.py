@@ -152,8 +152,6 @@ class CMSView(APIView):
         if models.APINode.objects.filter(uniquePath=pathSoFar, objectType="collection").exists() == False:
             raise RootException()
 
-
-
         for i in range(1, len(urlTokens)+1):
 
             try:
@@ -168,8 +166,6 @@ class CMSView(APIView):
                 parentPathSoFar = pathSoFar
                 if i < len(urlTokens):
                     pathSoFar += "/" + urlTokens[i] #move to the next
-
-
 
             except models.APINode.DoesNotExist:
                 #the collection doesn't exist yet so create it:
@@ -202,25 +198,6 @@ class CMSView(APIView):
 
         #TODO: WRITE A PROPER SERIALIZER FOR THIS!!!!!!!!!!!!!!!!!
         for x in theList:
-            #create new item
-            """item = models.MaterialItem.create()
-            item.mTitle = x["title"]
-            item.description = x["description"]
-            item.materialUrl = x["materialUrl"]
-            item.materialType = x["materialType"]
-            item.iconUrl = x["iconUrl"]
-            item.moreInfoUrl = x["moreInfoUrl"]
-            item.bazaarUrl = x["bazaarUrl"]         #TODO: THIS IS PROBLEMATIC
-            item.version = x["version"]
-            item.status = x["status"]
-            item.price = x["price"]
-            item.language = x["language"]
-            item.issn = x["issn"]
-            item.author = User.objects.get(username="admin")    #TODO: User should be set to authenticated user when authentication is done
-            """
-            #PRODUCT EXPERIMENT
-
-
             #Add product into database
             try:
                 itemClass = ProductClass.objects.get(name=x["productType"])
@@ -232,8 +209,6 @@ class CMSView(APIView):
             createdUPC = self.createUPC()
 
             #TODO: Make a proper serializer
-            #TODO: Add oEmbed array thing and TAGS array ja LANGUAGE array
-            #TODO: Remove price from model
             #TODO: subject=x["subject"]
             product = Product(title=x["title"], upc=createdUPC, description=x["description"], materialUrl=x["materialUrl"],
                               moreInfoUrl=x["moreInfoUrl"],  uuid=x["uuid"], version=x["version"],
@@ -288,7 +263,6 @@ class CMSView(APIView):
                     tagEntry.save()
                     tagEntry.hasTags.add(product)
 
-
             #oEmbed
             embedList = x["embedMedia"]
             for media in embedList:
@@ -297,8 +271,6 @@ class CMSView(APIView):
                 embedEntry.url = media["url"]
                 embedEntry.product = product
                 embedEntry.save()
-
-
 
             f = StockRecord(product=product, partner=author, price_excl_tax=x["price"], price_retail=x["price"], partner_sku=x["uuid"])
             f.save()
@@ -345,7 +317,7 @@ class CMSView(APIView):
     def post(self,request):
         isValid = self.isValidUrl(request.path)
         if not isValid:
-            return Response("Error: The url is empty 262.")
+            return Response("Error: The url is empty")
 
         if not self.checkJsonData(request):
             return Response("No JSON data available")
@@ -355,7 +327,6 @@ class CMSView(APIView):
 
         #check if the object exists in the db already:
         url = self.slugifyWholeUrl(url)
-
 
         if self.checkIfItemsInPostPath(url):
             return Response("ERROR: There is an item in middle of the path. Item's can't have children.")
@@ -386,15 +357,36 @@ class CMSView(APIView):
         url = self.trimTheUrl(request.path)
         print url
 
-        if not self.checkJsonData(request):
-            return Response("No JSON data available")
+        #if not self.checkJsonData(request):
+        #    return Response("No JSON data available")
 
+        if models.APINode.objects.filter(uniquePath=url).exists():
+            node = models.APINode.objects.get(uniquePath=url)
+            if node.objectType == "item":
+                target = node.materialItem
+                try:
+                    self.updateExistingItem(target, request.DATA)
+                except KeyError:
+                    return Response("Error: Missing or invalid json-field. Update failed.")
+                except ValueError:
+                    return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
+
+                return Response("Material item at " + url +" updated successfully.")
+            else:
+                return Response("Target is not an item but a collection.")
+        else:
+            return Response("No such item in db to update. ")
+
+        print request.DATA["title"]
+
+        return Response("asdsa")
+        """
         theList = request.DATA["items"]
         inValidItems = []
         for eachItem in theList:
-            finalUrl = url + "/" + slugify(eachItem["title"])
+            finalUrl = url + "/" + slugify(eachItem["uuid"])
             if not models.APINode.objects.filter(uniquePath=finalUrl).exists():
-                inValidItems.append(eachItem["title"])
+                inValidItems.append(eachItem["uuid"])
             else:
                 self.updateExistingItem(finalUrl,eachItem)
         if len(inValidItems) == 0:
@@ -404,44 +396,25 @@ class CMSView(APIView):
                 inValidItemsNames += eachItem
                 inValidItemsNames += ",  "
             return Response("items not found:"+inValidItemsNames)
+        """
 
-    def updateExistingItem(self,finalUrl,x):
-            """
-            itemNode = models.APINode.objects.get(uniquePath=finalUrl)
-            item = itemNode.materialItem
-            #item = models.MaterialItem.objects.get(id = itemNode.materialItem)
-            item.description = x["description"]
-            item.materialUrl = x["materialUrl"]
-            item.materialType = x["materialType"]
-            item.iconUrl = x["iconUrl"]
-            item.moreInfoUrl = x["moreInfoUrl"]
-            item.bazaarUrl = x["bazaarUrl"]         #TODO: THIS IS PROBLEMATIC
-            item.version = x["version"]
-            item.status = x["status"]
-            item.price = x["price"]
-            item.language = x["language"]
-            item.issn = x["issn"]
-            item.author = User.objects.get(username="admin")    #TODO: User should be set to authenticated user when authentication is done
-            item.save()
-            """
-            #PRODUCT EXPERIMENT
-            #TODO::Update the product table of oscar after modifying the exisiting models
-            """
-            downloads = ProductClass.objects.get(name='downloads')
-            p = Product.objects.get(title=x["title"],product_class=downloads)
-            p.description=x["description"]
-            p.materialUrl=x["materialUrl"]
-            p.moreInfoUrl=x["moreInfoUrl"]
-            p.save()
-
-            f = StockRecord.objects.get(product=p)
-            f.partner=author
-            f.price_excl_tax=x["price"]
-            f.price_retail=x["price"]
-            f.partner_sku=x["issn"]
-            f.save()
-            """
-            pass
+    #updates an existing Product with data provided in the request
+    def updateExistingItem(self,obj, DATA):
+        obj.title = DATA["title"]
+        obj.description = DATA["description"]
+        obj.materialUrl = DATA["materialUrl"]
+        obj.version = DATA["version"]
+        obj.contributionDate = datetime.strptime(DATA["contributionDate"], "%Y-%m-%d")
+        obj.moreInfoUrl = DATA["moreInfoUrl"]
+        obj.maxAge = DATA["maximumAge"]
+        obj.minAge = DATA["minimumAge"]
+        obj.contentLicense = DATA["contentLicense"]
+        obj.dataLicense = DATA["dataLicense"]
+        obj.copyrightNotice = DATA["copyrightNotice"]
+        obj.attributionText = DATA["attributionText"]
+        obj.attributionURL = DATA["attributionURL"]
+        #TODO: array updates
+        obj.save()
 
     def delete(self,request):
         inValidItemsNames = ""
