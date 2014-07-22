@@ -377,26 +377,7 @@ class CMSView(APIView):
         else:
             return Response("No such item in db to update. ")
 
-        print request.DATA["title"]
 
-        return Response("asdsa")
-        """
-        theList = request.DATA["items"]
-        inValidItems = []
-        for eachItem in theList:
-            finalUrl = url + "/" + slugify(eachItem["uuid"])
-            if not models.APINode.objects.filter(uniquePath=finalUrl).exists():
-                inValidItems.append(eachItem["uuid"])
-            else:
-                self.updateExistingItem(finalUrl,eachItem)
-        if len(inValidItems) == 0:
-            return Response("Successfully deleted data")
-        else:
-            for eachItem in inValidItems:
-                inValidItemsNames += eachItem
-                inValidItemsNames += ",  "
-            return Response("items not found:"+inValidItemsNames)
-        """
 
     #updates an existing Product with data provided in the request
     def updateExistingItem(self,obj, DATA):
@@ -413,7 +394,61 @@ class CMSView(APIView):
         obj.copyrightNotice = DATA["copyrightNotice"]
         obj.attributionText = DATA["attributionText"]
         obj.attributionURL = DATA["attributionURL"]
-        #TODO: array updates
+
+        tagList = DATA["tags"]
+        #Remove existing relationships to this material from tags
+        existingTags = Tag.objects.filter(hasTags=obj)
+        for t in existingTags:
+            print "Remove tag reference"
+            t.hasTags.remove(obj)
+
+        for tag in tagList:
+            print tag["tag"]
+            #check if the tag is already in db, if not create it
+            if Tag.objects.filter(name=tag["tag"]).exists():
+                t = Tag.objects.get(name=tag["tag"])
+                t.hasTags.add(obj)
+            else:
+                tagEntry = Tag.create()
+                tagEntry.name = tag["tag"]
+                tagEntry.save()
+                tagEntry.hasTags.add(obj)
+
+        #oEmbed
+        embedList = DATA["embedMedia"]
+        #remove existing embed urls
+        existing = EmbeddedMedia.objects.filter(product=obj)
+        for e in existing:
+            e.delete()
+
+        #create new ones
+        for media in embedList:
+            print media["url"]
+            embedEntry = EmbeddedMedia.create()
+            embedEntry.url = media["url"]
+            embedEntry.product = obj
+            embedEntry.save()
+
+
+        #Remove existing relationships to this material from languages
+        langList = DATA["language"]
+        existingLangs = Language.objects.filter(hasLanguage=obj)
+        for l in existingLangs:
+            print "Remove language reference"
+            l.hasLanguage.remove(obj)
+
+        for lang in langList:
+            #check if the language is already in db, if not create it
+            if Language.objects.filter(name=lang["lang"]).exists():
+                    l = Language.objects.get(name=lang["lang"])
+                    l.hasLanguage.add(obj)
+            else:
+                langEntry = Language.create()
+                langEntry.name = lang["lang"]
+                langEntry.save()
+                langEntry.hasLanguage.add(obj)
+
+
         obj.save()
 
     def delete(self,request):
