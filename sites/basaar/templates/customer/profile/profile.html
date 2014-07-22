@@ -4,8 +4,8 @@
 
 {% block tabcontent %}
     <div class="flexItem"></div>
-    <div class="box-page content-800 flex-container-vertical">
-        <div><h1>Profile</h1>
+    <div class="box-page content-900 flex-container-vertical">
+        <div><img src="#" class="profile-pic-medium"><h1>Profile</h1>
         </div>
         <div class="flex-container flex-wrap">
             <div class="flexItem flex-container-vertical">
@@ -35,13 +35,26 @@
                             </tr>
                         </tbody>
                     </table>
+
                 </div>
 
             </div>
             <div class="flexItem flex-container-vertical">
+                <h2>Recent Activity</h2>
+                <div class="content-box flex-container-vertical">
+                    {% if num_unread_notifications > 0 %}
+                        <div class="notification-number">{{num_unread_notifications}}</div>
+                    {% else %}
+                        <p>{% trans "There are no notifications" %}<p>
+                    {% endif %}
+                </div>
+                <h2>Purchases</h2>
+                <div class="content-box flex-container-vertical">
+                </div>
                 <a href="{% url 'customer:change-password' %}" class="btn btn-primary">{% trans 'Change password' %}</a>
                 <a href="{% url 'customer:profile-update' %}" class="btn btn-primary">{% trans 'Edit profile' %}</a>
                 <a id="delete_profile" href="{% url 'customer:profile-delete' %}" class="btn btn-danger">{% trans 'Delete profile' %}</a>
+                <a class="btn" href="{% url 'customer:logout' %}">{% trans "Logout" %}</a>
 
             </div>
         </div>

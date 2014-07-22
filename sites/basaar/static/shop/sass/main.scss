@@ -109,6 +109,7 @@ textarea, input { outline: none; }
             color: black;
             border: 1px solid $blue-main;
             padding: 0px 5px;
+            width: 90%;
         }
     }
     .basket-mini {
@@ -207,11 +208,24 @@ textarea, input { outline: none; }
         min-height: $menu-icons-width + $menu-icons-gap;
         min-width: 500px;
         z-index: 200;
+
+        .profile-pic-small {
+            border-radius: 200px;
+            height: $menu-width * 0.6;
+            width: $menu-width * 0.6;
+            background-color: $dark-gray;
+            background-size: cover;
+            background-position: center;
+            float: left;
+            margin-right: 10px;
+            margin-top: $menu-width * 0.2;
+            border: 1px solid $dark-gray;
+        }
         
         .menu-box-header {
             background: $light-blue;
             height: $menu-width;
-            line-height: $menu-icons-width + $menu-icons-gap;
+            line-height: $menu-width;
             font-size: 16pt;
             text-align: left;
             padding: 0px $menu-box-bridge-width * 2;
@@ -233,7 +247,8 @@ textarea, input { outline: none; }
                     text-decoration: none;
                 }
                 a.btn:hover {
-                    background: $light-gray;
+                    //background: $light-gray;
+                    font-weight: bold;
                 }
             }
         }
@@ -533,16 +548,35 @@ textarea, input { outline: none; }
     z-index: -10;
 
 
-    .content-800 {
-        max-width: 800px;
+    .content-900 {
+        width: 900px;
     }
     
     .box-page {
         color: $dark-gray;
 
+        .profile-pic-medium {
+            border-radius: 200px;
+            height: 60px;
+            width: 60px;
+            background-color: $dark-gray;
+            background-size: cover;
+            background-position: center;
+            float: left;
+            margin-top: 10px;
+            margin-right: 15px;
+            border: 1px solid $dark-gray;
+        }
+
+        h2 {
+            font-weight: normal;
+            padding: 0px 10px;
+        }
+
         .content-box {
             background: $light-gray;
             padding: 10px;
+            margin: 10px;
             min-width: 350px;
         }
     }
