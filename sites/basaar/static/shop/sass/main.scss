@@ -89,6 +89,7 @@ textarea, input { outline: none; }
     background: $blue-main;
     width: $menu-width;
     text-align: center;
+    @include user-select(none);
 
     .menu-header {
         width: $menu-width;
@@ -240,6 +241,7 @@ textarea, input { outline: none; }
             padding: 0px $menu-box-bridge-width * 2;
         }
         .menu-box-content {
+            @include user-select(text);
             display: none;
             border-bottom: 3px solid $light-blue;
             border-left: 3px solid $light-blue;
@@ -247,6 +249,7 @@ textarea, input { outline: none; }
             background: white;
             box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
             .menu-box-footer {
+                @include user-select(none);
                 height: $menu-width / 2;
                 border-top: 3px solid $light-blue;
                 line-height: $menu-width / 2;
@@ -281,6 +284,7 @@ textarea, input { outline: none; }
     padding: 5px;
     text-align: right;
     color: $gray;
+    @include user-select(none);
     .menu-icon {
         cursor: pointer;
     }
@@ -319,6 +323,7 @@ textarea, input { outline: none; }
     top: 0px;
     right: 0px;
     left: $menu-width;
+    @include user-select(none);
     @include filter-gradient(#ffffff, #ffffff, vertical);
     @include background-image(linear-gradient(top,  rgba(255,255,255,0.9) 0%,rgba(255,255,255,0.9) 30%,rgba(255,255,255,1) 100%));
 
@@ -478,6 +483,7 @@ textarea, input { outline: none; }
         background: $orange;
         text-transform: uppercase;
         cursor: pointer;
+        @include user-select(none);
         > p {
             margin: 0;
             padding: 20px 0px;
@@ -493,6 +499,7 @@ textarea, input { outline: none; }
     #tabs-sidebar {
         background: $light-gray;
         ul {
+            @include user-select(none);
             height: $tab-header-height;
             text-align: center;
             list-style: none;
@@ -644,6 +651,7 @@ textarea, input { outline: none; }
             height: $tab-header-height;
             text-align: center;
             ul {
+                @include user-select(none);
                 text-align: center;
                 list-style: none;
                 padding: 0px;
