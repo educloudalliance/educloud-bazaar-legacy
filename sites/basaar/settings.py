@@ -320,7 +320,6 @@ INSTALLED_APPS = [
     'provider',
     'provider.oauth2',
     'cookie_message',
-    'oembed',
     'rest_framework_swagger',
 ] + get_core_apps(['apps.catalogue'])
 
