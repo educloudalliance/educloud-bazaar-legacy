@@ -76,7 +76,6 @@ textarea, input { outline: none; }
     flex: 5;
 }
 
-
 .barshadow {
     width: $menu-width;
     height: 100%;
@@ -789,6 +788,45 @@ textarea, input { outline: none; }
         .review-list {
             list-style: none;
         }
+    }
+}
+
+.py-messages {
+    position: fixed;
+    background: rgba(255,255,102,0.85);
+    border: 2px solid $dark-gray;
+    color: black;
+    top: 15px;
+    right: 15px;
+    left: 15px;
+    z-index: 9999;
+    ul {
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+        li {
+            padding: 20px 15px;
+        }
+    }
+    .close-btn {
+        position: relative;
+        float: right;
+        right: 0px;
+        top: 0px;
+        margin: 5px;
+        border-radius: 5px;
+        border: 2px solid $dark-gray;
+        color: $dark-gray;
+        background: white;
+        line-height: 30px;
+        height: 30px;
+        width: 30px;
+        text-align: center;
+        cursor: pointer;
+        
+    }
+    .close-btn:hover {
+        background: $light-blue;
     }
 }
 

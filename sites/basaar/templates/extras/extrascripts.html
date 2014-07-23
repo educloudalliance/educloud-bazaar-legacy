@@ -122,6 +122,10 @@
             calculateTotalPrice($(this).val(),$(this).parents('form').find('.totalPriceValue'))
         });
 
+        $('.py-messages .close-btn').click(function(){
+            $(this).parent().hide('fade');
+        })
+
     }
     function calculateTotalPrice(quantity, resultSelector){
         resultSelector.text((individualPrice * quantity).toFixed(2));

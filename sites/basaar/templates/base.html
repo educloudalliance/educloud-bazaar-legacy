@@ -55,6 +55,17 @@
         {# Main content goes in this 'layout' block #}
         {% block layout %}
         {% endblock %}
+
+        {% if messages %}
+        <div class="py-messages">
+            <a class="close-btn">X</a>
+            <ul>
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
         
         {% block cdn_scripts %}
             <!-- jQuery -->

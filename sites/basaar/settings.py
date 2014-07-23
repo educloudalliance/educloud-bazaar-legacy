@@ -162,6 +162,7 @@ MIDDLEWARE_CLASSES = (
     # Enable the ProfileMiddleware, then add ?cprofile to any
     # URL path to print out profile details
     #'oscar.profiling.middleware.ProfileMiddleware',
+    'cookie_message.middleware.CookieMessageMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -294,6 +295,7 @@ LOGGING = {
     }
 }
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 INSTALLED_APPS = [
     'django.contrib.auth',
@@ -317,6 +319,7 @@ INSTALLED_APPS = [
     'apps.catalogue',
     'provider',
     'provider.oauth2',
+    'cookie_message',
 ]
 from oscar import get_core_apps
 INSTALLED_APPS = INSTALLED_APPS + get_core_apps()
