@@ -1,5 +1,7 @@
 from django.db import models
 from oscar.apps.catalogue.abstract_models import *
+from django.utils.translation import ugettext_lazy as _, pgettext_lazy
+
 
 class Category(AbstractCategory):
     pass
@@ -27,6 +29,19 @@ class Product(AbstractProduct):
     copyrightNotice = models.CharField(max_length=4000)
     attributionText = models.TextField()
     attributionURL = models.CharField(max_length=4000)
+
+    def get_media(self):
+        """
+        Return a product's embedded media
+        """
+        url = []
+        mediaArray = EmbeddedMedia.objects.filter(product=self)
+        for media in mediaArray:
+            url.append(media.url)
+
+        return url
+
+    get_media.short_description = _("Embedded media")
 
 
 class Language(models.Model):

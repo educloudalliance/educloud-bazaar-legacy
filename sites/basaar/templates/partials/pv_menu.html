@@ -16,14 +16,35 @@
         </div>
         <div class="flexItem">
             <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_Profile.Icon.svg"/>
+            {% if num_unread_notifications > 0 %}
+            <div class="notification-number">{{num_unread_notifications}}</div>
+            {% endif %}
             <div class="menu-box">
                 <div class="flex-container-vertical">
-                    <div class="menu-box-header">
-                        Profile</div>
-                    <div class="menu-box-content">
-                        {% include "partials/nav_accounts.html" %}
-                        <div class="menu-box-footer">-</div>
-                    </div>
+                    {% if user.is_authenticated %}
+                        <div class="menu-box-header">
+                            <img src="#" class="profile-pic-small">
+                            Profile</div>
+                        <div class="menu-box-content">
+                            {% include "partials/nav_accounts.html" %}
+                            <div class="menu-box-footer flex-container">
+                                {% if user.is_staff or perms.partner.dashboard_access %}
+                                    <a class="btn flexItem" href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
+                                {% endif %}
+                                <a class="btn flexItem" href="{% url 'customer:summary' %}">{% trans "Account" %}</a>
+                                <a class="btn flexItem" href="{% url 'customer:logout' %}">{% trans "Logout" %}</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="menu-box-header">
+                            Profile</div>
+                        <div class="menu-box-content">
+                            {% include "partials/nav_accounts.html" %}
+                            <div class="menu-box-footer flex-container">
+                                <a class="btn flexItem" href="{% url 'customer:login' %}">{% trans "Login or register" %}</a>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -53,8 +74,9 @@
                 <div class="menu-bridge"></div>
                 <div class="flex-container-vertical">
                     <div class="menu-box-header">
-                        <form id="generalSearch" method="get" action="{% url 'search:search' %}" class="navbar-form pull-right">
-                            {{ search_form.q }}
+                        <form id="generalSearch" method="get" action="{% url 'search:search' %}" class="flex-container">
+                            <div class="flexItem">{{ search_form.q }}</div>
+                            <button onclick="form.submit()">Search</button>
                         </form>
                     </div>
                 </div>

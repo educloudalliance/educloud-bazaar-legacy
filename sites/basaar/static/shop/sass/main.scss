@@ -76,7 +76,6 @@ textarea, input { outline: none; }
     flex: 5;
 }
 
-
 .barshadow {
     width: $menu-width;
     height: 100%;
@@ -89,6 +88,7 @@ textarea, input { outline: none; }
     background: $blue-main;
     width: $menu-width;
     text-align: center;
+    @include user-select(none);
 
     .menu-header {
         width: $menu-width;
@@ -108,7 +108,17 @@ textarea, input { outline: none; }
         input {
             color: black;
             border: 1px solid $blue-main;
-            padding: 0px 5px;
+            padding: 0px 2%;
+            width: 96%;
+            height: $menu-width * 0.5;
+        }
+        button {
+            background: none;
+            border: none;
+            text-decoration: none;
+            color: $green-main;
+            font-size: 12pt;
+            padding: 0px 15px;
         }
     }
     .basket-mini {
@@ -207,16 +217,30 @@ textarea, input { outline: none; }
         min-height: $menu-icons-width + $menu-icons-gap;
         min-width: 500px;
         z-index: 200;
+
+        .profile-pic-small {
+            border-radius: 200px;
+            height: $menu-width * 0.6;
+            width: $menu-width * 0.6;
+            background-color: $dark-gray;
+            background-size: cover;
+            background-position: center;
+            float: left;
+            margin-right: 10px;
+            margin-top: $menu-width * 0.2;
+            border: 1px solid $dark-gray;
+        }
         
         .menu-box-header {
             background: $light-blue;
             height: $menu-width;
-            line-height: $menu-icons-width + $menu-icons-gap;
+            line-height: $menu-width;
             font-size: 16pt;
             text-align: left;
             padding: 0px $menu-box-bridge-width * 2;
         }
         .menu-box-content {
+            @include user-select(text);
             display: none;
             border-bottom: 3px solid $light-blue;
             border-left: 3px solid $light-blue;
@@ -224,6 +248,7 @@ textarea, input { outline: none; }
             background: white;
             box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
             .menu-box-footer {
+                @include user-select(none);
                 height: $menu-width / 2;
                 border-top: 3px solid $light-blue;
                 line-height: $menu-width / 2;
@@ -233,7 +258,8 @@ textarea, input { outline: none; }
                     text-decoration: none;
                 }
                 a.btn:hover {
-                    background: $light-gray;
+                    //background: $light-gray;
+                    font-weight: bold;
                 }
             }
         }
@@ -255,9 +281,12 @@ textarea, input { outline: none; }
     font-size: 11pt;
     min-width: 50px;
     padding: 5px;
-    cursor: pointer;
     text-align: right;
     color: $gray;
+    @include user-select(none);
+    .menu-icon {
+        cursor: pointer;
+    }
     .menu-icon > svg {
         height: 11pt;
         width: 11pt;
@@ -293,6 +322,7 @@ textarea, input { outline: none; }
     top: 0px;
     right: 0px;
     left: $menu-width;
+    @include user-select(none);
     @include filter-gradient(#ffffff, #ffffff, vertical);
     @include background-image(linear-gradient(top,  rgba(255,255,255,0.9) 0%,rgba(255,255,255,0.9) 30%,rgba(255,255,255,1) 100%));
 
@@ -372,7 +402,7 @@ textarea, input { outline: none; }
                 height: $nav-height / 3;
             }
             input {
-                margin: 0px;
+                margin: 0px 20px 0px 0px;
                 font-size: 10pt;
                 border: none;
                 padding: 1px 4px;
@@ -452,6 +482,7 @@ textarea, input { outline: none; }
         background: $orange;
         text-transform: uppercase;
         cursor: pointer;
+        @include user-select(none);
         > p {
             margin: 0;
             padding: 20px 0px;
@@ -467,6 +498,7 @@ textarea, input { outline: none; }
     #tabs-sidebar {
         background: $light-gray;
         ul {
+            @include user-select(none);
             height: $tab-header-height;
             text-align: center;
             list-style: none;
@@ -533,16 +565,35 @@ textarea, input { outline: none; }
     z-index: -10;
 
 
-    .content-800 {
-        max-width: 800px;
+    .content-900 {
+        width: 900px;
     }
     
     .box-page {
         color: $dark-gray;
 
+        .profile-pic-medium {
+            border-radius: 200px;
+            height: 60px;
+            width: 60px;
+            background-color: $dark-gray;
+            background-size: cover;
+            background-position: center;
+            float: left;
+            margin-top: 10px;
+            margin-right: 15px;
+            border: 1px solid $dark-gray;
+        }
+
+        h2 {
+            font-weight: normal;
+            padding: 0px 10px;
+        }
+
         .content-box {
             background: $light-gray;
             padding: 10px;
+            margin: 10px;
             min-width: 350px;
         }
     }
@@ -599,6 +650,7 @@ textarea, input { outline: none; }
             height: $tab-header-height;
             text-align: center;
             ul {
+                @include user-select(none);
                 text-align: center;
                 list-style: none;
                 padding: 0px;
@@ -736,6 +788,45 @@ textarea, input { outline: none; }
         .review-list {
             list-style: none;
         }
+    }
+}
+
+.py-messages {
+    position: fixed;
+    background: rgba(255,255,102,0.85);
+    border: 2px solid $dark-gray;
+    color: black;
+    top: 15px;
+    right: 15px;
+    left: 15px;
+    z-index: 9999;
+    ul {
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+        li {
+            padding: 20px 15px;
+        }
+    }
+    .close-btn {
+        position: relative;
+        float: right;
+        right: 0px;
+        top: 0px;
+        margin: 5px;
+        border-radius: 5px;
+        border: 2px solid $dark-gray;
+        color: $dark-gray;
+        background: white;
+        line-height: 30px;
+        height: 30px;
+        width: 30px;
+        text-align: center;
+        cursor: pointer;
+        
+    }
+    .close-btn:hover {
+        background: $light-blue;
     }
 }
 

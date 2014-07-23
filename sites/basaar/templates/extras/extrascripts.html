@@ -49,14 +49,14 @@
             toggleAccordion();
         }
 
-        $('#language-selector').click(function() {
-            if($(this).find('.menu-box').is(":visible")) {
+        $('#language-selector .menu-icon').click(function() {
+            if($(this).parent().find('.menu-box').is(":visible")) {
                 $('.menu-box').hide('fade');
                 $('#icons > .flexItem').removeClass('active');
             } else {
                 $('.menu-box').hide('fade');
                 $('#icons > .flexItem').removeClass('active');
-                $(this).find('.menu-box').show('fade');
+                $(this).parent().find('.menu-box').show('fade');
             }
         });
 
@@ -121,6 +121,10 @@
         $('#tabs-product form input').change(function(){
             calculateTotalPrice($(this).val(),$(this).parents('form').find('.totalPriceValue'))
         });
+
+        $('.py-messages .close-btn').click(function(){
+            $(this).parent().hide('fade');
+        })
 
     }
     function calculateTotalPrice(quantity, resultSelector){
