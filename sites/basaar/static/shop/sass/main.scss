@@ -279,9 +279,11 @@ textarea, input { outline: none; }
     font-size: 11pt;
     min-width: 50px;
     padding: 5px;
-    cursor: pointer;
     text-align: right;
     color: $gray;
+    .menu-icon {
+        cursor: pointer;
+    }
     .menu-icon > svg {
         height: 11pt;
         width: 11pt;
