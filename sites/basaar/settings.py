@@ -317,6 +317,7 @@ INSTALLED_APPS = [
     'apps.catalogue',
     'provider',
     'provider.oauth2',
+    'rest_framework_swagger',
 ]
 from oscar import get_core_apps
 INSTALLED_APPS = INSTALLED_APPS + get_core_apps()

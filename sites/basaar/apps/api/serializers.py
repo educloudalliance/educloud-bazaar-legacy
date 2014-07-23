@@ -7,6 +7,9 @@ Product = get_model('catalogue', 'Product')
 EmbeddedMedia = get_model('catalogue', 'EmbeddedMedia')
 Tags = get_model('catalogue', 'Tags')
 Language = get_model('catalogue', 'Language')
+StockRecord = get_model('partner', 'StockRecord')
+Category = get_model('catalogue', 'Category')
+ProductCategory = get_model('catalogue', 'ProductCategory')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -36,6 +39,8 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     embedMedia = serializers.SerializerMethodField('mediaUrlLookup')
     tags = serializers.SerializerMethodField('tagsLookup')
     languages = serializers.SerializerMethodField('languageLookup')
+    price = serializers.SerializerMethodField('priceLookup')
+    subject = serializers.SerializerMethodField("subjectLookup")
 
     def mediaUrlLookup(self, obj):
         objs = EmbeddedMedia.objects.filter(product=obj)
@@ -48,11 +53,19 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     def languageLookup(self, obj):
         return Language.objects.filter(hasLanguage=obj)
 
+    def priceLookup(self, obj):
+        return StockRecord.objects.get(product=obj).price_retail
+
+    def subjectLookup(self, obj):
+        productCategory = ProductCategory.objects.get(product=obj)
+        return productCategory.category.name
+
+
     class Meta:
         model = Product
         fields = ('uuid', 'title', 'description', 'materialUrl', 'moreInfoUrl', 'version',
         'contributionDate', 'maxAge', 'minAge', 'contentLicense',
-        'dataLicense', 'copyrightNotice', 'attributionText', 'attributionURL', 'embedMedia', 'tags', 'languages')
+        'dataLicense', 'copyrightNotice', 'attributionText', 'attributionURL', 'embedMedia', 'tags', 'languages', 'price', 'subject')
         #read_only_fields = ('mTitle', 'slug')
 
 class APINodeSerializer(serializers.HyperlinkedModelSerializer):
@@ -75,4 +88,14 @@ class TagsSerializer(serializers.HyperlinkedModelSerializer):
 class LanguageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Language
+        fields = ('name')
+
+class PriceSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = StockRecord
+        fields = ('price_retail')
+
+class SubjectSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Category
         fields = ('name')
