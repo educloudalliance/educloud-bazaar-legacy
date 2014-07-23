@@ -1,7 +1,6 @@
 {% load thumbnail %}
 {% load i18n %}
 {% load staticfiles %}
-{% load oembed_tags %}
 
 {% with all_media=product.get_media %}
 
@@ -21,7 +20,7 @@
 <div id="product_gallery">
     <div class="carousel">
         {% for url in all_media %}
-            {{ url|oembed:"600x600" }}
+            {{ url }}
         {% endfor %}
     </div>
 </div>
