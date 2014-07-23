@@ -294,7 +294,7 @@ LOGGING = {
     }
 }
 
-
+from oscar import get_core_apps
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -314,12 +314,10 @@ INSTALLED_APPS = [
     'apps.gateway',     # For allowing dashboard access
     'apps.api',
     'rest_framework',
-    'apps.catalogue',
     'provider',
     'provider.oauth2',
-]
-from oscar import get_core_apps
-INSTALLED_APPS = INSTALLED_APPS + get_core_apps()
+    'oembed',
+] + get_core_apps(['apps.catalogue'])
 
 # Add Oscar's custom auth backend so users can sign in using their email
 # address.
