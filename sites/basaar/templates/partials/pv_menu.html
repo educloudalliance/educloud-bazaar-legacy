@@ -74,8 +74,9 @@
                 <div class="menu-bridge"></div>
                 <div class="flex-container-vertical">
                     <div class="menu-box-header">
-                        <form id="generalSearch" method="get" action="{% url 'search:search' %}" class="navbar-form pull-right">
-                            {{ search_form.q }}
+                        <form id="generalSearch" method="get" action="{% url 'search:search' %}" class="flex-container">
+                            <div class="flexItem">{{ search_form.q }}</div>
+                            <button onclick="form.submit()">Search</button>
                         </form>
                     </div>
                 </div>

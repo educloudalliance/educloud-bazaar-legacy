@@ -108,8 +108,17 @@ textarea, input { outline: none; }
         input {
             color: black;
             border: 1px solid $blue-main;
-            padding: 0px 5px;
-            width: 90%;
+            padding: 0px 2%;
+            width: 96%;
+            height: $menu-width * 0.5;
+        }
+        button {
+            background: none;
+            border: none;
+            text-decoration: none;
+            color: $green-main;
+            font-size: 12pt;
+            padding: 0px 15px;
         }
     }
     .basket-mini {
@@ -387,7 +396,7 @@ textarea, input { outline: none; }
                 height: $nav-height / 3;
             }
             input {
-                margin: 0px;
+                margin: 0px 20px 0px 0px;
                 font-size: 10pt;
                 border: none;
                 padding: 1px 4px;
