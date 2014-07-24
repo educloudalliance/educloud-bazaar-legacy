@@ -261,37 +261,37 @@ class CMSView(APIView):
             #create language, Tags and EmbeddedMedia models
             langList = x["language"]
             for lan in langList:
-                print lan["lang"]
+                print lan
                 #check if the language is already in db, if not create it
-                if Language.objects.filter(name=lan["lang"]).exists():
-                    l = Language.objects.get(name=lan["lang"])
+                if Language.objects.filter(name=lan).exists():
+                    l = Language.objects.get(name=lan)
                     l.hasLanguage.add(product)
                 else:
                     langEntry = Language.create()
-                    langEntry.name = lan["lang"]
+                    langEntry.name = lan
                     langEntry.save()
                     langEntry.hasLanguage.add(product)
 
             #tags creation
             tagList = x["tags"]
             for tag in tagList:
-                print tag["tag"]
+                print tag
                 #check if the tag is already in db, if not create it
-                if Tag.objects.filter(name=tag["tag"]).exists():
-                    t = Tag.objects.get(name=tag["tag"])
+                if Tag.objects.filter(name=tag).exists():
+                    t = Tag.objects.get(name=tag)
                     t.hasTags.add(product)
                 else:
                     tagEntry = Tag.create()
-                    tagEntry.name = tag["tag"]
+                    tagEntry.name = tag
                     tagEntry.save()
                     tagEntry.hasTags.add(product)
 
             #oEmbed
             embedList = x["embedMedia"]
             for media in embedList:
-                print media["url"]
+                print media
                 embedEntry = EmbeddedMedia.create()
-                embedEntry.url = media["url"]
+                embedEntry.url = media
                 embedEntry.product = product
                 embedEntry.save()
 
@@ -372,10 +372,10 @@ class CMSView(APIView):
             return Response("ERROR: There is already a resource with same uuid. uuid must be unique.")
         except KeyError:
             return Response("Error: Missing or invalid json-field. Update failed.")
-        except ValueError:
-            return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
-        except TypeError:
-            return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
+            #except ValueError:
+            #    return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
+            #except TypeError:
+            #return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
         except DataException as e:
             return Response(e.msg)
 
@@ -451,14 +451,14 @@ class CMSView(APIView):
             t.hasTags.remove(obj)
 
         for tag in tagList:
-            print tag["tag"]
+            print tag
             #check if the tag is already in db, if not create it
-            if Tag.objects.filter(name=tag["tag"]).exists():
-                t = Tag.objects.get(name=tag["tag"])
+            if Tag.objects.filter(name=tag).exists():
+                t = Tag.objects.get(name=tag)
                 t.hasTags.add(obj)
             else:
                 tagEntry = Tag.create()
-                tagEntry.name = tag["tag"]
+                tagEntry.name = tag
                 tagEntry.save()
                 tagEntry.hasTags.add(obj)
 
@@ -471,9 +471,9 @@ class CMSView(APIView):
 
         #create new ones
         for media in embedList:
-            print media["url"]
+            print media
             embedEntry = EmbeddedMedia.create()
-            embedEntry.url = media["url"]
+            embedEntry.url = media
             embedEntry.product = obj
             embedEntry.save()
 
@@ -487,12 +487,12 @@ class CMSView(APIView):
 
         for lang in langList:
             #check if the language is already in db, if not create it
-            if Language.objects.filter(name=lang["lang"]).exists():
-                    l = Language.objects.get(name=lang["lang"])
+            if Language.objects.filter(name=lang).exists():
+                    l = Language.objects.get(name=lang)
                     l.hasLanguage.add(obj)
             else:
                 langEntry = Language.create()
-                langEntry.name = lang["lang"]
+                langEntry.name = lang
                 langEntry.save()
                 langEntry.hasLanguage.add(obj)
 
