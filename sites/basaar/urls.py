@@ -28,6 +28,7 @@ urlpatterns = [
     #
     url(r'^ajax/$', 'apps.ajax.home.loadItems'),
     url(r'^oauth2/', include('provider.oauth2.urls', namespace='oauth2')),
+    url(r'^docs/', include('rest_framework_swagger.urls')),
 ]
 
 # Prefix Oscar URLs with language codes

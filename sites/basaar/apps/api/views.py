@@ -25,6 +25,7 @@ from django.http import Http404
 
 
 Product = get_model('catalogue', 'Product')
+ProductCategory = get_model('catalogue', 'ProductCategory')
 Language = get_model('catalogue', 'Language')
 Tag = get_model('catalogue', 'Tags')
 EmbeddedMedia = get_model('catalogue', 'EmbeddedMedia')
@@ -44,6 +45,14 @@ class RootException(Exception):
         pass
     def __str__(self):
         return repr("Cannot create Root-nodes")
+
+class DataException(Exception):
+    msg = ""
+    def __init__(self, msg):
+        self.msg = msg
+    def __str__(self):
+        return repr(self.msg)
+
 
 # Create your views here.
 # API-views
@@ -72,12 +81,14 @@ class CMSView(APIView):
     Returns a list of all items and collections in the provided collection in url if url
     points to a valid collection or item. In case of collections a json list of items and collections
     is returned while in case of a materialitem a json representation of the material is returned.
+
+    param1 -- A first parameter
+    param2 -- A second parameter
     """
     #authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     #permission_classes = ( IsOwner, ) #permissions.IsAuthenticatedOrReadOnly,
     authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
-
 
     def splitUrl(self, url):
         splitpath = url.lower().split('/')
@@ -219,6 +230,8 @@ class CMSView(APIView):
             #Add fullfilment into database
             author = Partner.objects.get(name=self.splitUrl(path)[0])
 
+
+
             try:
                 product.contributionDate = datetime.strptime(x["contributionDate"], "%Y-%m-%d")
             except ValueError:
@@ -235,40 +248,50 @@ class CMSView(APIView):
                 self.downloadIcon(x["iconUrl"], createdUPC)
 
             product.save()
+
+            if Category.objects.filter(name=x["subject"]).exists():
+                    category = Category.objects.get(name=x["subject"])
+                    newProductCategory = ProductCategory(product=product, category=category)
+                    newProductCategory.save()
+            else:
+                product.delete()
+                return "No such product category as in subject field: " + x["subject"]
+
+
             #create language, Tags and EmbeddedMedia models
             langList = x["language"]
             for lan in langList:
-                print lan["lang"]
+                print lan
                 #check if the language is already in db, if not create it
-                if Language.objects.filter(name=lan["lang"]).exists():
-                    l = Language.objects.get(name=lan["lang"])
+                if Language.objects.filter(name=lan).exists():
+                    l = Language.objects.get(name=lan)
                     l.hasLanguage.add(product)
                 else:
                     langEntry = Language.create()
-                    langEntry.name = lan["lang"]
+                    langEntry.name = lan
                     langEntry.save()
                     langEntry.hasLanguage.add(product)
 
             #tags creation
             tagList = x["tags"]
             for tag in tagList:
-                print tag["tag"]
+                print tag
                 #check if the tag is already in db, if not create it
-                if Tag.objects.filter(name=tag["tag"]).exists():
-                    t = Tag.objects.get(name=tag["tag"])
+                if Tag.objects.filter(name=tag).exists():
+                    t = Tag.objects.get(name=tag)
                     t.hasTags.add(product)
                 else:
                     tagEntry = Tag.create()
-                    tagEntry.name = tag["tag"]
+                    tagEntry.name = tag
                     tagEntry.save()
                     tagEntry.hasTags.add(product)
 
             #oEmbed
             embedList = x["embedMedia"]
             for media in embedList:
-                print media["url"]
+                print media
                 embedEntry = EmbeddedMedia.create()
-                embedEntry.url = media["url"]
+                embedEntry.url = media
                 embedEntry.product = product
                 embedEntry.save()
 
@@ -287,6 +310,7 @@ class CMSView(APIView):
 
 
     def get(self, request):
+
         isValid = self.isValidUrl(request.path)
         if not isValid:
             return Response("Error: The url is empty.")
@@ -341,10 +365,19 @@ class CMSView(APIView):
             return Response("ERROR: You are not the owner of a node in path.")
 
         #try to create a new item:
+        #TODO: Put a string describing the field with error to the thrown error to be shown
         try:
             createdItems = self.postMaterialItem(url, request)
         except IntegrityError:
             return Response("ERROR: There is already a resource with same uuid. uuid must be unique.")
+        except KeyError:
+            return Response("Error: Missing or invalid json-field. Update failed.")
+            #except ValueError:
+            #    return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
+            #except TypeError:
+            #return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
+        except DataException as e:
+            return Response(e.msg)
 
         return Response(createdCollections + " --- " + createdItems)
 
@@ -370,6 +403,8 @@ class CMSView(APIView):
                     return Response("Error: Missing or invalid json-field. Update failed.")
                 except ValueError:
                     return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
+                except DataException as e:
+                    return Response(e.msg)
 
                 return Response("Material item at " + url +" updated successfully.")
             else:
@@ -395,6 +430,19 @@ class CMSView(APIView):
         obj.attributionText = DATA["attributionText"]
         obj.attributionURL = DATA["attributionURL"]
 
+        #update subject
+        if Category.objects.filter(name=DATA["subject"]).exists():
+            category = Category.objects.get(name=DATA["subject"])
+            productCategory = ProductCategory.objects.get(product=obj)    #ProductCategory(product=product, category=category)
+            productCategory.category = category
+            productCategory.save()
+        else:
+            raise DataException("No such product category as in subject field: " + DATA["subject"])
+
+        stock = StockRecord.objects.get(product=obj)
+        stock.price_retail = DATA["price"]
+        stock.save()
+
         tagList = DATA["tags"]
         #Remove existing relationships to this material from tags
         existingTags = Tag.objects.filter(hasTags=obj)
@@ -403,14 +451,14 @@ class CMSView(APIView):
             t.hasTags.remove(obj)
 
         for tag in tagList:
-            print tag["tag"]
+            print tag
             #check if the tag is already in db, if not create it
-            if Tag.objects.filter(name=tag["tag"]).exists():
-                t = Tag.objects.get(name=tag["tag"])
+            if Tag.objects.filter(name=tag).exists():
+                t = Tag.objects.get(name=tag)
                 t.hasTags.add(obj)
             else:
                 tagEntry = Tag.create()
-                tagEntry.name = tag["tag"]
+                tagEntry.name = tag
                 tagEntry.save()
                 tagEntry.hasTags.add(obj)
 
@@ -423,9 +471,9 @@ class CMSView(APIView):
 
         #create new ones
         for media in embedList:
-            print media["url"]
+            print media
             embedEntry = EmbeddedMedia.create()
-            embedEntry.url = media["url"]
+            embedEntry.url = media
             embedEntry.product = obj
             embedEntry.save()
 
@@ -439,12 +487,12 @@ class CMSView(APIView):
 
         for lang in langList:
             #check if the language is already in db, if not create it
-            if Language.objects.filter(name=lang["lang"]).exists():
-                    l = Language.objects.get(name=lang["lang"])
+            if Language.objects.filter(name=lang).exists():
+                    l = Language.objects.get(name=lang)
                     l.hasLanguage.add(obj)
             else:
                 langEntry = Language.create()
-                langEntry.name = lang["lang"]
+                langEntry.name = lang
                 langEntry.save()
                 langEntry.hasLanguage.add(obj)
 
