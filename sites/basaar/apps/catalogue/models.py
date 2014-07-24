@@ -43,6 +43,9 @@ class Product(AbstractProduct):
 
     get_media.short_description = _("Embedded media")
 
+    def get_icon_url(self):
+        filename = '/static/shop/img/icons/' + self.upc + '.png'
+        return filename
 
 class Language(models.Model):
     name = models.CharField(max_length=128)

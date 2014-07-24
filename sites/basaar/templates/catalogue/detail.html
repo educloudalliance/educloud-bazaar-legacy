@@ -81,7 +81,7 @@
                                 <div class="thumbnail">
                                     {% with all_images=product.images.all %}
                                         {% if all_images|length < 1 %}
-                                            <img src="{{ STATIC_URL }}shop/img/noimage.jpg" class="thumbnail">
+                                            <img src="{{ product.get_icon_url }}" class="thumbnail">
                                         {% else %}
                                             {% with image=product.primary_image %}
                                                 {% thumbnail image.original "440x400" upscale=False as thumb %}
