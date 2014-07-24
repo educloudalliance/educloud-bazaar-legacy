@@ -103,6 +103,9 @@ textarea, input { outline: none; }
             background-position: center;
         }
     }
+    #profile-icon.green{
+        background: rgb(0,200,0);
+    }
     #generalSearch {
         line-height: $menu-width;
         input {

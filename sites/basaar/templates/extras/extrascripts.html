@@ -86,20 +86,32 @@
         }
     }
 
+    function notifyLogged(){
+        var originalTransition = $('#profile-icon').css('transition');
+        $('#profile-icon').css('transition','all 0 ease 0');
+        $('#profile-icon').css('-webkit-transition','all 0 ease 0');
+        $('#profile-icon').addClass('green', 500, 'linear', function(){
+            $('#profile-icon').delay(3000).removeClass('green',2000,'linear', function(){
+                $('#profile-icon').css('transition', originalTransition);
+                $('#profile-icon').css('-webkit-transition', originalTransition);
+            });
+        });
+    }
+
 
     function toggleAccordion() {
         if ($('#accordion-content').is(":visible")){
-            //$('#sidebarshadow').css('width', '50px');
             $('#sidebarshadow').animate({'width': '50px'},300);
             $('#accordion-switch > p').show('fade');
             $('#accordion-switch').animate({'height': accordionSwitchHeight},300);
             $('.animated-button').removeClass('close');
             $('#accordion-content').hide();
         } else {
-            //$('#sidebarshadow').css('width', '400px');
+            $('#accordion-switch').css('left', '360px');
             $('#sidebarshadow').animate({'width': '400px'},300);
             $('#accordion-content').show('slide', {direction: 'right'}, 300);
             $('#accordion-switch > p').hide();
+            $('#accordion-switch').animate({left: '-40px'},300);
             $('#accordion-switch').animate({'height': '40px'},300);
             $('.animated-button').addClass('close');
         }
