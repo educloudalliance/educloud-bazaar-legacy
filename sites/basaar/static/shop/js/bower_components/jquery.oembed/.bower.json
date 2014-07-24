@@ -1,0 +1,14 @@
+{
+  "name": "jquery.oembed",
+  "_cacheHeaders": {
+    "ETag": "\"dc2d91fa0056b618255461d6e36e85dcbef67048\"",
+    "Content-Length": "56694",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "_release": "e-tag:dc2d91fa0",
+  "main": "index.js",
+  "_source": "https://raw.githubusercontent.com/starfishmod/jquery-oembed-all/master/jquery.oembed.js",
+  "_target": "*",
+  "_originalSource": "https://raw.githubusercontent.com/starfishmod/jquery-oembed-all/master/jquery.oembed.js",
+  "_direct": true
+}
