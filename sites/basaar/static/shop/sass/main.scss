@@ -280,11 +280,13 @@ textarea, input { outline: none; }
     position: fixed;
     z-index: 200;
     top: 0px;
-    right: 20px;
+    right: $menu-width;
     font-size: 11pt;
     min-width: 50px;
     padding: 5px;
     text-align: right;
+    background: rgba(255,255,255,0.85);
+    border-radius: 0px 0px 10px 10px;
     color: $gray;
     @include user-select(none);
     .menu-icon {
@@ -323,7 +325,7 @@ textarea, input { outline: none; }
     height: $nav-height;
     position: fixed;
     top: 0px;
-    right: 0px;
+    right: $menu-width;
     left: $menu-width;
     @include user-select(none);
     @include filter-gradient(#ffffff, #ffffff, vertical);
@@ -405,7 +407,7 @@ textarea, input { outline: none; }
                 height: $nav-height / 3;
             }
             input {
-                margin: 0px 20px 0px 0px;
+                margin: 0px 5px 0px 0px;
                 font-size: 10pt;
                 border: none;
                 padding: 1px 4px;
@@ -564,7 +566,7 @@ textarea, input { outline: none; }
 
 #content {
     width: 100%;
-    padding: $nav-height 10px;
+    padding: $nav-height 20px;
     z-index: -10;
 
 
