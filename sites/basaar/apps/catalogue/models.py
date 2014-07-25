@@ -1,4 +1,5 @@
 from django.db import models
+import os
 from oscar.apps.catalogue.abstract_models import *
 from django.utils.translation import ugettext_lazy as _, pgettext_lazy
 
@@ -45,7 +46,13 @@ class Product(AbstractProduct):
 
     def get_icon_url(self):
         filename = '/static/shop/img/icons/' + self.upc + '.png'
-        return filename
+        localPath = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
+        localFile = os.path.realpath(os.path.dirname(localPath)) + '/static/shop/img/icons/' + self.upc + '.png'
+        print localFile
+        if os.path.isfile(localFile):
+            return filename
+        else:
+            return False
 
 class Language(models.Model):
     name = models.CharField(max_length=128)

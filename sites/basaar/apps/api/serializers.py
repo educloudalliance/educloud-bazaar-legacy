@@ -54,7 +54,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         return Language.objects.filter(hasLanguage=obj)
 
     def priceLookup(self, obj):
-        return StockRecord.objects.get(product=obj).price_retail
+        return float(StockRecord.objects.get(product=obj).price_retail)
 
     def subjectLookup(self, obj):
         productCategory = ProductCategory.objects.get(product=obj)
