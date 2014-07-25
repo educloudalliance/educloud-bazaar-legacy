@@ -304,7 +304,7 @@ div.animated-button span {
   display: inline-block;
   width: 28px;
   height: 4px;
-  background: #ecf0f1;
+  background: white;
   border-radius: 2px;
   transition: 0.3s;
   position: relative;
@@ -314,7 +314,7 @@ div.animated-button span {
   display: inline-block;
   width: 28px;
   height: 4px;
-  background: #ecf0f1;
+  background: white;
   border-radius: 2px;
   transition: 0.3s;
   position: absolute;

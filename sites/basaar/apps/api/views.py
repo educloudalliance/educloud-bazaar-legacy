@@ -1,4 +1,5 @@
-import urllib2
+import urllib2, os, sys
+from PIL import Image, ImageChops
 from django.views.decorators.csrf import csrf_exempt
 import uuid as libuuid
 from django.shortcuts import render
@@ -542,22 +543,35 @@ class CMSView(APIView):
         allowedMimes = ['image/gif', 'image/jpeg', 'image/png']
 
         try:
-            urlOpener = urllib2.build_opener()
-
-            #Timeout 20s
-            page = urlOpener.open(url, None, 20)
+            req = urllib2.Request(url)
+            response = urllib2.urlopen(req, None, 15)
 
             #Get headers
-            headers = page.info()
+            headers = response.info()
 
             if headers['content-type'] in allowedMimes:
-                image = page.read()
-                iconName = iconName + url[-4:]
+                iconFile = iconName + url[-4:]
                 #TODO .jpeg?
-                filename = 'static/shop/img/icons/' + iconName
-                fout = open(filename, "wb")
-                fout.write(image)
-                fout.close()
+                sPath = os.path.dirname(sys.argv[0])
+                filename = sPath + '/' + 'static/shop/img/icons/' + iconFile
+                output = open(filename, 'wb')
+                output.write(response.read())
+                output.close()
+
+                # Resize
+                size = (200, 200)
+                image = Image.open(filename)
+                image.thumbnail(size, Image.ANTIALIAS)
+                image_size = image.size
+
+                thumb = image.crop( (0, 0, size[0], size[1]) )
+                offset_x = max( (size[0] - image_size[0]) / 2, 0 )
+                offset_y = max( (size[1] - image_size[1]) / 2, 0 )
+
+                thumb = ImageChops.offset(thumb, offset_x, offset_y)
+                filename = sPath + '/' + 'static/shop/img/icons/' + iconName + ".png"
+                thumb.save(filename)
+                print "Icon resized!"
             else:
                 return False
 
@@ -568,8 +582,12 @@ class CMSView(APIView):
                 return False
             else:
                 return False
+        except IOError as (errno, strerror):
+            print "I/O error({0}): {1}".format(errno, strerror)
+            return False
         except:
-                return False
+            print "Unexpected error:", sys.exc_info()[0]
+            return False
 
 
     #Create unique UPC for material
