@@ -230,13 +230,10 @@ class CMSView(APIView):
             #Add fullfilment into database
             author = Partner.objects.get(name=self.splitUrl(path)[0])
 
-
-
             try:
                 product.contributionDate = datetime.strptime(x["contributionDate"], "%Y-%m-%d")
             except ValueError:
                 return "Items created: " + createdItems + " ERROR: ContributionDate field was in wrong format. Should be yyyy-mm-dd"
-
 
             if self.checkIfAlreadyInDb(path + "/" + slugify(product.uuid)):
                 return "ERROR: Can't post because an object already exists in this URL. Items created: " + unicode(createdItems)
