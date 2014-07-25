@@ -20,7 +20,7 @@
         {% endblock %}
         
         {% with all_images=product.images.all %}
-            {% if all_images|length < 1 %}
+            {% if not product.get_icon_url %}
                 <div class="image_container flex-container">
                     <a href="{{ product.get_absolute_url }}"><img src="{{ STATIC_URL }}shop/img/noimage.jpg" class="thumbnail"></a>
                 </div>
@@ -29,7 +29,7 @@
                     <div class="image_container flex-container">
                         {% with image=product.primary_image %}
                             {% thumbnail image.original "x155" upscale=False as thumb %}
-                            <a href="{{ product.get_absolute_url }}"><img src="{{ thumb.url }}" alt="{{ product.get_title }}" class="thumbnail"></a>
+                            <a href="{{ product.get_absolute_url }}"><img src="{{ product.get_icon_url }}" alt="{{ product.get_title }}" class="thumbnail"></a>
                             {% endthumbnail %}
                         {% endwith %}
                     </div>
