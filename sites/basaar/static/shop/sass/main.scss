@@ -720,8 +720,13 @@ textarea, input { outline: none; }
             h1, h2, h3, h4, h5, h6, p {
                 margin: 0px;
             }
+            .firstrow {
+                align-items: center;
+                -webkit-align-items: center;
+            }
             .title {
                 text-align: left;
+                margin: 10px 0px;
                 h1 {
                     font-size: 28pt;
                     font-weight: normal;
@@ -766,10 +771,28 @@ textarea, input { outline: none; }
         h2 {
             font-size: 19pt;
             font-weight: normal;
+            padding: 0px;
         }
         p {
             font-size: 13pt;
 
+        }
+        .product-info {
+            font-size: 10pt;
+            margin-bottom: 20px;
+
+            tr {
+                border-bottom: 1px solid $gray;
+                th {
+                    text-align: right;
+                    padding: 3px 7px;
+                    border-right: 1px solid $gray;
+                }
+                td {
+                    padding: 3px 7px;
+                    text-align: left;
+                }
+            }
         }
         .carousel {
             .slick-prev::before, .slick-next::before {

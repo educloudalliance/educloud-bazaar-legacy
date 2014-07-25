@@ -9,15 +9,18 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div class="barshadow"></div>
 {% include "partials/pv_menu.html" %}
 
 {% include "partials/nav_primary.html" %}
 {% include "partials/sidebar.html" %}
-<div class="flexItem flex-container">
-    <div id="content" class="flex-container flex-wrap">
-        {% block content %}{% endblock %}
-    </div>
+<div class="barshadow"></div>
+<div class="flexItem flex-container-vertical">
+	<div class="flexItem flex-container">
+		<div id="content" class="flex-container flex-wrap">
+		    {% block content %}{% endblock %}
+		</div>
+	</div>
+	{% include "partials/footer.html" %}
 </div>
 <div id="sidebarshadow" class="barshadow"></div>
 
