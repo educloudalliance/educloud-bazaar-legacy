@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 from django.db.models import Count
 from rest_framework import viewsets
-from apps.api.serializers import UserSerializer, GroupSerializer, APINodeSerializer, ProductSerializer
+from apps.api.serializers import UserSerializer, GroupSerializer, APINodeSerializer, ProductSerializer, ProductTypeSerializer, SubjectSerializer
 from django.db import IntegrityError
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
@@ -21,6 +21,7 @@ from django.template.defaultfilters import slugify
 from rest_framework import authentication, permissions
 from rest_framework.authentication import OAuth2Authentication, BasicAuthentication, SessionAuthentication
 from apps.api.permissions import IsOwner
+from rest_framework import generics
 
 from django.http import Http404
 
@@ -73,10 +74,26 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
 
+
+class ProductTypeList(generics.ListCreateAPIView):
+    """
+    API endpoint that allows productType's to be viewed.
+    """
+    queryset = ProductClass.objects.all()
+    serializer_class = ProductTypeSerializer
+    paginate_by = 100
+
+class SubjectList(generics.ListCreateAPIView):
+    """
+    API endpoint that allows subject's to be viewed.
+    """
+    queryset = Category.objects.all()
+    serializer_class = SubjectSerializer
+    paginate_by = 100
+
+
 # this view is used to handle all CMS interaction through collections
 # and resources
-
-
 class CMSView(APIView):
     """
     Returns a list of all items and collections in the provided collection in url if url
@@ -247,8 +264,8 @@ class CMSView(APIView):
 
             product.save()
 
-            if Category.objects.filter(name=x["subject"]).exists():
-                    category = Category.objects.get(name=x["subject"])
+            if Category.objects.filter(slug=x["subject"]).exists():
+                    category = Category.objects.get(slug=x["subject"])
                     newProductCategory = ProductCategory(product=product, category=category)
                     newProductCategory.save()
             else:
@@ -433,8 +450,8 @@ class CMSView(APIView):
         obj.attributionURL = DATA["attributionURL"]
 
         #update subject
-        if Category.objects.filter(name=DATA["subject"]).exists():
-            category = Category.objects.get(name=DATA["subject"])
+        if Category.objects.filter(slug=DATA["subject"]).exists():
+            category = Category.objects.get(slug=DATA["subject"])
             productCategory = ProductCategory.objects.get(product=obj)    #ProductCategory(product=product, category=category)
             productCategory.category = category
             productCategory.save()

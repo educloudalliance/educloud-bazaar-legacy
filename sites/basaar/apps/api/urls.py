@@ -4,6 +4,7 @@ from rest_framework import viewsets
 from django.contrib import admin
 from rest_framework import viewsets, routers
 from django.contrib.auth.models import User, Group
+from oscar.core.loading import get_class, get_model
 from apps.api import views
 
 
@@ -12,6 +13,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class GroupViewSet(viewsets.ModelViewSet):
     model = Group
+
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -22,6 +24,9 @@ urlpatterns = patterns('',
     #url (r'^users/$', views.UserViewSet.as_view()),
     url(r'^', include(router.urls)),
     url(r'^cms/', views.CMSView.as_view()),
+    url(r'producttypes/$', views.ProductTypeList.as_view()),
+    url(r'subjects/$', views.SubjectList.as_view()),
+
     #url(r'^cms/', views.CMSView.as_view()),
 
 )

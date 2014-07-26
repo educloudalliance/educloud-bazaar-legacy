@@ -10,6 +10,7 @@ Language = get_model('catalogue', 'Language')
 StockRecord = get_model('partner', 'StockRecord')
 Category = get_model('catalogue', 'Category')
 ProductCategory = get_model('catalogue', 'ProductCategory')
+ProductClass = get_model('catalogue', 'ProductClass')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -22,17 +23,12 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = ('url', 'name')
 
-
-
-"""
-class MaterialItemSerializer(serializers.HyperlinkedModelSerializer):
+class ProductTypeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = MaterialItem
-        fields = ('mTitle', 'description', 'materialUrl', 'materialType',
-        'materialUrl', 'iconUrl', 'screenshotUrls', 'videoUrls', 'moreInfoUrl', 'bazaarUrl',
-        'version', 'status', 'createdAt', 'price', 'language', 'issn')
-        #read_only_fields = ('mTitle', 'slug')
-"""
+        model = ProductClass
+        fields = ('name',)
+        read_only_fields = ('name',)
+
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -98,4 +94,5 @@ class PriceSerializer(serializers.HyperlinkedModelSerializer):
 class SubjectSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
-        fields = ('name')
+        fields = ('name', 'slug')
+        read_only_fields = ('name', 'slug',)
