@@ -99,6 +99,7 @@ class CMSView(APIView):
     Returns a list of all items and collections in the provided collection in url if url
     points to a valid collection or item. In case of collections a json list of items and collections
     is returned while in case of a materialitem a json representation of the material is returned.
+
     """
     #authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     #permission_classes = ( IsOwner, ) #permissions.IsAuthenticatedOrReadOnly,
