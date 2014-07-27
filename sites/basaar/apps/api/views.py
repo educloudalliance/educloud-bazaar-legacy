@@ -75,7 +75,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 
-class ProductTypeList(generics.ListCreateAPIView):
+class ProductTypeList(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows productType's to be viewed.
     """
@@ -83,7 +83,7 @@ class ProductTypeList(generics.ListCreateAPIView):
     serializer_class = ProductTypeSerializer
     paginate_by = 100
 
-class SubjectList(generics.ListCreateAPIView):
+class SubjectList(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows subject's to be viewed.
     """
@@ -99,9 +99,6 @@ class CMSView(APIView):
     Returns a list of all items and collections in the provided collection in url if url
     points to a valid collection or item. In case of collections a json list of items and collections
     is returned while in case of a materialitem a json representation of the material is returned.
-
-    param1 -- A first parameter
-    param2 -- A second parameter
     """
     #authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     #permission_classes = ( IsOwner, ) #permissions.IsAuthenticatedOrReadOnly,
@@ -140,7 +137,7 @@ class CMSView(APIView):
         #slice the trailing:
         url = url.strip("/")
 
-        return  url
+        return url
 
     def checkIfAlreadyInDb(self, path):
         return models.APINode.objects.filter(uniquePath=self.slugifyWholeUrl(path)).exists()

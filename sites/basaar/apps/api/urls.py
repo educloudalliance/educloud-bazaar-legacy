@@ -17,15 +17,15 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
-router.register(r'groups', GroupViewSet)
+router.register(r'subjects',  views.SubjectList)
+router.register(r'producttypes', views.ProductTypeList)
 
 urlpatterns = patterns('',
     # ex: /
     #url (r'^users/$', views.UserViewSet.as_view()),
     url(r'^', include(router.urls)),
     url(r'^cms/', views.CMSView.as_view()),
-    url(r'producttypes/$', views.ProductTypeList.as_view()),
-    url(r'subjects/$', views.SubjectList.as_view()),
+
 
     #url(r'^cms/', views.CMSView.as_view()),
 
