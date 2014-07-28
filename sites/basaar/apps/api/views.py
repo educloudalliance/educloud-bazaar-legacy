@@ -323,7 +323,7 @@ class CMSView(APIView):
                     embedEntry.product = product
                     embedEntry.save()
 
-            f = StockRecord(product=product, partner=author, price_excl_tax=x["price"], price_retail=x["price"], partner_sku=x["uuid"])
+            f = StockRecord(product=product, partner=author, price_excl_tax=x["price"], price_retail=x["price"], partner_sku=x["uuid"], num_in_stock=1)
             f.save()
 
             #add APINode for this materialItem
