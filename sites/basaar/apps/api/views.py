@@ -611,7 +611,7 @@ class CMSView(APIView):
             #Get headers
             headers = response.info()
 
-            if headers['content-type'] in allowedMimes:
+            if headers['Content-Type'] in allowedMimes and int(headers['Content-Length']) < 10000000:
                 iconFile = iconName + url[-4:]
 
                 #TODO .jpeg?
@@ -638,6 +638,8 @@ class CMSView(APIView):
                 thumb.save(filename)
                 print "Icon resized!"
             else:
+                print headers['Content-Length']
+                print "Not allowed MIME or image too big"
                 return False
 
         except urllib2.URLError, e:
