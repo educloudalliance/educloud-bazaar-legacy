@@ -53,8 +53,11 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         return float(StockRecord.objects.get(product=obj).price_retail)
 
     def subjectLookup(self, obj):
-        productCategory = ProductCategory.objects.get(product=obj)
-        return productCategory.category.name
+        productCategories = ProductCategory.objects.filter(product=obj)
+        categories = []
+        for i in productCategories:
+            categories.append(i.category)
+        return categories #productCategory.category.name
 
 
     class Meta:

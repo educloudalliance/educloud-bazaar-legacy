@@ -271,13 +271,19 @@ class CMSView(APIView):
 
             product.save()
 
-            if Category.objects.filter(slug=x["subject"]).exists():
-                    category = Category.objects.get(slug=x["subject"])
-                    newProductCategory = ProductCategory(product=product, category=category)
-                    newProductCategory.save()
-            else:
-                product.delete()
-                return "No such product category as in subject field: " + x["subject"]
+            #find subjects:
+            subs = x["subjects"]
+            if len(subs) == 0:
+                raise DataException("At least one subject has to be specified. To get a list of available subjects, do a GET to /api/subjects")
+            for subject in subs:
+                if Category.objects.filter(slug=subject).exists():
+                        category = Category.objects.get(slug=subject)
+                        newProductCategory = ProductCategory(product=product, category=category)
+                        newProductCategory.save()
+                else:
+                    product.delete()
+                    return "No such subject as in subject field: " + subject + " To get a list of available subjects, do a GET to /api/subjects"
+
 
 
             #create language, Tags and EmbeddedMedia models
@@ -299,6 +305,7 @@ class CMSView(APIView):
                 tagList = x["tags"]
 
                 if len(tagList) > 5:
+                    product.delete()
                     raise DataException("Error: More than 5 tags specified. Only 0-5 allowed.")
 
                 for tag in tagList:
@@ -470,13 +477,26 @@ class CMSView(APIView):
         obj.attributionURL = DATA["attributionURL"]
 
         #update subject
-        if Category.objects.filter(slug=DATA["subject"]).exists():
-            category = Category.objects.get(slug=DATA["subject"])
-            productCategory = ProductCategory.objects.get(product=obj)    #ProductCategory(product=product, category=category)
-            productCategory.category = category
-            productCategory.save()
-        else:
-            raise DataException("No such product category as in subject field: " + DATA["subject"])
+        subs = DATA["subjects"]
+        if len(subs) == 0:
+            raise DataException("At least one subject has to be specified. To get a list of available subjects, do a GET to /api/subjects")
+
+        #check if the given subjects are valid ones
+        for subject in subs:
+            if not Category.objects.filter(slug=subject).exists():
+                raise DataException("No such subject as in subject field: " + subject + " To get a list of available subjects, do a GET to /api/subjects")
+
+        #remove existing subject links
+        oldPCategs = ProductCategory.objects.filter(product=obj)
+        for pc in oldPCategs:
+            pc.delete()
+
+        for subject in subs:
+            category = Category.objects.get(slug=subject)
+            newProductCategory = ProductCategory(product=obj, category=category)
+            newProductCategory.save()
+
+
 
         stock = StockRecord.objects.get(product=obj)
         stock.price_retail = DATA["price"]
