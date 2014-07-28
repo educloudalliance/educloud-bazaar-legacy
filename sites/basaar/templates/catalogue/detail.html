@@ -62,14 +62,16 @@
                     This is a but clunky here.  Better to have some kind of JS-driven dashboard menu that 
                     pops out when clicked.  A bit like the Django-Debug-Toolbar button
                     {% endcomment %}
+                    <!--
                     {% if user.is_authenticated and user.is_staff %}
                         <a class="pull-right hidden-phone" href="{% url 'dashboard:catalogue-product' pk=product.id %}"><small><i class="icon-edit"></i> {% trans "Edit this product" %}</small></a>
                     {% endif %}
+                -->
                     <div class="flex-container main">
                         <div class="flexItem2 flex-container-vertical">
                             <div class="flex-container firstrow">
                                 <div class="title flexItem">
-                                    <h1>{{ product.get_title }}</h1>
+                                    <h1><a href="">{{ product.get_title }}</a></h1>
                                 </div>
                                 <div class="price">
                                     {% block product_stock_record %}
@@ -90,13 +92,9 @@
                                         by Owner
                                     </div>
                                     <div class="rating flexItem">
-                                        {{product.rating}} Likes
+                                        {{product.rating}} §
                                     </div>
-                                    <div class="flex-container flexItem">
-                                        <div class="flexItem subject">
-                                            <h3>Subject</h3>
-                                            <p>{{product.categories.first}}</p>
-                                        </div>
+                                    <div class="line flex-container flexItem">
                                         <div class="flexItem grade">
                                             <h3>Grade</h3>
                                             <p>{{product.minAge|add:"-6"}}-{{product.maxAge|add:"-6"}}</p>
@@ -108,8 +106,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="font-size: 24pt;">
-                                &nbsp;
+                            <div class="big-line">
+                                <div class="flexItem subject">
+                                    <h3>Subjects</h3>
+                                    <p>{{product.categories.first}}</p>
+                                </div>
                             </div>
 
                         </div>

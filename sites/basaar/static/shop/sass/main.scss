@@ -704,11 +704,11 @@ textarea, input { outline: none; }
                 }
                 .totalPriceValue{
                     font-size: 16pt;
-                    padding: 0px 0px 15px 0px;
+                    padding: 0px 0px 20px 0px;
                 }
                 .control-group {
                     font-size: 16pt;
-                    padding: 15px 0px;
+                    padding: 55px 0px 15px;
 
                     label, div {
                         display: inline-block;
@@ -716,14 +716,14 @@ textarea, input { outline: none; }
                     input {
                         width: 50px;
                         border: none;
-                        background: #666;
+                        background: $green-main;
                         color: white;
                         text-align: center;
                         border-radius: 4px;
                     }
                 }
                 button {
-                    background: $dark-gray;
+                    background: $green-main;
                     border: none;
                     color: white;
                     padding: 5px 15px;
@@ -744,11 +744,18 @@ textarea, input { outline: none; }
                 h1 {
                     font-size: 28pt;
                     font-weight: normal;
+                    a {
+                        color: $green-main;
+                        text-decoration: none;
+                    }
                 }
             }
             .price {
+                .price_color {
+                    font-weight: normal;
+                }
                 text-align: right;
-                padding-right: 1em;
+                padding-right: 1.5em;
 
             }
             .thumbnail{
@@ -761,20 +768,26 @@ textarea, input { outline: none; }
                 }
             }
             .owner {
-                font-size: 19pt;
+                font-size: 16pt;
                 font-weight: lighter;
+                line-height: 40pt;
             }
             .rating {
-                font-size: 18pt;
+                font-size: 15pt;
                 font-weight: bold;
+                line-height: 40pt;
             }
             .subject h3, .grade h3, .type h3 {
-                font-size: 14pt;
+                font-size: 12pt;
                 font-weight: normal;
             }
             .subject p, .grade p, .type p {
-                font-size: 18pt;
+                font-size: 16pt;
                 font-weight: normal;
+            }
+            .line {
+                align-items: flex-end;
+                -webkit-align-items: flex-end;
             }
             
             .product-action-box{
@@ -782,9 +795,12 @@ textarea, input { outline: none; }
             }
             
         }
+        .big-line {
+            margin: 12px 0px;
+        }
         h2 {
             font-size: 19pt;
-            font-weight: normal;
+            font-weight: lighter;
             padding: 0px;
         }
         p {

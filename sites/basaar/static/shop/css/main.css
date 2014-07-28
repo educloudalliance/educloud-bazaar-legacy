@@ -7705,7 +7705,7 @@ textarea, input {
   background: none;
   border: none;
   text-decoration: none;
-  color: #1ea06a;
+  color: #1aad7d;
   font-size: 12pt;
   padding: 0px 15px;
 }
@@ -7863,7 +7863,7 @@ textarea, input {
 }
 /* line 259, ../sass/main.scss */
 #pvmenu .menu-box .menu-box-content .menu-box-footer a.btn {
-  color: #1ea06a;
+  color: #1aad7d;
   text-decoration: none;
 }
 /* line 263, ../sass/main.scss */
@@ -8371,12 +8371,12 @@ textarea, input {
 /* line 705, ../sass/main.scss */
 #content article.product_page #tabs-product #addbasket-tab form .totalPriceValue, #content article.product_page #tabs-product #wishlist-tab form .totalPriceValue {
   font-size: 16pt;
-  padding: 0px 0px 15px 0px;
+  padding: 0px 0px 20px 0px;
 }
 /* line 709, ../sass/main.scss */
 #content article.product_page #tabs-product #addbasket-tab form .control-group, #content article.product_page #tabs-product #wishlist-tab form .control-group {
   font-size: 16pt;
-  padding: 15px 0px;
+  padding: 55px 0px 15px;
 }
 /* line 713, ../sass/main.scss */
 #content article.product_page #tabs-product #addbasket-tab form .control-group label, #content article.product_page #tabs-product #addbasket-tab form .control-group div, #content article.product_page #tabs-product #wishlist-tab form .control-group label, #content article.product_page #tabs-product #wishlist-tab form .control-group div {
@@ -8386,14 +8386,14 @@ textarea, input {
 #content article.product_page #tabs-product #addbasket-tab form .control-group input, #content article.product_page #tabs-product #wishlist-tab form .control-group input {
   width: 50px;
   border: none;
-  background: #666;
+  background: #1aad7d;
   color: white;
   text-align: center;
   border-radius: 4px;
 }
 /* line 725, ../sass/main.scss */
 #content article.product_page #tabs-product #addbasket-tab form button, #content article.product_page #tabs-product #wishlist-tab form button {
-  background: #535353;
+  background: #1aad7d;
   border: none;
   color: white;
   padding: 5px 15px;
@@ -8417,12 +8417,21 @@ textarea, input {
   font-size: 28pt;
   font-weight: normal;
 }
-/* line 749, ../sass/main.scss */
+/* line 747, ../sass/main.scss */
+#content article.product_page .main .title h1 a {
+  color: #1aad7d;
+  text-decoration: none;
+}
+/* line 753, ../sass/main.scss */
 #content article.product_page .main .price {
   text-align: right;
-  padding-right: 1em;
+  padding-right: 1.5em;
 }
-/* line 755, ../sass/main.scss */
+/* line 754, ../sass/main.scss */
+#content article.product_page .main .price .price_color {
+  font-weight: normal;
+}
+/* line 762, ../sass/main.scss */
 #content article.product_page .main .thumbnail img {
   margin-right: 17px;
   height: 191px;
@@ -8430,89 +8439,100 @@ textarea, input {
   background-color: #535353;
   border: 1px solid #666666;
 }
-/* line 763, ../sass/main.scss */
+/* line 770, ../sass/main.scss */
 #content article.product_page .main .owner {
-  font-size: 19pt;
+  font-size: 16pt;
   font-weight: lighter;
-}
-/* line 767, ../sass/main.scss */
-#content article.product_page .main .rating {
-  font-size: 18pt;
-  font-weight: bold;
-}
-/* line 771, ../sass/main.scss */
-#content article.product_page .main .subject h3, #content article.product_page .main .grade h3, #content article.product_page .main .type h3 {
-  font-size: 14pt;
-  font-weight: normal;
+  line-height: 40pt;
 }
 /* line 775, ../sass/main.scss */
-#content article.product_page .main .subject p, #content article.product_page .main .grade p, #content article.product_page .main .type p {
-  font-size: 18pt;
-  font-weight: normal;
+#content article.product_page .main .rating {
+  font-size: 15pt;
+  font-weight: bold;
+  line-height: 40pt;
 }
 /* line 780, ../sass/main.scss */
+#content article.product_page .main .subject h3, #content article.product_page .main .grade h3, #content article.product_page .main .type h3 {
+  font-size: 12pt;
+  font-weight: normal;
+}
+/* line 784, ../sass/main.scss */
+#content article.product_page .main .subject p, #content article.product_page .main .grade p, #content article.product_page .main .type p {
+  font-size: 16pt;
+  font-weight: normal;
+}
+/* line 788, ../sass/main.scss */
+#content article.product_page .main .line {
+  align-items: flex-end;
+  -webkit-align-items: flex-end;
+}
+/* line 793, ../sass/main.scss */
 #content article.product_page .main .product-action-box {
   background: #efefef;
 }
-/* line 785, ../sass/main.scss */
+/* line 798, ../sass/main.scss */
+#content article.product_page .big-line {
+  margin: 12px 0px;
+}
+/* line 801, ../sass/main.scss */
 #content article.product_page h2 {
   font-size: 19pt;
-  font-weight: normal;
+  font-weight: lighter;
   padding: 0px;
 }
-/* line 790, ../sass/main.scss */
+/* line 806, ../sass/main.scss */
 #content article.product_page p {
   font-size: 13pt;
 }
-/* line 794, ../sass/main.scss */
+/* line 810, ../sass/main.scss */
 #content article.product_page .product-info {
   font-size: 10pt;
   margin-bottom: 20px;
 }
-/* line 798, ../sass/main.scss */
+/* line 814, ../sass/main.scss */
 #content article.product_page .product-info tr {
   border-bottom: 1px solid #b3b3b3;
 }
-/* line 800, ../sass/main.scss */
+/* line 816, ../sass/main.scss */
 #content article.product_page .product-info tr th {
   text-align: right;
   padding: 3px 7px;
   border-right: 1px solid #b3b3b3;
 }
-/* line 805, ../sass/main.scss */
+/* line 821, ../sass/main.scss */
 #content article.product_page .product-info tr td {
   padding: 3px 7px;
   text-align: left;
 }
-/* line 812, ../sass/main.scss */
+/* line 828, ../sass/main.scss */
 #content article.product_page .carousel .slick-prev::before, #content article.product_page .carousel .slick-next::before {
   color: #535353 !important;
   background: white;
   border-radius: 50%;
   font-size: 30px;
 }
-/* line 818, ../sass/main.scss */
+/* line 834, ../sass/main.scss */
 #content article.product_page .carousel img {
   max-width: 100%;
   margin: auto;
   border: 1px solid #666666;
 }
-/* line 823, ../sass/main.scss */
+/* line 839, ../sass/main.scss */
 #content article.product_page .carousel .slick-prev {
   left: -5px;
 }
-/* line 826, ../sass/main.scss */
+/* line 842, ../sass/main.scss */
 #content article.product_page .carousel .slick-next {
   right: -5px;
 }
-/* line 830, ../sass/main.scss */
+/* line 846, ../sass/main.scss */
 #content article.product_page .review-list {
   list-style: none;
   justify-content: center;
   -webkit-justify-content: center;
 }
 
-/* line 838, ../sass/main.scss */
+/* line 854, ../sass/main.scss */
 .py-messages {
   position: fixed;
   background: rgba(255, 255, 102, 0.85);
@@ -8523,17 +8543,17 @@ textarea, input {
   left: 15px;
   z-index: 9999;
 }
-/* line 847, ../sass/main.scss */
+/* line 863, ../sass/main.scss */
 .py-messages ul {
   list-style: none;
   padding: 0px;
   margin: 0px;
 }
-/* line 851, ../sass/main.scss */
+/* line 867, ../sass/main.scss */
 .py-messages ul li {
   padding: 20px 15px;
 }
-/* line 855, ../sass/main.scss */
+/* line 871, ../sass/main.scss */
 .py-messages .close-btn {
   position: relative;
   float: right;
@@ -8550,14 +8570,14 @@ textarea, input {
   text-align: center;
   cursor: pointer;
 }
-/* line 872, ../sass/main.scss */
+/* line 888, ../sass/main.scss */
 .py-messages .close-btn:hover {
   background: #96ceee;
 }
 
 /* Responsive: Portrait tablets and up */
 @media print {
-  /* line 887, ../sass/main.scss */
+  /* line 903, ../sass/main.scss */
   #pvmenu, #uppermenu, #language-selector, #product_related, #product_recommended {
     display: none !important;
   }
