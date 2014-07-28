@@ -61,7 +61,7 @@
 
 {% block content %}
     {% if category.description or category.image %}
-        <div class="">
+        <div>
             {% if category.description and not category.image %}
                 <div class="">{{ category.description|safe }}</div>
             {% elif category.description and category.image %}

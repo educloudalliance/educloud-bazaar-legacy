@@ -593,9 +593,11 @@ class CMSView(APIView):
 
             if headers['content-type'] in allowedMimes:
                 iconFile = iconName + url[-4:]
+
                 #TODO .jpeg?
-                sPath = os.path.dirname(sys.argv[0])
-                filename = sPath + '/' + 'static/shop/img/icons/' + iconFile
+                sPath = os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, os.pardir))
+                filename = sPath + '/static/shop/img/icons/' + iconFile
+                print "orig:" + filename
                 output = open(filename, 'wb')
                 output.write(response.read())
                 output.close()
@@ -612,6 +614,7 @@ class CMSView(APIView):
 
                 thumb = ImageChops.offset(thumb, offset_x, offset_y)
                 filename = sPath + '/' + 'static/shop/img/icons/' + iconName + ".png"
+                print "thumb:" + filename
                 thumb.save(filename)
                 print "Icon resized!"
             else:

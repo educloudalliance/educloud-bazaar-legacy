@@ -7953,7 +7953,7 @@ textarea, input {
   background-image: linear-gradient(top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 30%, #ffffff 100%);
 }
 /* line 337, ../sass/main.scss */
-#uppermenu #filters #menu-subjects, #uppermenu #filters #menu-grades, #uppermenu #filters #menu-types, #uppermenu #filters #menu-publishers {
+#uppermenu #filters #menu-subjects, #uppermenu #filters #menu-grades, #uppermenu #filters #menu-types {
   text-align: center;
   font-size: 14pt;
   padding: 0px 13px;
@@ -7965,7 +7965,7 @@ textarea, input {
   position: relative;
 }
 /* line 348, ../sass/main.scss */
-#uppermenu #filters #menu-subjects > svg, #uppermenu #filters #menu-grades > svg, #uppermenu #filters #menu-types > svg, #uppermenu #filters #menu-publishers > svg {
+#uppermenu #filters #menu-subjects > svg, #uppermenu #filters #menu-grades > svg, #uppermenu #filters #menu-types > svg {
   height: 14pt;
   width: 14pt;
   margin: 0px 0px -3px 10px;
@@ -7973,16 +7973,16 @@ textarea, input {
 }
 @media screen and (max-width: 1280px) {
   /* line 337, ../sass/main.scss */
-  #uppermenu #filters #menu-subjects, #uppermenu #filters #menu-grades, #uppermenu #filters #menu-types, #uppermenu #filters #menu-publishers {
+  #uppermenu #filters #menu-subjects, #uppermenu #filters #menu-grades, #uppermenu #filters #menu-types {
     padding: 0px;
   }
   /* line 356, ../sass/main.scss */
-  #uppermenu #filters #menu-subjects > svg, #uppermenu #filters #menu-grades > svg, #uppermenu #filters #menu-types > svg, #uppermenu #filters #menu-publishers > svg {
+  #uppermenu #filters #menu-subjects > svg, #uppermenu #filters #menu-grades > svg, #uppermenu #filters #menu-types > svg {
     margin: 0px 7px -3px 0px;
   }
 }
 /* line 361, ../sass/main.scss */
-#uppermenu #filters #menu-subjects ul, #uppermenu #filters #menu-grades ul, #uppermenu #filters #menu-types ul, #uppermenu #filters #menu-publishers ul {
+#uppermenu #filters #menu-subjects ul, #uppermenu #filters #menu-grades ul, #uppermenu #filters #menu-types ul {
   width: 100%;
   display: none;
   text-align: left;
@@ -7995,7 +7995,7 @@ textarea, input {
   margin: 0px;
 }
 /* line 372, ../sass/main.scss */
-#uppermenu #filters #menu-subjects ul li, #uppermenu #filters #menu-grades ul li, #uppermenu #filters #menu-types ul li, #uppermenu #filters #menu-publishers ul li {
+#uppermenu #filters #menu-subjects ul li, #uppermenu #filters #menu-grades ul li, #uppermenu #filters #menu-types ul li {
   color: black;
   text-transform: none;
   height: 40px;
@@ -8004,19 +8004,19 @@ textarea, input {
   margin: 0px;
 }
 /* line 381, ../sass/main.scss */
-#uppermenu #filters #menu-subjects ul li:hover, #uppermenu #filters #menu-grades ul li:hover, #uppermenu #filters #menu-types ul li:hover, #uppermenu #filters #menu-publishers ul li:hover {
+#uppermenu #filters #menu-subjects ul li:hover, #uppermenu #filters #menu-grades ul li:hover, #uppermenu #filters #menu-types ul li:hover {
   background: rgba(255, 255, 255, 0.3);
 }
 /* line 387, ../sass/main.scss */
-#uppermenu #filters #menu-subjects:hover, #uppermenu #filters #menu-grades:hover, #uppermenu #filters #menu-types:hover, #uppermenu #filters #menu-publishers:hover {
+#uppermenu #filters #menu-subjects:hover, #uppermenu #filters #menu-grades:hover, #uppermenu #filters #menu-types:hover {
   color: #2e98d9;
 }
 /* line 389, ../sass/main.scss */
-#uppermenu #filters #menu-subjects:hover svg text, #uppermenu #filters #menu-grades:hover svg text, #uppermenu #filters #menu-types:hover svg text, #uppermenu #filters #menu-publishers:hover svg text {
+#uppermenu #filters #menu-subjects:hover svg text, #uppermenu #filters #menu-grades:hover svg text, #uppermenu #filters #menu-types:hover svg text {
   fill: #2e98d9;
 }
 /* line 392, ../sass/main.scss */
-#uppermenu #filters #menu-subjects:hover svg path, #uppermenu #filters #menu-grades:hover svg path, #uppermenu #filters #menu-types:hover svg path, #uppermenu #filters #menu-publishers:hover svg path {
+#uppermenu #filters #menu-subjects:hover svg path, #uppermenu #filters #menu-grades:hover svg path, #uppermenu #filters #menu-types:hover svg path {
   stroke: #2e98d9;
 }
 @media screen and (max-width: 1280px) {
@@ -8293,6 +8293,10 @@ textarea, input {
   float: left;
   width: 200px;
 }
+/* line 641, ../sass/main.scss */
+#content .productlist a:hover {
+  color: #2e98d9;
+}
 /* line 646, ../sass/main.scss */
 #content section.product-section {
   width: 100%;
@@ -8490,9 +8494,11 @@ textarea, input {
 /* line 818, ../sass/main.scss */
 #content article.product_page .review-list {
   list-style: none;
+  justify-content: center;
+  -webkit-justify-content: center;
 }
 
-/* line 824, ../sass/main.scss */
+/* line 826, ../sass/main.scss */
 .py-messages {
   position: fixed;
   background: rgba(255, 255, 102, 0.85);
@@ -8503,17 +8509,17 @@ textarea, input {
   left: 15px;
   z-index: 9999;
 }
-/* line 833, ../sass/main.scss */
+/* line 835, ../sass/main.scss */
 .py-messages ul {
   list-style: none;
   padding: 0px;
   margin: 0px;
 }
-/* line 837, ../sass/main.scss */
+/* line 839, ../sass/main.scss */
 .py-messages ul li {
   padding: 20px 15px;
 }
-/* line 841, ../sass/main.scss */
+/* line 843, ../sass/main.scss */
 .py-messages .close-btn {
   position: relative;
   float: right;
@@ -8530,14 +8536,14 @@ textarea, input {
   text-align: center;
   cursor: pointer;
 }
-/* line 858, ../sass/main.scss */
+/* line 860, ../sass/main.scss */
 .py-messages .close-btn:hover {
   background: #96ceee;
 }
 
 /* Responsive: Portrait tablets and up */
 @media print {
-  /* line 873, ../sass/main.scss */
+  /* line 875, ../sass/main.scss */
   #pvmenu, #uppermenu, #language-selector, #product_related, #product_recommended {
     display: none !important;
   }

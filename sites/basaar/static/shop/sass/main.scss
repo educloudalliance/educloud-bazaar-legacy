@@ -334,7 +334,7 @@ textarea, input { outline: none; }
 
     #filters{
         
-        #menu-subjects, #menu-grades, #menu-types, #menu-publishers {
+        #menu-subjects, #menu-grades, #menu-types {
 
             text-align: center;
             font-size: 14pt;
@@ -384,7 +384,7 @@ textarea, input { outline: none; }
 
             }
         }
-        #menu-subjects:hover, #menu-grades:hover, #menu-types:hover, #menu-publishers:hover {
+        #menu-subjects:hover, #menu-grades:hover, #menu-types:hover {
             color: $blue-main;
             svg text {
                 fill: $blue-main;
@@ -638,8 +638,8 @@ textarea, input { outline: none; }
             float: left;
             width: $basis-product-item;
         }
-        li:hover {
-            //background: $light-gray;
+        a:hover {
+            color: $blue-main;
         }
 
     }
@@ -817,6 +817,8 @@ textarea, input { outline: none; }
         }
         .review-list {
             list-style: none;
+            justify-content: center;
+            -webkit-justify-content: center;
         }
     }
 }
