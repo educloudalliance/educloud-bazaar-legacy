@@ -20,7 +20,7 @@ class ProductCategory(AbstractProductCategory):
 class Product(AbstractProduct):
     uuid = models.CharField(max_length=50)
     materialUrl = models.URLField(blank=True)
-    moreInfoUrl = models.URLField(blank=True)
+    moreInfoUrl = models.URLField(blank=True, null=True)
     version = models.CharField(max_length=50)
     contributionDate = models.DateField(null=True)
     maxAge = models.IntegerField(null=True)
