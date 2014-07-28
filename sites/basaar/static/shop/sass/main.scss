@@ -609,6 +609,17 @@ textarea, input { outline: none; }
         h3 {
             font-weight: normal;
             margin: 0px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .product_price h2 {
+            margin: 10px 0px;
+        }
+        h4 {
+            margin: 0px;
+            font-weight: normal;
+            font-size: 10pt;
         }
         a {
             text-decoration: none;
@@ -634,6 +645,7 @@ textarea, input { outline: none; }
         -webkit-justify-content: center;
 
         li {
+            overflow: hidden;
             border: 1px solid $light-gray;
             float: left;
             width: $basis-product-item;
