@@ -56,7 +56,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         productCategories = ProductCategory.objects.filter(product=obj)
         categories = []
         for i in productCategories:
-            categories.append(i.category)
+            categories.append(i.category.slug)
         return categories #productCategory.category.name
 
 

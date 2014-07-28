@@ -492,7 +492,7 @@ class CMSView(APIView):
         for subject in subs:
             if subs.count(subject) > 1:
                 raise DataException("Error: Please define each subject only once.")
-            
+
         #check if the given subjects are valid ones
         for subject in subs:
             if not Category.objects.filter(slug=subject).exists():
