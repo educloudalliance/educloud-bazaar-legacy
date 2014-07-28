@@ -630,14 +630,16 @@ textarea, input { outline: none; }
         width: 100%;
         padding: 0px;
         margin: 0px;
+        justify-content: center;
+        -webkit-justify-content: center;
 
         li {
             border: 1px solid $light-gray;
-            flex-basis: $basis-product-item;
-            -webkit-flex-basis: $basis-product-item;
+            float: left;
+            width: $basis-product-item;
         }
         li:hover {
-            background: $light-gray;
+            //background: $light-gray;
         }
 
     }
