@@ -274,7 +274,14 @@ class CMSView(APIView):
             #find subjects:
             subs = x["subjects"]
             if len(subs) == 0:
-                raise DataException("At least one subject has to be specified. To get a list of available subjects, do a GET to /api/subjects")
+                raise DataException("Error: 1-5 subjects has to be specified. To get a list of available subjects, do a GET to /api/subjects")
+            if len(subs) > 5:
+                raise DataException("Error: Over 5 subjects specified. To get a list of available subjects, do a GET to /api/subjects")
+
+            for subject in subs:
+                if subs.count(subject) > 1:
+                    raise DataException("Error: Please define each subject only once.")
+
             for subject in subs:
                 if Category.objects.filter(slug=subject).exists():
                         category = Category.objects.get(slug=subject)
@@ -480,6 +487,11 @@ class CMSView(APIView):
         subs = DATA["subjects"]
         if len(subs) == 0:
             raise DataException("At least one subject has to be specified. To get a list of available subjects, do a GET to /api/subjects")
+        if len(subs) > 5:
+            raise DataException("Error: Over 5 subjects specified. To get a list of available subjects, do a GET to /api/subjects")
+        for subject in subs:
+            if subs.count(subject) > 1:
+                raise DataException("Error: Please define each subject only once.")
 
         #check if the given subjects are valid ones
         for subject in subs:
