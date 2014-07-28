@@ -48,6 +48,8 @@
                 </p>
             {% endiffeature %}
         {% endblock %}
+        <h4>{{product.categories.first}}</h4>
+        <h4>{{product.minAge|add:"-6"}}-{{product.maxAge|add:"-6"}}</h4>
 
     </article>
 {% endblock %}
