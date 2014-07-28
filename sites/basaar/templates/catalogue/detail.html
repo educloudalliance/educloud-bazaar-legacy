@@ -245,7 +245,7 @@
                         {% else %}
                             <ol class="flex-container review-list">
                                 {% for review in reviews|slice:":2" %}
-                                    <li class="flexItem">
+                                    <li>
                                     {% include 'catalogue/partials/review.html' %}
                                     </li>
                                 {% endfor %}
@@ -262,7 +262,7 @@
                         <h2>{% trans "Recommended items" %}</h2>
                         <ul class="productlist flex-container flex-wrap">
                             {% for product in recommended_products %}
-                            <li class="flexItem">
+                            <li>
                                 {% render_product product %}
                             </li>
                             {% endfor %}
@@ -272,7 +272,7 @@
                 {% endwith %}
                 
                 <div id="product_related">
-                {% recently_viewed_products %}
+                    {% recently_viewed_products %}
                 </div>
             </div>
 

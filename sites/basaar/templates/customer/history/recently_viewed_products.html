@@ -7,7 +7,7 @@
 
         <ul class="productlist flex-container flex-wrap">
             {% for product in products_sliced %}
-                <li class="flexItem">{% render_product product %}</li>
+                <li>{% render_product product %}</li>
             {% endfor %}
         </ul>
     {% endif %}
