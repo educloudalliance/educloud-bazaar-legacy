@@ -48,7 +48,6 @@ class Product(AbstractProduct):
         filename = '/static/shop/img/icons/' + self.upc + '.png'
         localPath = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
         localFile = os.path.realpath(os.path.dirname(localPath)) + '/static/shop/img/icons/' + self.upc + '.png'
-        print localFile
         if os.path.isfile(localFile):
             return filename
         else:
