@@ -4,6 +4,8 @@ from oscar.apps.catalogue.abstract_models import *
 from django.utils.translation import ugettext_lazy as _, pgettext_lazy
 
 
+StockRecord = get_model('partner', 'StockRecord')
+
 class Category(AbstractCategory):
     pass
 
@@ -53,6 +55,14 @@ class Product(AbstractProduct):
             return filename
         else:
             return False
+
+    def get_owner(self):
+        product = StockRecord.objects.get(product=self)
+        owner = product.partner
+
+        return owner.name
+
+
 
 class Language(models.Model):
     name = models.CharField(max_length=128)

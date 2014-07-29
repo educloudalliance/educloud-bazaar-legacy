@@ -82,7 +82,7 @@
                                         <h1>{{ product.get_title }}</h1>
                                     </div>
                                     <div class="owner">
-                                        by Owner
+                                        by {{ product.get_owner }}
                                     </div>
                                     <div class="price flexItem flex-container-vertical">
                                         {% block product_stock_record %}
