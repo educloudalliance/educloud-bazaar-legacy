@@ -9,6 +9,7 @@
         {% block product_title %}
             <h3><a href="{{ product.get_absolute_url }}">{{ product.get_title|truncatewords:4 }}</a></h3>
         {% endblock %}
+            <h4 class="owner">by {{ product.get_owner }}<h4>
 
         {% block product_price %}
             <div class="product_price">
