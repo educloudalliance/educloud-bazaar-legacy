@@ -568,12 +568,15 @@ textarea, input { outline: none; }
 
 #content {
     width: 100%;
-    padding: $nav-height 20px;
+    padding: $nav-height $menu-width;
     z-index: -10;
 
 
     .content-900 {
         width: 900px;
+        @media screen and (min-width: 1600px) {
+            width: 1280px;
+        }
     }
     
     .box-page {
@@ -614,13 +617,15 @@ textarea, input { outline: none; }
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
+            font-size: 13pt;
         }
         .product_price h2 {
+            font-size: 16pt;
             margin: 10px 0px;
         }
         h4 {
             margin: 0px;
-            font-weight: normal;
+            font-weight: lighter;
             font-size: 10pt;
         }
         a {
@@ -632,7 +637,7 @@ textarea, input { outline: none; }
             -webkit-justify-content: center;
             text-align: center;
             img {
-                max-width: 75%;
+                width: 80px;
                 background-color: $dark-gray;
             }
         }
@@ -640,11 +645,10 @@ textarea, input { outline: none; }
 
     .productlist {
         list-style: none;
-        width: 100%;
         padding: 0px;
         margin: 0px;
-        justify-content: center;
-        -webkit-justify-content: center;
+        justify-content: flex-start;
+        -webkit-justify-content: flex-start;
 
         li {
             overflow: hidden;
@@ -802,6 +806,7 @@ textarea, input { outline: none; }
             }
             
             .product-action-box{
+                width: 300px;
                 background: $light-gray;
             }
             

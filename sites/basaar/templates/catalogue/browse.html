@@ -78,7 +78,7 @@
             <div>
                 <ol class="productlist flex-container flex-wrap">
                     {% for product in products %}
-                        <li class="{% if forloop.counter0|divisibleby:"4" %}no-margin{% endif %}">{% render_product product %}</li>
+                        <li>{% render_product product %}</li>
                     {% endfor %}
                 </ol>
                 {% include "partials/pagination.html" %}
