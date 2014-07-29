@@ -337,9 +337,9 @@ textarea, input { outline: none; }
         #menu-subjects, #menu-grades, #menu-types {
 
             text-align: center;
-            font-size: 14pt;
+            font-size: 19px;
             padding: 0px 13px;
-            margin: 0px;
+            margin: 2px 0px 0px 0px;
             text-transform: uppercase;
             height: $nav-height;
             line-height: $nav-height;
@@ -348,7 +348,7 @@ textarea, input { outline: none; }
             > svg {
                 height: 14pt;
                 width: 14pt;
-                margin: 0px 0px -3px 10px;
+                margin: 0px 0px -3px 6px;
                 padding-top: 3px;
             }
             @media screen and (max-width: $r1280-content-width) {
@@ -402,6 +402,7 @@ textarea, input { outline: none; }
         form {
             display: inline-block;
             line-height: $nav-height;
+            padding-left: 13px;
             @media screen and (max-width: $r1280-content-width) {
                 line-height: $nav-height / 3;
                 height: $nav-height / 3;
@@ -412,9 +413,10 @@ textarea, input { outline: none; }
                 border: none;
                 padding: 1px 4px;
                 color: white;
-                border-radius: 5px;
-                width: 105px;
+                border-radius: 3px;
+                width: 155px;
                 background: $dark-gray;
+
             }
         }
 
@@ -664,6 +666,10 @@ textarea, input { outline: none; }
         color: $dark-gray;
         > .flex-container-vertical > div {
             border-bottom: 2px solid $light-gray;
+            padding: 0px 0px 25px 0px;
+        }
+        > .flex-container-vertical > div:first-child {
+            padding: 0px;
         }
         #tabs-product {
             height: $tab-header-height;
@@ -700,15 +706,15 @@ textarea, input { outline: none; }
             #addbasket-tab form, #wishlist-tab form {
                 .totalPriceLabel{
                     font-size: 16pt;
-                    padding: 15px 0px 0px 0px;
+                    padding: 5px 0px 0px 0px;
                 }
                 .totalPriceValue{
                     font-size: 16pt;
-                    padding: 0px 0px 20px 0px;
+                    padding: 0px 0px 30px 0px;
                 }
                 .control-group {
                     font-size: 16pt;
-                    padding: 55px 0px 15px;
+                    padding: 40px 0px 15px;
 
                     label, div {
                         display: inline-block;
@@ -734,60 +740,65 @@ textarea, input { outline: none; }
             h1, h2, h3, h4, h5, h6, p {
                 margin: 0px;
             }
-            .firstrow {
-                align-items: center;
-                -webkit-align-items: center;
-            }
-            .title {
-                text-align: left;
-                margin: 10px 0px;
-                h1 {
-                    font-size: 28pt;
-                    font-weight: normal;
-                    a {
-                        color: $green-main;
-                        text-decoration: none;
-                    }
-                }
-            }
-            .price {
-                .price_color {
-                    font-weight: normal;
-                }
-                text-align: right;
-                padding-right: 1.5em;
-
-            }
             .thumbnail{
                 img {
                     margin-right: 17px;
                     height: 191px;
                     width: 191px;
+                    border: 1px solid $light-gray;
                     background-color: $dark-gray;
-                    border: 1px solid #666666;
+                }
+            }
+            .title {
+                text-align: left;
+                margin: 0px;
+                h1 {
+                    font-size: 28pt;
+                    font-weight: normal;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
                 }
             }
             .owner {
                 font-size: 16pt;
                 font-weight: lighter;
-                line-height: 40pt;
+            }
+            .price {
+                justify-content: flex-end;
+                -webkit-justify-content: flex-end;
+                .price_color {
+                    font-weight: normal;
+                }
+                text-align: left;
+                color: red;
+                font-weight: bold;
+
             }
             .rating {
-                font-size: 15pt;
+                justify-content: flex-end;
+                -webkit-justify-content: flex-end;
+                font-size: 13pt;
                 font-weight: bold;
-                line-height: 40pt;
+                p {
+                    margin: 5px 0px;
+                    i.fa {
+                        font-size: 15pt;
+                        margin-right: 5px;
+                    }
+                }
             }
             .subject h3, .grade h3, .type h3 {
-                font-size: 12pt;
-                font-weight: normal;
+                font-size: 10pt;
+                font-weight: bold;
             }
             .subject p, .grade p, .type p {
-                font-size: 16pt;
+                font-size: 15pt;
                 font-weight: normal;
             }
             .line {
-                align-items: flex-end;
-                -webkit-align-items: flex-end;
+                align-items: center;
+                -webkit-align-items: center;
             }
             
             .product-action-box{
@@ -796,7 +807,11 @@ textarea, input { outline: none; }
             
         }
         .big-line {
-            margin: 12px 0px;
+            margin: 25px 0px;
+            .thumb-line {
+                margin-right: 17px;
+                width: 191px;
+            }
         }
         h2 {
             font-size: 19pt;
@@ -812,16 +827,24 @@ textarea, input { outline: none; }
             margin-bottom: 20px;
 
             tr {
-                border-bottom: 1px solid $gray;
                 th {
-                    text-align: right;
-                    padding: 3px 7px;
-                    border-right: 1px solid $gray;
+                    text-align: left;
+                    padding: 6px 10px;
+                    border-right: 1px solid #ddd;
+                    min-width: 180px;
                 }
                 td {
-                    padding: 3px 7px;
+                    //border: 1px solid $gray;
+                    padding: 6px 10px 6px 20px;
                     text-align: left;
+                    min-width: 400px;
                 }
+            }
+            tr:nth-child(odd) {
+                background: $light-gray;
+            }
+            tr:nth-child(even) {
+                background: white;
             }
         }
         .carousel {

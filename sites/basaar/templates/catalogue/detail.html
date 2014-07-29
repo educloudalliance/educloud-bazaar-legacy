@@ -69,18 +69,8 @@
                 -->
                     <div class="flex-container main">
                         <div class="flexItem2 flex-container-vertical">
-                            <div class="flex-container firstrow">
-                                <div class="title flexItem">
-                                    <h1><a href="">{{ product.get_title }}</a></h1>
-                                </div>
-                                <div class="price">
-                                    {% block product_stock_record %}
-                                        {% include "catalogue/partials/stock_record.html" with verbose=1 %}
-                                    {% endblock %}
-                                </div>
-                            </div>
                             <div class="flex-container">
-                                <div class="thumbnail">
+                                <div class="thumbnail flex-container-vertical">
                                         {% if product.get_icon_url %}
                                             <img src="{{ product.get_icon_url }}" alt="{{ product.get_title }} class="thumbnail">
                                         {% else %}
@@ -88,28 +78,38 @@
                                         {% endif %}
                                 </div>
                                 <div class="flexItem flex-container-vertical summary">
-                                    <div class="owner flexItem">
+                                    <div class="title">
+                                        <h1>{{ product.get_title }}</h1>
+                                    </div>
+                                    <div class="owner">
                                         by Owner
                                     </div>
-                                    <div class="rating flexItem">
-                                        {{product.rating}} §
+                                    <div class="price flexItem flex-container-vertical">
+                                        {% block product_stock_record %}
+                                            {% include "catalogue/partials/stock_record.html" with verbose=1 %}
+                                        {% endblock %}
                                     </div>
-                                    <div class="line flex-container flexItem">
-                                        <div class="flexItem grade">
-                                            <h3>Grade</h3>
-                                            <p>{{product.minAge|add:"-6"}}-{{product.maxAge|add:"-6"}}</p>
-                                        </div>
-                                        <div class="flexItem type">
-                                            <h3>Type</h3>
-                                            <p>{{product.product_class}}</p>
-                                        </div>
+                                    <div class="rating flexItem flex-container-vertical">
+                                        <p><i class="fa fa-thumbs-o-up"></i>{{product.rating}}&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-down"></i>{{product.rating}}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="big-line">
-                                <div class="flexItem subject">
-                                    <h3>Subjects</h3>
-                                    <p>{{product.categories.first}}</p>
+                            <div class="big-line flex-container flexItem">
+                                <div class="thumb-line flex-container">
+                                    <div class="flexItem type">
+                                        <h3>Type</h3>
+                                        <p>{{product.product_class}}</p>
+                                    </div>
+                                    <div class="flexItem grade">
+                                        <h3>Grade</h3>
+                                        <p>{{product.minAge|add:"-6"}}-{{product.maxAge|add:"-6"}}</p>
+                                    </div>
+                                </div>
+                                <div class="line flex-container flexItem">
+                                    <div class="flexItem subject">
+                                        <h3>Subjects</h3>
+                                        <p>{{product.categories.first}}</p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -143,14 +143,20 @@
                         {% block product_info %}
                         <h2>{% trans "Product Information" %}</h2>
                         <table class="product-info">
+                            <tr>
+                                <th>Subjects</th><td>{{product.categories.first}}</td>
+                            </tr>
+                            <tr>
+                                <th>Grade</th><td>{{product.minAge|add:"-6"}}-{{product.maxAge|add:"-6"}}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "Product Type" %}</th><td>{{ product.get_product_class.name }}</td>
+                            </tr>
                             {% if product.upc %}
                             <tr>
                                 <th>{% trans "UPC" %}</th><td>{{ product.upc }}</td>
                             </tr>
                             {% endif %}
-                            <tr>
-                                <th>{% trans "Product Type" %}</th><td>{{ product.get_product_class.name }}</td>
-                            </tr>
 
                             {% purchase_info_for_product request product as session %}
                             {% if session.price.exists %}

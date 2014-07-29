@@ -46,9 +46,8 @@
                 </ul>
             </div>
         <div id="addTags">
-            <div class="label">Filter content by tags:</div>
             <form method="get" action="{% url 'search:search' %}" class="navbar-form pull-right">
-                {{ search_form.q }}
+                <input placeholder="Filter by tags" >
             </form>
         </div>
     </div>
