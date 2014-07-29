@@ -30,6 +30,7 @@ class Product(AbstractProduct):
     copyrightNotice = models.CharField(max_length=4000)
     attributionText = models.TextField()
     attributionURL = models.CharField(max_length=4000)
+    visible = models.BooleanField(default=False)
 
     def get_media(self):
         """

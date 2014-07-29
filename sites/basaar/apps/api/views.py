@@ -207,6 +207,16 @@ class CMSView(APIView):
 
         return "Created collections: " + str(createdCollection)
 
+
+    def str2Bool(self, s):
+        if s == "false":
+            return False
+        elif s == "true":
+            return True
+        else:
+            raise DataException("Error: Incorrect format in boolean field. Should be either 'true' or 'false'")
+
+
     #check whether json has items or not
     def checkJsonData(self,request):
         theList = request.DATA
@@ -241,12 +251,14 @@ class CMSView(APIView):
             else:
                 moreInfoUrl = None
 
+            visible = self.str2Bool(x["visible"])
+
 
             product = Product(title=x["title"], upc=createdUPC, description=x["description"], materialUrl=x["materialUrl"],
                               moreInfoUrl=moreInfoUrl,  uuid=x["uuid"], version=x["version"],
                               maxAge=x["maximumAge"], minAge=x["minimumAge"], contentLicense=x["contentLicense"],
                               dataLicense=x["dataLicense"], copyrightNotice=x["copyrightNotice"], attributionText=x["attributionText"],
-                              attributionURL=x["attributionURL"], product_class=itemClass)    #TODO: product_class on product type
+                              attributionURL=x["attributionURL"],visible=visible, product_class=itemClass)    #TODO: product_class on product type
 
             #Add fullfilment into database
             author = Partner.objects.get(name=self.splitUrl(path)[0])
@@ -462,6 +474,10 @@ class CMSView(APIView):
         obj.description = DATA["description"]
         obj.materialUrl = DATA["materialUrl"]
         obj.version = DATA["version"]
+
+        visible = self.str2Bool(DATA["visible"])
+        obj.visible = visible
+
         if "contributionDate" in DATA:
             try:
                 obj.contributionDate = datetime.strptime(DATA["contributionDate"], "%Y-%m-%d")

@@ -64,7 +64,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         model = Product
         fields = ('uuid', 'title', 'description', 'materialUrl', 'moreInfoUrl', 'version',
         'contributionDate', 'maxAge', 'minAge', 'contentLicense',
-        'dataLicense', 'copyrightNotice', 'attributionText', 'attributionURL', 'embedMedia', 'tags', 'languages', 'price', 'subject')
+        'dataLicense', 'copyrightNotice', 'attributionText', 'attributionURL', 'embedMedia', 'tags', 'languages', 'price', 'subject', 'visible')
         #read_only_fields = ('mTitle', 'slug')
 
 class APINodeSerializer(serializers.HyperlinkedModelSerializer):
