@@ -1,5 +1,4 @@
-import os
-import sys
+import os, sys
 
 # Path helper
 PROJECT_DIR = os.path.dirname(__file__)
@@ -64,24 +63,8 @@ LANGUAGE_CODE = 'fi'
 gettext_noop = lambda s: s
 LANGUAGES = (
     ('en-gb', gettext_noop('British English')),
-    ('zh-cn', gettext_noop('Simplified Chinese')),
-    ('nl', gettext_noop('Dutch')),
-    ('it', gettext_noop('Italian')),
-    ('pl', gettext_noop('Polish')),
-    ('ru', gettext_noop('Russian')),
-    ('sk', gettext_noop('Slovak')),
-    ('pt-br', gettext_noop('Brazilian Portuguese')),
-    ('fr', gettext_noop('French')),
     ('fi', gettext_noop('Finnish')),
-    ('de', gettext_noop('German')),
-    ('ko', gettext_noop('Korean')),
-    ('uk', gettext_noop('Ukrainian')),
-    ('es', gettext_noop('Spanish')),
-    ('da', gettext_noop('Danish')),
-    ('ar', gettext_noop('Arabic')),
-    ('ca', gettext_noop('Catalan')),
-    ('cs', gettext_noop('Czech')),
-    ('el', gettext_noop('Greek')),
+    ('sv', gettext_noop('Swedish')),
 )
 
 SITE_ID = 1
