@@ -22,7 +22,7 @@ from rest_framework import authentication, permissions
 from rest_framework.authentication import OAuth2Authentication, BasicAuthentication, SessionAuthentication
 from apps.api.permissions import IsOwner
 from rest_framework import generics
-
+from rest_framework import permissions
 from django.http import Http404
 
 
@@ -82,6 +82,7 @@ class ProductTypeList(viewsets.ReadOnlyModelViewSet):
     queryset = ProductClass.objects.all()
     serializer_class = ProductTypeSerializer
     paginate_by = 100
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class SubjectList(viewsets.ReadOnlyModelViewSet):
     """
@@ -90,6 +91,7 @@ class SubjectList(viewsets.ReadOnlyModelViewSet):
     queryset = Category.objects.all()
     serializer_class = SubjectSerializer
     paginate_by = 100
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 # this view is used to handle all CMS interaction through collections
