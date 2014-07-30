@@ -48,10 +48,11 @@ class Product(AbstractProduct):
     get_media.short_description = _("Embedded media")
 
     def get_icon_url(self):
-        filename = '/static/shop/img/icons/' + self.upc + '.png'
-        localPath = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
-        localFile = os.path.realpath(os.path.dirname(localPath)) + '/static/shop/img/icons/' + self.upc + '.png'
-        if os.path.isfile(localFile):
+        sPath = os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, os.pardir))
+        localPath = sPath + '/static/shop/img/icons/' + self.upc + '.png'
+        filename = 'shop/img/icons/' + self.upc + '.png'
+
+        if os.path.isfile(localPath):
             return filename
         else:
             return False

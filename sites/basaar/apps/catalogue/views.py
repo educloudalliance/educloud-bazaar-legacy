@@ -4,6 +4,7 @@ from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.utils.translation import ugettext_lazy as _
+from django.http import Http404
 
 from oscar.core.loading import get_class, get_model
 from oscar.apps.catalogue.signals import product_viewed
@@ -26,8 +27,12 @@ class ProductDetailView(DetailView):
         """
         Ensures that the correct URL is used before rendering a response
         """
+
         self.object = product = self.get_object()
-        visibleProducts = Product.objects.filter(visible=True)
+
+        #Check if visible
+        if self.object.visible is False:
+            raise Http404
 
         if self.enforce_paths:
             if product.is_variant:
