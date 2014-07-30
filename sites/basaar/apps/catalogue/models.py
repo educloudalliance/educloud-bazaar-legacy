@@ -25,8 +25,8 @@ class Product(AbstractProduct):
     moreInfoUrl = models.URLField(blank=True, null=True)
     version = models.CharField(max_length=50)
     contributionDate = models.DateField(null=True)
-    maxAge = models.IntegerField(null=True)
-    minAge = models.IntegerField(null=True)
+    maximumAge = models.IntegerField(null=True)
+    minimumAge = models.IntegerField(null=True)
     contentLicense = models.CharField(max_length=4000)  #Apache limit from www.boutell.com/newfaq/misc/urllength.html
     dataLicense = models.CharField(max_length=4000)
     copyrightNotice = models.CharField(max_length=4000)
@@ -96,7 +96,7 @@ class Tags(models.Model):
     lastModified = models.DateTimeField(auto_now_add=True)
     hasTags = models.ManyToManyField(Product)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
     @classmethod

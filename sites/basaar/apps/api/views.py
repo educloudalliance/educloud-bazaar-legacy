@@ -2,7 +2,7 @@ import urllib2, os, sys
 from PIL import Image, ImageChops
 from django.views.decorators.csrf import csrf_exempt
 import uuid as libuuid
-from django.shortcuts import render
+from rest_framework.renderers import UnicodeJSONRenderer
 from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 from django.db.models import Count
@@ -111,7 +111,7 @@ class CMSView(APIView):
 
     """
     #authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
-    #permission_classes = ( IsOwner, ) #permissions.IsAuthenticatedOrReadOnly,
+    #renderer_classes = (UnicodeJSONRenderer,)
     authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
 
@@ -210,7 +210,7 @@ class CMSView(APIView):
                 if i < len(urlTokens):
                     pathSoFar += "/" + urlTokens[i] #move to the next
 
-        return "Created collections: " + str(createdCollection)
+        return "Created collections: " + unicode(createdCollection)
 
 
     def str2Bool(self, s):
@@ -244,7 +244,7 @@ class CMSView(APIView):
             for x in theList:
                 #Add product into database
                 try:
-                    itemClass = ProductClass.objects.get(name=x["productType"])
+                    itemClass = ProductClass.objects.get(slug=x["productType"])
                 #TODO Create better error handling
                 except:
                     raise RollbackException("Error: Product class with type " + x["productType"] + " could not be found.")
@@ -261,13 +261,12 @@ class CMSView(APIView):
                 visible = self.str2Bool(x["visible"])
                 product = Product(title=x["title"], upc=createdUPC, description=x["description"], materialUrl=x["materialUrl"],
                                   moreInfoUrl=moreInfoUrl,  uuid=x["uuid"], version=x["version"],
-                                  maxAge=x["maximumAge"], minAge=x["minimumAge"], contentLicense=x["contentLicense"],
+                                  maximumAge=x["maximumAge"], minimumAge=x["minimumAge"], contentLicense=x["contentLicense"],
                                   dataLicense=x["dataLicense"], copyrightNotice=x["copyrightNotice"], attributionText=x["attributionText"],
                                   attributionURL=x["attributionURL"],visible=visible, product_class=itemClass)    #TODO: product_class on product type
 
                 #Add fullfilment into database
                 author = Partner.objects.get(code=self.splitUrl(path)[0])
-
 
                 if "contributionDate" in x:
                     try:
@@ -507,6 +506,12 @@ class CMSView(APIView):
         visible = self.str2Bool(DATA["visible"])
         obj.visible = visible
 
+        try:
+            itemClass = ProductClass.objects.get(slug=DATA["productType"])
+            obj.product_class = itemClass
+        except ProductClass.DoesNotExist:
+            raise DataException("Error: No productType found with that name. To get a list of available types, call /api/producttypes")
+
         if "contributionDate" in DATA:
             try:
                 obj.contributionDate = datetime.strptime(DATA["contributionDate"], "%Y-%m-%d")
@@ -520,8 +525,8 @@ class CMSView(APIView):
         else:
             obj.moreInfoUrl = None
 
-        obj.maxAge = DATA["maximumAge"]
-        obj.minAge = DATA["minimumAge"]
+        obj.maximumAge = DATA["maximumAge"]
+        obj.minimumAge = DATA["minimumAge"]
         obj.contentLicense = DATA["contentLicense"]
         obj.dataLicense = DATA["dataLicense"]
         obj.copyrightNotice = DATA["copyrightNotice"]
@@ -626,42 +631,6 @@ class CMSView(APIView):
         existingLangs = Language.objects.filter(hasLanguage=product)
         for l in existingLangs:
             l.hasLanguage.remove(product)
-
-    """
-    def delete(self,request):
-        inValidItemsNames = ""
-        isValid = self.isValidUrl(request.path)
-        if not isValid:
-            return Response("Error: The url is empty.")
-        url = self.trimTheUrl(request.path)
-        #print url
-
-        if not self.checkJsonData(request):
-            return Response("No JSON data available")
-
-        theList = request.DATA["items"]
-        inValidItems = []
-        for eachItem in theList:
-            finalUrl = url + "/" + slugify(eachItem["title"])
-            if not models.APINode.objects.filter(uniquePath=finalUrl).exists():
-                inValidItems.append(eachItem["title"])
-            else:
-                self.deleteExisitingItem(finalUrl,eachItem)
-
-        if len(inValidItems) == 0:
-            return Response("Successfully deleted data")
-        else:
-            for eachItem in inValidItems:
-                inValidItemsNames += eachItem
-                inValidItemsNames += ",  "
-            return Response("items not found:"+inValidItemsNames)
-    """
-    def deleteExisitingItem(self,finalUrl,x):
-        itemNode = models.APINode.objects.get(uniquePath=finalUrl)
-        itemNode.materialItem.delete()
-        itemNode.delete()
-        #item.delete()
-        #itemNode.delete()
 
     #Download icon into static folder
     def downloadIcon(self, url, iconName):

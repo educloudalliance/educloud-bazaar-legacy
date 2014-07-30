@@ -37,6 +37,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     languages = serializers.SerializerMethodField('languageLookup')
     price = serializers.SerializerMethodField('priceLookup')
     subject = serializers.SerializerMethodField("subjectLookup")
+    producttype = serializers.SerializerMethodField("productTypeLookup")
 
     def mediaUrlLookup(self, obj):
         objs = EmbeddedMedia.objects.filter(product=obj)
@@ -52,6 +53,9 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     def priceLookup(self, obj):
         return float(StockRecord.objects.get(product=obj).price_retail)
 
+    def productTypeLookup(self, obj):
+        return obj.product_class.slug
+
     def subjectLookup(self, obj):
         productCategories = ProductCategory.objects.filter(product=obj)
         categories = []
@@ -63,8 +67,8 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
         fields = ('uuid', 'title', 'description', 'materialUrl', 'moreInfoUrl', 'version',
-        'contributionDate', 'maxAge', 'minAge', 'contentLicense',
-        'dataLicense', 'copyrightNotice', 'attributionText', 'attributionURL', 'embedMedia', 'tags', 'languages', 'price', 'subject', 'visible')
+        'contributionDate', 'maximumAge', 'minimumAge', 'contentLicense',
+        'dataLicense', 'copyrightNotice', 'attributionText', 'attributionURL', 'embedMedia', 'tags', 'languages', 'price', 'producttype', 'subject', 'visible')
         #read_only_fields = ('mTitle', 'slug')
 
 class APINodeSerializer(serializers.HyperlinkedModelSerializer):
