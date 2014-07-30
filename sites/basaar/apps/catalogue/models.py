@@ -25,8 +25,8 @@ class Product(AbstractProduct):
     moreInfoUrl = models.URLField(blank=True, null=True)
     version = models.CharField(max_length=50)
     contributionDate = models.DateField(null=True)
-    maxAge = models.IntegerField(null=True)
-    minAge = models.IntegerField(null=True)
+    maximumAge = models.IntegerField(null=True)
+    minimumAge = models.IntegerField(null=True)
     contentLicense = models.CharField(max_length=4000)  #Apache limit from www.boutell.com/newfaq/misc/urllength.html
     dataLicense = models.CharField(max_length=4000)
     copyrightNotice = models.CharField(max_length=4000)
@@ -48,10 +48,11 @@ class Product(AbstractProduct):
     get_media.short_description = _("Embedded media")
 
     def get_icon_url(self):
-        filename = '/static/shop/img/icons/' + self.upc + '.png'
-        localPath = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
-        localFile = os.path.realpath(os.path.dirname(localPath)) + '/static/shop/img/icons/' + self.upc + '.png'
-        if os.path.isfile(localFile):
+        sPath = os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, os.pardir))
+        localPath = sPath + '/static/shop/img/icons/' + self.upc + '.png'
+        filename = 'shop/img/icons/' + self.upc + '.png'
+
+        if os.path.isfile(localPath):
             return filename
         else:
             return False
@@ -96,7 +97,7 @@ class Tags(models.Model):
     lastModified = models.DateTimeField(auto_now_add=True)
     hasTags = models.ManyToManyField(Product)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
     @classmethod

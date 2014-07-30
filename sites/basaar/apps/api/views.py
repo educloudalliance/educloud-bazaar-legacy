@@ -2,7 +2,7 @@ import urllib2, os, sys
 from PIL import Image, ImageChops
 from django.views.decorators.csrf import csrf_exempt
 import uuid as libuuid
-from django.shortcuts import render
+from rest_framework.renderers import UnicodeJSONRenderer
 from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
 from django.db.models import Count
@@ -49,6 +49,13 @@ class RootException(Exception):
         return repr("Cannot create Root-nodes")
 
 class DataException(Exception):
+    msg = ""
+    def __init__(self, msg):
+        self.msg = msg
+    def __str__(self):
+        return repr(self.msg)
+
+class RollbackException(Exception):
     msg = ""
     def __init__(self, msg):
         self.msg = msg
@@ -104,7 +111,7 @@ class CMSView(APIView):
 
     """
     #authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
-    #permission_classes = ( IsOwner, ) #permissions.IsAuthenticatedOrReadOnly,
+    #renderer_classes = (UnicodeJSONRenderer,)
     authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
 
@@ -163,8 +170,6 @@ class CMSView(APIView):
             #we found an object which is an item and in middle of the given path.
             #because items can't have children, this is an ERROR condition.
             return True
-
-        print "Lopuksi: " + pathSoFar
         return False
 
 
@@ -185,8 +190,6 @@ class CMSView(APIView):
 
             try:
                 node = models.APINode.objects.get(uniquePath=pathSoFar, objectType="collection")
-                #if models.APINode.objects.filter(uniquePath=pathSoFar, objectType="collection").exists():
-
                 perm = IsOwner()
                 if not perm.has_object_permission(request, self, node):
                     raise AuthException()
@@ -207,7 +210,7 @@ class CMSView(APIView):
                 if i < len(urlTokens):
                     pathSoFar += "/" + urlTokens[i] #move to the next
 
-        return "Created collections: " + str(createdCollection)
+        return "Created collections: " + unicode(createdCollection)
 
 
     def str2Bool(self, s):
@@ -232,137 +235,161 @@ class CMSView(APIView):
 
     def postMaterialItem(self, path, request):
         theList = request.DATA["items"]
-        createdItems = []
+        createdApiNodes = []
+        createdProducts = []
+        createdStockRecords = []
 
-
-        #TODO: WRITE A PROPER SERIALIZER FOR THIS!!!!!!!!!!!!!!!!!
-        for x in theList:
-            #Add product into database
-            try:
-                itemClass = ProductClass.objects.get(name=x["productType"])
-            #TODO Create better error handling
-            except:
-                return "Product Class cannot be found"
-
-            #Create unique UPC
-            createdUPC = self.createUPC()
-
-            #check optional fields
-            if "moreInfoUrl" in x:
-                moreInfoUrl = x["moreInfoUrl"]
-            else:
-                moreInfoUrl = None
-
-            visible = self.str2Bool(x["visible"])
-
-
-            product = Product(title=x["title"], upc=createdUPC, description=x["description"], materialUrl=x["materialUrl"],
-                              moreInfoUrl=moreInfoUrl,  uuid=x["uuid"], version=x["version"],
-                              maxAge=x["maximumAge"], minAge=x["minimumAge"], contentLicense=x["contentLicense"],
-                              dataLicense=x["dataLicense"], copyrightNotice=x["copyrightNotice"], attributionText=x["attributionText"],
-                              attributionURL=x["attributionURL"],visible=visible, product_class=itemClass)    #TODO: product_class on product type
-
-            #Add fullfilment into database
-            author = Partner.objects.get(name=self.splitUrl(path)[0])
-
-
-            if "contributionDate" in x:
+        try:
+            #TODO: WRITE A PROPER SERIALIZER FOR THIS!!!!!!!!!!!!!!!!!
+            for x in theList:
+                #Add product into database
                 try:
-                    product.contributionDate = datetime.strptime(x["contributionDate"], "%Y-%m-%d")
-                except ValueError:
-                    return "Items created: " + createdItems + " ERROR: ContributionDate field was in wrong format. Should be yyyy-mm-dd"
-            else:
-                product.contributionDate = None
+                    itemClass = ProductClass.objects.get(slug=x["productType"])
+                #TODO Create better error handling
+                except:
+                    raise RollbackException("Error: Product class with type " + x["productType"] + " could not be found.")
 
-            if self.checkIfAlreadyInDb(path + "/" + slugify(product.uuid)):
-                return "ERROR: Can't post because an object already exists in this URL. Items created: " + unicode(createdItems)
+                #Create unique UPC
+                createdUPC = self.createUPC()
 
-            createdItems.append(product.title)
-
-            #Download icon if one is specified
-            if "iconUrl" in x and x["iconUrl"] is not None:
-                self.downloadIcon(x["iconUrl"], createdUPC)
-
-            product.save()
-
-            #find subjects:
-            subs = x["subjects"]
-            if len(subs) == 0:
-                raise DataException("Error: 1-5 subjects has to be specified. To get a list of available subjects, do a GET to /api/subjects")
-            if len(subs) > 5:
-                raise DataException("Error: Over 5 subjects specified. To get a list of available subjects, do a GET to /api/subjects")
-
-            for subject in subs:
-                if subs.count(subject) > 1:
-                    raise DataException("Error: Please define each subject only once.")
-
-            for subject in subs:
-                if Category.objects.filter(slug=subject).exists():
-                        category = Category.objects.get(slug=subject)
-                        newProductCategory = ProductCategory(product=product, category=category)
-                        newProductCategory.save()
+                #check optional fields
+                if "moreInfoUrl" in x:
+                    moreInfoUrl = x["moreInfoUrl"]
                 else:
-                    product.delete()
-                    return "No such subject as in subject field: " + subject + " To get a list of available subjects, do a GET to /api/subjects"
+                    moreInfoUrl = None
 
+                visible = self.str2Bool(x["visible"])
+                product = Product(title=x["title"], upc=createdUPC, description=x["description"], materialUrl=x["materialUrl"],
+                                  moreInfoUrl=moreInfoUrl,  uuid=x["uuid"], version=x["version"],
+                                  maximumAge=x["maximumAge"], minimumAge=x["minimumAge"], contentLicense=x["contentLicense"],
+                                  dataLicense=x["dataLicense"], copyrightNotice=x["copyrightNotice"], attributionText=x["attributionText"],
+                                  attributionURL=x["attributionURL"],visible=visible, product_class=itemClass)    #TODO: product_class on product type
 
+                #Add fullfilment into database
+                author = Partner.objects.get(code=self.splitUrl(path)[0])
 
-            #create language, Tags and EmbeddedMedia models
-            langList = x["language"]
-            for lan in langList:
-                print lan
-                #check if the language is already in db, if not create it
-                if Language.objects.filter(name=lan).exists():
-                    l = Language.objects.get(name=lan)
-                    l.hasLanguage.add(product)
+                if "contributionDate" in x:
+                    try:
+                        product.contributionDate = datetime.strptime(x["contributionDate"], "%Y-%m-%d")
+                    except ValueError:
+                        raise RollbackException( " ERROR: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
                 else:
-                    langEntry = Language.create()
-                    langEntry.name = lan
-                    langEntry.save()
-                    langEntry.hasLanguage.add(product)
+                    product.contributionDate = None
 
-            #tags creation
-            if "tags" in x:
-                tagList = x["tags"]
+                if self.checkIfAlreadyInDb(path + "/" + slugify(product.uuid)):
+                    raise RollbackException("ERROR: Can't post at " + path + "/" + slugify(product.uuid) + " because an object already exists in this URL." )
 
-                if len(tagList) > 5:
-                    product.delete()
-                    raise DataException("Error: More than 5 tags specified. Only 0-5 allowed.")
+                #Download icon if one is specified
+                if "iconUrl" in x and x["iconUrl"] is not None:
+                    self.downloadIcon(x["iconUrl"], createdUPC)
 
-                for tag in tagList:
-                    print tag
-                    #check if the tag is already in db, if not create it
-                    if Tag.objects.filter(name=tag).exists():
-                        t = Tag.objects.get(name=tag)
-                        t.hasTags.add(product)
+                product.save()
+                createdProducts.append(product)
+
+                #find subjects:
+                subs = x["subjects"]
+                if len(subs) == 0:
+                    raise RollbackException("Error: 1-5 subjects has to be specified. To get a list of available subjects, do a GET to /api/subjects")
+                if len(subs) > 5:
+                    raise RollbackException("Error: Over 5 subjects specified. To get a list of available subjects, do a GET to /api/subjects")
+
+                for subject in subs:
+                    if subs.count(subject) > 1:
+                        raise RollbackException("Error: Please define each subject only once.")
+
+                for subject in subs:
+                    if Category.objects.filter(slug=subject).exists():
+                            category = Category.objects.get(slug=subject)
+                            newProductCategory = ProductCategory(product=product, category=category)
+                            newProductCategory.save()
                     else:
-                        tagEntry = Tag.create()
-                        tagEntry.name = tag
-                        tagEntry.save()
-                        tagEntry.hasTags.add(product)
-
-            #oEmbed
-            if "embedMedia" in x:
-                embedList = x["embedMedia"]
-                for media in embedList:
-                    print media
-                    embedEntry = EmbeddedMedia.create()
-                    embedEntry.url = media
-                    embedEntry.product = product
-                    embedEntry.save()
-
-            f = StockRecord(product=product, partner=author, price_excl_tax=x["price"], price_retail=x["price"], partner_sku=x["uuid"], num_in_stock=1)
-            f.save()
-
-            #add APINode for this materialItem
-            finalUrl = path + "/" + slugify(product.uuid)
-            newColl = models.APINode.create(finalUrl, path, "item")
-            newColl.materialItem = product
-            newColl.owner = request.user
-            newColl.save()
+                        raise RollbackException("No such subject as in subject field: " + subject + " To get a list of available subjects, do a GET to /api/subjects")
 
 
-        return "Items created: " + unicode(createdItems)
+
+                #create language, Tags and EmbeddedMedia models
+                langList = x["language"]
+                for lan in langList:
+                    print lan
+                    #check if the language is already in db, if not create it
+                    if Language.objects.filter(name=lan).exists():
+                        l = Language.objects.get(name=lan)
+                        l.hasLanguage.add(product)
+                    else:
+                        langEntry = Language.create()
+                        langEntry.name = lan
+                        langEntry.save()
+                        langEntry.hasLanguage.add(product)
+
+                #tags creation
+                if "tags" in x:
+                    tagList = x["tags"]
+
+                    if len(tagList) > 5:
+                        raise RollbackException("Error: More than 5 tags specified. Only 0-5 allowed.")
+
+                    for tag in tagList:
+                        #check if the tag is already in db, if not create it
+                        if Tag.objects.filter(name=tag).exists():
+                            t = Tag.objects.get(name=tag)
+                            t.hasTags.add(product)
+                        else:
+                            tagEntry = Tag.create()
+                            tagEntry.name = tag
+                            tagEntry.save()
+                            tagEntry.hasTags.add(product)
+
+                #oEmbed
+                if "embedMedia" in x:
+                    embedList = x["embedMedia"]
+                    for media in embedList:
+                        print media
+                        embedEntry = EmbeddedMedia.create()
+                        embedEntry.url = media
+                        embedEntry.product = product
+                        embedEntry.save()
+
+                f = StockRecord(product=product, partner=author, price_excl_tax=x["price"], price_retail=x["price"], partner_sku=x["uuid"], num_in_stock=1)
+                f.save()
+                createdStockRecords.append(f)
+
+
+                #add APINode for this materialItem
+                finalUrl = path + "/" + slugify(product.uuid)
+                newColl = models.APINode.create(finalUrl, path, "item")
+                newColl.materialItem = product
+                newColl.owner = request.user
+                newColl.save()
+                createdApiNodes.append(newColl)
+
+        except RollbackException as e:
+            #TODO: MUISTA KASITELLA MYOS MUUT POIKKEUKSET JA ROLLBACKAA NIIDEN MUKAAN!!!!!!!
+            self.doRollback(createdApiNodes, createdProducts, createdStockRecords)
+            raise DataException(e.msg + " All changes/materialItems canceled.")
+        except Exception, e:
+            #Rollback the process because of an other error
+            self.doRollback(createdApiNodes, createdProducts, createdStockRecords)
+            raise e
+
+        success = "Created items: "
+        for i in createdApiNodes:
+            success += i.uniquePath + " , "
+        return success
+
+    #this function cancels all the operations done in post if there is an exception
+    def doRollback(self, createdApiNodes, createdProducts, createdStockRecords):
+        for node in createdApiNodes:
+            node.delete()
+
+        for product in createdProducts:
+            self.unlinkTags(product)
+            self.unlinkSubjects(product)
+            self.unlinkLanguages(product)
+            self.removeoEmbeds(product)
+            product.delete()
+
+        for stock in createdStockRecords:
+            stock.delete()
 
 
     def get(self, request):
@@ -403,7 +430,6 @@ class CMSView(APIView):
             return Response("No JSON data available")
 
         url = self.trimTheUrl(request.path)
-        print url
 
         #check if the object exists in the db already:
         url = self.slugifyWholeUrl(url)
@@ -480,6 +506,12 @@ class CMSView(APIView):
         visible = self.str2Bool(DATA["visible"])
         obj.visible = visible
 
+        try:
+            itemClass = ProductClass.objects.get(slug=DATA["productType"])
+            obj.product_class = itemClass
+        except ProductClass.DoesNotExist:
+            raise DataException("Error: No productType found with that name. To get a list of available types, call /api/producttypes")
+
         if "contributionDate" in DATA:
             try:
                 obj.contributionDate = datetime.strptime(DATA["contributionDate"], "%Y-%m-%d")
@@ -493,8 +525,8 @@ class CMSView(APIView):
         else:
             obj.moreInfoUrl = None
 
-        obj.maxAge = DATA["maximumAge"]
-        obj.minAge = DATA["minimumAge"]
+        obj.maximumAge = DATA["maximumAge"]
+        obj.minimumAge = DATA["minimumAge"]
         obj.contentLicense = DATA["contentLicense"]
         obj.dataLicense = DATA["dataLicense"]
         obj.copyrightNotice = DATA["copyrightNotice"]
@@ -517,27 +549,20 @@ class CMSView(APIView):
                 raise DataException("No such subject as in subject field: " + subject + " To get a list of available subjects, do a GET to /api/subjects")
 
         #remove existing subject links
-        oldPCategs = ProductCategory.objects.filter(product=obj)
-        for pc in oldPCategs:
-            pc.delete()
+        self.unlinkSubjects(obj)
 
+        #create new ones
         for subject in subs:
             category = Category.objects.get(slug=subject)
             newProductCategory = ProductCategory(product=obj, category=category)
             newProductCategory.save()
 
-
-
         stock = StockRecord.objects.get(product=obj)
         stock.price_retail = DATA["price"]
         stock.save()
 
-
         #Remove existing relationships to this material from tags
-        existingTags = Tag.objects.filter(hasTags=obj)
-        for t in existingTags:
-            print "Remove tag reference"
-            t.hasTags.remove(obj)
+        self.unlinkTags(obj)
 
         if "tags" in DATA:
             tagList = DATA["tags"]
@@ -555,15 +580,12 @@ class CMSView(APIView):
 
         #oEmbed
         #remove existing embed urls
-        existing = EmbeddedMedia.objects.filter(product=obj)
-        for e in existing:
-            e.delete()
+        self.removeoEmbeds(obj)
 
         if "embedMedia" in DATA:
             embedList = DATA["embedMedia"]
             #create new ones
             for media in embedList:
-                print media
                 embedEntry = EmbeddedMedia.create()
                 embedEntry.url = media
                 embedEntry.product = obj
@@ -571,11 +593,8 @@ class CMSView(APIView):
 
 
         #Remove existing relationships to this material from languages
+        self.unlinkLanguages(obj)
         langList = DATA["language"]
-        existingLangs = Language.objects.filter(hasLanguage=obj)
-        for l in existingLangs:
-            print "Remove language reference"
-            l.hasLanguage.remove(obj)
 
         for lang in langList:
             #check if the language is already in db, if not create it
@@ -589,45 +608,29 @@ class CMSView(APIView):
                 langEntry.hasLanguage.add(obj)
 
         if "iconUrl" in DATA and DATA["iconUrl"] is not None:
-                self.downloadIcon(DATA["iconUrl"], obj.upc)
-
+            self.downloadIcon(DATA["iconUrl"], obj.upc)
         obj.save()
 
-    """
-    def delete(self,request):
-        inValidItemsNames = ""
-        isValid = self.isValidUrl(request.path)
-        if not isValid:
-            return Response("Error: The url is empty.")
-        url = self.trimTheUrl(request.path)
-        #print url
+    def removeoEmbeds(self, product):
+        existing = EmbeddedMedia.objects.filter(product=product)
+        for e in existing:
+            e.delete()
 
-        if not self.checkJsonData(request):
-            return Response("No JSON data available")
+    def unlinkTags(self, product):
+        existingTags = Tag.objects.filter(hasTags=product)
+        for t in existingTags:
+            t.hasTags.remove(product)
 
-        theList = request.DATA["items"]
-        inValidItems = []
-        for eachItem in theList:
-            finalUrl = url + "/" + slugify(eachItem["title"])
-            if not models.APINode.objects.filter(uniquePath=finalUrl).exists():
-                inValidItems.append(eachItem["title"])
-            else:
-                self.deleteExisitingItem(finalUrl,eachItem)
+    def unlinkSubjects(self, product):
+        #remove existing subject links
+        oldPCategs = ProductCategory.objects.filter(product=product)
+        for pc in oldPCategs:
+            pc.delete()
 
-        if len(inValidItems) == 0:
-            return Response("Successfully deleted data")
-        else:
-            for eachItem in inValidItems:
-                inValidItemsNames += eachItem
-                inValidItemsNames += ",  "
-            return Response("items not found:"+inValidItemsNames)
-    """
-    def deleteExisitingItem(self,finalUrl,x):
-        itemNode = models.APINode.objects.get(uniquePath=finalUrl)
-        itemNode.materialItem.delete()
-        itemNode.delete()
-        #item.delete()
-        #itemNode.delete()
+    def unlinkLanguages(self, product):
+        existingLangs = Language.objects.filter(hasLanguage=product)
+        for l in existingLangs:
+            l.hasLanguage.remove(product)
 
     #Download icon into static folder
     def downloadIcon(self, url, iconName):

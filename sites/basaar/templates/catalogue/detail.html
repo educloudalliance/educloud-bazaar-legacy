@@ -72,7 +72,7 @@
                             <div class="flex-container">
                                 <div class="thumbnail flex-container-vertical">
                                         {% if product.get_icon_url %}
-                                            <img src="{{ product.get_icon_url }}" alt="{{ product.get_title }} class="thumbnail">
+                                            <img src="{{ STATIC_URL }}{{ product.get_icon_url }}" alt="{{ product.get_title }} class="thumbnail">
                                         {% else %}
                                             <img src="{{ STATIC_URL }}shop/img/noimage.jpg" alt="{{ product.get_title }} class="thumbnail"/ >
                                         {% endif %}
