@@ -26,8 +26,8 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class ProductTypeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ProductClass
-        fields = ('name',)
-        read_only_fields = ('name',)
+        fields = ('slug',)
+        read_only_fields = ('slug',)
 
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
