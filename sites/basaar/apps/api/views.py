@@ -566,6 +566,10 @@ class CMSView(APIView):
 
         if "tags" in DATA:
             tagList = DATA["tags"]
+
+            if len(tagList) > 5:
+                        raise DataException("Error: More than 5 tags specified. Only 0-5 allowed.")
+
             for tag in tagList:
                 print tag
                 #check if the tag is already in db, if not create it
