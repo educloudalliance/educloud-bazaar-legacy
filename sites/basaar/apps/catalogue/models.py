@@ -49,7 +49,7 @@ class Product(AbstractProduct):
 
     def get_icon_url(self):
         sPath = os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, os.pardir))
-        localPath = sPath + '/static/shop/img/icons/' + self.upc + '.png'
+        localPath = sPath + '/public/static/shop/img/icons/' + self.upc + '.png'
         filename = 'shop/img/icons/' + self.upc + '.png'
 
         if os.path.isfile(localPath):

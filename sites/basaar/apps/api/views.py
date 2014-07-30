@@ -653,7 +653,7 @@ class CMSView(APIView):
 
                 #TODO .jpeg?
                 sPath = os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, os.pardir))
-                filename = sPath + '/static/shop/img/icons/' + iconFile
+                filename = sPath + '/public/static/shop/img/icons/' + iconFile
                 print "orig:" + filename
                 output = open(filename, 'wb')
                 output.write(response.read())
@@ -670,7 +670,7 @@ class CMSView(APIView):
                 offset_y = max( (size[1] - image_size[1]) / 2, 0 )
 
                 thumb = ImageChops.offset(thumb, offset_x, offset_y)
-                filename = sPath + '/' + 'static/shop/img/icons/' + iconName + ".png"
+                filename = sPath + '/' + '/public/static/shop/img/icons/' + iconName + ".png"
                 print "thumb:" + filename
                 thumb.save(filename)
                 print "Icon resized!"
