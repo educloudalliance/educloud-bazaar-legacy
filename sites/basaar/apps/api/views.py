@@ -683,9 +683,11 @@ class CMSView(APIView):
         except urllib2.URLError, e:
             #TODO better error handling
             if e == 404:
+                print "404 on icon download"
                 #TODO return 404 error ?
                 return False
             else:
+                print "HTTP-error on icon download"
                 return False
         except IOError as (errno, strerror):
             print "I/O error({0}): {1}".format(errno, strerror)
