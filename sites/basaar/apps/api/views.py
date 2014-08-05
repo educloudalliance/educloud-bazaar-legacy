@@ -280,8 +280,8 @@ class CMSView(APIView):
                     raise RollbackException("ERROR: Can't post at " + path + "/" + slugify(product.uuid) + " because an object already exists in this URL." )
 
                 #Download icon if one is specified
-                if "iconUrl" in x and x["iconUrl"] is not None:
-                    self.downloadIcon(x["iconUrl"], createdUPC)
+                if "iconURL" in x is not None:
+                    self.downloadIcon(x["iconURL"], createdUPC)
 
                 product.save()
                 createdProducts.append(product)
@@ -642,6 +642,7 @@ class CMSView(APIView):
         allowedMimes = ['image/gif', 'image/jpeg', 'image/png']
 
         try:
+            print "Icon requested from " + url
             req = urllib2.Request(url)
             response = urllib2.urlopen(req, None, 15)
 
