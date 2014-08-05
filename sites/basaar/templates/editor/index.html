@@ -1,0 +1,9 @@
+{% if productList %}
+    <ul>
+    {% for product in productList %}
+        <li><a href="{{ product.get_absolute_url }}">{{ product.title }}</a> - <a href="edit/{{ product.upc }}">EDIT</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No products</p>
+{% endif %}
