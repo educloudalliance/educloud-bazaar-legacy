@@ -33,6 +33,7 @@ class Product(AbstractProduct):
     attributionText = models.TextField()
     attributionURL = models.CharField(max_length=4000)
     visible = models.BooleanField(default=False)
+    iconUrl = models.URLField(null=True)
 
     def get_media(self):
         """

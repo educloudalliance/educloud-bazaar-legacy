@@ -280,8 +280,10 @@ class CMSView(APIView):
                     raise RollbackException("ERROR: Can't post at " + path + "/" + slugify(product.uuid) + " because an object already exists in this URL." )
 
                 #Download icon if one is specified
-                if "iconURL" in x is not None:
-                    self.downloadIcon(x["iconURL"], createdUPC)
+                if "iconUrl" in x is not None:
+                    self.downloadIcon(x["iconUrl"], createdUPC)
+                    print "tallenna urli"
+                    product.iconUrl = x["iconUrl"]
 
                 product.save()
                 createdProducts.append(product)
@@ -613,6 +615,7 @@ class CMSView(APIView):
 
         if "iconUrl" in DATA and DATA["iconUrl"] is not None:
             self.downloadIcon(DATA["iconUrl"], obj.upc)
+            obj.iconUrl = DATA["iconUrl"]
         obj.save()
 
     def removeoEmbeds(self, product):
