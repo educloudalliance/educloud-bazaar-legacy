@@ -611,8 +611,8 @@ class CMSView(APIView):
                 langEntry.save()
                 langEntry.hasLanguage.add(obj)
 
-        if "iconUrl" in DATA and DATA["iconUrl"] is not None:
-            self.downloadIcon(DATA["iconUrl"], obj.upc)
+        if "iconURL" in DATA and DATA["iconURL"] is not None:
+            self.downloadIcon(DATA["iconURL"], obj.upc)
         obj.save()
 
     def removeoEmbeds(self, product):
