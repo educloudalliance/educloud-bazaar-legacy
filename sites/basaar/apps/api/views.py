@@ -24,7 +24,7 @@ from apps.api.permissions import IsOwner
 from rest_framework import generics
 from rest_framework import permissions
 from django.http import Http404
-
+from errorcodes import *
 
 Product = get_model('catalogue', 'Product')
 ProductCategory = get_model('catalogue', 'ProductCategory')
@@ -41,7 +41,7 @@ class AuthException(Exception):
         pass
     def __str__(self):
         return repr("Authorization error")
-
+"""
 class RootException(Exception):
     def __init__(self):
         pass
@@ -61,7 +61,7 @@ class RollbackException(Exception):
         self.msg = msg
     def __str__(self):
         return repr(self.msg)
-
+"""
 
 # Create your views here.
 # API-views
@@ -137,8 +137,8 @@ class CMSView(APIView):
         splitpath = self.trimTheUrl(path)
         print splitpath
         if len(splitpath) == 0:
-            return False
-        return True
+            raise UrlIsEmpty()
+
 
     #trim unnecessary part of url
     def trimTheUrl(self,path):
@@ -184,7 +184,7 @@ class CMSView(APIView):
 
         #check if the first collection exists. If not, throw exception:
         if models.APINode.objects.filter(uniquePath=pathSoFar, objectType="collection").exists() == False:
-            raise RootException()
+            raise RootError()
 
         for i in range(1, len(urlTokens)+1):
 
@@ -192,7 +192,7 @@ class CMSView(APIView):
                 node = models.APINode.objects.get(uniquePath=pathSoFar, objectType="collection")
                 perm = IsOwner()
                 if not perm.has_object_permission(request, self, node):
-                    raise AuthException()
+                    raise AuthError()
 
                 #the collection exists, therefore it doesn't need to be created.
                 parentPathSoFar = pathSoFar
@@ -213,25 +213,25 @@ class CMSView(APIView):
         return "Created collections: " + unicode(createdCollection)
 
 
-    def str2Bool(self, s):
+    def str2Bool(self, s, fieldName):
         if s == "false":
             return False
         elif s == "true":
             return True
         else:
-            raise DataException("Error: Incorrect format in boolean field. Should be either 'true' or 'false'")
+            raise IncorrectBooleanField(fieldName)
 
 
     #check whether json has items or not
     def checkJsonData(self,request):
         theList = request.DATA
         if len(theList) == 0:
-            return False
+            raise NoJSON()
         try:
             theItems = request.DATA["items"]
         except:
-            return  False
-        return True
+            raise NoJSON()
+
 
     def postMaterialItem(self, path, request):
         theList = request.DATA["items"]
@@ -247,7 +247,7 @@ class CMSView(APIView):
                     itemClass = ProductClass.objects.get(slug=x["productType"])
                 #TODO Create better error handling
                 except:
-                    raise RollbackException("Error: Product class with type " + x["productType"] + " could not be found.")
+                    raise ProductTypeNotFound(x["productType"]) #RollbackException("Error: Product class with type " + x["productType"] + " could not be found.")
 
                 #Create unique UPC
                 createdUPC = self.createUPC()
@@ -258,7 +258,7 @@ class CMSView(APIView):
                 else:
                     moreInfoUrl = None
 
-                visible = self.str2Bool(x["visible"])
+                visible = self.str2Bool(x["visible"], "visible")
                 product = Product(title=x["title"], upc=createdUPC, description=x["description"], materialUrl=x["materialUrl"],
                                   moreInfoUrl=moreInfoUrl,  uuid=x["uuid"], version=x["version"],
                                   maximumAge=x["maximumAge"], minimumAge=x["minimumAge"], contentLicense=x["contentLicense"],
@@ -272,12 +272,12 @@ class CMSView(APIView):
                     try:
                         product.contributionDate = datetime.strptime(x["contributionDate"], "%Y-%m-%d")
                     except ValueError:
-                        raise RollbackException( " ERROR: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
+                        raise InvalidDate()
                 else:
                     product.contributionDate = None
 
                 if self.checkIfAlreadyInDb(path + "/" + slugify(product.uuid)):
-                    raise RollbackException("ERROR: Can't post at " + path + "/" + slugify(product.uuid) + " because an object already exists in this URL." )
+                    raise ObjectAlreadyExists( path + "/" + slugify(product.uuid) )
 
                 #Download icon if one is specified
                 if "iconUrl" in x is not None:
@@ -291,13 +291,13 @@ class CMSView(APIView):
                 #find subjects:
                 subs = x["subjects"]
                 if len(subs) == 0:
-                    raise RollbackException("Error: 1-5 subjects has to be specified. To get a list of available subjects, do a GET to /api/subjects")
+                    raise WrongAmountOfSubjects()
                 if len(subs) > 5:
-                    raise RollbackException("Error: Over 5 subjects specified. To get a list of available subjects, do a GET to /api/subjects")
+                    raise WrongAmountOfSubjects()
 
                 for subject in subs:
                     if subs.count(subject) > 1:
-                        raise RollbackException("Error: Please define each subject only once.")
+                        raise EachSubjectOnlyOnce()
 
                 for subject in subs:
                     if Category.objects.filter(slug=subject).exists():
@@ -305,7 +305,7 @@ class CMSView(APIView):
                             newProductCategory = ProductCategory(product=product, category=category)
                             newProductCategory.save()
                     else:
-                        raise RollbackException("No such subject as in subject field: " + subject + " To get a list of available subjects, do a GET to /api/subjects")
+                        raise SubjectNotFound(subject)
 
 
 
@@ -328,7 +328,7 @@ class CMSView(APIView):
                     tagList = x["tags"]
 
                     if len(tagList) > 5:
-                        raise RollbackException("Error: More than 5 tags specified. Only 0-5 allowed.")
+                        raise TooMuchTags()
 
                     for tag in tagList:
                         #check if the tag is already in db, if not create it
@@ -365,9 +365,8 @@ class CMSView(APIView):
                 createdApiNodes.append(newColl)
 
         except RollbackException as e:
-            #TODO: MUISTA KASITELLA MYOS MUUT POIKKEUKSET JA ROLLBACKAA NIIDEN MUKAAN!!!!!!!
             self.doRollback(createdApiNodes, createdProducts, createdStockRecords)
-            raise DataException(e.msg + " All changes/materialItems canceled.")
+            raise RollbackException(e.msg + " All changes/materialItems canceled.")
         except Exception, e:
             #Rollback the process because of an other error
             self.doRollback(createdApiNodes, createdProducts, createdStockRecords)
@@ -396,106 +395,105 @@ class CMSView(APIView):
 
     def get(self, request):
 
-        isValid = self.isValidUrl(request.path)
-        if not isValid:
-            return Response("Error: The url is empty.")
-
-        url = self.trimTheUrl(request.path)
-        print url
-
         try:
-            target = models.APINode.objects.get(uniquePath=url)
-            perm = IsOwner()
-            perm.has_object_permission(request, self, target)
-            #check is the APINode collection or item:
-            if target.objectType == "item":
-                #return JSON data of the materialItem:
-                serializer = ProductSerializer(target.materialItem)
-                return Response(serializer.data)
-            else:
-                #find objects in this collection
-                children = models.APINode.objects.filter(parentPath=target.uniquePath)
-                serializer = APINodeSerializer(children, many=True)
-                return Response(serializer.data)
+            isValid = self.isValidUrl(request.path)
 
-        except models.APINode.DoesNotExist:
-            return Response("404: No such collection or materialItem.")
+            url = self.trimTheUrl(request.path)
+            print url
+
+            try:
+                target = models.APINode.objects.get(uniquePath=url)
+                perm = IsOwner()
+                perm.has_object_permission(request, self, target)
+                #check is the APINode collection or item:
+                if target.objectType == "item":
+                    #return JSON data of the materialItem:
+                    serializer = ProductSerializer(target.materialItem)
+                    return Response(serializer.data)
+                else:
+                    #find objects in this collection
+                    children = models.APINode.objects.filter(parentPath=target.uniquePath)
+                    serializer = APINodeSerializer(children, many=True)
+                    return Response(serializer.data)
+
+            except models.APINode.DoesNotExist:
+                raise ObjectNotFound(url)
+
+        except RollbackException as e:
+            return Response(e.msg)
 
 
     @csrf_exempt
     def post(self,request):
-        isValid = self.isValidUrl(request.path)
-        if not isValid:
-            return Response("Error: The url is empty")
 
-        if not self.checkJsonData(request):
-            return Response("No JSON data available")
-
-        url = self.trimTheUrl(request.path)
-
-        #check if the object exists in the db already:
-        url = self.slugifyWholeUrl(url)
-
-        if self.checkIfItemsInPostPath(url):
-            return Response("ERROR: There is an item in middle of the path. Item's can't have children.")
-
-        #create collections if needed
         try:
+            self.isValidUrl(request.path)
+            self.checkJsonData(request)
+
+
+            url = self.trimTheUrl(request.path)
+
+            #check if the object exists in the db already:
+            url = self.slugifyWholeUrl(url)
+
+            if self.checkIfItemsInPostPath(url):
+                raise ItemOnPath()
+
+
+            #create collections if needed
+            createdCollections = self.createCollections(url, request)
+
+
+            #try to create a new item:
+            #TODO: Put a string describing the field with error to the thrown error to be shown
             try:
-                createdCollections = self.createCollections(url, request)
-            except RootException:
-                return Response("ERROR: Can't create new root nodes.")
-        except AuthException:
-            return Response("ERROR: You are not the owner of a node in path.")
+                createdItems = self.postMaterialItem(url, request)
+            #except IntegrityError:
+            #    return Response("ERROR: There is already a resource with same uuid. uuid must be unique.")
+            except KeyError as e:
+                raise MissingField(e.message)
+                #except ValueError:
+                #    return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
+                #except TypeError:
+                #return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
+            except DataException as e:
+                return Response(e.msg)
 
-        #try to create a new item:
-        #TODO: Put a string describing the field with error to the thrown error to be shown
-        try:
-            createdItems = self.postMaterialItem(url, request)
-        #except IntegrityError:
-        #    return Response("ERROR: There is already a resource with same uuid. uuid must be unique.")
-        except KeyError:
-            return Response("Error: Missing or invalid json-field. Update failed.")
-            #except ValueError:
-            #    return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
-            #except TypeError:
-            #return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
-        except DataException as e:
+        except RollbackException as e:
             return Response(e.msg)
 
         return Response(createdCollections + " --- " + createdItems)
 
 
     def put(self,request):
-        inValidItemsNames = ""
-        isValid = self.isValidUrl(request.path)
-        if not isValid:
-            return Response("Error: The url is empty.")
-        url = self.trimTheUrl(request.path)
-        print url
+        try:
+            self.isValidUrl(request.path)
+            url = self.trimTheUrl(request.path)
+            print url
 
-        #if not self.checkJsonData(request):
-        #    return Response("No JSON data available")
 
-        if models.APINode.objects.filter(uniquePath=url).exists():
-            node = models.APINode.objects.get(uniquePath=url)
-            if node.objectType == "item":
-                target = node.materialItem
-                try:
-                    self.updateExistingItem(target, request.DATA)
-                except KeyError:
-                    return Response("Error: Missing or invalid json-field. Update failed.")
-                except ValueError:
-                    return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
-                except DataException as e:
-                    return Response(e.msg)
+            #if not self.checkJsonData(request):
+            #    return Response("No JSON data available")
 
-                return Response("Material item at " + url +" updated successfully.")
+            if models.APINode.objects.filter(uniquePath=url).exists():
+                node = models.APINode.objects.get(uniquePath=url)
+                if node.objectType == "item":
+                    target = node.materialItem
+                    try:
+                        self.updateExistingItem(target, request.DATA)
+                    except KeyError as e:
+                        raise MissingField(e.message)
+                    except DataException as e:
+                        return Response(e.msg)
+
+                    return Response("Material item at " + url +" updated successfully.")
+                else:
+                    raise CantUpdateCollection()
             else:
-                return Response("Target is not an item but a collection.")
-        else:
-            return Response("No such item in db to update. ")
+                raise ObjectNotFound(url)
 
+        except RollbackException as e:
+            return Response(e.msg)
 
 
     #updates an existing Product with data provided in the request
@@ -505,20 +503,20 @@ class CMSView(APIView):
         obj.materialUrl = DATA["materialUrl"]
         obj.version = DATA["version"]
 
-        visible = self.str2Bool(DATA["visible"])
+        visible = self.str2Bool(DATA["visible"], "visible")
         obj.visible = visible
 
         try:
             itemClass = ProductClass.objects.get(slug=DATA["productType"])
             obj.product_class = itemClass
         except ProductClass.DoesNotExist:
-            raise DataException("Error: No productType found with that name. To get a list of available types, call /api/producttypes")
+            raise ProductTypeNotFound(DATA["productType"])
 
         if "contributionDate" in DATA:
             try:
                 obj.contributionDate = datetime.strptime(DATA["contributionDate"], "%Y-%m-%d")
             except ValueError:
-                raise DataException("Update failed. ERROR: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
+                raise InvalidDate()
         else:
             obj.contributionDate = None
 
@@ -538,17 +536,17 @@ class CMSView(APIView):
         #update subject
         subs = DATA["subjects"]
         if len(subs) == 0:
-            raise DataException("At least one subject has to be specified. To get a list of available subjects, do a GET to /api/subjects")
+            raise WrongAmountOfSubjects()
         if len(subs) > 5:
-            raise DataException("Error: Over 5 subjects specified. To get a list of available subjects, do a GET to /api/subjects")
+            raise WrongAmountOfSubjects()
         for subject in subs:
             if subs.count(subject) > 1:
-                raise DataException("Error: Please define each subject only once.")
+                raise EachSubjectOnlyOnce()
 
         #check if the given subjects are valid ones
         for subject in subs:
             if not Category.objects.filter(slug=subject).exists():
-                raise DataException("No such subject as in subject field: " + subject + " To get a list of available subjects, do a GET to /api/subjects")
+                raise SubjectNotFound(subject)
 
         #remove existing subject links
         self.unlinkSubjects(obj)
@@ -570,7 +568,7 @@ class CMSView(APIView):
             tagList = DATA["tags"]
 
             if len(tagList) > 5:
-                        raise DataException("Error: More than 5 tags specified. Only 0-5 allowed.")
+                raise TooMuchTags()
 
             for tag in tagList:
                 print tag
