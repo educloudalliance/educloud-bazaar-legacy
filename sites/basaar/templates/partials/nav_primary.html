@@ -1,54 +1,111 @@
 {% load currency_filters %}
 {% load category_tags %}
 {% load i18n %}
-<div id="language-selector">
-     <div class="menu-icon">{{LANGUAGE_CODE}}<img class="svg" src="{{ STATIC_URL }}shop/img/FilterIcon.svg"/></div>
-    {% if LANGUAGES|length > 1 %}
-     <div class="menu-box language-box">
-        <form id="language_selector" action="{% url 'set_language' %}" method="post">
-            {% csrf_token %}
-            <input name="next" type="hidden" value="{{ language_neutral_url_path }}" />
-            <select name="language" onchange="this.form.submit()">
-                {% get_language_info_list for LANGUAGES as languages %}
-                {% for language in languages %}
-                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE%} selected="selected"{% endif %}>
-                        {{ language.name_local }}
-                    </option>
-                {% endfor %}
-            </select>
-        </form>
-     </div>
-    {% endif %}
-</div>
-<div id="uppermenu" class="flex-container sticky">
-    <div id="filters" class="flexItem flex-container">
-        <div class="flexItem"></div>
-            <div id="menu-subjects">Subject<img class="svg" src="{{ STATIC_URL }}shop/img/FilterIcon.svg"/>
-                <ul>
-                    <li>biology</li>
-                    <li>maths</li>
-                    <li>english</li>
-                    <li>geography</li>
-                </ul>
-            </div>
-            <div id="menu-grades">Grade<img class="svg" src="{{ STATIC_URL }}shop/img/FilterIcon.svg"/>
-                <ul>
-                    <li>1-2</li>
-                    <li>3-6</li>
-                    <li>7-9</li>
-                </ul>
-            </div>
-            <div id="menu-types">Type<img class="svg" src="{{ STATIC_URL }}shop/img/FilterIcon.svg"/>
-                <ul>
-                    <li>books</li>
-                    <li>exercises</li>
-                    <li>games</li>
-                </ul>
-            </div>
-        <div id="addTags">
-            <form method="get" action="{% url 'search:search' %}" class="navbar-form pull-right">
-                <input placeholder="Filter by tags" >
-            </form>
+<div id="uppermenu" class="flex-container">
+    <div class="menu-header flex-container">
+        <a href="/catalogue">
+        <div class="menu-head-icon" style="background-image:url('{{ STATIC_URL }}shop/img/PilvivaylaLogotype_IncludingBazaar.svg');"></div>
+        </a>
+    </div>
+
+    <div class="flexItem">
+    </div>
+
+    <div id="filters" class="flexItem2 flex-container">
+        <div id="menu-subjects">Categories<img class="svg" src="{{ STATIC_URL }}shop/img/FilterIcon.svg"/>
         </div>
+    </div>
+
+    <div class="flexItem">
+    </div>
+
+    <div id="generalSearch" class="flexItem3 flex-container">
+        <form method="get" action="{% url 'search:search' %}" class="flex-container flexItem">
+            <div class="flex-container flexItem">
+                <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_Search.svg"/>
+                <div class="flexItem">{{ search_form.q }}</div>
+            </div>
+        </form>
+    </div>
+    
+    <div class="flexItem">
+    </div>
+
+    <div id="icons" class="flex-container">
+             
+        <div class="flexItem">
+            <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_ShoppingBasket.Icon.svg"/>
+            {% if request.basket.num_lines %}
+            <div class="notification-number">{{request.basket.num_lines}}</div>
+            {% endif %}
+            <div class="menu-box">
+                <div class="flex-container-vertical">
+                    <div class="menu-box-header">Basket</div>
+                    <div class="menu-box-content">
+                        {% include "partials/mini_basket.html" %}
+                        <div class="menu-box-footer flex-container-vertical">
+                            <div class="flex-container flexItem">
+                                <a class="btn flexItem" href="{% url 'basket:summary' %}">{% trans "View basket" %}</a>
+                                <a class="btn flexItem" href="{% url 'checkout:index' %}">{% trans "Checkout" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flexItem" id="profile-icon">
+            <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_Profile.Icon.svg"/>
+            {% if num_unread_notifications > 0 %}
+            <div class="notification-number">{{num_unread_notifications}}</div>
+            {% endif %}
+            <div class="menu-box">
+                <div class="flex-container-vertical">
+                    {% if user.is_authenticated %}
+                        <div class="menu-box-header">
+                            <img src="#" class="profile-pic-small">
+                            Profile</div>
+                        <div class="menu-box-content">
+                            {% include "partials/nav_accounts.html" %}
+                            <div class="menu-box-footer flex-container">
+                                {% if user.is_staff or perms.partner.dashboard_access %}
+                                    <a class="btn flexItem" href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
+                                {% endif %}
+                                <a class="btn flexItem" href="{% url 'customer:summary' %}">{% trans "Account" %}</a>
+                                <a class="btn flexItem" href="{% url 'customer:logout' %}">{% trans "Logout" %}</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="menu-box-header">
+                            Profile</div>
+                        <div class="menu-box-content">
+                            {% include "partials/nav_accounts.html" %}
+                            <div class="menu-box-footer flex-container">
+                                <a class="btn flexItem" href="{% url 'customer:login' %}">{% trans "Login or register" %}</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="flexItem" id="language-icon">
+            <div class="menu-icon">{{LANGUAGE_CODE}}<img class="svg" src="{{ STATIC_URL }}shop/img/FilterIcon.svg"/></div>
+            {% if LANGUAGES|length > 1 %}
+                 <div class="menu-box">
+                    <form id="language_selector" action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ language_neutral_url_path }}" />
+                        <select name="language" onchange="this.form.submit()">
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE%} selected="selected"{% endif %}>
+                                    {{ language.name_local }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                 </div>
+            {% endif %}
+        </div>
+
     </div>
 </div>

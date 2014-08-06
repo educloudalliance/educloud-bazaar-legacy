@@ -20,7 +20,6 @@ $r1920-content-width: 1920px;
 $r1440-content-width: 1440px;
 $r1280-content-width: 1280px;
 $r1024-content-width: 1024px;
-$r1024-content-width: 1024px;
 $r800-content-width: 800px;
 
 $basis-content-column: 250px;
@@ -30,22 +29,29 @@ $basis-product-item: 160px;
 
 $header-height: 60px;
 
-$menu-width: 65px;
+$nav-height: 65px;
 $menu-icons-width: 36px;
-$menu-icons-padding: ($menu-width - $menu-icons-width) / 2;
+$menu-icons-padding: ($nav-height - $menu-icons-width) / 2;
 $menu-icons-gap: 24px;
-$menu-box-bridge-width: 5px;
-$nav-height: 80px;
 $tab-header-height: 40px;
 $accordion-switch-width: 40px;
 
 $orange: rgb(242,66,71);
-$blue-main: rgb(46,152,217);
 $blue-main-hover: rgb(89,178,226);
 $light-blue: rgb(150,206,238);
 $green-main: rgb(26,173,125);
 $green-main-a85: rgba(46,237,196,0.85);
-$light-gray: rgb(239,239,239);
-$gray: rgb(179,179,179);
 $gray-hover: rgb(199,199,199);
-$dark-gray: rgb(83,83,83);
+
+
+
+$notification-red: rgb(255,55,73);
+
+$green: rgb(0,182,126);
+
+$blue: rgb(0,169,228);
+$dark-blue: rgb(0,128,188);
+
+$light-gray: rgb(241,241,241);
+$gray: rgb(153,153,153);
+$dark-gray: rgb(77,77,77);

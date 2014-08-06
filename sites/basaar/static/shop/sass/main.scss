@@ -18,7 +18,6 @@ html, body {
     width: 100%;
 }
 body {
-    height: 0px; //Fix for weird bug
     font-family: $default-font;
 }
 
@@ -77,51 +76,68 @@ textarea, input { outline: none; }
 }
 
 .barshadow {
-    width: $menu-width;
-    height: 100%;
+    height: $nav-height;
+    width: 100%;
 }
-#pvmenu {
+footer {
+    background: $gray;
+}
+
+
+#uppermenu {
+    color: $gray;
+    z-index: 100;
+    height: $nav-height;
+    width: 100%;
     position: fixed;
-    left: 0px;
     top: 0px;
-    bottom: 0px;
-    background: $blue-main;
-    width: $menu-width;
-    text-align: center;
-    @include user-select(none);
+
+    background: $dark-gray;
 
     .menu-header {
-        width: $menu-width;
-        background: white;
+        height: $nav-height;
         justify-content: flex-start;
         -webkit-justify-content: flex-start;
         .menu-head-icon {
-            width: $menu-width;
-            height: $nav-height;
-            background-size: cover;
+            width: 150px;
+            height: $nav-height - 20;
+            margin: 10px;
             background-repeat: no-repeat;
-            background-position: center;
         }
     }
     #profile-icon.green{
         background: rgb(0,200,0);
     }
     #generalSearch {
-        line-height: $menu-width;
-        input {
-            color: black;
-            border: 1px solid $blue-main;
-            padding: 0px 2%;
-            width: 96%;
-            height: $menu-width * 0.5;
+        form {
+            line-height: $nav-height;
+            > div {
+                border: 2px solid $gray;
+                margin: $nav-height*0.25 20px;
+                -webkit-transition: all 0.5s;
+                transition: all 0.5s;
+            }
+            svg {
+                height: $nav-height - $nav-height*0.5 - 4px;
+                width: $nav-height - $nav-height*0.5;
+                padding: 5px;
+            }
+            input {
+                float: left;
+                color: white;
+                border: none;
+                padding: 0px 2%;
+                width: 96%;
+                background: transparent;
+                height: $nav-height * 0.5 - 4px;
+            }
         }
-        button {
-            background: none;
-            border: none;
-            text-decoration: none;
-            color: $green-main;
-            font-size: 12pt;
-            padding: 0px 15px;
+        .focus {
+            background: $dark-blue;
+            border-color: white;
+            svg path {
+                stroke: white;
+            }
         }
     }
     .basket-mini {
@@ -162,7 +178,7 @@ textarea, input { outline: none; }
         background: white;
         width: $menu-icons-width;
         margin-left: $menu-icons-padding;
-        margin-bottom: ($menu-width - $menu-icons-width) / 2;
+        margin-bottom: ($nav-height - $menu-icons-width) / 2;
         border-radius: 5px;
     }
     .menu-icon {
@@ -170,31 +186,35 @@ textarea, input { outline: none; }
         }
         cursor: pointer;
         margin: 0px;
-        width: $menu-width;
-        height: $menu-width;
-        padding: (($menu-width - $menu-icons-width) / 2);
+        width: $nav-height;
+        height: $nav-height;
+        padding: (($nav-height - $menu-icons-width) / 2);
     }
     #icons > .flexItem:hover {
-        background: $blue-main-hover;
-    /*
         path.hoverable {
-            fill: $green-main;
+            fill: #ffffff;
         }
         circle.hoverable {
-            stroke: $green-main;
+            stroke: #ffffff;
         }
+    /*
     */
     }
     #icons > .flexItem.active {
-        background: $light-blue;
-        width: $menu-width + $menu-box-bridge-width;
+        background: $dark-blue;
+        path.hoverable {
+            fill: #ffffff;
+        }
+        circle.hoverable {
+            stroke: #ffffff;
+        }
     }
     #icons > .flexItem.active:hover {
-        background: $light-blue;
+        background: $dark-blue;
     }
     #icons > .flexItem {
-        max-height: $menu-width;
-        width: $menu-width;
+        max-height: $nav-height;
+        width: $nav-height;
         position: relative;
         -webkit-transition: all 0.1s; /* For Safari 3.1 to 6.0 */
         transition: all 0.1s;
@@ -204,59 +224,93 @@ textarea, input { outline: none; }
         bottom: 10px;
         right: 5px;
         min-width: 16px;
-        background: #f60000;
+        background: $notification-red;
         border-radius: 50px;
         color: white;
         font-size: 14px;
         line-height: 16px;
         padding: 0px 3px;
     }
+    #language-icon {
+        text-align: center;
+        .menu-icon {
+            padding: 2px;
+        }
+        .menu-icon > svg {
+            height: 11pt;
+            width: 11pt;
+            padding-top: 3px;
+            margin: 0px 0px -3px 5px;
+        }
+        .menu-icon:hover {
+            color: white;
+            svg text {
+                fill: white;
+            }
+            svg path {
+                stroke: white;
+            }
+        }
+        .menu-box {
+            display: none;
+            min-width: 130px;
+            min-height: 30px;
+            font-size: 10pt;
+            padding: 10px 5px;
+            background: $dark-blue;
+            button {
+                color: black;
+            }
+        }
+    }
     .menu-box {
         display: none;
         position: absolute;
-        left: $menu-width + $menu-box-bridge-width;
-        top: 0px;
-        color: $dark-gray;
+        right: 0px;
+        top: $nav-height;
+        color: white;
         min-height: $menu-icons-width + $menu-icons-gap;
-        min-width: 500px;
+        min-width: 400px;
         z-index: 200;
+        box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.5);
 
         .profile-pic-small {
             border-radius: 200px;
-            height: $menu-width * 0.6;
-            width: $menu-width * 0.6;
+            height: $nav-height * 0.6;
+            width: $nav-height * 0.6;
             background-color: $dark-gray;
             background-size: cover;
             background-position: center;
             float: left;
             margin-right: 10px;
-            margin-top: $menu-width * 0.2;
+            margin-top: $nav-height * 0.2;
             border: 1px solid $dark-gray;
         }
         
         .menu-box-header {
-            background: $light-blue;
-            height: $menu-width;
-            line-height: $menu-width;
-            font-size: 16pt;
+            background: $dark-blue;
+            height: $nav-height * 0.7;
+            line-height: $nav-height * 0.7;
+            font-size: 12pt;
             text-align: left;
-            padding: 0px $menu-box-bridge-width * 2;
+            padding: 0px 15px;
+            text-transform: uppercase;
         }
         .menu-box-content {
+            color: $dark-gray;
             @include user-select(text);
-            display: none;
-            border-bottom: 3px solid $light-blue;
-            border-left: 3px solid $light-blue;
-            border-right: 3px solid $light-blue;
+            border-bottom: 10px solid $dark-blue;
+            border-left: 10px solid $dark-blue;
+            border-right: 10px solid $dark-blue;
             background: white;
-            box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
             .menu-box-footer {
                 @include user-select(none);
-                height: $menu-width / 2;
-                border-top: 3px solid $light-blue;
-                line-height: $menu-width / 2;
+                height: $nav-height / 2;
+                border-top: 5px solid $dark-blue;
+                line-height: $nav-height / 2;
 
                 a.btn {
+                    text-align: center;
                     color: $green-main;
                     text-decoration: none;
                 }
@@ -266,75 +320,12 @@ textarea, input { outline: none; }
                 }
             }
         }
-        .menu-bridge{
-            position: absolute;
-            background: $light-blue;
-            height: $menu-width;
-            width: $menu-box-bridge-width;
-            left: -$menu-box-bridge-width;
-        }
+        
     }
-}
-
-#language-selector {
-    position: fixed;
-    z-index: 200;
-    top: 0px;
-    right: $menu-width;
-    font-size: 11pt;
-    min-width: 50px;
-    padding: 5px;
-    text-align: right;
-    background: rgba(255,255,255,0.85);
-    border-radius: 0px 0px 10px 10px;
-    color: $gray;
-    @include user-select(none);
-    .menu-icon {
-        cursor: pointer;
-    }
-    .menu-icon > svg {
-        height: 11pt;
-        width: 11pt;
-        padding-top: 3px;
-        margin: 0px 0px -3px 5px;
-    }
-    .menu-icon:hover {
-        color: $blue-main;
-        svg text {
-            fill: $blue-main;
-        }
-        svg path {
-            stroke: $blue-main;
-        }
-    }
-    .menu-box {
-        display: none;
-        font-size: 10pt;
-        border-radius: 10px;
-        padding: 10px 5px;
-        background: $blue-main;
-        button {
-            color: black;
-        }
-    }
-}
-
-#uppermenu {
-    color: $gray;
-    z-index: 100;
-    height: $nav-height;
-    position: fixed;
-    top: 0px;
-    right: $menu-width;
-    left: $menu-width;
-    @include user-select(none);
-    @include filter-gradient(#ffffff, #ffffff, vertical);
-    @include background-image(linear-gradient(top,  rgba(255,255,255,0.9) 0%,rgba(255,255,255,0.9) 30%,rgba(255,255,255,1) 100%));
-
 
     #filters{
         
-        #menu-subjects, #menu-grades, #menu-types {
+        #menu-subjects {
 
             text-align: center;
             font-size: 19px;
@@ -358,39 +349,14 @@ textarea, input { outline: none; }
                     
                 }
             }
-            ul{
-                width: 100%;
-                display: none;
-                text-align: left;
-                background: $light-blue;
-                position: absolute;
-                top: $nav-height;
-                left: 0px;
-                list-style: none;
-                padding: 0px;
-                margin: 0px;
-                li{
-                    color: black;
-                    text-transform: none;
-                    height: $nav-height/2;
-                    line-height: $nav-height/2;
-                    padding: 1px 7px;
-                    margin: 0px;
-
-                }
-                li:hover {
-                    background: rgba(255,255,255,0.3);
-                }
-
-            }
         }
         #menu-subjects:hover, #menu-grades:hover, #menu-types:hover {
-            color: $blue-main;
+            color: $blue;
             svg text {
-                fill: $blue-main;
+                fill: $blue;
             }
             svg path {
-                stroke: $blue-main;
+                stroke: $blue;
             }
         }
 
@@ -568,7 +534,7 @@ textarea, input { outline: none; }
 
 #content {
     width: 100%;
-    padding: $nav-height $menu-width;
+    padding: $nav-height $nav-height;
     z-index: -10;
 
 
@@ -659,7 +625,7 @@ textarea, input { outline: none; }
             width: $basis-product-item;
         }
         a:hover {
-            color: $blue-main;
+            color: $blue;
         }
 
     }
@@ -930,7 +896,7 @@ textarea, input { outline: none; }
 }
 
 @media print {
-    #pvmenu, #uppermenu, #language-selector, #product_related, #product_recommended {
+    #uppermenu, #product_related, #product_recommended {
         display: none !important;
     }
 }
