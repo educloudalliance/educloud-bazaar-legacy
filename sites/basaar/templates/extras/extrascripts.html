@@ -86,7 +86,7 @@
         });
     }
 
-
+    /*
     function toggleAccordion() {
         if ($('#accordion-content').is(":visible")){
             $('#sidebarshadow').animate({'width': '50px'},300);
@@ -104,10 +104,11 @@
             $('.animated-button').addClass('close');
         }
     }
+    */
 
     function preparePage(){
 
-        //$('#tabs-product').tabs({show: 'fade'});
+        $('#tabs-product').tabs({show: 'fade'});
         //$('#tabs-sidebar').tabs({show: 'fade'});
 
         $('#generalSearch input').focus(function(){
@@ -130,6 +131,4 @@
         resultSelector.text((individualPrice * quantity).toFixed(2));
     }
 
-
-    
 </script>

@@ -108,6 +108,14 @@ footer {
     }
     #profile-icon.green{
         background: rgb(0,200,0);
+        svg {
+            path.hoverable {
+                fill: #ffffff;
+            }
+            circle.hoverable {
+                stroke: #ffffff;
+            }
+        }
     }
     #generalSearch {
         form {
@@ -539,8 +547,8 @@ footer {
     width: 100%;
     padding: $nav-height/2 $nav-height;
 
-    .content-900 {
-        width: 900px;
+    .content-center {
+        width: 1000px;
         @media screen and (min-width: 1600px) {
             width: 1200px;
         }
