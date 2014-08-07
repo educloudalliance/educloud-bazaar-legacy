@@ -418,16 +418,18 @@ footer {
     }
 }
 #categories-bar {
-    display: none !important;
-    background: $gray;
+    display: none;
+    background: $dark-gray;
+    color: $gray;
 }
 #tabs-bar {
     line-height: $nav-height * 0.6;
     height: $nav-height * 0.6;
     background: $blue;
-    text-align: center;
-    color: white;
     .tab {
+        text-align: center;
+        color: white;
+        text-decoration: none;
         text-transform: uppercase;
         font-weight: lighter;
         letter-spacing: 1px;
@@ -442,7 +444,6 @@ footer {
         color: $dark-gray;
         background: $light-gray;
         font-weight: normal;
-        cursor: default;
         border: 1px solid rgb(102,102,102);
     }
     .tab.active:hover {
