@@ -60,7 +60,7 @@ class SubjectNotFound(RollbackException):
         return repr(self.msg)
 
 class TooMuchTags(RollbackException):
-    msg = "Error: More than 5 tags specified. Only 0-5 allowed."
+    msg = "Error: More than 10 tags specified. Only 0-10 allowed."
     httpStatus = 400
     apiCode = 20
     def __init__(self):

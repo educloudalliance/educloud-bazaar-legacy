@@ -304,7 +304,7 @@ class CMSView(APIView):
                 if "tags" in x:
                     tagList = x["tags"]
 
-                    if len(tagList) > 5:
+                    if len(tagList) > 10:
                         raise TooMuchTags()
 
                     for tag in tagList:
@@ -537,7 +537,7 @@ class CMSView(APIView):
         if "tags" in DATA:
             tagList = DATA["tags"]
 
-            if len(tagList) > 5:
+            if len(tagList) > 10:
                 raise TooMuchTags()
 
             for tag in tagList:
