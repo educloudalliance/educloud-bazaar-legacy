@@ -37,7 +37,7 @@ Partner = get_model('partner', 'Partner')
 StockRecord = get_model('partner', 'StockRecord')
 
 #success messages:
-postSuccess = {"message" : "Operation successful, created: "}
+postSuccess = {"message" : "Operation successful."}
 putSuccess = {"message" : "Operation successful, updated "}
 
 # Create your views here.
@@ -213,6 +213,7 @@ class CMSView(APIView):
     def postMaterialItem(self, path, request):
         theList = request.DATA["items"]
         createdApiNodes = []
+        createdUrls = []
         createdProducts = []
         createdStockRecords = []
 
@@ -339,19 +340,15 @@ class CMSView(APIView):
                 newColl.owner = request.user
                 newColl.save()
                 createdApiNodes.append(newColl)
-
+                createdUrls.append(finalUrl)
         except RollbackException as e:
             self.doRollback(createdApiNodes, createdProducts, createdStockRecords)
             raise e
-        #except Exception, e:
-        #    #Rollback the process because of an other error
-        #    self.doRollback(createdApiNodes, createdProducts, createdStockRecords)
-        #    raise e
-
-        success = ""
-        for i in createdApiNodes:
-            success += i.uniquePath + " , "
-        return success
+        except Exception, e:
+            #Rollback the process because of an other error
+            self.doRollback(createdApiNodes, createdProducts, createdStockRecords)
+            raise e
+        return createdUrls
 
     #this function cancels all the operations done in post if there is an exception
     def doRollback(self, createdApiNodes, createdProducts, createdStockRecords):
@@ -434,7 +431,7 @@ class CMSView(APIView):
             return Response(e.getDict(), status=e.httpStatus)
 
         msg = postSuccess.copy()
-        msg["message"] += createdItems
+        msg["created"] = createdItems
         return Response(msg)
 
 
