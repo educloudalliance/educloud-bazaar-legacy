@@ -219,11 +219,15 @@
                         {% endblock %}
                     </div>
 
+                    {% with all_media=product.get_media %}
+                    {% if all_media|length > 0 %}
                     <div id="product_images" class="">
                         <h2>{% trans "Screen Shots" %}</h2>
                         {% include "catalogue/partials/gallery.html" %}
                     </div>
-                    <div id="product_reviews" class="">
+                    {% endif %}
+                    {% endwith %}
+                <div id="product_reviews" class="">
                         {% iffeature "reviews" %}
                             {% if product.rating != None %}
                                 <h4 class="star-rating {{ product.rating|as_stars }}">
