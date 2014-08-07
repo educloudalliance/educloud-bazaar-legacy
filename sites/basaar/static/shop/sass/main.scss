@@ -77,23 +77,25 @@ textarea, input { outline: none; }
 }
 
 .barshadow {
-    height: $nav-height;
+    height: $nav-height * 1.6;
     width: 100%;
 }
 footer {
     background: $gray;
 }
 
-
-#uppermenu {
-    color: $gray;
+#navbar {
     z-index: 100;
-    height: $nav-height;
     width: 100%;
     position: fixed;
     top: 0px;
-
+}
+#uppermenu {
+    color: $gray;
+    height: $nav-height;
     background: $dark-gray;
+    z-index: 200;
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.6);
 
     .menu-header {
         height: $nav-height;
@@ -137,6 +139,7 @@ footer {
                 border: none;
                 padding: 0px 2%;
                 width: 96%;
+                font-weight: lighter;
                 background: transparent;
                 height: $nav-height * 0.5 - 4px;
             }
@@ -208,8 +211,6 @@ footer {
         circle.hoverable {
             stroke: #ffffff;
         }
-    /*
-    */
     }
     #icons > .flexItem.active {
         background: $dark-blue;
@@ -306,6 +307,7 @@ footer {
             text-align: left;
             padding: 0px 15px;
             text-transform: uppercase;
+            font-weight: lighter;
         }
         .menu-box-content {
             color: $dark-gray;
@@ -336,7 +338,7 @@ footer {
 
     #filters{
         
-        #menu-subjects {
+        #menu-categories {
 
             text-align: center;
             font-size: 19px;
@@ -347,6 +349,7 @@ footer {
             line-height: $nav-height;
             cursor: pointer;
             position: relative;
+            font-weight: lighter;
             > svg {
                 height: 14pt;
                 width: 14pt;
@@ -361,7 +364,7 @@ footer {
                 }
             }
         }
-        #menu-subjects:hover, #menu-grades:hover, #menu-types:hover {
+        #menu-categories:hover {
             color: $blue;
             svg text {
                 fill: $blue;
@@ -414,132 +417,36 @@ footer {
         }
     }
 }
-#tagsFilter{
-    flex-basis: $basis-blog-column;
-    -webkit-flex-basis: $basis-blog-column;
-    align-items: center;
-    -webkit-align-items: center;
-    align-content: center;
-    -webkit-align-content: center;
-    .tag{
-        display: inline-block;
-        position: relative;
-        background: $dark-gray;
-        color: white;
-        font-size: 9pt;
-        line-height: 9pt;
-        padding: 2px 11px 2px 4px;
-        margin: 2px;
-        border-radius: 3px;
-        div {
-            position: absolute;
-            top: 0px;
-            right: 2px;
-            font-size: 9pt;
-            line-height: 9pt;
-        }
-    }
+#categories-bar {
+    display: none !important;
+    background: $gray;
 }
-
-#sidebar {
-    /*
-    flex-basis: $basis-blog-column;
-    -webkit-flex-basis: $basis-blog-column;
-    */
-    position: fixed;
-    right: 0px;
-    top: $nav-height;
-    max-width: 400px;
-    margin: 0px;
-    padding: 0px;
-    color: $dark-gray;
-    z-index: 300;
-    height: 100%;
-
-    #accordion-switch {
-        position: absolute;
-        text-align: center;
-        width: $accordion-switch-width;
-        height: $accordion-switch-width * 5;
-        left: -$accordion-switch-width;
-        padding: 5px 0px;
-        background: $orange;
+#tabs-bar {
+    line-height: $nav-height * 0.6;
+    height: $nav-height * 0.6;
+    background: $blue;
+    text-align: center;
+    color: white;
+    .tab {
         text-transform: uppercase;
-        cursor: pointer;
-        @include user-select(none);
-        > p {
-            margin: 0;
-            padding: 20px 0px;
-            color: white;
-            transform:rotate(90deg);
-            -ms-transform:rotate(90deg);
-            -webkit-transform:rotate(90deg);
-            line-height: $accordion-switch-width;
-            
-        }
-
-    }
-    #tabs-sidebar {
-        background: $light-gray;
-        ul {
-            @include user-select(none);
-            height: $tab-header-height;
-            text-align: center;
-            list-style: none;
-            padding: 0px;
-            margin: 0px;
-            li {
-                background-color: $gray;
-                line-height: $tab-header-height;
-                font-size: 12pt;
-                cursor: pointer;
-                
-            }
-            li:hover{
-                background-color: $gray-hover;
-                
-            }
-            li.ui-tabs-active {
-                background-color: $light-gray;
-                a {
-                    cursor: default;
-                }
-            }
-            a{
-                color: $dark-gray;
-                text-decoration: none;
-                width: 100%;
-            }
-        }
-    }
-    > h1 {
-        font-size: 18px;
-        padding-left: 10px;
-    }
-
-    a {
-        color: $dark-gray;
-        text-decoration: none;
-    }
-    h2 {
-        margin: 0px;
-        font-size: 12pt;
-    }
-    h3 {
-        margin: 0px;
+        font-weight: lighter;
+        letter-spacing: 1px;
         font-size: 11pt;
-        font-weight: 300;
+        cursor: pointer;
+        border: 1px solid $dark-blue;
     }
-    .posts, .kysy{
-        padding: 8px;
-        p {
-            font-size: 10pt;
-        }
-
+    .tab:hover {
+        background: rgba(255,255,255,0.2);
     }
-    .qaa {
-        padding: 8px;
-        height: 800px;
+    .tab.active {
+        color: $dark-gray;
+        background: $light-gray;
+        font-weight: normal;
+        cursor: default;
+        border: 1px solid rgb(102,102,102);
+    }
+    .tab.active:hover {
+        background: $light-gray;
     }
 }
 
