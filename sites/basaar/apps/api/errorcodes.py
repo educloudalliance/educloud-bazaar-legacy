@@ -1,6 +1,6 @@
 
 # This file includes definitions to API's error codes in format of exceptions. Each exception class here
-# inherits the DataException or RollbackException depending on if the exception will rollback all the changes.
+# inherits the RollbackException.
 # Every exception has three fields: http-status code, api-error code and
 # human readable error message. Some of the exceptions take parameters to customize the message when
 # exception is thrown.
@@ -8,7 +8,7 @@
 
 class RollbackException(Exception):
     msg = ""
-    httpStatus = 0
+    httpStatus = 400
     apiCode = 0
     def __init__(self, msg):
         self.msg = msg
@@ -27,6 +27,8 @@ class ProductTypeNotFound(RollbackException):
     apiCode = 10
     def __init__(self, productType):
         self.msg = self.msg.format(productType)
+        self.apiCode = 10
+        self.httpStatus = 400
     def __str__(self):
         return repr(self.msg)
 
@@ -115,6 +117,15 @@ class ObjectAlreadyExists(RollbackException):
     msg = "Error: Can't post at '{}' because an object already exists in this URL."
     httpStatus = 403
     apiCode = 60
+    def __init__(self, url):
+        self.msg = self.msg.format(url)
+    def __str__(self):
+        return repr(self.msg)
+
+class UuidAlreadyExists(RollbackException):
+    msg = "Error: Can't post at '{}' because an object with same 'uuid' already exists. uuid has to be unique."
+    httpStatus = 403
+    apiCode = 61
     def __init__(self, url):
         self.msg = self.msg.format(url)
     def __str__(self):

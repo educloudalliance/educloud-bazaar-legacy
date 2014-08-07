@@ -222,7 +222,6 @@ class CMSView(APIView):
                 #Add product into database
                 try:
                     itemClass = ProductClass.objects.get(slug=x["productType"])
-                #TODO Create better error handling
                 except:
                     raise ProductTypeNotFound(x["productType"]) #RollbackException("Error: Product class with type " + x["productType"] + " could not be found.")
 
@@ -343,11 +342,11 @@ class CMSView(APIView):
 
         except RollbackException as e:
             self.doRollback(createdApiNodes, createdProducts, createdStockRecords)
-            raise RollbackException(e.msg + " All changes/materialItems canceled.")
-        except Exception, e:
-            #Rollback the process because of an other error
-            self.doRollback(createdApiNodes, createdProducts, createdStockRecords)
             raise e
+        #except Exception, e:
+        #    #Rollback the process because of an other error
+        #    self.doRollback(createdApiNodes, createdProducts, createdStockRecords)
+        #    raise e
 
         success = ""
         for i in createdApiNodes:
@@ -421,8 +420,8 @@ class CMSView(APIView):
             #try to create a new item:
             try:
                 createdItems = self.postMaterialItem(url, request)
-            #except IntegrityError:
-            #    return Response("ERROR: There is already a resource with same uuid. uuid must be unique.")
+            except IntegrityError:
+                raise UuidAlreadyExists(url) #Response("ERROR: There is already a resource with same uuid. uuid must be unique.")
             except KeyError as e:
                 raise MissingField(e.message)
                 #except ValueError:
@@ -431,6 +430,7 @@ class CMSView(APIView):
                 #return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
 
         except RollbackException as e:
+            print e.apiCode
             return Response(e.getDict(), status=e.httpStatus)
 
         msg = postSuccess.copy()
