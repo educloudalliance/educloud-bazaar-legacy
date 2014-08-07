@@ -38,7 +38,7 @@ StockRecord = get_model('partner', 'StockRecord')
 
 #success messages:
 postSuccess = {"message" : "Operation successful."}
-putSuccess = {"message" : "Operation successful, updated "}
+putSuccess = {"message" : "Operation successful."}
 
 # Create your views here.
 # API-views
@@ -455,7 +455,7 @@ class CMSView(APIView):
                         raise MissingField(e.message)
 
                     msg = putSuccess.copy()
-                    msg["message"] += url
+                    msg["updated"] = url
                     return Response(msg)
                 else:
                     raise CantUpdateCollection()
