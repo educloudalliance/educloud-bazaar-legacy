@@ -5,22 +5,21 @@
 # human readable error message. Some of the exceptions take parameters to customize the message when
 # exception is thrown.
 
-class DataException(Exception):
-    msg = ""
-    httpStatus = 0
-    apiCode = 0
-
-    def __init__(self, msg):
-        self.msg = msg
-    def __str__(self):
-        return repr(self.msg)
 
 class RollbackException(Exception):
     msg = ""
+    httpStatus = 0
+    apiCode = 0
     def __init__(self, msg):
         self.msg = msg
     def __str__(self):
         return repr(self.msg)
+
+    def getDict(self):
+        d = {}
+        d["message"] = self.msg
+        d["errorcode"] = self.apiCode
+        return d
 
 class ProductTypeNotFound(RollbackException):
     msg = "Error: Product type with slug '{}' could not be found. To get a list of available types, call /api/producttypes"

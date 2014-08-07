@@ -36,32 +36,9 @@ ProductClass = get_model('catalogue', 'ProductClass')
 Partner = get_model('partner', 'Partner')
 StockRecord = get_model('partner', 'StockRecord')
 
-class AuthException(Exception):
-    def __init__(self):
-        pass
-    def __str__(self):
-        return repr("Authorization error")
-"""
-class RootException(Exception):
-    def __init__(self):
-        pass
-    def __str__(self):
-        return repr("Cannot create Root-nodes")
-
-class DataException(Exception):
-    msg = ""
-    def __init__(self, msg):
-        self.msg = msg
-    def __str__(self):
-        return repr(self.msg)
-
-class RollbackException(Exception):
-    msg = ""
-    def __init__(self, msg):
-        self.msg = msg
-    def __str__(self):
-        return repr(self.msg)
-"""
+#success messages:
+postSuccess = {"message" : "Operation successful, created: "}
+putSuccess = {"message" : "Operation successful, updated "}
 
 # Create your views here.
 # API-views
@@ -210,7 +187,7 @@ class CMSView(APIView):
                 if i < len(urlTokens):
                     pathSoFar += "/" + urlTokens[i] #move to the next
 
-        return "Created collections: " + unicode(createdCollection)
+        return unicode(createdCollection)
 
 
     def str2Bool(self, s, fieldName):
@@ -372,7 +349,7 @@ class CMSView(APIView):
             self.doRollback(createdApiNodes, createdProducts, createdStockRecords)
             raise e
 
-        success = "Created items: "
+        success = ""
         for i in createdApiNodes:
             success += i.uniquePath + " , "
         return success
@@ -430,7 +407,6 @@ class CMSView(APIView):
             self.isValidUrl(request.path)
             self.checkJsonData(request)
 
-
             url = self.trimTheUrl(request.path)
 
             #check if the object exists in the db already:
@@ -439,13 +415,10 @@ class CMSView(APIView):
             if self.checkIfItemsInPostPath(url):
                 raise ItemOnPath()
 
-
             #create collections if needed
-            createdCollections = self.createCollections(url, request)
-
+            self.createCollections(url, request)
 
             #try to create a new item:
-            #TODO: Put a string describing the field with error to the thrown error to be shown
             try:
                 createdItems = self.postMaterialItem(url, request)
             #except IntegrityError:
@@ -456,13 +429,13 @@ class CMSView(APIView):
                 #    return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
                 #except TypeError:
                 #return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
-            except DataException as e:
-                return Response(e.msg)
 
         except RollbackException as e:
-            return Response(e.msg)
+            return Response(e.getDict(), status=e.httpStatus)
 
-        return Response(createdCollections + " --- " + createdItems)
+        msg = postSuccess.copy()
+        msg["message"] += createdItems
+        return Response(msg)
 
 
     def put(self,request):
@@ -483,17 +456,17 @@ class CMSView(APIView):
                         self.updateExistingItem(target, request.DATA)
                     except KeyError as e:
                         raise MissingField(e.message)
-                    except DataException as e:
-                        return Response(e.msg)
 
-                    return Response("Material item at " + url +" updated successfully.")
+                    msg = putSuccess.copy()
+                    msg["message"] += url
+                    return Response(msg)
                 else:
                     raise CantUpdateCollection()
             else:
                 raise ObjectNotFound(url)
 
         except RollbackException as e:
-            return Response(e.msg)
+            return Response(e.getDict(), status=e.httpStatus)
 
 
     #updates an existing Product with data provided in the request
