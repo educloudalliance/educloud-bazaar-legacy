@@ -6,13 +6,13 @@ from django.utils.translation import ugettext_lazy as _, pgettext_lazy
 
 StockRecord = get_model('partner', 'StockRecord')
 
+
 class Category(AbstractCategory):
     pass
 
 
 class ProductClass(AbstractProductClass):
     pass
-
 
 
 class ProductCategory(AbstractProductCategory):
@@ -27,13 +27,50 @@ class Product(AbstractProduct):
     contributionDate = models.DateField(null=True)
     maximumAge = models.IntegerField(null=True)
     minimumAge = models.IntegerField(null=True)
-    contentLicense = models.CharField(max_length=4000)  #Apache limit from www.boutell.com/newfaq/misc/urllength.html
+    contentLicense = models.CharField(max_length=4000)  # Apache limit from www.boutell.com/newfaq/misc/urllength.html
     dataLicense = models.CharField(max_length=4000)
     copyrightNotice = models.CharField(max_length=4000)
     attributionText = models.TextField()
     attributionURL = models.CharField(max_length=4000)
     visible = models.BooleanField(default=False)
     iconUrl = models.URLField(null=True)
+    upload_path = '/media/icons'
+    icon = models.ImageField(upload_to=upload_path, null=True, blank=True)
+
+    def saveIcon(self, *args, **kwargs):
+        if self.iconUrl:
+            import urllib2, os
+            from urlparse import urlparse
+            from PIL import Image, ImageChops
+
+            req = urllib2.Request(self.iconUrl)
+            response = urllib2.urlopen(req, None, 15)
+
+            iconFile = self.upc + self.iconUrl[-4:]
+            # TODO .jpeg?
+            sPath = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir))
+            filename = sPath + '/public/media/icons/' + iconFile
+            output = open(filename, 'w+')
+            output.write(response.read())
+            output.close()  # Resize
+            size = (200, 200)
+            image = Image.open(filename)
+            image.thumbnail(size, Image.ANTIALIAS)
+            image_size = image.size
+
+            thumb = image.crop((0, 0, size[0], size[1]))
+            offset_x = max((size[0] - image_size[0]) / 2, 0)
+            offset_y = max((size[1] - image_size[1]) / 2, 0)
+
+            thumb = ImageChops.offset(thumb, offset_x, offset_y)
+            fileFolder = sPath + '/public/media/icons/'
+            filename = self.upc + ".png"
+            thumb.save(fileFolder + filename)
+            print "Icon resized!"
+
+            self.icon = os.path.join(self.upload_path, filename)
+            super(Product, self).save()
+
 
     def get_media(self):
         """
@@ -46,24 +83,19 @@ class Product(AbstractProduct):
 
         return url
 
+
     get_media.short_description = _("Embedded media")
 
-    def get_icon_url(self):
-        sPath = os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, os.pardir))
-        localPath = sPath + '/public/static/shop/img/icons/' + self.upc + '.png'
-        filename = 'shop/img/icons/' + self.upc + '.png'
 
-        if os.path.isfile(localPath):
-            return filename
-        else:
-            return False
+    def get_icon_url(self):
+        if self.icon is not None:
+            print self.icon
 
     def get_owner(self):
         product = StockRecord.objects.get(product=self)
         owner = product.partner
 
         return owner.name
-
 
 
 class Language(models.Model):
@@ -107,7 +139,6 @@ class Tags(models.Model):
         return obj
 
 
-
 class ProductAttribute(AbstractProductAttribute):
     pass
 
@@ -138,5 +169,6 @@ class Option(AbstractOption):
 
 class ProductImage(AbstractProductImage):
     pass
+
 
 from oscar.apps.catalogue.models import *
