@@ -81,14 +81,6 @@ class SubjectList(viewsets.ReadOnlyModelViewSet):
 # this view is used to handle all CMS interaction through collections
 # and resources
 class CMSView(APIView):
-    """
-    Returns a list of all items and collections in the provided collection in url if url
-    points to a valid collection or item. In case of collections a json list of items and collections
-    is returned while in case of a materialitem a json representation of the material is returned.
-
-    """
-    #authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
-    #renderer_classes = (UnicodeJSONRenderer,)
     authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
 
@@ -106,7 +98,6 @@ class CMSView(APIView):
         url= urlarray[0]
         for i in range(1, len(urlarray)):
             url += "/" + urlarray[i]
-
         return url
 
     #check whether there is empty strings in the url
@@ -123,7 +114,6 @@ class CMSView(APIView):
         url = url[len("/api/cms/"):] #slice the useless part away
         #slice the trailing:
         url = url.strip("/")
-
         return url
 
     def checkIfAlreadyInDb(self, path):
@@ -148,7 +138,6 @@ class CMSView(APIView):
             #because items can't have children, this is an ERROR condition.
             return True
         return False
-
 
     #after we have verified that the url can be used to create new item or collection, check
     #the path and list not existing collections to be created.
@@ -189,7 +178,6 @@ class CMSView(APIView):
 
         return unicode(createdCollection)
 
-
     def str2Bool(self, s, fieldName):
         if s == "false":
             return False
@@ -197,7 +185,6 @@ class CMSView(APIView):
             return True
         else:
             raise IncorrectBooleanField(fieldName)
-
 
     #check whether json has items or not
     def checkJsonData(self,request):
@@ -208,7 +195,6 @@ class CMSView(APIView):
             theItems = request.DATA["items"]
         except:
             raise NoJSON()
-
 
     def postMaterialItem(self, path, request):
         theList = request.DATA["items"]
@@ -224,7 +210,7 @@ class CMSView(APIView):
                 try:
                     itemClass = ProductClass.objects.get(slug=x["productType"])
                 except:
-                    raise ProductTypeNotFound(x["productType"]) #RollbackException("Error: Product class with type " + x["productType"] + " could not be found.")
+                    raise ProductTypeNotFound(x["productType"])
 
                 #Create unique UPC
                 createdUPC = self.createUPC()
@@ -240,7 +226,7 @@ class CMSView(APIView):
                                   moreInfoUrl=moreInfoUrl,  uuid=x["uuid"], version=x["version"],
                                   maximumAge=x["maximumAge"], minimumAge=x["minimumAge"], contentLicense=x["contentLicense"],
                                   dataLicense=x["dataLicense"], copyrightNotice=x["copyrightNotice"], attributionText=x["attributionText"],
-                                  attributionURL=x["attributionURL"],visible=visible, product_class=itemClass)    #TODO: product_class on product type
+                                  attributionURL=x["attributionURL"],visible=visible, product_class=itemClass)
 
                 #Add fullfilment into database
                 author = Partner.objects.get(code=self.splitUrl(path)[0])
@@ -280,7 +266,6 @@ class CMSView(APIView):
                             newProductCategory.save()
                     else:
                         raise SubjectNotFound(subject)
-
 
 
                 #create language, Tags and EmbeddedMedia models
@@ -415,13 +400,9 @@ class CMSView(APIView):
             try:
                 createdItems = self.postMaterialItem(url, request)
             except IntegrityError:
-                raise UuidAlreadyExists(url) #Response("ERROR: There is already a resource with same uuid. uuid must be unique.")
+                raise UuidAlreadyExists(url)
             except KeyError as e:
                 raise MissingField(e.message)
-                #except ValueError:
-                #    return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
-                #except TypeError:
-                #return Response("Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd")
 
         except RollbackException as e:
             print e.apiCode
@@ -437,10 +418,6 @@ class CMSView(APIView):
             self.isValidUrl(request.path)
             url = self.trimTheUrl(request.path)
             print url
-
-
-            #if not self.checkJsonData(request):
-            #    return Response("No JSON data available")
 
             if models.APINode.objects.filter(uniquePath=url).exists():
                 node = models.APINode.objects.get(uniquePath=url)
@@ -603,68 +580,7 @@ class CMSView(APIView):
         existingLangs = Language.objects.filter(hasLanguage=product)
         for l in existingLangs:
             l.hasLanguage.remove(product)
-    '''
-    #Download icon into static folder
-    def downloadIcon(self, url, iconName):
-        #TODO Image resizing
-        allowedMimes = ['image/gif', 'image/jpeg', 'image/png']
 
-        try:
-            print "Icon requested from " + url
-            req = urllib2.Request(url)
-            response = urllib2.urlopen(req, None, 15)
-
-            #Get headers
-            headers = response.info()
-
-            if headers['Content-Type'] in allowedMimes and int(headers['Content-Length']) < 10000000:
-                iconFile = iconName + url[-4:]
-
-                #TODO .jpeg?
-                sPath = os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, os.pardir))
-                filename = sPath + '/public/static/shop/img/icons/' + iconFile
-                print "orig:" + filename
-                output = open(filename, 'wb')
-                output.write(response.read())
-                output.close()
-
-                # Resize
-                size = (200, 200)
-                image = Image.open(filename)
-                image.thumbnail(size, Image.ANTIALIAS)
-                image_size = image.size
-
-                thumb = image.crop( (0, 0, size[0], size[1]) )
-                offset_x = max( (size[0] - image_size[0]) / 2, 0 )
-                offset_y = max( (size[1] - image_size[1]) / 2, 0 )
-
-                thumb = ImageChops.offset(thumb, offset_x, offset_y)
-                filename = sPath + '/' + '/public/static/shop/img/icons/' + iconName + ".png"
-                print "thumb:" + filename
-                thumb.save(filename)
-                print "Icon resized!"
-            else:
-                print headers['Content-Length']
-                print "Not allowed MIME or image too big"
-                return False
-
-        except urllib2.URLError, e:
-            #TODO better error handling
-            if e == 404:
-                print "404 on icon download"
-                #TODO return 404 error ?
-                return False
-            else:
-                print "HTTP-error on icon download"
-                return False
-        except IOError:
-            print "I/O error"
-            return False
-        except:
-            print "Unexpected error:", sys.exc_info()[0]
-            return False
-
-    '''
     #Create unique UPC for material
     def createUPC(self):
         UPC = str(libuuid.uuid4())
