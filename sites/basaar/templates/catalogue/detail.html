@@ -71,8 +71,8 @@
                         <div class="flexItem2 flex-container-vertical">
                             <div class="flex-container">
                                 <div class="thumbnail flex-container-vertical">
-                                        {% if product.get_icon_url %}
-                                            <img src="{{ STATIC_URL }}{{ product.get_icon_url }}" alt="{{ product.get_title }} class="thumbnail">
+                                        {% if product.icon %}
+                                            <img src="{{ product.icon }}" alt="{{ product.get_title }} class="thumbnail">
                                         {% else %}
                                             <img src="{{ STATIC_URL }}shop/img/noimage.jpg" alt="{{ product.get_title }} class="thumbnail"/ >
                                         {% endif %}

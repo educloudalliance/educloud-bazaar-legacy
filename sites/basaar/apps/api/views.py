@@ -257,11 +257,8 @@ class CMSView(APIView):
                     raise ObjectAlreadyExists( path + "/" + slugify(product.uuid) )
 
                 #Download icon if one is specified
-                if "iconUrl" in x is not None:
-                    self.downloadIcon(x["iconUrl"], createdUPC)
-                    print "tallenna urli"
-                    product.iconUrl = x["iconUrl"]
-
+                product.iconUrl = x["iconUrl"]
+                product.saveIcon()
                 product.save()
                 createdProducts.append(product)
 
@@ -606,7 +603,7 @@ class CMSView(APIView):
         existingLangs = Language.objects.filter(hasLanguage=product)
         for l in existingLangs:
             l.hasLanguage.remove(product)
-
+    '''
     #Download icon into static folder
     def downloadIcon(self, url, iconName):
         #TODO Image resizing
@@ -667,7 +664,7 @@ class CMSView(APIView):
             print "Unexpected error:", sys.exc_info()[0]
             return False
 
-
+    '''
     #Create unique UPC for material
     def createUPC(self):
         UPC = str(libuuid.uuid4())
