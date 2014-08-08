@@ -660,8 +660,8 @@ class CMSView(APIView):
             else:
                 print "HTTP-error on icon download"
                 return False
-        except IOError as (errno, strerror):
-            print "I/O error({0}): {1}".format(errno, strerror)
+        except IOError:
+            print "I/O error"
             return False
         except:
             print "Unexpected error:", sys.exc_info()[0]
