@@ -1,6 +1,5 @@
 @import "normalize";
 @import "base";
-@import "buttons";
 @import "animate/animate";
 @import "compass";
 
@@ -179,20 +178,12 @@ footer {
         }
     }
 
-    .menu-separator {
-        height: 2px;
-        background: white;
-        width: $menu-icons-width;
-        margin-left: $menu-icons-padding;
-        margin-bottom: ($nav-height - $menu-icons-width) / 2;
-        border-radius: 5px;
-    }
     .menu-icon {
         @media screen and (max-width: $r1024-content-width) {
         }
         cursor: pointer;
         margin: 0px;
-        width: $nav-height;
+        width: $nav-height * 1.2;
         height: $nav-height;
         padding: (($nav-height - $menu-icons-width) / 2);
     }
@@ -220,8 +211,6 @@ footer {
         background: $dark-blue;
     }
     #icons > .flexItem {
-        max-height: $nav-height;
-        width: $nav-height;
         position: relative;
         -webkit-transition: all 0.1s; /* For Safari 3.1 to 6.0 */
         transition: all 0.1s;
@@ -266,7 +255,7 @@ footer {
         right: 0px;
         top: $nav-height;
         color: white;
-        min-height: $menu-icons-width + $menu-icons-gap;
+        min-height: $nav-height * 0.7;
         min-width: 400px;
         z-index: 200;
         box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.5);
