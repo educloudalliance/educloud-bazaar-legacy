@@ -244,6 +244,9 @@ footer {
             font-size: 10pt;
             padding: 10px 5px;
             background: $dark-blue;
+            select {
+                color: black;
+            }
             button {
                 color: black;
             }
