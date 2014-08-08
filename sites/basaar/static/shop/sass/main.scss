@@ -144,13 +144,6 @@ footer {
                 height: $nav-height * 0.5 - 4px;
             }
         }
-        .focus {
-            background: $dark-blue;
-            border-color: white;
-            svg path {
-                fill: white;
-            }
-        }
     }
     .basket-mini {
         overflow: scroll;
@@ -214,6 +207,7 @@ footer {
     }
     #icons > .flexItem.active {
         background: $dark-blue;
+        color: white;
         path.hoverable {
             fill: #ffffff;
         }
@@ -230,6 +224,7 @@ footer {
         position: relative;
         -webkit-transition: all 0.1s; /* For Safari 3.1 to 6.0 */
         transition: all 0.1s;
+        border-left: 1px solid $gray;
     }
     .notification-number {
         position: absolute;
@@ -245,23 +240,12 @@ footer {
     }
     #language-icon {
         text-align: center;
+        font-weight: lighter;
         .menu-icon {
             padding: 2px;
         }
-        .menu-icon > svg {
-            height: 11pt;
-            width: 11pt;
-            padding-top: 3px;
-            margin: 0px 0px -3px 5px;
-        }
         .menu-icon:hover {
             color: white;
-            svg text {
-                fill: white;
-            }
-            svg path {
-                stroke: white;
-            }
         }
         .menu-box {
             display: none;
@@ -336,45 +320,34 @@ footer {
         
     }
 
-    #filters{
-        
-        #menu-categories {
-
-            text-align: center;
-            font-size: 19px;
-            padding: 0px 13px;
-            margin: 2px 0px 0px 0px;
-            text-transform: uppercase;
-            height: $nav-height;
-            line-height: $nav-height;
-            cursor: pointer;
-            position: relative;
-            font-weight: lighter;
-            > svg {
-                height: 14pt;
-                width: 14pt;
-                margin: 0px 0px -3px 6px;
-                padding-top: 3px;
-            }
-            @media screen and (max-width: $r1280-content-width) {
-                padding: 0px;
-                > svg {
-                    margin: 0px 7px -3px 0px;
-                    
-                }
-            }
+    #menu-categories {
+        text-align: center;
+        font-size: 19px;
+        padding: 0px 1.5em;
+        margin: 0px;
+        border-right: 1px solid $gray;
+        border-left: 1px solid $gray;
+        text-transform: uppercase;
+        height: $nav-height;
+        line-height: $nav-height;
+        cursor: pointer;
+        position: relative;
+        font-weight: lighter;
+        -webkit-transition: all 0.1s; /* For Safari 3.1 to 6.0 */
+        transition: all 0.1s;
+        @media screen and (max-width: $r1280-content-width) {
+            padding: 0px 2px;
         }
-        #menu-categories:hover {
-            color: $blue;
-            svg text {
-                fill: $blue;
-            }
-            svg path {
-                stroke: $blue;
-            }
-        }
-
     }
+    #menu-categories:hover {
+        color: white;
+        background: $blue;
+    }
+    #menu-categories.active {
+        background: $dark-blue;
+        color: white;
+    }
+
     #addTags{
         @media screen and (max-width: $r1280-content-width) {
             text-align: right;
@@ -421,6 +394,28 @@ footer {
     display: none;
     background: $dark-gray;
     color: $gray;
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+    > div > .flexItem, > div > .flexItem2, > div > .flexItem3 {
+        padding: 10px 15px;
+        min-width: 220px;
+        font-weight: lighter;
+        ul {
+            list-style: none;
+            padding: 0px;
+            li {
+                padding: 5px 0px;
+
+            }
+        }
+    }
+    h2 {
+        color: $blue;
+        border-bottom: 1px solid $blue;
+        font-weight: normal;
+        font-size: 15pt;
+        margin: 0px;
+        padding: 10px 0px 2px 0px;
+    }
 }
 #tabs-bar {
     line-height: $nav-height * 0.6;

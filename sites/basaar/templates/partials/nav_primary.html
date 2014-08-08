@@ -12,9 +12,7 @@
         <div class="flexItem">
         </div>
 
-        <div id="filters" class="flexItem2 flex-container">
-            <div id="menu-categories">Categories<img class="svg" src="{{ STATIC_URL }}shop/img/FilterIcon.svg"/>
-            </div>
+        <div id="menu-categories">Categories <i class="fa fa-caret-down"></i>
         </div>
 
         <div class="flexItem">
@@ -89,7 +87,7 @@
                 </div>
             </div>
             <div class="flexItem" id="language-icon">
-                <div class="menu-icon">{{LANGUAGE_CODE}}<img class="svg" src="{{ STATIC_URL }}shop/img/FilterIcon.svg"/></div>
+                <div class="menu-icon">{{LANGUAGE_CODE}} <i class="fa fa-caret-down"></i></div>
                 {% if LANGUAGES|length > 1 %}
                      <div class="menu-box">
                         <form id="language_selector" action="{% url 'set_language' %}" method="post">
@@ -111,13 +109,80 @@
         </div>
     </div>
     <div id="categories-bar">
-        <div class="flex-container">
-            <h2>Menu</h2>
-            <ul>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-            </ul>
+        <div class="flex-container flex-wrap">
+            <div class="flexItem2">
+                <h2>Subject</h2>
+                <div class="flex-container">
+                    <div class="flexItem">
+                        <ul>
+                            <li>Biology</li>
+                            <li>Chemistry</li>
+                            <li>Environmental & Natural Science</li>
+                            <li>Geography</li>
+                            <li>Health Education</li>
+                            <li>History</li>
+                            <li>Mathematics</li>
+                            <li>Physics</li>
+                            <li>Religion & Ethics Culture</li>
+                            <li>Art & Design</li>
+                        </ul>
+                    </div>
+                    <div class="flexItem">
+                        <ul>
+                            <li>Crafts</li>
+                            <li>Music</li>
+                            <li>Physical Education</li>
+                            <li>Home Economics</li>
+                            <li>English</li>
+                            <li>Finnish</li>
+                            <li>Finnish as a second language</li>
+                            <li>French</li>
+                            <li>Russian</li>
+                            <li>Swedish</li>
+                            <li>Swedish as a second language</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flexItem">
+                <h2>Grade</h2>
+                <ul>
+                    <li>1-2</li>
+                    <li>3-6</li>
+                    <li>7-9</li>
+                </ul>
+                <h2>Type</h2>
+                <ul>
+                    <li>Animation</li>
+                    <li>Application</li>
+                    <li>Image</li>
+                    <li>PDF Book</li>
+                    <li>Worksheet</li>
+                </ul>
+            </div>
+            <div class="flexItem">
+                <h2>Publisher</h2>
+                <ul>
+                    <li>Pub1</li>
+                    <li>Pub2</li>
+                    <li>Pub3</li>
+                </ul>
+            </div>
+            <div class="flexItem">
+                <h2>Price Range</h2>
+                <ul>
+                    <li>Free</li>
+                    <li>€0 - € 10</li>
+                    <li>€10 - € 20</li>
+                    <li>€20 - € 30</li>
+                    <li>€30 - € 40</li>
+                    <li>€50 +</li>
+                </ul>
+            </div>
+            <div class="flexItem">
+                <h2>Languages</h2>
+                <input placeholder="Enter a language" />
+            </div>
         </div>
     </div>
     <div id="tabs-bar" class="flex-container">
