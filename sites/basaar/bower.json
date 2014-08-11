@@ -6,7 +6,6 @@
     "modernizr": "~2.6.2",
     "jquery": "~1.11.0",
     "jquery-ui": "~1.10.4",
-    "jquery-hoverIntent": "*",
     "jquery.oembed": "https://raw.githubusercontent.com/starfishmod/jquery-oembed-all/master/jquery.oembed.js"
   }
 }
