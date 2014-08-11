@@ -1,5 +1,4 @@
 <script src="{{ STATIC_URL }}shop/js/bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-<script src="{{ STATIC_URL }}shop/js/bower_components/jquery-hoverIntent/jquery.hoverIntent.js"></script>
 <script src="{{ STATIC_URL }}shop/js/bower_components/jquery.oembed/index.js"></script>
 
 <script type="text/javascript">
@@ -92,7 +91,7 @@
 
     function preparePage(){
 
-        $('#tabs-product').tabs({show: 'fade'});
+        //$('#tabs-product').tabs({show: 'fade'});
 
         $('#generalSearch input').focus(function(){
             $('.menu-box').hide('fade');
@@ -121,17 +120,21 @@
             $(this).toggleClass('selected');
         });
 
+        /*
         $('#tabs-product form input').change(function(){
             calculateTotalPrice($(this).val(),$(this).parents('form').find('.totalPriceValue'))
         });
+        */
 
         $('.py-messages .close-btn').click(function(){
             $(this).parent().hide('fade');
         })
 
     }
+    /*
     function calculateTotalPrice(quantity, resultSelector){
         resultSelector.text((individualPrice * quantity).toFixed(2));
     }
+    */
 
 </script>

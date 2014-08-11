@@ -74,7 +74,34 @@ textarea, input { outline: none; }
     -webkit-flex: 5;
     flex: 5;
 }
-
+.star-rating {
+    letter-spacing: -2px;
+    color: $gray;
+}
+.star-rating.One i:first-child{
+    color: #E6CE31;
+}
+.star-rating.Two i:first-child, .star-rating.Two i:first-child + i{
+    color: #E6CE31;    
+}
+.star-rating.Three i:first-child, .star-rating.Three i:first-child + i, .star-rating.Three i:first-child + i + i {
+    color: #E6CE31;
+}
+.star-rating.Four i:first-child, .star-rating.Four i:first-child + i, .star-rating.Four i:first-child + i + i, .star-rating.Four i:first-child + i + i + i {
+    color: #E6CE31;
+}
+.star-rating.Five i{
+    color: #E6CE31;
+}
+.whiteBackground {
+    background: white;
+}
+.grayBackground {
+    background: $light-gray;
+}
+.hidden {
+    display: none;
+}
 .barshadow {
     height: $nav-height * 1.6;
     width: 100%;
@@ -218,8 +245,8 @@ footer {
     }
     .notification-number {
         position: absolute;
-        bottom: 10px;
-        right: 5px;
+        bottom: 12px;
+        right: 12px;
         min-width: 16px;
         background: $notification-red;
         border-radius: 50px;
@@ -451,9 +478,9 @@ footer {
     }
 }
 
+
 #content {
     width: 100%;
-    padding: $nav-height/2 $nav-height;
 
     .content-center {
         width: 1000px;
@@ -492,21 +519,26 @@ footer {
     }
 
     article.product_pod {
-        padding: 15px;
+        padding: 10px;
         color: $dark-gray;
+        background: white;
         h3 {
-            font-weight: normal;
+            font-weight: lighter;
             margin: 0px;
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
-            font-size: 13pt;
+            font-size: 12pt;
         }
         .owner {
+            font-size: 11pt;
+            color: $gray;
         }
         .product_price h2 {
-            font-size: 16pt;
-            margin: 10px 0px;
+            font-size: 13pt;
+            margin: 0px;
+            color: red;
+            text-align: right;
         }
         h4 {
             margin: 0px;
@@ -521,8 +553,9 @@ footer {
             justify-content: center;
             -webkit-justify-content: center;
             text-align: center;
+            padding-right: 10px;
             img {
-                width: 80px;
+                width: 120px;
                 background-color: $dark-gray;
             }
         }
@@ -532,14 +565,16 @@ footer {
         list-style: none;
         padding: 0px;
         margin: 0px;
-        justify-content: flex-start;
-        -webkit-justify-content: flex-start;
+        justify-content: center;
+        -webkit-justify-content: center;
 
         li {
             overflow: hidden;
             border: 1px solid $light-gray;
             float: left;
             width: $basis-product-item;
+            margin: 5px;
+            box-shadow: 0px 0px 7px rgba(0,0,0,0.1);
         }
         a:hover {
             color: $blue;
@@ -548,7 +583,14 @@ footer {
     }
     section.product-section {
         width: 100%;
-        
+        padding: $nav-height/2 $nav-height;
+        h2 {
+            text-transform: uppercase;
+            color: $dark-gray;
+            font-weight: lighter;
+            font-size: 14pt;
+            margin: 10px 5px;
+        }
     }
 
     article.product_page {
@@ -560,78 +602,16 @@ footer {
         > .flex-container-vertical > div:first-child {
             padding: 0px;
         }
-        #tabs-product {
-            height: $tab-header-height;
-            text-align: center;
-            ul {
-                @include user-select(none);
-                text-align: center;
-                list-style: none;
-                padding: 0px;
-                margin: 0px;
-                li {
-                    background-color: $gray;
-                    line-height: $tab-header-height;
-                    font-size: 12pt;
-                    cursor: pointer;
-                    
-                }
-                li:hover{
-                    background-color: $gray-hover;
-                    
-                }
-                li.ui-tabs-active {
-                    background-color: $light-gray;
-                    a {
-                        cursor: default;
-                    }
-                }
-                a{
-                    color: $dark-gray;
-                    text-decoration: none;
-                    width: 100%;
-                }
-            }
-            #addbasket-tab form, #wishlist-tab form {
-                .totalPriceLabel{
-                    font-size: 16pt;
-                    padding: 5px 0px 0px 0px;
-                }
-                .totalPriceValue{
-                    font-size: 16pt;
-                    padding: 0px 0px 30px 0px;
-                }
-                .control-group {
-                    font-size: 16pt;
-                    padding: 40px 0px 15px;
-
-                    label, div {
-                        display: inline-block;
-                    }
-                    input {
-                        width: 50px;
-                        border: none;
-                        background: $green-main;
-                        color: white;
-                        text-align: center;
-                        border-radius: 4px;
-                    }
-                }
-                button {
-                    background: $green-main;
-                    border: none;
-                    color: white;
-                    padding: 5px 15px;
-                }
-            }
-        }
         .main {
+            margin: 3.5em 0px;
+            padding: 2em 0px;
+            box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
             h1, h2, h3, h4, h5, h6, p {
                 margin: 0px;
             }
             .thumbnail{
                 img {
-                    margin-right: 17px;
+                    margin-right: 2em;
                     height: 191px;
                     width: 191px;
                     border: 1px solid $light-gray;
@@ -650,12 +630,12 @@ footer {
                 }
             }
             .owner {
-                font-size: 16pt;
+                font-size: 15pt;
                 font-weight: lighter;
+                margin-bottom: 1em;
+                color: $gray;
             }
             .price {
-                justify-content: flex-end;
-                -webkit-justify-content: flex-end;
                 .price_color {
                     font-weight: normal;
                 }
@@ -665,8 +645,9 @@ footer {
 
             }
             .rating {
-                justify-content: flex-end;
-                -webkit-justify-content: flex-end;
+                .star-rating {
+                    font-size: 15pt;
+                }
                 font-size: 13pt;
                 font-weight: bold;
                 p {
@@ -677,30 +658,22 @@ footer {
                     }
                 }
             }
-            .subject h3, .grade h3, .type h3 {
-                font-size: 10pt;
-                font-weight: bold;
-            }
-            .subject p, .grade p, .type p {
-                font-size: 15pt;
-                font-weight: normal;
-            }
-            .line {
-                align-items: center;
-                -webkit-align-items: center;
-            }
-            
-            .product-action-box{
-                width: 300px;
-                background: $light-gray;
-            }
-            
-        }
-        .big-line {
-            margin: 25px 0px;
-            .thumb-line {
-                margin-right: 17px;
-                width: 191px;
+            .buttons {
+                -webkit-align-items: flex-end;
+                align-items: flex-end;
+                button {
+                    background: $blue;
+                    color: white;
+                    border: none;
+                    font-weight: lighter;
+                    padding: 0em 2em;
+                    margin: 0px 2em 0px 0em;
+                    line-height: 3em;
+                    height: 3em;
+                }
+                button[disabled=disabled] {
+                    background: $gray;
+                }
             }
         }
         h2 {
@@ -731,10 +704,10 @@ footer {
                 }
             }
             tr:nth-child(odd) {
-                background: $light-gray;
+                background: white;
             }
             tr:nth-child(even) {
-                background: white;
+                background: $light-gray;
             }
         }
         .carousel {

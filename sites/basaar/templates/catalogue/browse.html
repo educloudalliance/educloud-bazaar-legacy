@@ -60,6 +60,7 @@
 {% endblock %}
 
 {% block content %}
+<div id="content" class="grayBackground flex-container">
     {% if category.description or category.image %}
         <div>
             {% if category.description and not category.image %}
@@ -74,6 +75,7 @@
     {% endif %}
     {% if products %}
         <section class="product-section flexItem">
+            <h2>Newest Arrivals</h2>
             <div>
                 <ol class="productlist flex-container flex-wrap">
                     {% for product in products %}
@@ -86,4 +88,5 @@
     {% else %}
         <p class="nonefound">{% trans "No products found." %}</p>
     {% endif %}
+</div>
 {% endblock content %}

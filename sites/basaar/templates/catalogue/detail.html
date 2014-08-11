@@ -49,279 +49,258 @@
 {% endblock header %}
 
 {% block content %}
-<div class="flexItem"></div>
-    <div class="box-page content-center flex-container-vertical">
-
-        <article class="product_page flexItem"><!-- Start of product page -->
-
-            <div class="flex-container-vertical">
-
-
-                {% block product_main %}
-                    {% comment %} 
-                    This is a but clunky here.  Better to have some kind of JS-driven dashboard menu that 
-                    pops out when clicked.  A bit like the Django-Debug-Toolbar button
-                    {% endcomment %}
-                    <!--
-                    {% if user.is_authenticated and user.is_staff %}
-                        <a class="pull-right hidden-phone" href="{% url 'dashboard:catalogue-product' pk=product.id %}"><small><i class="icon-edit"></i> {% trans "Edit this product" %}</small></a>
-                    {% endif %}
-                -->
-                    <div class="flex-container main">
-                        <div class="flexItem2 flex-container-vertical">
-                            <div class="flex-container">
-                                <div class="thumbnail flex-container-vertical">
-                                        {% if product.icon %}
-                                            <img src="{{ product.icon }}" alt="{{ product.get_title }} class="thumbnail">
-                                        {% else %}
-                                            <img src="{{ STATIC_URL }}shop/img/noimage.jpg" alt="{{ product.get_title }} class="thumbnail"/ >
-                                        {% endif %}
-                                </div>
-                                <div class="flexItem flex-container-vertical summary">
-                                    <div class="title">
-                                        <h1>{{ product.get_title }}</h1>
-                                    </div>
-                                    <div class="owner">
-                                        by {{ product.get_owner }}
-                                    </div>
-                                    <div class="price flexItem flex-container-vertical">
-                                        {% block product_stock_record %}
-                                            {% include "catalogue/partials/stock_record.html" with verbose=1 %}
-                                        {% endblock %}
-                                    </div>
-                                    <div class="rating flexItem flex-container-vertical">
-                                        <p><i class="fa fa-thumbs-o-up"></i>{{product.rating}}&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-down"></i>{{product.rating}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="big-line flex-container flexItem">
-                                <div class="thumb-line flex-container">
-                                    <div class="flexItem type">
-                                        <h3>Type</h3>
-                                        <p>{{product.product_class}}</p>
-                                    </div>
-                                    <div class="flexItem grade">
-                                        <h3>Grade</h3>
-                                        <p>{% if product.minAge < 7 and product.maxAge > 14 %}
-                                                all
-                                            {% else %}
-                                                {% if product.minAge < 6 %}1
-                                                {% else %}{{product.minAge|add:"-6"}}
-                                                {% endif %}-
-                                                {% if product.maxAge < 6 %}1
-                                                {% else %}
-                                                    {% if product.maxAge > 15 %}9
-                                                    {% else %}
-                                                    {{product.maxAge|add:"-6"}}
-                                                    {% endif %}
-                                                {% endif %}
-                                            {% endif %}</p>
-                                    </div>
-                                </div>
-                                <div class="line flex-container flexItem">
-                                    <div class="flexItem subject">
-                                        <h3>Subjects</h3>
-                                        <p>{{product.categories.first}}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="product-action-box">
-                            <div id="tabs-product">
-                              <ul class="flex-container">
-                                <li class="flexItem flex-container"><a href="#addbasket-tab">Add to Basket</a></li>
-                                <li class="flexItem flex-container"><a href="#wishlist-tab">Save Item</a></li>
-                              </ul>
-                              {% block product_basket_form %}
-                              <div id="addbasket-tab">
-                                {% include "catalogue/partials/add_to_basket_form.html" %}
-                              </div>
-                              <div id="wishlist-tab">
-                                {% include "catalogue/partials/add_to_wishlist_form.html" %}
-                              </div>
-                              {% endblock %}
-                            </div>
-                        </div>
-                    </div>
-                    <div id="product_description" class="">
-                        {% block product_description %}
-                            {% if product.description %}
-                            <h2>{% trans "Product Description" %}</h2>
-                            <p>{{ product.description|safe }}</p>
-                            {% endif %}
-                        {% endblock %}
-                    </div>
-                    <div id="product_information" class="">
-                        {% block product_info %}
-                        <h2>{% trans "Product Information" %}</h2>
-                        <table class="product-info">
-                            <tr>
-                                <th>Subjects</th><td>{{product.categories.first}}</td>
-                            </tr>
-                            <tr>
-                                <th>Grade</th>
-                                <td>{% if product.minAge < 7 and product.maxAge > 14 %}
-                                        all
-                                    {% else %}
-                                        {% if product.minAge < 6 %}1
-                                        {% else %}{{product.minAge|add:"-6"}}
-                                        {% endif %}-
-                                        {% if product.maxAge < 6 %}1
-                                        {% else %}
-                                            {% if product.maxAge > 15 %}9
-                                            {% else %}
-                                            {{product.maxAge|add:"-6"}}
-                                            {% endif %}
-                                        {% endif %}
-                                    {% endif %}</td>
-                            </tr>
-                            <tr>
-                                <th>{% trans "Product Type" %}</th><td>{{ product.get_product_class.name }}</td>
-                            </tr>
-                            {% if product.upc %}
-                            <tr>
-                                <th>{% trans "UPC" %}</th><td>{{ product.upc }}</td>
-                            </tr>
-                            {% endif %}
-
-                            {% purchase_info_for_product request product as session %}
-                            {% if session.price.exists %}
-                                <tr>
-                                    <th>{% trans "Price (excl. tax)" %}</th><td>{{ session.price.excl_tax|currency:session.price.currency }}</td>
-                                </tr>
-                                {% if session.price.is_tax_known %}
-                                    <tr>
-                                        <th>{% trans "Price (incl. tax)" %}</th><td>{{ session.price.incl_tax|currency:session.price.currency }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{% trans "Tax" %}</th><td>{{ session.price.tax|currency:session.price.currency }}</td>
-                                    </tr>
-                                {% endif %}
-                                <tr>
-                                    <th>{% trans "Availability" %}</th>
-                                    <td>{{ session.availability.message }}</td>
-                                </tr>
-                            {% endif %}
-                            {% for av in product.attribute_values.all %}
-                                <tr>
-                                    <th>{{ av.attribute.name }}</th>
-                                    <td>{{ av.value_as_html }}</td>
-                                </tr>
-                            {% endfor %}
-                            {% iffeature "reviews" %}
-                                <tr>
-                                    <th>{% trans "Number of reviews" %}</th>
-                                    <td>{{ product.num_approved_reviews }}</td>
-                                </tr>
-                            {% endiffeature %}
-                        </table>
-                        {% endblock %}
-                    </div>
-
-                    {% with all_media=product.get_media %}
-                    {% if all_media|length > 0 %}
-                    <div id="product_images" class="">
-                        <h2>{% trans "Screen Shots" %}</h2>
-                        {% include "catalogue/partials/gallery.html" %}
-                    </div>
-                    {% endif %}
-                    {% endwith %}
-                <div id="product_reviews" class="">
-                        {% iffeature "reviews" %}
-                            {% if product.rating != None %}
-                                <h4 class="star-rating {{ product.rating|as_stars }}">
-                                    <i class="icon-star"></i>
-                                    <i class="icon-star"></i>
-                                    <i class="icon-star"></i>
-                                    <i class="icon-star"></i>
-                                    <i class="icon-star"></i>
-
-                                    <small><a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}">
-                                        {% blocktrans count product.num_approved_reviews as num_reviews %}
-                                        1 customer review
-                                        {% plural %}
-                                        {{ num_reviews }} customer reviews
-                                        {% endblocktrans %}
-                                    </a></small>
-                                    &nbsp;
-                            {% else %}
-                                <h4>
-                            {% endif %}
-                            {% if product|is_review_permitted:user %}
-                                <a id="write_review" href="{% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id %}#addreview" class="btn btn-success btn-small">
-                                    {% trans "Write a review" %}
-                                </a>
-                            {% endif %}
-                            </h4>
-                        {% endiffeature %}
-
-                {% endblock %}
-
-
-                {% iffeature "reviews" %}
-                    {% block product_review %}
-                    <section>
-                        <div id="reviews" class="sub-header">
-                            {% if product.num_approved_reviews > 3 %}
-                                <a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}" class="btn pull-right">{% trans "See all reviews" %}</a>
-                            {% endif %}
-                            <h2>{% trans "Customer Reviews" %}</h2>
-                        </div>
-
-                        {% if product.num_approved_reviews == 0 %}
-                            <p>
-                                {% if product|is_review_permitted:user %}
-                                    {% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id as add_review_url %}
-                                        {% blocktrans %}This product does not have any reviews yet -
-                                        <a href="{{ add_review_url }}#addreview">be the first to write one</a>.
-                                    {% endblocktrans %}
-                                {% else %}
-                                    {% trans "This product does not have any reviews yet" %}.
-                                {% endif %}
-                            </p>
-                        {% else %}
-                            <ol class="flex-container review-list">
-                                {% for review in reviews|slice:":2" %}
-                                    <li>
-                                    {% include 'catalogue/partials/review.html' %}
-                                    </li>
-                                {% endfor %}
-                            </ol>
-                        {% endif %}
-                    </section>
-                    {% endblock product_review %}
-                {% endiffeature %}
-                    </div>
-
-                {% with recommended_products=product.recommended_products.all|slice:":6" %}
-                    {% if recommended_products %}
-                    <div id="product_recommended">
-                        <h2>{% trans "Recommended items" %}</h2>
-                        <ul class="productlist flex-container flex-wrap">
-                            {% for product in recommended_products %}
-                            <li>
-                                {% render_product product %}
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    {% endif %}
-                {% endwith %}
-                
-                <div id="product_related">
-                    {% recently_viewed_products %}
+<div id="content" class="grayBackground">
+    <article class="product_page flex-container-vertical"><!-- Start of product page -->
+    <div class="flex-container whiteBackground main">
+        <div class="flexItem"></div>
+        <div class="box-page content-center flex-container-vertical">
+            <div class="flex-container-vertical summary">
+                <div class="title">
+                    <h1>{{ product.get_title }}</h1>
+                </div>
+                <div class="owner">
+                    by {{ product.get_owner }}
                 </div>
             </div>
+            <div class="flex-container">
+                <div class="thumbnail flex-container-vertical">
+                        {% if product.icon %}
+                            <img src="{{ product.icon }}" alt="{{ product.get_title }} class="thumbnail">
+                        {% else %}
+                            <img src="{{ STATIC_URL }}shop/img/noimage.jpg" alt="{{ product.get_title }} class="thumbnail"/ >
+                        {% endif %}
+                </div>
+                <div class="flexItem flex-container-vertical summary">
+                    
+                    <div class="price flexItem flex-container-vertical">
+                        {% block product_stock_record %}
+                            {% include "catalogue/partials/stock_record.html" with verbose=1 %}
+                        {% endblock %}
+                    </div>
+                    <div class="rating flexItem flex-container-vertical">
+                        <div class="flex-container">
+                            {{product.rating}}&nbsp;
+                            <div class="star-rating {{ product.rating|as_stars }}">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <!--
+                        <p><i class="fa fa-thumbs-o-up"></i>{{product.rating}}&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-down"></i>{{product.rating}}</p>
+                        -->
+                    </div>
+                    <div class="buttons flex-container flexItem">
+                        {% block product_basket_form %}
+                            {% include "catalogue/partials/add_to_basket_form.html" %}
+                            {% include "catalogue/partials/add_to_wishlist_form.html" %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flexItem"></div>
+    </div>
+        
+    <div class="flex-container">
+        <div class="flexItem"></div>
+        <div class="box-page content-center flex-container-vertical">
 
-        <script type="text/javascript">
-         hideExtra = true;
-        </script>
+                <div class="flex-container-vertical">
 
+
+                    {% block product_main %}
+                        {% comment %} 
+                        This is a but clunky here.  Better to have some kind of JS-driven dashboard menu that 
+                        pops out when clicked.  A bit like the Django-Debug-Toolbar button
+                        {% endcomment %}
+                        <!--
+                        {% if user.is_authenticated and user.is_staff %}
+                            <a class="pull-right hidden-phone" href="{% url 'dashboard:catalogue-product' pk=product.id %}"><small><i class="icon-edit"></i> {% trans "Edit this product" %}</small></a>
+                        {% endif %}
+                    -->
+                        <div id="product_description" class="">
+                            {% block product_description %}
+                                {% if product.description %}
+                                <h2>{% trans "Product Description" %}</h2>
+                                <p>{{ product.description|safe }}</p>
+                                {% endif %}
+                            {% endblock %}
+                        </div>
+                        <div id="product_information" class="">
+                            {% block product_info %}
+                            <h2>{% trans "Product Information" %}</h2>
+                            <table class="product-info">
+                                <tr>
+                                    <th>Subjects</th><td>{{product.categories.first}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Grade</th>
+                                    <td>{% if product.minAge < 7 and product.maxAge > 14 %}
+                                            all
+                                        {% else %}
+                                            {% if product.minAge < 6 %}1
+                                            {% else %}{{product.minAge|add:"-6"}}
+                                            {% endif %}-
+                                            {% if product.maxAge < 6 %}1
+                                            {% else %}
+                                                {% if product.maxAge > 15 %}9
+                                                {% else %}
+                                                {{product.maxAge|add:"-6"}}
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>{% trans "Product Type" %}</th><td>{{ product.get_product_class.name }}</td>
+                                </tr>
+                                {% if product.upc %}
+                                <tr>
+                                    <th>{% trans "UPC" %}</th><td>{{ product.upc }}</td>
+                                </tr>
+                                {% endif %}
+
+                                {% purchase_info_for_product request product as session %}
+                                {% if session.price.exists %}
+                                    <tr>
+                                        <th>{% trans "Price (excl. tax)" %}</th><td>{{ session.price.excl_tax|currency:session.price.currency }}</td>
+                                    </tr>
+                                    {% if session.price.is_tax_known %}
+                                        <tr>
+                                            <th>{% trans "Price (incl. tax)" %}</th><td>{{ session.price.incl_tax|currency:session.price.currency }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{% trans "Tax" %}</th><td>{{ session.price.tax|currency:session.price.currency }}</td>
+                                        </tr>
+                                    {% endif %}
+                                    <tr>
+                                        <th>{% trans "Availability" %}</th>
+                                        <td>{{ session.availability.message }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% for av in product.attribute_values.all %}
+                                    <tr>
+                                        <th>{{ av.attribute.name }}</th>
+                                        <td>{{ av.value_as_html }}</td>
+                                    </tr>
+                                {% endfor %}
+                                {% iffeature "reviews" %}
+                                    <tr>
+                                        <th>{% trans "Number of reviews" %}</th>
+                                        <td>{{ product.num_approved_reviews }}</td>
+                                    </tr>
+                                {% endiffeature %}
+                            </table>
+                            {% endblock %}
+                        </div>
+
+                        {% with all_media=product.get_media %}
+                        {% if all_media|length > 0 %}
+                        <div id="product_images" class="">
+                            <h2>{% trans "Screen Shots" %}</h2>
+                            {% include "catalogue/partials/gallery.html" %}
+                        </div>
+                        {% endif %}
+                        {% endwith %}
+                    <div id="product_reviews" class="">
+                            {% iffeature "reviews" %}
+                                {% if product.rating != None %}
+                                    <h4 class="star-rating {{ product.rating|as_stars }}">
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star"></i>
+                                        <i class="icon-star"></i>
+
+                                        <small><a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}">
+                                            {% blocktrans count product.num_approved_reviews as num_reviews %}
+                                            1 customer review
+                                            {% plural %}
+                                            {{ num_reviews }} customer reviews
+                                            {% endblocktrans %}
+                                        </a></small>
+                                        &nbsp;
+                                {% else %}
+                                    <h4>
+                                {% endif %}
+                                {% if product|is_review_permitted:user %}
+                                    <a id="write_review" href="{% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id %}#addreview" class="btn btn-success btn-small">
+                                        {% trans "Write a review" %}
+                                    </a>
+                                {% endif %}
+                                </h4>
+                            {% endiffeature %}
+
+                    {% endblock %}
+
+
+                    {% iffeature "reviews" %}
+                        {% block product_review %}
+                        <section>
+                            <div id="reviews" class="sub-header">
+                                {% if product.num_approved_reviews > 3 %}
+                                    <a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}" class="btn pull-right">{% trans "See all reviews" %}</a>
+                                {% endif %}
+                                <h2>{% trans "Customer Reviews" %}</h2>
+                            </div>
+
+                            {% if product.num_approved_reviews == 0 %}
+                                <p>
+                                    {% if product|is_review_permitted:user %}
+                                        {% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id as add_review_url %}
+                                            {% blocktrans %}This product does not have any reviews yet -
+                                            <a href="{{ add_review_url }}#addreview">be the first to write one</a>.
+                                        {% endblocktrans %}
+                                    {% else %}
+                                        {% trans "This product does not have any reviews yet" %}.
+                                    {% endif %}
+                                </p>
+                            {% else %}
+                                <ol class="flex-container review-list">
+                                    {% for review in reviews|slice:":2" %}
+                                        <li>
+                                        {% include 'catalogue/partials/review.html' %}
+                                        </li>
+                                    {% endfor %}
+                                </ol>
+                            {% endif %}
+                        </section>
+                        {% endblock product_review %}
+                    {% endiffeature %}
+                        </div>
+
+                    {% with recommended_products=product.recommended_products.all|slice:":6" %}
+                        {% if recommended_products %}
+                        <div id="product_recommended">
+                            <h2>{% trans "Recommended items" %}</h2>
+                            <ul class="productlist flex-container flex-wrap">
+                                {% for product in recommended_products %}
+                                <li>
+                                    {% render_product product %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    {% endwith %}
+                    
+                    <div id="product_related">
+                        {% recently_viewed_products %}
+                    </div>
+                </div>
+
+            <script type="text/javascript">
+             hideExtra = true;
+            </script>
+
+
+        </div>
+        <div class="flexItem"></div>
+    </div>
     </article><!-- End of product page -->
-
 </div>
-<div class="flexItem"></div>
 {% endblock content %}
 
 {% block extrascripts %}
