@@ -117,6 +117,9 @@
                 $('#categories-bar').slideDown();
             }
         });
+        $('#categories-bar li').on('click', function() {
+            $(this).toggleClass('selected');
+        });
 
         $('#tabs-product form input').change(function(){
             calculateTotalPrice($(this).val(),$(this).parents('form').find('.totalPriceValue'))
