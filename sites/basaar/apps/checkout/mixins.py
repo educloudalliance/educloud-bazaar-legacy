@@ -234,14 +234,18 @@ class OrderPlacementMixin(CheckoutSessionMixin):
         Override this view if you want to perform custom actions when an
         order is submitted.
         """
-        # Send confirmation message (normally an email)
-        self.send_confirmation_message(order)
+
+        # Send confirmation message (normally an email) (Hox! Email disabled in Bazaar)
+        # self.send_confirmation_message(order)
 
         # Flush all session data
         self.checkout_session.flush()
 
         # Save order id in session so thank-you page can load it
         self.request.session['checkout_order_id'] = order.id
+
+        # Save library to the database
+        # TODO
 
         response = HttpResponseRedirect(self.get_success_url())
         self.send_signal(self.request, response, order)

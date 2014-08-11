@@ -19,7 +19,11 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include('apps.api.urls')),
     url(r'^editor/', include('apps.editor.urls')),
+<<<<<<< HEAD
     url(r'^library/', include('apps.library.urls')),
+=======
+    url(r'^mepin/', include('apps.mepin.urls')),
+>>>>>>> b97bdd0424269147c89618bff23af953f1263b8b
     # i18n URLS need to live outside of i18n_patterns scope of the shop
     url(r'^i18n/', include('django.conf.urls.i18n')),
     # include a basic sitemap

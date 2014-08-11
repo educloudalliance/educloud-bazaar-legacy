@@ -328,7 +328,7 @@ footer {
         font-weight: lighter;
         -webkit-transition: all 0.1s; /* For Safari 3.1 to 6.0 */
         transition: all 0.1s;
-        @media screen and (max-width: $r1280-content-width) {
+        @media screen and (max-width: $r1024-content-width) {
             padding: 0px 2px;
         }
     }
@@ -398,7 +398,17 @@ footer {
             padding: 0px;
             li {
                 padding: 5px 0px;
-
+                cursor: pointer;
+                span.small{
+                    font-size: 9pt;
+                }
+            }
+            li:hover {
+                text-decoration: underline;
+            }
+            li.selected {
+                color: white;
+                text-decoration: underline;
             }
         }
     }

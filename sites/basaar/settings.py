@@ -306,7 +306,7 @@ INSTALLED_APPS = [
     'provider.oauth2',
     'cookie_message',
     'rest_framework_swagger',
-] + get_core_apps(['apps.catalogue', 'apps.checkout'])
+] + get_core_apps(['apps.catalogue'])
 
 # Add Oscar's custom auth backend so users can sign in using their email
 # address.
