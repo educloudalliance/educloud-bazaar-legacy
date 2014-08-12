@@ -8229,57 +8229,58 @@ footer {
 #content article.product_page .product-info {
   font-size: 10pt;
   margin-bottom: 20px;
+  border: 1px solid #ddd;
 }
-/* line 701, ../sass/main.scss */
+/* line 702, ../sass/main.scss */
 #content article.product_page .product-info tr th {
   text-align: left;
   padding: 6px 10px;
   border-right: 1px solid #ddd;
   min-width: 180px;
 }
-/* line 707, ../sass/main.scss */
+/* line 708, ../sass/main.scss */
 #content article.product_page .product-info tr td {
   padding: 6px 10px 6px 20px;
   text-align: left;
   min-width: 400px;
 }
-/* line 714, ../sass/main.scss */
+/* line 715, ../sass/main.scss */
 #content article.product_page .product-info tr:nth-child(odd) {
   background: white;
 }
-/* line 717, ../sass/main.scss */
+/* line 718, ../sass/main.scss */
 #content article.product_page .product-info tr:nth-child(even) {
   background: #f1f1f1;
 }
-/* line 722, ../sass/main.scss */
+/* line 723, ../sass/main.scss */
 #content article.product_page .carousel .slick-prev::before, #content article.product_page .carousel .slick-next::before {
   color: #4d4d4d !important;
   background: white;
   border-radius: 50%;
   font-size: 30px;
 }
-/* line 728, ../sass/main.scss */
+/* line 729, ../sass/main.scss */
 #content article.product_page .carousel img {
   max-width: 100%;
   margin: auto;
   border: 1px solid #666666;
 }
-/* line 733, ../sass/main.scss */
+/* line 734, ../sass/main.scss */
 #content article.product_page .carousel .slick-prev {
   left: -5px;
 }
-/* line 736, ../sass/main.scss */
+/* line 737, ../sass/main.scss */
 #content article.product_page .carousel .slick-next {
   right: -5px;
 }
-/* line 740, ../sass/main.scss */
+/* line 741, ../sass/main.scss */
 #content article.product_page .review-list {
   list-style: none;
   justify-content: center;
   -webkit-justify-content: center;
 }
 
-/* line 748, ../sass/main.scss */
+/* line 749, ../sass/main.scss */
 .py-messages {
   position: fixed;
   background: rgba(255, 255, 102, 0.85);
@@ -8290,17 +8291,17 @@ footer {
   left: 15px;
   z-index: 9999;
 }
-/* line 757, ../sass/main.scss */
+/* line 758, ../sass/main.scss */
 .py-messages ul {
   list-style: none;
   padding: 0px;
   margin: 0px;
 }
-/* line 761, ../sass/main.scss */
+/* line 762, ../sass/main.scss */
 .py-messages ul li {
   padding: 20px 15px;
 }
-/* line 765, ../sass/main.scss */
+/* line 766, ../sass/main.scss */
 .py-messages .close-btn {
   position: relative;
   float: right;
@@ -8317,14 +8318,14 @@ footer {
   text-align: center;
   cursor: pointer;
 }
-/* line 782, ../sass/main.scss */
+/* line 783, ../sass/main.scss */
 .py-messages .close-btn:hover {
   background: #96ceee;
 }
 
 /* Responsive: Portrait tablets and up */
 @media print {
-  /* line 797, ../sass/main.scss */
+  /* line 798, ../sass/main.scss */
   #uppermenu, #product_related, #product_recommended {
     display: none !important;
   }
