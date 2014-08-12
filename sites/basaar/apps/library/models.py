@@ -10,9 +10,9 @@ Basket = get_model('basket', 'Basket')
 class ProductPurchased(models.Model):
     owner = models.ForeignKey(User)
     product = models.ForeignKey(Product)
-    dateOfPurchase = models.DateTimeField()
+    dateOfPurchase = models.DateTimeField(auto_now_add=True)
     basket = models.ForeignKey(Basket)
-    validated = models.BooleanField()
+    validated = models.BooleanField(default=True) #TODO Only in demo phase
 
     def __str__(self):
         return self.name
