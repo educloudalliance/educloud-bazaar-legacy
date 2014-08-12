@@ -4,7 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 import uuid as libuuid
 from rest_framework.renderers import UnicodeJSONRenderer
 from django.http import HttpResponse
-from django.contrib.auth.models import User, Group
+#from django.contrib.auth.models import User, Group
+from django.contrib.auth import get_user_model
 from django.db.models import Count
 from rest_framework import viewsets
 from apps.api.serializers import UserSerializer, GroupSerializer, APINodeSerializer, ProductSerializer, ProductTypeSerializer, SubjectSerializer
@@ -26,6 +27,7 @@ from rest_framework import permissions
 from django.http import Http404
 from errorcodes import *
 
+User = get_user_model()
 Product = get_model('catalogue', 'Product')
 ProductCategory = get_model('catalogue', 'ProductCategory')
 Language = get_model('catalogue', 'Language')
@@ -49,14 +51,14 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-
+'''
 class GroupViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
-
+'''
 
 
 class ProductTypeList(viewsets.ReadOnlyModelViewSet):

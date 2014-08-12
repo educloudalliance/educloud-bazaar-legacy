@@ -16,9 +16,7 @@
 	{% include "partials/nav_primary.html" %}
 	<div class="barshadow"></div>
 	<div class="flexItem flex-container">
-		<div id="content" class="flex-container flex-wrap">
-		    {% block content %}{% endblock %}
-		</div>
+		{% block content %}{% endblock %}
 	</div>
 	{#% include "partials/footer.html" %#}
 </div>
