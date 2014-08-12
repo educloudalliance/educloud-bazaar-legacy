@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.contrib.auth import get_user_model
 from django.db.models import Count
 from rest_framework import viewsets
-from apps.api.serializers import UserSerializer, GroupSerializer, APINodeSerializer, ProductSerializer, ProductTypeSerializer, SubjectSerializer
+from apps.api.serializers import UserSerializer, GroupSerializer, APINodeSerializer, ProductSerializer, ProductTypeSerializer, SubjectSerializer, ProductPurchasedSerializer
 from django.db import IntegrityError
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
@@ -37,6 +37,7 @@ Category = get_model('catalogue', 'Category')
 ProductClass = get_model('catalogue', 'ProductClass')
 Partner = get_model('partner', 'Partner')
 StockRecord = get_model('partner', 'StockRecord')
+ProductPurchased = get_model('library', 'ProductPurchased')
 
 #success messages:
 postSuccess = {"message" : "Operation successful."}
@@ -606,4 +607,31 @@ class PurchasedProductsView(APIView):
 
     def get(self, request, oid):
 
-        return Response("haha " + oid)
+        if User.objects.filter(oid=oid).exists():
+            user = User.objects.get(oid=oid)
+            visibleProducts = Product.objects.filter(visible=True)
+            products = ProductPurchased.objects.filter(product__in=set(visibleProducts), owner=user, validated=True)
+            serializer = ProductPurchasedSerializer(products, context={'request': request})
+            return Response(serializer.data)
+        else:
+            d = {}
+            d["message"] = "Error: No user with this oid in the database."
+            d["errorcode"] = 100
+            return Response(d, status=404)
+
+#get product metadata for the lms
+class ProductMetadataView(APIView):
+    authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
+
+    def get(self, request, uuid):
+
+        if Product.objects.filter(uuid=uuid).exists():
+            product = Product.objects.get(uuid=uuid)
+            serializer = ProductSerializer(product)
+            return Response(serializer.data)
+        else:
+            d = {}
+            d["message"] = "Error: No material with this uuid in the database."
+            d["errorcode"] = 101
+            return Response(d, status=404)

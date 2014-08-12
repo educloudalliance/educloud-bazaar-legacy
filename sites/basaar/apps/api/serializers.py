@@ -11,6 +11,7 @@ StockRecord = get_model('partner', 'StockRecord')
 Category = get_model('catalogue', 'Category')
 ProductCategory = get_model('catalogue', 'ProductCategory')
 ProductClass = get_model('catalogue', 'ProductClass')
+ProductPurchased = get_model('library', 'ProductPurchased')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -104,3 +105,22 @@ class SubjectSerializer(serializers.HyperlinkedModelSerializer):
         model = Category
         fields = ('name', 'slug')
         read_only_fields = ('name', 'slug',)
+
+class ProductPurchasedSerializer(serializers.HyperlinkedModelSerializer):
+    productuuid = serializers.SerializerMethodField("productUuidLookup")
+    productTitle = serializers.SerializerMethodField("productTitleLookup")
+    productUrl = serializers.SerializerMethodField("productUrlEndpoint")
+
+    def productUuidLookup(self, obj):
+        return obj.product.uuid
+
+    def productTitleLookup(self, obj):
+        return obj.product.title
+
+    def productUrlEndpoint(self, obj):
+
+        return self.context["request"].build_absolute_uri("/api/lms/content/" + obj.product.uuid)#.path
+    class Meta:
+        model = ProductPurchased
+        fields = ('productuuid', 'productTitle', 'productUrl')
+        #read_only_fields = ('mTitle', 'slug')
