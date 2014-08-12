@@ -27,7 +27,7 @@
         </div>
         <div class="flex-container-vertical flexItem">
             {% block product_title %}
-                <h3><a href="{{ product.get_absolute_url }}">{{ product.get_title|truncatewords:4 }}</a>
+                <h3><a href="{{ product.get_absolute_url }}">{{ product.get_title }}</a>
                     <div class="titleFade"></div>
                 </h3>
             {% endblock %}

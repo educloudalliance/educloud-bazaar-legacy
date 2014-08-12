@@ -118,14 +118,14 @@
                 <a class="pull-right hidden-phone" href="{% url 'dashboard:catalogue-product' pk=product.id %}"><small><i class="icon-edit"></i> {% trans "Edit this product" %}</small></a>
             {% endif %}
             -->
-            <div id="product_description" class="">
-                {% block product_description %}
-                    {% if product.description %}
+            {% block product_description %}
+            {% if product.description %}
+            <div id="product_description">
                     <h2>{% trans "Product Description" %}</h2>
                     <p>{{ product.description|safe }}</p>
-                    {% endif %}
-                {% endblock %}
             </div>
+            {% endif %}
+            {% endblock %}
             <div id="product_information">
                 {% block product_info %}
                 <h2>{% trans "Product Information" %}</h2>
