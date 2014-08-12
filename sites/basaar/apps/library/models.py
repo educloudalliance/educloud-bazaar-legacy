@@ -7,7 +7,7 @@ User = get_user_model()
 Product = get_model('catalogue', 'Product')
 Basket = get_model('basket', 'Basket')
 
-class ProductLibrary(models.Model):
+class ProductPurchased(models.Model):
     owner = models.ForeignKey(User)
     product = models.ForeignKey(Product)
     dateOfPurchase = models.DateTimeField()

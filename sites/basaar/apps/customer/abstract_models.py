@@ -53,6 +53,7 @@ class AbstractUser(auth_models.AbstractBaseUser,
     This is basically a copy of the core AbstractUser model but without a
     username field
     """
+
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(
         _('First name'), max_length=255, blank=True)
