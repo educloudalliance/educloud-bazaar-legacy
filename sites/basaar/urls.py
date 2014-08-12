@@ -4,7 +4,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.conf.urls.static import static
 
-from oscar.app import shop
+from app import shop
 from oscar.views import handler500, handler404, handler403  # noqa
 
 from apps.sitemaps import base_sitemaps

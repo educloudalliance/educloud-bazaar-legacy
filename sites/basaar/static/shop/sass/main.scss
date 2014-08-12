@@ -175,13 +175,21 @@ footer {
     .basket-mini {
         overflow: scroll;
         max-height: 300px;
+        font-size: 11pt;
         .basket-mini-item {
             list-style: none;
             padding: 0px;
             margin: 0px;
             li {
-                padding: 10px;
+                padding: 5px 10px;
                 text-align: left;
+                font-weight: lighter;
+                p {
+                    margin: 0px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
                 a{
                     color: $dark-gray;
                 }
@@ -195,7 +203,7 @@ footer {
         }
     }
     .mini-basket-total {
-        .flexItem4 {
+        .flexItem3 {
             padding-right: 10px;
             text-align: right;
         }
@@ -286,21 +294,40 @@ footer {
         top: $nav-height;
         color: white;
         min-height: $nav-height * 0.7;
-        min-width: 400px;
+        min-width: 350px;
         z-index: 200;
         box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.5);
 
-        .profile-pic-small {
-            border-radius: 200px;
-            height: $nav-height * 0.6;
-            width: $nav-height * 0.6;
-            background-color: $dark-gray;
-            background-size: cover;
-            background-position: center;
-            float: left;
-            margin-right: 10px;
-            margin-top: $nav-height * 0.2;
-            border: 1px solid $dark-gray;
+        .social-logins {
+            padding: 5px;
+            .flexItem {
+                text-align: center;
+                margin: 1px;
+                background: $dark-gray;
+                color: white;
+                height: 35px;
+                line-height: 35px;
+                font-size: 25px;
+                border: 2px solid white;
+            }
+            .flexItem:hover {
+                border-color: $gray;
+            }
+            #facebook-login{
+                background: #3b5998;
+            }
+            #twitter-login{
+                background: #00aced;
+            }
+            #google-login{
+                background: #dd4b39;
+            }
+            #linkedin-login{
+                background: #007bb6;
+            }
+        }
+        .strong-logins {
+            padding: 7px;
         }
         
         .menu-box-header {
