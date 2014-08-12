@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
 from oscar.core.loading import get_class, get_model
+from django.conf import settings
 import datetime
 from autoslug import AutoSlugField
 # Create your models here.
@@ -13,7 +14,7 @@ class APINode(models.Model):
     parentPath = models.CharField(max_length=8000, blank=True)
     objectType = models.CharField(max_length=20)
     materialItem = models.ForeignKey(Product, blank=True, null=True)
-    owner = models.ForeignKey(User)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     def __str__(self):
         return self.uniquePath

@@ -304,12 +304,17 @@ INSTALLED_APPS = [
     'rest_framework',
     'provider',
     'provider.oauth2',
+    'apps.user',
     'cookie_message',
     'rest_framework_swagger',
-] + get_core_apps(['apps.catalogue',  'apps.customer.*', 'apps.checkout'])
+] + get_core_apps(['apps.catalogue', 'apps.customer.*', 'apps.checkout'])
+
+
+
 
 # Add Oscar's custom auth backend so users can sign in using their email
 # address.
+
 AUTHENTICATION_BACKENDS = (
     'oscar.apps.customer.auth_backends.Emailbackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -485,3 +490,6 @@ try:
     from settings_local import *
 except ImportError:
     pass
+
+# New User model
+AUTH_USER_MODEL = "user.User"
