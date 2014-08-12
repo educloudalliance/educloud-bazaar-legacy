@@ -117,7 +117,20 @@
             }
         });
         $('#categories-bar li').on('click', function() {
-            $(this).toggleClass('selected');
+            
+            if($(this).hasClass('all-option')){
+                if($(this).hasClass('selected')){
+
+                } else {
+                    $(this).parents('.options').find('li').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+
+            } else {
+                $(this).parents('.options').find('li.option-all').removeClass('selected');
+                $(this).toggleClass('selected');
+
+            }
         });
 
         /*
