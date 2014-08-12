@@ -25,6 +25,7 @@ urlpatterns = patterns('',
     #url (r'^users/$', views.UserViewSet.as_view()),
     url(r'^', include(router.urls)),
     url(r'^cms/', views.CMSView.as_view()),
+    url(r'^lms/library/(?P<oid>\w+)/$', views.PurchasedProductsView.as_view()),
 
 
     #url(r'^cms/', views.CMSView.as_view()),

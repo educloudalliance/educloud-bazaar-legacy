@@ -595,3 +595,15 @@ class CMSView(APIView):
             UPC = UPC[0:15]
 
         return UPC
+
+
+
+
+# find purchased products of the user with oid
+class PurchasedProductsView(APIView):
+    authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
+
+    def get(self, request, oid):
+
+        return Response("haha " + oid)
