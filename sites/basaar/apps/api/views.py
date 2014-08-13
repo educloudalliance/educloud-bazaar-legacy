@@ -45,6 +45,7 @@ putSuccess = {"message" : "Operation successful."}
 
 # Create your views here.
 # API-views
+'''
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -52,7 +53,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-'''
+
 class GroupViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
@@ -611,9 +612,6 @@ class CMSView(APIView):
 class PurchasedProductsView(APIView):
     authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
-
-
-
 
     def post(self, request):
 
