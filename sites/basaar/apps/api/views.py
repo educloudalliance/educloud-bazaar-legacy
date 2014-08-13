@@ -371,7 +371,7 @@ class CMSView(APIView):
                 else:
                     #find objects in this collection
                     children = models.APINode.objects.filter(parentPath=target.uniquePath)
-                    serializer = APINodeSerializer(children, many=True)
+                    serializer = APINodeSerializer(children, many=True, context={'request': request})
                     return Response(serializer.data)
 
             except models.APINode.DoesNotExist:

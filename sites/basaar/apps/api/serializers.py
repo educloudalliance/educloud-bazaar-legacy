@@ -74,9 +74,13 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         #read_only_fields = ('mTitle', 'slug')
 
 class APINodeSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.SerializerMethodField("nodeUrlEndpoint")
+    def nodeUrlEndpoint(self, obj):
+        print obj.uniquePath
+        return self.context["request"].build_absolute_uri("/api/cms/" + obj.uniquePath)
     class Meta:
         model = APINode
-        fields = ('uniquePath', 'objectType')
+        fields = ('url', 'objectType')
         depth = 2
 
 
@@ -118,8 +122,7 @@ class ProductPurchasedSerializer(serializers.HyperlinkedModelSerializer):
         return obj.product.title
 
     def productUrlEndpoint(self, obj):
-
-        return self.context["request"].build_absolute_uri("/api/lms/content/" + obj.product.uuid)#.path
+        return self.context["request"].build_absolute_uri("/api/lms/content/" + obj.product.uuid)
     class Meta:
         model = ProductPurchased
         fields = ('productuuid', 'productTitle', 'productUrl')
