@@ -93,6 +93,15 @@
 
         //$('#tabs-product').tabs({show: 'fade'});
 
+        $('.menu-head-icon').hover(
+            function(){
+                $(this).css('background-image',"url('{{ STATIC_URL }}shop/img/logo_blue.png')");
+            },
+            function(){
+                $(this).css('background-image',"url('{{ STATIC_URL }}shop/img/logo_grey.png')");
+
+        });
+
         $('#generalSearch input').focus(function(){
             $('.menu-box').hide('fade');
             $('#icons > .flexItem').removeClass('active');
