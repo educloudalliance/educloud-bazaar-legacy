@@ -164,21 +164,27 @@
         $( "#price-range" ).val( "€" + $( "#price-slider" ).slider( "values", 0 ) +
             " - €" + $( "#price-slider" ).slider( "values", 1 ) );
 
-        /*
-        $('#tabs-product form input').change(function(){
-            calculateTotalPrice($(this).val(),$(this).parents('form').find('.totalPriceValue'))
-        });
-        */
 
         $('.py-messages .close-btn').click(function(){
             $(this).parent().hide('fade');
         })
 
     }
-    /*
-    function calculateTotalPrice(quantity, resultSelector){
-        resultSelector.text((individualPrice * quantity).toFixed(2));
+
+    // This function retrieves the selected filters and generate a JSON object with
+    // the search parameters to send to the backend for processing
+    function requestSearch(){
+
+        var request = {};
+
+        request['selectedSubjects'] = $('#options-subject').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
+        request['selectedGrade'] = $('#options-grade').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
+        request['selectedType'] = $('#options-type').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
+        request['selectedPublisher'] = $('#options-publisher').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
+        request['selectedPrice'] = {min : $( "#price-slider" ).slider( "values", 0 ), max : $( "#price-slider" ).slider( "values", 1 )};
+
+        console.log(JSON.stringify(request));
+        //TODO send to backend, retrieve results and show them.
     }
-    */
 
 </script>
