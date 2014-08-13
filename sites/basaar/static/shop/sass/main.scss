@@ -129,10 +129,11 @@ footer {
         justify-content: flex-start;
         -webkit-justify-content: flex-start;
         .menu-head-icon {
-            width: 150px;
-            height: $nav-height - 20;
+            width: 137px;
+            height: $nav-height - 19;
             margin: 10px;
             background-repeat: no-repeat;
+            background-size: 100% 100%;
         }
     }
     #profile-icon.green{
