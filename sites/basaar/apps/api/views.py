@@ -605,33 +605,47 @@ class PurchasedProductsView(APIView):
     authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
 
-    def get(self, request, oid):
+    def post(self, request):
 
-        if User.objects.filter(oid=oid).exists():
-            user = User.objects.get(oid=oid)
-            visibleProducts = Product.objects.filter(visible=True)
-            products = ProductPurchased.objects.filter(product__in=set(visibleProducts), owner=user, validated=True)
-            serializer = ProductPurchasedSerializer(products, context={'request': request})
-            return Response(serializer.data)
+        if "oid" in request.DATA:
+            if User.objects.filter(oid=request.DATA["oid"]).exists():
+                user = User.objects.get(oid=request.DATA["oid"])
+                visibleProducts = Product.objects.filter(visible=True)
+                products = ProductPurchased.objects.filter(product__in=set(visibleProducts), owner=user, validated=True)
+                serializer = ProductPurchasedSerializer(products, context={'request': request})
+                return Response(serializer.data)
+            else:
+                d = {}
+                d["message"] = "Error: No user with this oid in the database."
+                d["errorcode"] = 100
+                return Response(d, status=404)
         else:
             d = {}
-            d["message"] = "Error: No user with this oid in the database."
-            d["errorcode"] = 100
-            return Response(d, status=404)
+            d["message"] = "Error: No oid provided. Please provide json-field in form { 'oid': '1234'}"
+            d["errorcode"] = 102
+            return Response(d, status=400)
+
+
+
 
 #get product metadata for the lms
 class ProductMetadataView(APIView):
     authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
 
-    def get(self, request, uuid):
-
-        if Product.objects.filter(uuid=uuid).exists():
-            product = Product.objects.get(uuid=uuid)
-            serializer = ProductSerializer(product)
-            return Response(serializer.data)
+    def post(self, request):
+        if "uuid" in request.DATA:
+            if Product.objects.filter(uuid=request.DATA["uuid"]).exists():
+                product = Product.objects.get(uuid=request.DATA["uuid"])
+                serializer = ProductSerializer(product)
+                return Response(serializer.data)
+            else:
+                d = {}
+                d["message"] = "Error: No material with this uuid in the database."
+                d["errorcode"] = 101
+                return Response(d, status=404)
         else:
             d = {}
-            d["message"] = "Error: No material with this uuid in the database."
-            d["errorcode"] = 101
-            return Response(d, status=404)
+            d["message"] = "Error: No uuid provided. Please provide json-field in form { 'uuid': 'product'}"
+            d["errorcode"] = 103
+            return Response(d, status=400)
