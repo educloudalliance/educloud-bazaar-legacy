@@ -76,19 +76,6 @@
         }
     }
 
-    function notifyLogged(){
-        var originalTransition = $('#profile-icon').css('transition');
-        $('#profile-icon').css('transition','all 0 ease 0');
-        $('#profile-icon').css('-webkit-transition','all 0 ease 0');
-        $('#profile-icon').addClass('green', 500, 'linear', function(){
-            $('#profile-icon').delay(3000).removeClass('green',2000,'linear', function(){
-                $('#profile-icon').css('transition', originalTransition);
-                $('#profile-icon').css('-webkit-transition', originalTransition);
-            });
-        });
-    }
-
-
     function preparePage(){
 
         //$('#tabs-product').tabs({show: 'fade'});

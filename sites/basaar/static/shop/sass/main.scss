@@ -136,14 +136,13 @@ footer {
             background-size: 100% 100%;
         }
     }
-    #profile-icon.green{
-        background: rgb(0,200,0);
-        svg {
+    #profile-icon{
+        svg.logged {
             path.hoverable {
-                fill: #ffffff;
+                fill: $blue;
             }
             circle.hoverable {
-                stroke: #ffffff;
+                stroke: $blue;
             }
         }
     }

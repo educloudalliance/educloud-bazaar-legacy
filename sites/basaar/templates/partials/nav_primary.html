@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="flexItem" id="profile-icon">
-                <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_Profile.Icon.svg"/>
+                <img class="menu-icon svg {% if user.is_authenticated %}logged{% endif %}" src="{{ STATIC_URL }}shop/img/Bazaar_Profile.Icon.svg"/>
                 {% if num_unread_notifications > 0 %}
                 <div class="notification-number">{{num_unread_notifications}}</div>
                 {% endif %}
