@@ -177,6 +177,7 @@
 
         var request = {};
 
+        request['searchString'] = $('#generalSearch input').val();
         request['selectedSubjects'] = $('#options-subject').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
         request['selectedGrade'] = $('#options-grade').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
         request['selectedType'] = $('#options-type').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
