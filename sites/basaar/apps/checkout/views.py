@@ -398,12 +398,12 @@ class PaymentDetailsView(OrderPlacementMixin, generic.TemplateView):
     pre_conditions = [
         'check_basket_is_not_empty',
         'check_basket_is_valid',
-        'check_user_email_is_captured',
-        'check_shipping_data_is_captured']
+        'check_user_email_is_captured'
+    ]
 
     # If preview=True, then we render a preview template that shows all order
     # details ready for submission.
-    preview = False
+    preview = True
 
     def get_pre_conditions(self, request):
         if self.preview:
@@ -533,11 +533,12 @@ class PaymentDetailsView(OrderPlacementMixin, generic.TemplateView):
             order_kwargs = {}
 
         # Taxes must be known at this point
+        '''
         assert basket.is_tax_known, (
             "Basket tax must be set before a user can place an order")
         assert shipping_charge.is_tax_known, (
             "Shipping charge tax must be set before a user can place an order")
-
+        '''
         # We generate the order number first as this will be used
         # in payment requests (ie before the order model has been
         # created).  We also save it in the session for multi-stage
@@ -564,6 +565,7 @@ class PaymentDetailsView(OrderPlacementMixin, generic.TemplateView):
 
         signals.pre_payment.send_robust(sender=self, view=self)
 
+        ''' Commented out in bazaar
         try:
             self.handle_payment(order_number, order_total, **payment_kwargs)
         except RedirectRequired as e:
@@ -607,6 +609,7 @@ class PaymentDetailsView(OrderPlacementMixin, generic.TemplateView):
             self.restore_frozen_basket()
             return self.render_preview(
                 self.request, error=error_msg, **payment_kwargs)
+        '''
 
         signals.post_payment.send_robust(sender=self, view=self)
 

@@ -22,9 +22,11 @@ class CheckoutApplication(Application):
 
     def get_urls(self):
         urls = [
-            url(r'^$', self.index_view.as_view(), name='index'),
-
+            #url(r'^$', self.index_view.as_view(), name='index'),
+            url(r'^$',
+                self.index_view.as_view(), name='index'),
             # Shipping/user address views
+
             url(r'shipping-address/$',
                 self.shipping_address_view.as_view(), name='shipping-address'),
             url(r'user-address/edit/(?P<pk>\d+)/$',
