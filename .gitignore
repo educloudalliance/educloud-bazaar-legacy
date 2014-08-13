@@ -69,3 +69,5 @@ sites/puppet/modules/
 /sites/basaar/apps/library/migrations/0001_initial.py
 /sites/basaar/apps/user/migrations/0001_initial.py
 /sites/basaar/apps/user/migrations/__init__.py
+/sites/basaar/apps/user/migrations/0002_auto__add_field_user_mepinId.py
+/sites/basaar/apps/library/migrations/0002_auto__del_productlibrary__add_productpurchased.py
