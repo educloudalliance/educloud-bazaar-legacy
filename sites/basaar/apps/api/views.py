@@ -470,6 +470,9 @@ class CMSView(APIView):
         else:
             obj.contributionDate = None
 
+        if DATA["price"] < 0:
+            raise BadPrice()
+
         if "moreInfoUrl" in DATA:
             obj.moreInfoUrl = DATA["moreInfoUrl"]
         else:
@@ -562,8 +565,9 @@ class CMSView(APIView):
                 langEntry.hasLanguage.add(obj)
 
         if "iconUrl" in DATA and DATA["iconUrl"] is not None:
-            self.downloadIcon(DATA["iconUrl"], obj.upc)
+            #Download icon if one is specified
             obj.iconUrl = DATA["iconUrl"]
+            obj.saveIcon()
         obj.save()
 
     def removeoEmbeds(self, product):
