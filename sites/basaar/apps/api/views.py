@@ -224,6 +224,9 @@ class CMSView(APIView):
                 else:
                     moreInfoUrl = None
 
+                if x["price"] < 0:
+                    raise BadPrice()
+
                 visible = self.str2Bool(x["visible"], "visible")
                 product = Product(title=x["title"], upc=createdUPC, description=x["description"], materialUrl=x["materialUrl"],
                                   moreInfoUrl=moreInfoUrl,  uuid=x["uuid"], version=x["version"],

@@ -175,3 +175,12 @@ class CantUpdateCollection(RollbackException):
         pass
     def __str__(self):
         return repr(self.msg)
+
+class BadPrice(RollbackException):
+    msg = "Error: Price can't be negative."
+    httpStatus = 400
+    apiCode = 22
+    def __init__(self):
+        pass
+    def __str__(self):
+        return repr(self.msg)
