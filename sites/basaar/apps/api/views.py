@@ -605,6 +605,9 @@ class PurchasedProductsView(APIView):
     authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
 
+
+
+
     def post(self, request):
 
         if "oid" in request.DATA:
@@ -633,6 +636,20 @@ class ProductMetadataView(APIView):
     authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
 
+
+    def get(self, request, uuid):
+
+        if Product.objects.filter(uuid=uuid).exists():
+            product = Product.objects.get(uuid=uuid)
+            serializer = ProductSerializer(product)
+            return Response(serializer.data)
+        else:
+            d = {}
+            d["message"] = "Error: No material with this uuid in the database."
+            d["errorcode"] = 101
+            return Response(d, status=404)
+
+    """
     def post(self, request):
         if "uuid" in request.DATA:
             if Product.objects.filter(uuid=request.DATA["uuid"]).exists():
@@ -648,4 +665,4 @@ class ProductMetadataView(APIView):
             d = {}
             d["message"] = "Error: No uuid provided. Please provide json-field in form { 'uuid': 'product'}"
             d["errorcode"] = 103
-            return Response(d, status=400)
+            return Response(d, status=400)"""
