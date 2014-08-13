@@ -15,4 +15,4 @@ class ProductPurchased(models.Model):
     validated = models.BooleanField(default=True) #TODO Only in demo phase
 
     def __str__(self):
-        return self.name
+        return self.product.title

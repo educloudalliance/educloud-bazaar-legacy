@@ -35,7 +35,7 @@ class ProductTypeNotFound(RollbackException):
 class WrongAmountOfSubjects(RollbackException):
     msg = "Error: 1-5 subjects has to be specified. To get a list of available subjects, call /api/subjects"
     httpStatus = 400
-    apiCode = 12
+    apiCode = 20
     def __init__(self):
         pass
     def __str__(self):
@@ -44,7 +44,7 @@ class WrongAmountOfSubjects(RollbackException):
 class EachSubjectOnlyOnce(RollbackException):
     msg = "Error: Please define each subject only once."
     httpStatus = 400
-    apiCode = 14
+    apiCode = 21
     def __init__(self):
         pass
     def __str__(self):
@@ -53,7 +53,7 @@ class EachSubjectOnlyOnce(RollbackException):
 class SubjectNotFound(RollbackException):
     msg = "Error: No such subject as in subject field: '{}' To get a list of available subjects, call /api/subjects"
     httpStatus = 400
-    apiCode = 15
+    apiCode = 22
     def __init__(self, subject):
         self.msg = self.msg.format(subject)
     def __str__(self):
@@ -62,7 +62,7 @@ class SubjectNotFound(RollbackException):
 class TooMuchTags(RollbackException):
     msg = "Error: More than 10 tags specified. Only 0-10 allowed."
     httpStatus = 400
-    apiCode = 20
+    apiCode = 30
     def __init__(self):
         pass
     def __str__(self):
@@ -71,7 +71,7 @@ class TooMuchTags(RollbackException):
 class UrlIsEmpty(RollbackException):
     msg = "Error: The url is empty. Does it contain multiple slashes in row eg. '///'?"
     httpStatus = 400
-    apiCode = 25
+    apiCode = 40
     def __init__(self):
         pass
     def __str__(self):
@@ -80,7 +80,7 @@ class UrlIsEmpty(RollbackException):
 class ObjectNotFound(RollbackException):
     msg = "Error: No such collection or materialItem with url: {}"
     httpStatus = 404
-    apiCode = 30
+    apiCode = 41
     def __init__(self, url):
         self.msg = self.msg.format(url)
     def __str__(self):
@@ -89,7 +89,7 @@ class ObjectNotFound(RollbackException):
 class MissingField(RollbackException):
     msg = "Error: Missing or invalid json-field: '{}' Operation canceled."
     httpStatus = 400
-    apiCode = 40
+    apiCode = 42
     def __init__(self, fieldname):
         self.msg = self.msg.format(fieldname)
     def __str__(self):
@@ -98,7 +98,7 @@ class MissingField(RollbackException):
 class InvalidDate(RollbackException):
     msg = "Error: ContributionDate field was in wrong format. Should be yyyy-mm-dd"
     httpStatus = 400
-    apiCode = 45
+    apiCode = 50
     def __init__(self):
         pass
     def __str__(self):
@@ -107,7 +107,7 @@ class InvalidDate(RollbackException):
 class IncorrectBooleanField(RollbackException):
     msg = "Error: Incorrect format in boolean field: '{}' Should be either 'true' or 'false'"
     httpStatus = 400
-    apiCode = 46
+    apiCode = 60
     def __init__(self, fieldname):
         self.msg = self.msg.format(fieldname)
     def __str__(self):
@@ -116,7 +116,7 @@ class IncorrectBooleanField(RollbackException):
 class ObjectAlreadyExists(RollbackException):
     msg = "Error: Can't post at '{}' because an object already exists in this URL."
     httpStatus = 403
-    apiCode = 60
+    apiCode = 80
     def __init__(self, url):
         self.msg = self.msg.format(url)
     def __str__(self):
@@ -125,7 +125,7 @@ class ObjectAlreadyExists(RollbackException):
 class UuidAlreadyExists(RollbackException):
     msg = "Error: Can't post at '{}' because an object with same 'uuid' already exists. uuid has to be unique."
     httpStatus = 403
-    apiCode = 61
+    apiCode = 81
     def __init__(self, url):
         self.msg = self.msg.format(url)
     def __str__(self):
@@ -134,7 +134,7 @@ class UuidAlreadyExists(RollbackException):
 class NoJSON(RollbackException):
     msg = "Error: No JSON data available."
     httpStatus = 400
-    apiCode = 41
+    apiCode = 43
     def __init__(self):
         pass
     def __str__(self):
@@ -143,7 +143,7 @@ class NoJSON(RollbackException):
 class ItemOnPath(RollbackException):
     msg = "Error: There is an item in middle of the url-path. Item's can't have children."
     httpStatus = 403
-    apiCode = 81
+    apiCode = 82
     def __init__(self):
         pass
     def __str__(self):
@@ -152,7 +152,7 @@ class ItemOnPath(RollbackException):
 class RootError(RollbackException):
     msg = "Error: Can't create new root nodes."
     httpStatus = 403
-    apiCode = 82
+    apiCode = 83
     def __init__(self):
         pass
     def __str__(self):
@@ -161,7 +161,7 @@ class RootError(RollbackException):
 class AuthError(RollbackException):
     msg = "Error: You are not the owner of a node in path."
     httpStatus = 403
-    apiCode = 83
+    apiCode = 84
     def __init__(self):
         pass
     def __str__(self):
@@ -170,7 +170,16 @@ class AuthError(RollbackException):
 class CantUpdateCollection(RollbackException):
     msg = "Error: Target is not an item but a collection Only items can be updated."
     httpStatus = 403
-    apiCode = 84
+    apiCode = 85
+    def __init__(self):
+        pass
+    def __str__(self):
+        return repr(self.msg)
+
+class BadPrice(RollbackException):
+    msg = "Error: Price can't be negative."
+    httpStatus = 400
+    apiCode = 70
     def __init__(self):
         pass
     def __str__(self):

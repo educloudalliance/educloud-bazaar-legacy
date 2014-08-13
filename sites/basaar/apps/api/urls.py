@@ -16,8 +16,8 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'subjects',  views.SubjectList)
+#router.register(r'users', UserViewSet)
+#router.register(r'subjects',  views.SubjectList)
 router.register(r'producttypes', views.ProductTypeList)
 
 urlpatterns = patterns('',
@@ -25,8 +25,8 @@ urlpatterns = patterns('',
     #url (r'^users/$', views.UserViewSet.as_view()),
     url(r'^', include(router.urls)),
     url(r'^cms/', views.CMSView.as_view()),
-    url(r'^lms/library/(?P<oid>\w+)/$', views.PurchasedProductsView.as_view()),
-
+    url(r'^lms/library/$', views.PurchasedProductsView.as_view()),
+    url(r'^lms/content/(?P<uuid>\w+)/$', views.ProductMetadataView.as_view()),
 
     #url(r'^cms/', views.CMSView.as_view()),
 

@@ -5,7 +5,7 @@
     <div id="uppermenu" class="flex-container">
         <div class="menu-header flex-container">
             <a href="/catalogue">
-            <div class="menu-head-icon" style="background-image:url('{{ STATIC_URL }}shop/img/PilvivaylaLogotype_IncludingBazaar.svg');"></div>
+            <div class="menu-head-icon" style="background-image:url('{{ STATIC_URL }}shop/img/logo_grey.png');"></div>
             </a>
         </div>
 
@@ -39,13 +39,15 @@
                 {% endif %}
                 <div class="menu-box">
                     <div class="flex-container-vertical">
-                        <div class="menu-box-header">Basket</div>
+                        <div class="menu-box-header">{% trans "Shopping cart summary"%}</div>
                         <div class="menu-box-content">
                             {% include "partials/mini_basket.html" %}
                             <div class="menu-box-footer flex-container-vertical">
                                 <div class="flex-container flexItem">
-                                    <a class="btn flexItem" href="{% url 'basket:summary' %}">{% trans "View basket" %}</a>
+                                    <a class="btn flexItem" href="{% url 'basket:summary' %}">{% trans "View your cart" %}</a>
+                                    <!--
                                     <a class="btn flexItem" href="{% url 'checkout:preview' %}">{% trans "Checkout" %}</a>
+                                    -->
                                 </div>
                             </div>
                         </div>
@@ -61,7 +63,6 @@
                     <div class="flex-container-vertical">
                         {% if user.is_authenticated %}
                             <div class="menu-box-header">
-                                <img src="#" class="profile-pic-small">
                                 Profile</div>
                             <div class="menu-box-content">
                                 {% include "partials/nav_accounts.html" %}
@@ -75,10 +76,23 @@
                             </div>
                         {% else %}
                             <div class="menu-box-header">
-                                Profile</div>
-                            <div class="menu-box-content">
-                                {% include "partials/nav_accounts.html" %}
-                                <div class="menu-box-footer flex-container">
+                                Log In</div>
+                            <div class="menu-box-content flex-container-vertical">
+                                <div class="flex-container social-logins">
+                                    <div class="flexItem" id="facebook-login">
+                                        <i class="fa fa-facebook"></i>
+                                    </div>
+                                    <div class="flexItem" id="twitter-login">
+                                        <i class="fa fa-twitter"></i>
+                                    </div>
+                                    <div class="flexItem" id="google-login">
+                                        <i class="fa fa-google-plus"></i>
+                                    </div>
+                                    <div class="flexItem" id="linkedin-login">
+                                        <i class="fa fa-linkedin"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-container strong-logins">
                                     <div class="mepin-link" data-theme="light" data-layout="standard"
                                          data-applicationid="a4fdd84bc8c959788f781b3d81498059" data-cburl="https://demo.pilvivayla.fi/catalogue"></div>
                                     <a class="btn flexItem" href="{% url 'customer:login' %}">{% trans "Login or register" %}</a>
@@ -114,7 +128,7 @@
         <div class="flex-container flex-wrap">
             <div class="flexItem2">
                 <h2>Subject</h2>
-                <div class="flex-container">
+                <div class="flex-container options" id="options-subject">
                     <div class="flexItem">
                         <ul>
                             <li class="all-option selected">all</li>
@@ -147,7 +161,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flexItem">
+            <div class="flexItem options" id="options-grade">
                 <h2>Grade</h2>
                 <ul>
                     <li class="all-option selected">all</li>
@@ -156,7 +170,7 @@
                     <li>7-9</li>
                 </ul>
             </div>
-            <div class="flexItem">
+            <div class="flexItem options" id="options-type">
                 <h2>Type</h2>
                 <ul>
                     <li class="all-option selected">all</li>
@@ -166,7 +180,7 @@
                     <li>Other</li>
                 </ul>
             </div>
-            <div class="flexItem">
+            <div class="flexItem options" id="options-publisher">
                 <h2>Publisher</h2>
                 <ul>
                     <li class="all-option selected">all</li>
@@ -181,17 +195,12 @@
                     <li>Pub9</li>
                 </ul>
             </div>
-            <div class="flexItem">
+            <div class="flexItem options" id="options-price">
                 <h2>Price Range</h2>
-                <ul>
-                    <li class="all-option selected">all</li>
-                    <li>Free</li>
-                    <li>€0 - € 10</li>
-                    <li>€10 - € 20</li>
-                    <li>€20 - € 30</li>
-                    <li>€30 - € 40</li>
-                    <li>€50 +</li>
-                </ul>
+                <div>
+                    <div id="price-slider"></div>
+                </div>
+                <p><input type="text" id="price-range" readonly></p>
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.contrib.auth import get_user_model
 from django.db.models import Count
 from rest_framework import viewsets
-from apps.api.serializers import UserSerializer, GroupSerializer, APINodeSerializer, ProductSerializer, ProductTypeSerializer, SubjectSerializer
+from apps.api.serializers import UserSerializer, GroupSerializer, APINodeSerializer, ProductSerializer, ProductTypeSerializer, SubjectSerializer, ProductPurchasedSerializer
 from django.db import IntegrityError
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
@@ -37,6 +37,7 @@ Category = get_model('catalogue', 'Category')
 ProductClass = get_model('catalogue', 'ProductClass')
 Partner = get_model('partner', 'Partner')
 StockRecord = get_model('partner', 'StockRecord')
+ProductPurchased = get_model('library', 'ProductPurchased')
 
 #success messages:
 postSuccess = {"message" : "Operation successful."}
@@ -44,6 +45,7 @@ putSuccess = {"message" : "Operation successful."}
 
 # Create your views here.
 # API-views
+'''
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -51,7 +53,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-'''
+
 class GroupViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
@@ -223,6 +225,9 @@ class CMSView(APIView):
                 else:
                     moreInfoUrl = None
 
+                if x["price"] < 0:
+                    raise BadPrice()
+
                 visible = self.str2Bool(x["visible"], "visible")
                 product = Product(title=x["title"], upc=createdUPC, description=x["description"], materialUrl=x["materialUrl"],
                                   moreInfoUrl=moreInfoUrl,  uuid=x["uuid"], version=x["version"],
@@ -370,7 +375,7 @@ class CMSView(APIView):
                 else:
                     #find objects in this collection
                     children = models.APINode.objects.filter(parentPath=target.uniquePath)
-                    serializer = APINodeSerializer(children, many=True)
+                    serializer = APINodeSerializer(children, many=True, context={'request': request})
                     return Response(serializer.data)
 
             except models.APINode.DoesNotExist:
@@ -466,6 +471,9 @@ class CMSView(APIView):
         else:
             obj.contributionDate = None
 
+        if DATA["price"] < 0:
+            raise BadPrice()
+
         if "moreInfoUrl" in DATA:
             obj.moreInfoUrl = DATA["moreInfoUrl"]
         else:
@@ -558,8 +566,9 @@ class CMSView(APIView):
                 langEntry.hasLanguage.add(obj)
 
         if "iconUrl" in DATA and DATA["iconUrl"] is not None:
-            self.downloadIcon(DATA["iconUrl"], obj.upc)
+            #Download icon if one is specified
             obj.iconUrl = DATA["iconUrl"]
+            obj.saveIcon()
         obj.save()
 
     def removeoEmbeds(self, product):
@@ -604,6 +613,61 @@ class PurchasedProductsView(APIView):
     authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
 
-    def get(self, request, oid):
+    def post(self, request):
 
-        return Response("haha " + oid)
+        if "oid" in request.DATA:
+            if User.objects.filter(oid=request.DATA["oid"]).exists():
+                user = User.objects.get(oid=request.DATA["oid"])
+                visibleProducts = Product.objects.filter(visible=True)
+                products = ProductPurchased.objects.filter(product__in=set(visibleProducts), owner=user, validated=True)
+                serializer = ProductPurchasedSerializer(products, context={'request': request})
+                return Response(serializer.data)
+            else:
+                d = {}
+                d["message"] = "Error: No user with this oid in the database."
+                d["errorcode"] = 100
+                return Response(d, status=404)
+        else:
+            d = {}
+            d["message"] = "Error: No oid provided. Please provide json-field in form { 'oid': '1234'}"
+            d["errorcode"] = 102
+            return Response(d, status=400)
+
+
+
+
+#get product metadata for the lms
+class ProductMetadataView(APIView):
+    authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
+
+
+    def get(self, request, uuid):
+
+        if Product.objects.filter(uuid=uuid).exists():
+            product = Product.objects.get(uuid=uuid)
+            serializer = ProductSerializer(product)
+            return Response(serializer.data)
+        else:
+            d = {}
+            d["message"] = "Error: No material with this uuid in the database."
+            d["errorcode"] = 101
+            return Response(d, status=404)
+
+    """
+    def post(self, request):
+        if "uuid" in request.DATA:
+            if Product.objects.filter(uuid=request.DATA["uuid"]).exists():
+                product = Product.objects.get(uuid=request.DATA["uuid"])
+                serializer = ProductSerializer(product)
+                return Response(serializer.data)
+            else:
+                d = {}
+                d["message"] = "Error: No material with this uuid in the database."
+                d["errorcode"] = 101
+                return Response(d, status=404)
+        else:
+            d = {}
+            d["message"] = "Error: No uuid provided. Please provide json-field in form { 'uuid': 'product'}"
+            d["errorcode"] = 103
+            return Response(d, status=400)"""

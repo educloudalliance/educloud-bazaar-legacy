@@ -93,6 +93,15 @@
 
         //$('#tabs-product').tabs({show: 'fade'});
 
+        $('.menu-head-icon').hover(
+            function(){
+                $(this).css('background-image',"url('{{ STATIC_URL }}shop/img/logo_blue.png')");
+            },
+            function(){
+                $(this).css('background-image',"url('{{ STATIC_URL }}shop/img/logo_grey.png')");
+
+        });
+
         $('#generalSearch input').focus(function(){
             $('.menu-box').hide('fade');
             $('#icons > .flexItem').removeClass('active');
@@ -117,8 +126,43 @@
             }
         });
         $('#categories-bar li').on('click', function() {
-            $(this).toggleClass('selected');
+            
+            if($(this).hasClass('all-option')){
+                if($(this).hasClass('selected')){
+                    //Do nothing. Keep all selected
+                } else {
+                    $(this).parents('.options').find('li').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+            } else {
+                $(this).parents('.options').find('li.all-option').removeClass('selected');
+                areAllSelected = $(this).parents('.options').find('li:not(.all-option):not(.selected)').length < 2;
+                
+                if (areAllSelected){
+                    if($(this).hasClass('selected')){
+                        $(this).toggleClass('selected');
+                    } else {
+                        $(this).parents('.options').find('li').removeClass('selected');
+                        $(this).parents('.options').find('li.all-option').addClass('selected');
+                    }
+                } else {
+                    $(this).toggleClass('selected');
+                }
+
+            }
         });
+
+        $( "#price-slider" ).slider({
+          range: true,
+          min: 0,
+          max: 500,
+          values: [ 0, 500 ],
+          slide: function( event, ui ) {
+            $( "#price-range" ).val( "€" + ui.values[ 0 ] + " - €" + ui.values[ 1 ] );
+          }
+        });
+        $( "#price-range" ).val( "€" + $( "#price-slider" ).slider( "values", 0 ) +
+            " - €" + $( "#price-slider" ).slider( "values", 1 ) );
 
         /*
         $('#tabs-product form input').change(function(){

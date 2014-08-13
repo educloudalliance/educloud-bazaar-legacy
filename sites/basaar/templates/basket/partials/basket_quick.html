@@ -22,19 +22,19 @@
                     </div>
                     -->
                     <div class="flexItem3">
-                        <a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a>
+                        <p><a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></p>
+                        <p>{% trans "Qty" %} ({{ line.quantity }})</p>
                     </div>
-                    <div class="flexItem">{% trans "Qty" %} {{ line.quantity }}</div>
                     <div class="flexItem">{{ line.unit_price_excl_tax|currency:request.basket.currency }}</div>
                 </div>
             </li>
         {% endfor %}
     {% else %}
-        <li><p>{% trans "Your basket is empty." %}</p></li>
+        <li><p>{% trans "Your cart is empty." %}</p></li>
     {% endif %}
     <li class="flex-container mini-basket-total">
-        <div class="flexItem4">
-            <strong>{% trans "Basket total:" %}</strong>
+        <div class="flexItem3">
+            <strong>{% trans "Total:" %}</strong>
         </div>
         <div class="flexItem">
             <strong>
