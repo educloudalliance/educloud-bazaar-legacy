@@ -474,6 +474,33 @@ footer {
         margin: 0px;
         padding: 10px 0px 2px 0px;
     }
+    #options-price{
+        > div {
+            padding: 2em 1em 1em 1em;
+            #price-slider {
+                background: $gray;
+                border-radius: 0px;
+                border: none;
+                .ui-slider-range{
+                    background: $light-gray;
+                }
+                .ui-slider-handle {
+                    background: $light-gray;
+                    border: 1px solid $dark-blue;
+                    height: 1.3em;
+                }
+            }
+        }
+        p {
+            margin: 0px;
+        }
+        input {
+            background: transparent;
+            color: white;
+            border: none;
+            text-align: center;
+        }
+    }
 }
 #tabs-bar {
     line-height: $nav-height * 0.6;
