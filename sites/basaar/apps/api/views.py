@@ -65,7 +65,8 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 class ProductTypeList(viewsets.ReadOnlyModelViewSet):
     """
-    API endpoint that allows productType's to be viewed.
+    API endpoint that lists the producttypes available for POST and PUT calls
+    of materials.
     """
     queryset = ProductClass.objects.all()
     serializer_class = ProductTypeSerializer
@@ -74,7 +75,8 @@ class ProductTypeList(viewsets.ReadOnlyModelViewSet):
 
 class SubjectList(viewsets.ReadOnlyModelViewSet):
     """
-    API endpoint that allows subject's to be viewed.
+    API endpoint that lists the subjects available for POST and PUT calls
+    of materials.
     """
     queryset = Category.objects.all()
     serializer_class = SubjectSerializer
@@ -85,6 +87,14 @@ class SubjectList(viewsets.ReadOnlyModelViewSet):
 # this view is used to handle all CMS interaction through collections
 # and resources
 class CMSView(APIView):
+    """
+    API endpoint which allows to GET, POST and PUT materials for CMS. The system resembles
+    a file-system where there is collections and resources. Every CMS has one root-collection where
+    they can create new materialitems. Sample requests and in-depth usage documentation can be found at:
+    https://github.com/koulutuksenpilvivayla/pilvivayla-basaari/wiki/API-Definition
+
+    Using of this API requires a oAuth2 token which can be received from Bazaar's admin.
+    """
     authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
 
@@ -610,6 +620,19 @@ class CMSView(APIView):
 
 # find purchased products of the user with oid
 class PurchasedProductsView(APIView):
+    """
+    This API endpoint returns a list of purchased products of a user identified with provided oid.
+    Sample request body for POST:
+    {
+        "oid":"1234"
+    }
+
+    Using of this API requires a oAuth2 token which can be received from Bazaar's admin.
+
+    Full API-documentation:
+    https://github.com/koulutuksenpilvivayla/pilvivayla-basaari/wiki/API-Definition
+
+    """
     authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
 
@@ -638,9 +661,15 @@ class PurchasedProductsView(APIView):
 
 #get product metadata for the lms
 class ProductMetadataView(APIView):
+    """
+    This API endpoint returns the metadata of the product with the uuid.
+    Using of this API requires a oAuth2 token which can be received from Bazaar's admin.
+
+    Full API-documentation:
+    https://github.com/koulutuksenpilvivayla/pilvivayla-basaari/wiki/API-Definition
+    """
     authentication_classes = (OAuth2Authentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwner)
-
 
     def get(self, request, uuid):
 
