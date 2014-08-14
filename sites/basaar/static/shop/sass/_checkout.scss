@@ -28,11 +28,11 @@
 }
 .price {
   text-align: center;
-  width: 120px;
+  width: 140px;
 }
 .subtotal {
   text-align: center;
-  width: 120px;
+  width: 140px;
 }
 
 #basket_formset {
@@ -61,12 +61,13 @@
     .remove-btn {
       font-size: 10pt;
       font-weight: lighter;
+      color: $gray;
       a {
         color: $gray;
         text-decoration: none;
       }
       a:hover {
-        text-decoration: underline;
+        color: #cc0000;
       }
     }
     .checkout-quantity {
@@ -76,7 +77,7 @@
         text-align: right;
         color: $dark-gray;
         background: transparent;
-        border: 1px solid $dark-gray;
+        border: 1px solid $gray;
         width: 45px;
         border-radius: 5px;
       }
@@ -105,5 +106,28 @@
     background: $dark-gray;
   }
 
-
+}
+.totals-line {
+  .label{
+    padding: 0.9em 0.5em 0.5em 0.5em;
+    font-size: 12pt;
+    line-height: 15pt;
+    color: $dark-gray;
+  }
+  .price {
+    padding: 0.5em 0.5em;
+    font-size: 15pt;
+  }
+}
+.form-actions {
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  margin: 3em 0em; 
+  a {
+    background: $blue;
+    color: white;
+    padding: 0.7em 3em;
+    text-decoration: none;
+    font-size: 14pt;
+  }
 }
