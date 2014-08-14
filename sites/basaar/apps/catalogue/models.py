@@ -42,34 +42,38 @@ class Product(AbstractProduct):
             import urllib2, os
             from urlparse import urlparse
             from PIL import Image, ImageChops
+            try:
+                req = urllib2.Request(self.iconUrl)
+                response = urllib2.urlopen(req, None, 15)
 
-            req = urllib2.Request(self.iconUrl)
-            response = urllib2.urlopen(req, None, 15)
+                iconFile = self.upc + self.iconUrl[-4:]
+                # TODO .jpeg?
+                sPath = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir))
+                filename = sPath + '/public/media/icons/' + iconFile
+                output = open(filename, 'w+')
+                output.write(response.read())
+                output.close()  # Resize
+                size = (200, 200)
+                image = Image.open(filename)
+                image.thumbnail(size, Image.ANTIALIAS)
+                image_size = image.size
 
-            iconFile = self.upc + self.iconUrl[-4:]
-            # TODO .jpeg?
-            sPath = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir))
-            filename = sPath + '/public/media/icons/' + iconFile
-            output = open(filename, 'w+')
-            output.write(response.read())
-            output.close()  # Resize
-            size = (200, 200)
-            image = Image.open(filename)
-            image.thumbnail(size, Image.ANTIALIAS)
-            image_size = image.size
+                thumb = image.crop((0, 0, size[0], size[1]))
+                offset_x = max((size[0] - image_size[0]) / 2, 0)
+                offset_y = max((size[1] - image_size[1]) / 2, 0)
 
-            thumb = image.crop((0, 0, size[0], size[1]))
-            offset_x = max((size[0] - image_size[0]) / 2, 0)
-            offset_y = max((size[1] - image_size[1]) / 2, 0)
+                thumb = ImageChops.offset(thumb, offset_x, offset_y)
+                fileFolder = sPath + '/public/media/icons/'
+                filename = self.upc + ".png"
+                thumb.save(fileFolder + filename)
+                print "Icon resized!"
 
-            thumb = ImageChops.offset(thumb, offset_x, offset_y)
-            fileFolder = sPath + '/public/media/icons/'
-            filename = self.upc + ".png"
-            thumb.save(fileFolder + filename)
-            print "Icon resized!"
-
-            self.icon = os.path.join(self.upload_path, filename)
-            super(Product, self).save()
+                self.icon = os.path.join(self.upload_path, filename)
+                super(Product, self).save()
+                return True
+            except Exception as e:
+                print "Error on icon download: " + e.message
+                return False
 
 
     def get_media(self):
