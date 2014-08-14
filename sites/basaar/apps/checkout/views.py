@@ -3,6 +3,7 @@ import six
 import logging
 
 from django import http
+from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import login
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -37,6 +38,7 @@ UserAddress = get_model('address', 'UserAddress')
 Basket = get_model('basket', 'Basket')
 Email = get_model('customer', 'Email')
 CommunicationEventType = get_model('customer', 'CommunicationEventType')
+BasketLine = Basket = get_model('basket', 'Line')
 
 # Standard logger for checkout events
 logger = logging.getLogger('oscar.checkout')
@@ -49,7 +51,7 @@ class IndexView(CheckoutSessionMixin, generic.FormView):
     """
     template_name = 'checkout/gateway.html'
     form_class = GatewayForm
-    success_url = reverse_lazy('checkout:shipping-address')
+    success_url = reverse_lazy('checkout:preview')
     pre_conditions = [
         'check_basket_is_not_empty',
         'check_basket_is_valid']
@@ -398,12 +400,12 @@ class PaymentDetailsView(OrderPlacementMixin, generic.TemplateView):
     pre_conditions = [
         'check_basket_is_not_empty',
         'check_basket_is_valid',
-        'check_user_email_is_captured'
-    ]
+        'check_user_email_is_captured',
+        'check_shipping_data_is_captured']
 
     # If preview=True, then we render a preview template that shows all order
     # details ready for submission.
-    preview = True
+    preview = False
 
     def get_pre_conditions(self, request):
         if self.preview:
@@ -509,7 +511,26 @@ class PaymentDetailsView(OrderPlacementMixin, generic.TemplateView):
     def submit(self, user, basket, shipping_address, shipping_method,  # noqa (too complex (10))
                shipping_charge, order_total, payment_kwargs=None,
                order_kwargs=None):
-        """
+
+        #TODO
+        #userLines = BasketLine.objects.filter(basket=basket)
+        #order_total=userLine.price_excl_tax
+
+        self.freeze_basket(basket)
+
+        #self.checkout_session.set_submitted_basket(basket)
+        order_number = self.generate_order_number(basket)
+
+        self.checkout_session.set_order_number(order_number)
+        self.checkout_session.flush()
+        #self.request.session['checkout_order_id'] = order.id
+        self.save_to_library(basket)
+        basket.submit()
+        response = HttpResponseRedirect(self.get_success_url())
+        #self.send_signal(self.request, response, order)
+        return response
+
+        '''
         Submit a basket for order placement.
 
         The process runs as follows:
@@ -526,19 +547,19 @@ class PaymentDetailsView(OrderPlacementMixin, generic.TemplateView):
         :basket: The basket to submit.
         :payment_kwargs: Additional kwargs to pass to the handle_payment method
         :order_kwargs: Additional kwargs to pass to the place_order method
-        """
+
         if payment_kwargs is None:
             payment_kwargs = {}
         if order_kwargs is None:
             order_kwargs = {}
 
         # Taxes must be known at this point
-        '''
+
         assert basket.is_tax_known, (
             "Basket tax must be set before a user can place an order")
         assert shipping_charge.is_tax_known, (
             "Shipping charge tax must be set before a user can place an order")
-        '''
+
         # We generate the order number first as this will be used
         # in payment requests (ie before the order model has been
         # created).  We also save it in the session for multi-stage
@@ -554,6 +575,7 @@ class PaymentDetailsView(OrderPlacementMixin, generic.TemplateView):
         # the basket in the session so that we know which basket to thaw if we
         # get an unsuccessful payment response when redirecting to a 3rd party
         # site.
+
         self.freeze_basket(basket)
         self.checkout_session.set_submitted_basket(basket)
 
@@ -565,7 +587,6 @@ class PaymentDetailsView(OrderPlacementMixin, generic.TemplateView):
 
         signals.pre_payment.send_robust(sender=self, view=self)
 
-        ''' Commented out in bazaar
         try:
             self.handle_payment(order_number, order_total, **payment_kwargs)
         except RedirectRequired as e:
@@ -609,7 +630,6 @@ class PaymentDetailsView(OrderPlacementMixin, generic.TemplateView):
             self.restore_frozen_basket()
             return self.render_preview(
                 self.request, error=error_msg, **payment_kwargs)
-        '''
 
         signals.post_payment.send_robust(sender=self, view=self)
 
@@ -631,10 +651,26 @@ class PaymentDetailsView(OrderPlacementMixin, generic.TemplateView):
             self.restore_frozen_basket()
             return self.render_preview(
                 self.request, error=msg, **payment_kwargs)
+        '''
 
     def get_template_names(self):
         return [self.template_name_preview] if self.preview else [
             self.template_name]
+
+    def save_to_library(self, basket):
+        ProductPurchased = get_model('library', 'ProductPurchased')
+        userLines = BasketLine.objects.filter(basket=basket)
+
+        for userLine in userLines:
+            newPurchase = ProductPurchased.create()
+            newPurchase.owner = basket.owner
+            newPurchase.product = userLine.product
+            newPurchase.basket = basket
+            newPurchase.quantity = userLine.quantity
+            newPurchase.validated = True
+            newPurchase.save()
+
+        return True
 
 
 # =========
@@ -651,7 +687,9 @@ class ThankYouView(generic.DetailView):
 
     def get_object(self):
         # We allow superusers to force an order thank-you page for testing
+
         order = None
+        '''
         if self.request.user.is_superuser:
             if 'order_number' in self.request.GET:
                 order = Order._default_manager.get(
@@ -659,12 +697,13 @@ class ThankYouView(generic.DetailView):
             elif 'order_id' in self.request.GET:
                 order = Order._default_manager.get(
                     id=self.request.GET['order_id'])
-
+        '''
+        '''
         if not order:
             if 'checkout_order_id' in self.request.session:
                 order = Order._default_manager.get(
                     pk=self.request.session['checkout_order_id'])
             else:
                 raise http.Http404(_("No order found"))
-
+        '''
         return order

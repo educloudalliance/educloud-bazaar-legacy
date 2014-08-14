@@ -307,7 +307,7 @@ INSTALLED_APPS = [
     'apps.user',
     'cookie_message',
     'rest_framework_swagger',
-] + get_core_apps(['apps.catalogue', 'apps.order', 'apps.basket' 'apps.customer.*', 'apps.checkout'])
+] + get_core_apps(['apps.catalogue', 'apps.order', 'apps.customer.*', 'apps.checkout'])
 
 
 
@@ -397,7 +397,8 @@ OSCAR_ALLOW_ANON_REVIEWS = False
 OSCAR_MODERATE_REVIEWS = False
 OSCAR_EAGER_ALERTS = False
 OSCAR_SEND_REGISTRATION_EMAIL = False
-OSCAR_DEFAULT_CURRENCY = 'USD'
+OSCAR_CURRENCY_LOCALE = 'fi_FI'
+OSCAR_DEFAULT_CURRENCY = 'EUR'
 OSCAR_CURRENCY_LOCALE = 'fi_FI'
 
 

@@ -62,15 +62,9 @@ class OrderCreator(object):
                              % order_number)
 
         # Ok - everything seems to be in order, let's place the order
-        '''
         order = self.create_order_model(
             user, basket, shipping_address, shipping_method, shipping_charge,
             billing_address, total, order_number, status, **kwargs)
-        '''
-        # Modified order for bazaar
-        order = self.create_order_model(
-            user, basket, total, order_number, status, **kwargs)
-
         for line in basket.all_lines():
             self.create_line_models(order, line)
             self.update_stock_records(line)
@@ -102,21 +96,22 @@ class OrderCreator(object):
 
         return order
 
-    def create_order_model(self, user, basket, total, order_number, status, **extra_order_fields):
+    def create_order_model(self, user, basket, shipping_address,
+                           shipping_method, shipping_charge, billing_address,
+                           total, order_number, status, **extra_order_fields):
         """
         Create an order model.
         """
         order_data = {'basket': basket,
                       'number': order_number,
                       'site': Site._default_manager.get_current(),
-                      #'currency': total.currency,
+                      'currency': total.currency,
                       'total_incl_tax': total.incl_tax,
-                      #'total_excl_tax': total.excl_tax,
-                      #'shipping_incl_tax': shipping_charge.incl_tax,
-                      #'shipping_excl_tax': shipping_charge.excl_tax,
-                      #'shipping_method': shipping_method.name,
-                      #'shipping_code': shipping_method.code
-                      }
+                      'total_excl_tax': total.excl_tax,
+                      'shipping_incl_tax': shipping_charge.incl_tax,
+                      'shipping_excl_tax': shipping_charge.excl_tax,
+                      'shipping_method': shipping_method.name,
+                      'shipping_code': shipping_method.code}
         if shipping_address:
             order_data['shipping_address'] = shipping_address
         if billing_address:

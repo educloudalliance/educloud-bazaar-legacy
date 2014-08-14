@@ -12,7 +12,13 @@ class ProductPurchased(models.Model):
     product = models.ForeignKey(Product)
     dateOfPurchase = models.DateTimeField(auto_now_add=True)
     basket = models.ForeignKey(Basket)
+    quantity = models.IntegerField(default=1, blank=False)
     validated = models.BooleanField(default=True) #TODO Only in demo phase
 
     def __str__(self):
         return self.product.title
+
+    @classmethod
+    def create(cls):
+        obj = cls()
+        return obj

@@ -4,7 +4,6 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.contrib.sites.models import Site, get_current_site
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth import get_user_model
 
 from oscar.core.loading import get_class, get_model
 
@@ -122,7 +121,8 @@ class OrderPlacementMixin(CheckoutSessionMixin):
         """
         # Create saved shipping address instance from passed in unsaved
         # instance
-        shipping_address = self.create_shipping_address(user, shipping_address)
+        #shipping_address = self.create_shipping_address(user, shipping_address)
+        shipping_address = None
 
         # We pass the kwargs as they often include the billing address form
         # which will be needed to save a billing address.
@@ -235,19 +235,14 @@ class OrderPlacementMixin(CheckoutSessionMixin):
         Override this view if you want to perform custom actions when an
         order is submitted.
         """
-
-        # Send confirmation message (normally an email) (Hox! Email disabled in Bazaar)
-        # self.send_confirmation_message(order)
+        # Send confirmation message (normally an email)
+        self.send_confirmation_message(order)
 
         # Flush all session data
         self.checkout_session.flush()
 
         # Save order id in session so thank-you page can load it
         self.request.session['checkout_order_id'] = order.id
-
-        # Save library to the database
-        # TODO
-        save_to_library(order)
 
         response = HttpResponseRedirect(self.get_success_url())
         self.send_signal(self.request, response, order)
@@ -308,6 +303,7 @@ class OrderPlacementMixin(CheckoutSessionMixin):
 
     # Basket helpers
     # --------------
+
     def get_submitted_basket(self):
         basket_id = self.checkout_session.get_submitted_basket_id()
         return Basket._default_manager.get(pk=basket_id)
@@ -341,25 +337,3 @@ class OrderPlacementMixin(CheckoutSessionMixin):
                 # Use same strategy as current request basket
                 fzn_basket.strategy = self.request.basket.strategy
                 self.request.basket = fzn_basket
-
-
-    def save_to_library(self, orderNro):
-        OrderLine = get_model('order', 'Line')
-        ProductPurchased = get_model('library', 'ProductPurchased')
-        OrderObjects = get_model('order', 'Order')
-
-        # Get the right order
-        Order = OrderObjects.objects.get(number=orderNro)
-        Basket = Order.basket
-        Owner = Order.user
-
-        Products = OrderLine.objects.filter(order=orderNro).value_list('product', flat=True)
-
-        for product in Products:
-            newPurchase = ProductPurchased
-            newPurchase.owner = Owner
-            newPurchase.basket = Basket
-            newPurchase.product = product
-            newPurchase.save()
-
-        return True

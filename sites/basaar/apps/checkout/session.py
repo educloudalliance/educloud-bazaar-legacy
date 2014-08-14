@@ -210,13 +210,16 @@ class CheckoutSessionMixin(object):
         shipping_address = self.get_shipping_address(request.basket)
         shipping_method = self.get_shipping_method(
             request.basket, shipping_address)
-        shipping_charge = shipping_method.calculate(request.basket)
+        #shipping_charge = shipping_method.calculate(request.basket)
+        shipping_charge = 0
         total = self.get_order_totals(request.basket, shipping_charge)
+        '''
         if total.excl_tax == D('0.00'):
             raise exceptions.PassedSkipCondition(
                 url=reverse('checkout:preview')
             )
-
+        '''
+        url=reverse('checkout:preview')
     # Helpers
 
     def get_context_data(self, **kwargs):
@@ -236,6 +239,8 @@ class CheckoutSessionMixin(object):
         the basket.
         """
         basket = kwargs.get('basket', self.request.basket)
+        total = None
+        '''
         shipping_address = self.get_shipping_address(basket)
         shipping_method = self.get_shipping_method(
             basket, shipping_address)
@@ -245,6 +250,12 @@ class CheckoutSessionMixin(object):
             shipping_charge = shipping_method.calculate(basket)
             total = self.get_order_totals(
                 basket, shipping_charge=shipping_charge)
+        '''
+        # TODO DO THIS BETTER
+        shipping_address = "None"
+        shipping_method = "None"
+        shipping_charge = "None"
+
         submission = {
             'user': self.request.user,
             'basket': basket,

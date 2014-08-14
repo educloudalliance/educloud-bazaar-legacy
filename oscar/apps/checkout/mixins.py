@@ -235,7 +235,7 @@ class OrderPlacementMixin(CheckoutSessionMixin):
         order is submitted.
         """
         # Send confirmation message (normally an email)
-        self.send_confirmation_message(order)
+        #self.send_confirmation_message(order)
 
         # Flush all session data
         self.checkout_session.flush()
