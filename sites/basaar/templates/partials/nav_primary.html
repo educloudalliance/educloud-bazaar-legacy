@@ -12,7 +12,7 @@
         <div class="flexItem">
         </div>
 
-        <div id="menu-categories">Refine Items <i class="fa fa-caret-down"></i>
+        <div id="menu-categories">{% trans "Refine Items"%} <i class="fa fa-caret-down"></i>
         </div>
 
         <div class="flexItem">
@@ -63,7 +63,7 @@
                     <div class="flex-container-vertical">
                         {% if user.is_authenticated %}
                             <div class="menu-box-header">
-                                Profile</div>
+                                {% trans "Profile"%}</div>
                             <div class="menu-box-content">
                                 {% include "partials/nav_accounts.html" %}
                                 <div class="menu-box-footer flex-container">
@@ -76,7 +76,7 @@
                             </div>
                         {% else %}
                             <div class="menu-box-header">
-                                Log In</div>
+                                {% trans "Log In"%}</div>
                             <div class="menu-box-content flex-container-vertical">
                                 <div class="flex-container social-logins">
                                     <div class="flexItem" id="facebook-login">
@@ -127,63 +127,63 @@
     <div id="categories-bar">
         <div class="flex-container flex-wrap">
             <div class="flexItem2">
-                <h2>Subject</h2>
+                <h2>{% trans "Subject"%}</h2>
                 <div class="flex-container options" id="options-subject">
                     <div class="flexItem">
                         <ul>
-                            <li class="all-option selected">all</li>
-                            <li>Biology</li>
-                            <li>Chemistry</li>
-                            <li>Environmental & Natural Science</li>
-                            <li>Geography</li>
-                            <li>Health Education</li>
-                            <li>History</li>
-                            <li>Mathematics</li>
-                            <li>Physics</li>
-                            <li>Religion & Ethics Culture</li>
-                            <li>Art & Design</li>
+                            <li class="all-option selected">{% trans "all"%}</li>
+                            <li>{% trans "Biology"%}</li>
+                            <li>{% trans "Chemistry"%}</li>
+                            <li>{% trans "Environmental & Natural Science"%}</li>
+                            <li>{% trans "Geography"%}</li>
+                            <li>{% trans "Health Education"%}</li>
+                            <li>{% trans "History"%}</li>
+                            <li>{% trans "Mathematics"%}</li>
+                            <li>{% trans "Physics"%}</li>
+                            <li>{% trans "Religion & Ethics Culture"%}</li>
+                            <li>{% trans "Art & Design"%}</li>
                         </ul>
                     </div>
                     <div class="flexItem">
                         <ul>
-                            <li>Crafts</li>
-                            <li>Music</li>
-                            <li>Physical Education</li>
-                            <li>Home Economics</li>
-                            <li>English</li>
-                            <li>Finnish</li>
-                            <li>Finnish <span class="small">as a second language</span></li>
-                            <li>French</li>
-                            <li>Russian</li>
-                            <li>Swedish</li>
-                            <li>Swedish <span class="small">as a second language</span></li>
+                            <li>{% trans "Crafts"%}</li>
+                            <li>{% trans "Music"%}</li>
+                            <li>{% trans "Physical Education"%}</li>
+                            <li>{% trans "Home Economics"%}</li>
+                            <li>{% trans "English"%}</li>
+                            <li>{% trans "Finnish"%}</li>
+                            <li>{% trans "Finnish"%}<span class="small">{% trans "as a second language"%}</span></li>
+                            <li>{% trans "French"%}</li>
+                            <li>{% trans "Russian"%}</li>
+                            <li>{% trans "Swedish"%}</li>
+                            <li>{% trans "Swedish"%} <span class="small">{% trans "as a second language"%}</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="flexItem options" id="options-grade">
-                <h2>Grade</h2>
+                <h2>{% trans "Grade"%}</h2>
                 <ul>
-                    <li class="all-option selected">all</li>
+                    <li class="all-option selected">{% trans "all"%}</li>
                     <li>1-2</li>
                     <li>3-6</li>
                     <li>7-9</li>
                 </ul>
             </div>
             <div class="flexItem options" id="options-type">
-                <h2>Type</h2>
+                <h2>{% trans "Type"%}</h2>
                 <ul>
-                    <li class="all-option selected">all</li>
-                    <li>Image</li>
-                    <li>Video</li>
-                    <li>PDF</li>
-                    <li>Other</li>
+                    <li class="all-option selected">{% trans "all"%}</li>
+                    <li>{% trans "Image"%}</li>
+                    <li>{% trans "Video"%}</li>
+                    <li>{% trans "PDF"%}</li>
+                    <li>{% trans "Other"%}</li>
                 </ul>
             </div>
             <div class="flexItem options" id="options-publisher">
-                <h2>Publisher</h2>
+                <h2>{% trans "Publisher"%}</h2>
                 <ul>
-                    <li class="all-option selected">all</li>
+                    <li class="all-option selected">{% trans "all"%}</li>
                     <li>Pub1</li>
                     <li>Pub2</li>
                     <li>Pub3</li>
@@ -196,7 +196,7 @@
                 </ul>
             </div>
             <div class="flexItem options" id="options-price">
-                <h2>Price Range</h2>
+                <h2>{% trans "Price Range"%}</h2>
                 <div>
                     <div id="price-slider"></div>
                 </div>
@@ -206,13 +206,13 @@
     </div>
     <div id="tabs-bar" class="flex-container">
         <a class="tab active flexItem" href="/catalogue">
-            Resources
+            {% trans "Resources"%}
         </a>
         <a class="tab flexItem" href="#">
-            Recipes
+            {% trans "Recipes"%}
         </a>
         <a class="tab flexItem" href="#">
-            Q&A
+            {% trans "Q&A"%}
         </a>
     </div>
 </div>

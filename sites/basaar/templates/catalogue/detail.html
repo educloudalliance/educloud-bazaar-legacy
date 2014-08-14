@@ -131,10 +131,10 @@
                 <h2>{% trans "Product Information" %}</h2>
                 <table class="product-info">
                     <tr>
-                        <th>Subjects</th><td>{{product.categories.first}}</td>
+                        <th>{% trans "Subjects" %}</th><td>{{product.categories.first}}</td>
                     </tr>
                     <tr>
-                        <th>Grade</th>
+                        <th>{% trans "Grade" %}</th>
                         <td>{% if product.minAge < 7 and product.maxAge > 14 %}
                                 all
                             {% else %}
