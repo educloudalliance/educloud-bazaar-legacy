@@ -1,4 +1,5 @@
 from django.db import models
+import tempfile
 import os
 from oscar.apps.catalogue.abstract_models import *
 from django.utils.translation import ugettext_lazy as _, pgettext_lazy
@@ -50,11 +51,14 @@ class Product(AbstractProduct):
                 # TODO .jpeg?
                 sPath = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir))
                 filename = sPath + '/public/media/icons/' + iconFile
-                output = open(filename, 'w+')
-                output.write(response.read())
-                output.close()  # Resize
+        
+                f = tempfile.NamedTemporaryFile(delete=False)
+                f.write(response.read())
+                f.close()
+
+                # Resize
                 size = (200, 200)
-                image = Image.open(filename)
+                image = Image.open(f.name)
                 image.thumbnail(size, Image.ANTIALIAS)
                 image_size = image.size
 
