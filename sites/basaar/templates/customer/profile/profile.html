@@ -4,12 +4,12 @@
 
 {% block tabcontent %}
     <div class="flexItem"></div>
-    <div class="box-page content-900 flex-container-vertical">
-        <div><img src="#" class="profile-pic-medium"><h1>Profile</h1>
+    <div class="box-page content-box flex-container-vertical">
+        <div><img src="#" class="profile-pic-medium"><h1>{% trans "Profile"%}</h1>
         </div>
         <div class="flex-container flex-wrap">
             <div class="flexItem flex-container-vertical">
-                <h2>Your Personal Information</h2>
+                <h2>{% trans "Your Personal Information"%}</h2>
                 <div class="content-box flex-container-vertical">
                     <table class="table table-striped table-bordered">
                         <tbody>
@@ -40,7 +40,7 @@
 
             </div>
             <div class="flexItem flex-container-vertical">
-                <h2>Recent Activity</h2>
+                <h2>{% trans "Recent Activity"%}</h2>
                 <div class="content-box flex-container-vertical">
                     {% if num_unread_notifications > 0 %}
                         <div class="notification-number">{{num_unread_notifications}}</div>
@@ -59,10 +59,6 @@
             </div>
         </div>
 
-
-        <script type="text/javascript">
-         hideExtra = true;
-        </script>
     </div>
     <div class="flexItem"></div>
 {% endblock %}
