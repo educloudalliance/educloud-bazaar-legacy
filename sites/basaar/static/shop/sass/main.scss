@@ -1,5 +1,6 @@
 @import "normalize";
 @import "base";
+@import "checkout";
 @import "animate/animate";
 @import "compass";
 
@@ -395,47 +396,6 @@ footer {
         color: white;
     }
 
-    #addTags{
-        @media screen and (max-width: $r1280-content-width) {
-            text-align: right;
-        }
-        form {
-            display: inline-block;
-            line-height: $nav-height;
-            padding-left: 13px;
-            @media screen and (max-width: $r1280-content-width) {
-                line-height: $nav-height / 3;
-                height: $nav-height / 3;
-            }
-            input {
-                margin: 0px 5px 0px 0px;
-                font-size: 10pt;
-                border: none;
-                padding: 1px 4px;
-                color: white;
-                border-radius: 3px;
-                width: 155px;
-                background: $dark-gray;
-
-            }
-        }
-
-        .label {
-            float: left;
-            margin: 0px;
-            padding: 0px 10px 0px 13px;
-            font-size: 14pt;
-            line-height: $nav-height;
-            height: $nav-height;
-            @media screen and (max-width: 1100px) {
-                float: none;
-                padding: 0px 0px 0px 13px;
-                line-height: $nav-height / 2;
-                height: $nav-height / 2;
-            
-            }
-        }
-    }
 }
 #categories-bar {
     display: none;
@@ -537,6 +497,7 @@ footer {
     width: 100%;
 
     .content-center {
+        color: $dark-gray;
         width: 1000px;
         @media screen and (min-width: 1600px) {
             width: 1200px;

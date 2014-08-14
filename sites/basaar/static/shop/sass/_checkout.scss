@@ -1,0 +1,109 @@
+#checkout-stages {
+  padding: 3em 0em 5em 0em;
+  text-align: center;
+
+  .stage {
+    padding-bottom: 5px;
+
+    > div {
+      background: $light-gray;
+      border-bottom: 1px solid $dark-gray;
+      padding: 0.6em;
+    }
+  }
+  .stage.selected {
+    background: $blue;
+  }
+}
+
+.legend-bar{
+  .thumbnail-ghost {
+    margin-right: 0.8em;
+    width: 100px;
+  }
+  .quantity {
+    text-align: center;
+    width: 183px;
+  }
+}
+.price {
+  text-align: center;
+  width: 120px;
+}
+.subtotal {
+  text-align: center;
+  width: 120px;
+}
+
+#basket_formset {
+  .basket-items:last-child {
+    border-bottom: 1px solid $gray;
+  }
+  .basket-items {
+    padding: 0.6em 0px;
+    border-top: 1px solid $gray;
+    
+    .title {
+      font-size: 13pt;
+      a {
+        color: $dark-gray;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+    .owner {
+      font-size: 11.5pt;
+      color: $gray;
+      font-weight: lighter;
+    }
+    .remove-btn {
+      font-size: 10pt;
+      font-weight: lighter;
+      a {
+        color: $gray;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+    .checkout-quantity {
+      padding: 0.5em 1em;
+      input {
+        font-size: 11pt;
+        text-align: right;
+        color: $dark-gray;
+        background: transparent;
+        border: 1px solid $dark-gray;
+        width: 45px;
+        border-radius: 5px;
+      }
+      button {
+        background: $dark-blue;
+        color: white;
+        border: none;
+        font-weight: lighter;
+        padding: 0.3em 1em;
+        font-size: 10pt;
+      }
+      .error-block {
+        font-weight: normal;
+        color: red;
+      }
+    }
+  }
+  .price, .subtotal {
+    padding: 0.5em 0.5em;
+    font-size: 15pt;
+  }
+  .thumbnail {
+    margin-right: 0.8em;
+    height: 100px;
+    width: 100px;
+    background: $dark-gray;
+  }
+
+
+}

@@ -25,7 +25,13 @@
 
 {% block content %}
     {# Use a partial template so that AJAX can be used to re-render basket #}
-    {% include 'basket/partials/basket_content.html' %}
+    <div id="content" class="flex-container grayBackground">
+        <div class="flexItem"></div>
+        <div class="flex-container-vertical content-center">
+            {% include 'basket/partials/basket_content.html' %}
+        </div>
+        <div class="flexItem"></div>
+    </div>
 {% endblock content %}
 
 {% block onbodyload %}
