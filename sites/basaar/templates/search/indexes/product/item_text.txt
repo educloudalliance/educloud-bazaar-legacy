@@ -1,3 +1,4 @@
 {{ object.upc|default:"" }}
 {{ object.title }}
+{{ object.contentLicense }}
 {{ object.description|default:"" }}
