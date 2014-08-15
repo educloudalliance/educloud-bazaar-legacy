@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-15 16:00+0300\n"
+"POT-Creation-Date: 2014-08-15 20:11+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,7 +112,7 @@ msgstr ""
 #: apps/basket/abstract_models.py:556 apps/catalogue/abstract_models.py:177
 #: apps/catalogue/abstract_models.py:278 apps/catalogue/abstract_models.py:775
 #: apps/catalogue/abstract_models.py:1023 apps/order/abstract_models.py:414
-#: templates/checkout/checkout.html:120 templates/customer/anon_order.html:58
+#: templates/customer/anon_order.html:58
 #: templates/customer/alerts/alert_list.html:12
 #: templates/customer/order/order_detail.html:18
 #: templates/customer/wishlists/wishlists_detail.html:33
@@ -124,7 +124,7 @@ msgstr ""
 #: apps/order/abstract_models.py:717 apps/order/abstract_models.py:817
 #: apps/order/abstract_models.py:874
 #: templates/basket/partials/basket_content.html:30
-#: templates/checkout/checkout.html:121 templates/customer/anon_order.html:61
+#: templates/checkout/checkout.html:47 templates/customer/anon_order.html:61
 #: templates/customer/wishlists/wishlists_detail.html:34
 msgid "Quantity"
 msgstr ""
@@ -256,7 +256,7 @@ msgstr ""
 
 #: apps/basket/reports.py:20 apps/customer/abstract_models.py:122
 #: apps/customer/abstract_models.py:294 apps/customer/views.py:416
-#: apps/order/reports.py:22 templates/checkout/checkout.html:60
+#: apps/order/reports.py:22
 msgid "Email"
 msgstr ""
 
@@ -1399,8 +1399,7 @@ msgstr ""
 msgid "Shipping Address"
 msgstr ""
 
-#: apps/order/abstract_models.py:68 templates/checkout/checkout.html:79
-#: templates/checkout/shipping_methods.html:8
+#: apps/order/abstract_models.py:68 templates/checkout/shipping_methods.html:8
 #: templates/checkout/shipping_methods.html:15
 #: templates/customer/anon_order.html:48
 msgid "Shipping method"
@@ -1725,12 +1724,41 @@ msgstr ""
 msgid "There is already an order with number %s"
 msgstr ""
 
+#: apps/search/forms.py:26 apps/search/forms.py:27
+#: templates/search/results.html:19
+msgid "Search"
+msgstr ""
+
+#: apps/search/forms.py:38
+msgid "Relevancy"
+msgstr ""
+
+#: apps/search/forms.py:39
+msgid "Newest"
+msgstr ""
+
+#: apps/search/forms.py:40
+msgid "Price high To low"
+msgstr ""
+
+#: apps/search/forms.py:41
+msgid "Price low To high"
+msgstr ""
+
+#: apps/search/forms.py:42
+msgid "Title A to Z"
+msgstr ""
+
+#: apps/search/forms.py:43
+msgid "Title Z to A"
+msgstr ""
+
 #: apps/user/models.py:10
 msgid "username"
 msgstr ""
 
 #: apps/user/models.py:11
-msgid "Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgid "Required. 255 characters or fewer. Letters, digits and @/./+/-/_ only."
 msgstr ""
 
 #: apps/user/models.py:15
@@ -1857,26 +1885,35 @@ msgid "Important messages about items in your basket"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:15
-#: templates/checkout/checkout.html:14
+#: templates/checkout/checkout.html:24
 msgid "Shopping Cart"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:18
-#: templates/checkout/checkout.html:17
+#: templates/checkout/checkout.html:27
 msgid "Order Confirmation"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:21
-#: templates/checkout/checkout.html:20
+#: templates/checkout/checkout.html:30
 msgid "Order Approval"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:31
+#: templates/checkout/checkout.html:48
 msgid "Individual Price"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:32
+#: templates/checkout/checkout.html:49
 msgid "Subtotal"
+msgstr ""
+
+#: templates/basket/partials/basket_content.html:58
+#: templates/catalogue/detail.html:62
+#: templates/catalogue/partials/product.html:34
+#, python-format
+msgid "by  %(owner)s "
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:62
@@ -1941,12 +1978,6 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: templates/catalogue/detail.html:62
-#: templates/catalogue/partials/product.html:34
-#, python-format
-msgid "by  %(owner)s "
-msgstr ""
-
 #: templates/catalogue/detail.html:119
 msgid "Edit this product"
 msgstr ""
@@ -1977,7 +2008,7 @@ msgstr ""
 msgid "%(class)s"
 msgstr ""
 
-#: templates/catalogue/detail.html:160 templates/checkout/checkout.html:122
+#: templates/catalogue/detail.html:160
 msgid "Price"
 msgstr ""
 
@@ -2177,45 +2208,7 @@ msgstr[1] ""
 msgid "Checkout"
 msgstr ""
 
-#: templates/checkout/checkout.html:39
-msgid "Shipping"
-msgstr ""
-
-#: templates/checkout/checkout.html:45 templates/checkout/checkout.html:76
-#: templates/checkout/checkout.html:99
-msgid "Change"
-msgstr ""
-
-#: templates/checkout/checkout.html:48 templates/customer/anon_order.html:25
-#: templates/customer/address/address_list.html:10
-msgid "Address"
-msgstr ""
-
-#: templates/checkout/checkout.html:56
-msgid "Contact"
-msgstr ""
-
-#: templates/checkout/checkout.html:58
-msgid "Phone"
-msgstr ""
-
-#: templates/checkout/checkout.html:66
-msgid "Instructions"
-msgstr ""
-
-#: templates/checkout/checkout.html:95 templates/checkout/checkout.html:101
-msgid "Payment"
-msgstr ""
-
-#: templates/checkout/checkout.html:102
-msgid "Payment details to go here"
-msgstr ""
-
-#: templates/checkout/checkout.html:112
-msgid "Edit order contents"
-msgstr ""
-
-#: templates/checkout/checkout.html:116 templates/customer/anon_order.html:53
+#: templates/checkout/checkout.html:42 templates/customer/anon_order.html:53
 msgid "Order contents"
 msgstr ""
 
@@ -2373,6 +2366,11 @@ msgstr ""
 #: templates/customer/anon_order.html:8
 #, python-format
 msgid "Order #%(number)s"
+msgstr ""
+
+#: templates/customer/anon_order.html:25
+#: templates/customer/address/address_list.html:10
+msgid "Address"
 msgstr ""
 
 #: templates/customer/anon_order.html:34
@@ -3212,10 +3210,6 @@ msgstr ""
 #: templates/partials/pagination.html:16
 #: templates/search/partials/pagination.html:16
 msgid "next"
-msgstr ""
-
-#: templates/search/results.html:19
-msgid "Search"
 msgstr ""
 
 #: templates/search/results.html:28
