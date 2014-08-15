@@ -3,16 +3,31 @@
   text-align: center;
 
   .stage {
-    padding-bottom: 5px;
-
+    padding-bottom: 6px;
+    background: $light-gray;
+    transition: all 0.5s;
     > div {
       background: $light-gray;
-      border-bottom: 1px solid $dark-gray;
+      border-bottom: 1px solid $gray;
       padding: 0.6em;
+      transition: all 0.5s;
+    }
+  }
+  a.stage {
+    color: $dark-gray;
+    text-decoration: none;
+  }
+  a.stage:hover {
+    background: $blue;
+    > div {
+      border-bottom: 1px solid $blue;
     }
   }
   .stage.selected {
-    background: $blue;
+    background: $dark-blue;
+    > div {
+      background: $light-gray;
+    }
   }
 }
 
@@ -94,16 +109,16 @@
         color: red;
       }
     }
+    .thumbnail {
+      margin-right: 0.8em;
+      height: 100px;
+      width: 100px;
+      background: $dark-gray;
+    }
   }
   .price, .subtotal {
     padding: 0.5em 0.5em;
     font-size: 15pt;
-  }
-  .thumbnail {
-    margin-right: 0.8em;
-    height: 100px;
-    width: 100px;
-    background: $dark-gray;
   }
 
 }
