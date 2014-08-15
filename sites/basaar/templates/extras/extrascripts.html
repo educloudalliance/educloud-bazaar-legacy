@@ -40,6 +40,7 @@
             }, 'xml');
 
         });
+        $('.notification-number').click(toggleMenuItem);
 
         
         $('#language-icon .menu-icon').click(function() {
@@ -62,6 +63,13 @@
         $("a.embed").oembed(null, {
            embedMethod: 'fill'
         });
+
+        $('.remove-btn a').on('click', function(){
+            $(this).parents('.basket-items').find('.checkout-quantity input').val(0);
+            $(this).parents('.basket-items').find('.checkout-quantity button').click();
+
+        });
+
     });
 
     function toggleMenuItem() {

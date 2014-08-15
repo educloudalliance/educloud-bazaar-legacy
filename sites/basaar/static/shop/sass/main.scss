@@ -285,6 +285,7 @@ footer {
         line-height: 20px;
         padding: 0px 3px;
         text-align: center;
+        cursor: pointer;
     }
     #language-icon {
         text-align: center;
@@ -655,7 +656,7 @@ footer {
                 margin: 0px 5px;
                 h2 {
                     text-transform: uppercase;
-                    color: $dark-gray;
+                    color: rgb(102,102,102);
                     font-weight: lighter;
                     font-size: 14pt;
                     margin: 10px 5px;

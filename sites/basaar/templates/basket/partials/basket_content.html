@@ -10,18 +10,6 @@
     {% endfor %}
 {% endif %}
 
-<!--
-{% if upsell_messages %}
-    <div class="well">
-        <h3>{% trans "You could be missing out on offers!" %}</h3>
-        {% for upsell in upsell_messages %}
-            {% blocktrans with message=upsell.message url=upsell.offer.get_absolute_url offer_name=upsell.offer.name %}
-                <div class="warning">{{ message }} to qualify for the <a href="{{ url }}">{{ offer_name }}</a> special offer</div>
-            {% endblocktrans %}
-        {% endfor %}
-    </div>
-{% endif %}
--->
 <div id="checkout-stages" class="flex-container">
     <div class="flexItem stage selected">
         <div>{% trans "Shopping Cart" %}</div>
@@ -57,10 +45,8 @@
                         <div>
                             {{ form.id }}
                             {% with image=product.primary_image %}
-                                {% thumbnail image.original "100x100" upscale=False as thumb %}
-                                    <a href="{{ product.get_absolute_url }}">
-                                        <img class="thumbnail" src="{{ thumb.url }}" alt="{{ product.get_title }}"/>
-                                    </a>
+                                {% thumbnail image.original "x155" upscale=False as thumb %}
+                                <a href="{{ product.get_absolute_url }}"><img src="{{ product.icon }}" alt="{{ product.get_title }}" class="thumbnail"></a>
                                 {% endthumbnail %}
                             {% endwith %}
                         </div>
