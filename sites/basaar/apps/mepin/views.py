@@ -50,6 +50,11 @@ def index(request):
            cuser.save()
 
         getusername = User.objects.get(mepinId = ID)
+        redirecttoprofile = True
+        cemail = getusername.email
+        findstring = '@mepin.com'
+        if not findstring in cemail:
+            redirecttoprofile = False
         print (getusername.username + '  heloooooooooo')
         #user = authenticate(username=getusername.username,password =getusername.password)
         #print authenticate(username=ID,password ='mepin')
@@ -70,4 +75,7 @@ def index(request):
 
     })
     #return HttpResponse(template.render(context))
-    return HttpResponseRedirect("/catalogue/")
+    if redirecttoprofile == True:
+        return HttpResponseRedirect("/accounts/profile/edit")
+    else:
+        return HttpResponseRedirect("/catalogue/")
