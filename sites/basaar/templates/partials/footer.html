@@ -1,6 +1,12 @@
 {% load i18n %}
-<footer class="flexItem">
-    {% block footer %}
-    	footer
-    {% endblock %}
+{% block footer %}
+<footer class="flex-container">
+		<div class="flexItem"></div>
+		<div class="content-center flex-container">
+			<div>Pilviväylä Bazaar</div>
+			<div class="flexItem"></div>
+			<div><img src="{{ STATIC_URL }}shop/img/MinistryLogo.jpeg"></div>
+		</div>
+		<div class="flexItem"></div>
 </footer>
+{% endblock %}

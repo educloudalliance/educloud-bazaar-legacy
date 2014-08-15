@@ -23,7 +23,7 @@
                     -->
                     <div class="flexItem3">
                         <p><a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></p>
-                        <p>{% trans "Qty" %} ({{ line.quantity }})</p>
+                        <p class="qty">{% trans "Qty" %} ({{ line.quantity }})</p>
                     </div>
                     <div class="flexItem">{{ line.unit_price_excl_tax|currency:request.basket.currency }}</div>
                 </div>

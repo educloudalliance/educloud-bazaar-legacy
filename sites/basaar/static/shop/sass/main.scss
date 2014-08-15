@@ -107,7 +107,20 @@ textarea, input { outline: none; }
     width: 100%;
 }
 footer {
-    background: $gray;
+    background: $light-gray;
+    height: $footer-height;
+    line-height: $footer-height;
+    padding: 0em 2em;
+    font-weight: lighter;
+    font-size: 10pt;
+    .content-center {
+        border-top: 1px solid #bbb;
+        
+        img {
+            height: $footer-height - 10;
+            margin: 5px 0px;
+        }
+    }
 }
 
 #navbar {
@@ -156,6 +169,7 @@ footer {
                 transition: all 0.5s;
             }
             svg {
+                border-left: 1px solid;
                 height: $nav-height - $nav-height*0.5 - 4px;
                 width: $nav-height - $nav-height*0.5;
                 padding: 5px;
@@ -184,11 +198,15 @@ footer {
                 padding: 5px 10px;
                 text-align: left;
                 font-weight: lighter;
+                height: 49px;
                 p {
                     margin: 0px;
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;
+                }
+                .qty {
+                    font-size: 9.5pt;
                 }
                 a{
                     color: $dark-gray;
@@ -199,6 +217,10 @@ footer {
             }
             li:nth-child(odd){
                 background: $light-gray;
+            }
+            .mini-basket-total {
+                height: 49px;
+                line-height: 44px;
             }
         }
     }
@@ -222,7 +244,7 @@ footer {
         height: $nav-height;
         padding: (($nav-height - $menu-icons-width) / 2);
     }
-    #icons > .flexItem:hover {
+    #icons > div:hover {
         background: $blue;
 
         path.hoverable {
@@ -232,7 +254,7 @@ footer {
             stroke: #ffffff;
         }
     }
-    #icons > .flexItem.active {
+    #icons > div.active {
         background: $dark-blue;
         color: white;
         path.hoverable {
@@ -242,10 +264,10 @@ footer {
             stroke: #ffffff;
         }
     }
-    #icons > .flexItem.active:hover {
+    #icons > div.active:hover {
         background: $dark-blue;
     }
-    #icons > .flexItem {
+    #icons > div {
         position: relative;
         -webkit-transition: all 0.1s; /* For Safari 3.1 to 6.0 */
         transition: all 0.1s;
@@ -253,21 +275,24 @@ footer {
     }
     .notification-number {
         position: absolute;
-        bottom: 12px;
-        right: 12px;
-        min-width: 16px;
+        bottom: 13px;
+        right: 13px;
+        min-width: 20px;
         background: $notification-red;
         border-radius: 50px;
         color: white;
         font-size: 14px;
-        line-height: 16px;
+        line-height: 20px;
         padding: 0px 3px;
+        text-align: center;
     }
     #language-icon {
         text-align: center;
         font-weight: lighter;
+        font-size: 10pt;
         .menu-icon {
             padding: 2px;
+            width: 100px;
         }
         .menu-icon:hover {
             color: white;
@@ -349,18 +374,17 @@ footer {
             background: white;
             .menu-box-footer {
                 @include user-select(none);
-                height: $nav-height / 2;
                 border-top: 5px solid $dark-blue;
-                line-height: $nav-height / 2;
+                height: $nav-height * 0.8;
+                line-height: $nav-height * 0.8;
 
                 a.btn {
                     text-align: center;
-                    color: $green-main;
                     text-decoration: none;
+                    color: $dark-gray;
                 }
                 a.btn:hover {
-                    //background: $light-gray;
-                    font-weight: bold;
+                    text-decoration: underline;
                 }
             }
         }
@@ -368,9 +392,10 @@ footer {
     }
 
     #menu-categories {
+        letter-spacing: 1px;
         text-align: center;
-        font-size: 19px;
-        padding: 0px 1.5em;
+        font-size: 17px;
+        padding: 0px 2.5em;
         margin: 0px;
         border-right: 1px solid $gray;
         border-left: 1px solid $gray;
@@ -492,16 +517,16 @@ footer {
 }
 
 
+.content-center {
+    color: $dark-gray;
+    width: 1000px;
+    @media screen and (min-width: 1600px) {
+        width: 1200px;
+    }
+}
 #content {
     width: 100%;
 
-    .content-center {
-        color: $dark-gray;
-        width: 1000px;
-        @media screen and (min-width: 1600px) {
-            width: 1200px;
-        }
-    }
     
     .box-page {
         color: $dark-gray;
@@ -605,13 +630,30 @@ footer {
     }
     section.product-section {
         width: 100%;
-        padding: $nav-height/2 $nav-height;
-        h2 {
-            text-transform: uppercase;
-            color: $dark-gray;
-            font-weight: lighter;
-            font-size: 14pt;
-            margin: 10px 5px;
+        padding: $nav-height $nav-height;
+        .product-list-title {
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+            justify-content: center;
+            -webkit-justify-content: center;
+
+             li {
+                overflow: hidden;
+                float: left;
+                width: $basis-product-item;
+                margin: 0px 5px;
+                h2 {
+                    text-transform: uppercase;
+                    color: $dark-gray;
+                    font-weight: lighter;
+                    font-size: 14pt;
+                    margin: 10px 5px;
+                    letter-spacing: 1px;
+                    font-size: 12.5pt;
+                }
+            }
+
         }
     }
 

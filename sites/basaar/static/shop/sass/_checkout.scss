@@ -1,5 +1,5 @@
 #checkout-stages {
-  padding: 3em 0em 5em 0em;
+  padding: 4em 0em 7.5em 0em;
   text-align: center;
 
   .stage {
@@ -118,6 +118,23 @@
     padding: 0.5em 0.5em;
     font-size: 15pt;
   }
+}
+#empty-basket {
+  height: 200px;
+  line-height: 200px;
+  border-top: 1px solid $gray;
+  border-bottom: 1px solid $gray;
+  text-align: center;
+  font-size: 20pt;
+  color: $gray;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-image: url('../img/ShoppingBasket.Icon.White.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 160px 160px;
+
 }
 .form-actions {
   -webkit-justify-content: flex-end;

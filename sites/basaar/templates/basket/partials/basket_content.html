@@ -128,9 +128,11 @@
 
 {% else %}
     {% block emptybasket %}
-        <p>
-            {% trans "Your basket is empty." %}
+        <div id="empty-basket">
+            -&nbsp;&nbsp;{% trans "Your shopping cart is empty" %}&nbsp;&nbsp;-
+        </div>
+        <div class="form-actions flex-container">
             <a href="{{ homepage_url }}">{% trans "Continue shopping" %}</a>
-        </p>
+        </div>
     {% endblock %}
 {% endif %}
