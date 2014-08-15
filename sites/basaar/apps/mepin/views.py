@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate,login
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import PermissionDenied
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.template import RequestContext, loader
 from oscar.core.loading import get_class, get_model
 from django.http import Http404
@@ -33,27 +33,38 @@ def index(request):
     try:
         parseJsonResponse = json.loads(mepin_response.text)
         ID = parseJsonResponse['mepin_id']
-        print User.objects.filter(email = ID).exists()
-
-        if not User.objects.filter(email = ID).exists():
-           cuser = User.objects.create_user(ID,ID,'mepin')
+        User = get_user_model()
+        print User.objects.filter(mepinId = ID).exists()
+        print ID
+        if not User.objects.filter(mepinId = ID).exists():
+           #cuser = User.objects.create_user(ID, 'a@a.com')
+           #cuser.set_password('mepin')
+           #cuser.mepinId=ID
+           #cuser.username=ID
+           #cuser.save()
+           cuser = User.create()
+           cuser.username = ID
+           cuser.email = ID + '@mepin.com'
            cuser.set_password('mepin')
+           cuser.mepinId = ID
            cuser.save()
 
-        getusername = User.objects.get(email = ID)
+        getusername = User.objects.get(mepinId = ID)
         print (getusername.username + '  heloooooooooo')
-        user = authenticate(username=getusername.username,password ='mepin')
-        if user is not None:
-            if user.is_active:
-                login(request, user)
+        #user = authenticate(username=getusername.username,password =getusername.password)
+        #print authenticate(username=ID,password ='mepin')
+        getusername.backend = 'django.contrib.auth.backends.ModelBackend'
+        if getusername is not None:
+            if getusername.is_active:
+                login(request, getusername)
             else:
                 ID = 'account disabled contact administrator'
         else:
             ID = 'Invalid login'
 
-    except:
-        print 'error 404'
-        #raise Http404
+    except Exception as e:
+        print e
+        raise Http404
     template = loader.get_template('catalogue/browse.html')
     context = RequestContext(request, {
 
