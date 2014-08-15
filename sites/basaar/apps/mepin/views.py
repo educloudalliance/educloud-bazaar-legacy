@@ -53,6 +53,7 @@ def index(request):
         redirecttoprofile = True
         cemail = getusername.email
         findstring = '@mepin.com'
+        print findstring in cemail
         if not findstring in cemail:
             redirecttoprofile = False
         print (getusername.username + '  heloooooooooo')
@@ -72,10 +73,11 @@ def index(request):
         raise Http404
     template = loader.get_template('catalogue/browse.html')
     context = RequestContext(request, {
-
     })
+    print redirecttoprofile
     #return HttpResponse(template.render(context))
     if redirecttoprofile == True:
         return HttpResponseRedirect("/accounts/profile/edit")
     else:
         return HttpResponseRedirect("/catalogue/")
+
