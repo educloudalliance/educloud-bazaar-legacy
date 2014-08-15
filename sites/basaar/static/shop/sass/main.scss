@@ -114,7 +114,7 @@ footer {
     font-weight: lighter;
     font-size: 10pt;
     @include user-select(none);
-    
+
     .content-center {
         border-top: 1px solid #bbb;
         
@@ -534,35 +534,60 @@ footer {
 #content {
     width: 100%;
 
-    
-    .box-page {
-        color: $dark-gray;
-
-        .profile-pic-medium {
-            border-radius: 200px;
-            height: 60px;
-            width: 60px;
-            background-color: $dark-gray;
-            background-size: cover;
-            background-position: center;
-            float: left;
-            margin-top: 10px;
-            margin-right: 15px;
-            border: 1px solid $dark-gray;
+    #profile-page {
+        padding: 2em 0em;
+        h1 {
+            font-size: 30pt;
+            margin: 0em;
+            padding: 1.3em 0em;
         }
-
+        .btn-topright {
+            background: $blue;
+            color: white;
+            text-decoration: none;
+            padding: 0.5em 2em;
+            margin: 1em 0em;
+            font-size: 13pt;
+            float: right;
+        }
         h2 {
-            font-weight: normal;
-            padding: 0px 10px;
+            font-weight: lighter;
+            padding: 0.5em 0px;
+            margin: 0px;
         }
-
-        .content-box {
+        .gray-box {
             background: $light-gray;
-            padding: 10px;
-            margin: 10px;
-            min-width: 350px;
+            padding: 1em;
+        }
+        .column-spacer {
+            width: 30px;
+        }
+        .row-spacer {
+            height: 30px;
+        }
+        .btn, .btn-danger {
+            padding: 0.5em 1em;
+            color: white;
+            text-decoration: none;
+            margin: 1em 0.3em;
+        }
+        .btn {
+            background: $blue;
+        }
+        .btn-danger {
+            background: #cc0000;
+        }
+        .table-info {
+            text-align: left;
+            th {
+                padding: 0.1em 1em;
+            }
+            td {
+                padding: 0.1em 1em;
+            }
         }
     }
+
 
     article.product_pod {
         padding: 10px 10px 5px 10px;
