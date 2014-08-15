@@ -1,4 +1,4 @@
-{% extends "checkout/layout.html" %}
+{% extends "layout.html" %}
 {% load currency_filters %}
 {% load thumbnail %}
 {% load i18n %}
@@ -8,41 +8,41 @@
     {% trans "Confirmation of order" %} {{ order.number }} | {{ block.super }}
 {% endblock title %}
 
-{% block checkout_nav %}
-<div class="navbar navbar-static-top navbar-inverse nav-checkout">
-    <div class="navbar-inner">
-        <ul class="nav row-fluid visible-phone">
-            <li class="active span12"><span class="navbar-text">{% trans "Confirmation" %}</span></li>
-        </ul>
-    </div><!-- /navbar-inner -->
-</div><!-- /navbar -->
-{% endblock %}
-
-{% block checkout_title %}{% trans "Order confirmation" %}{% endblock %}
 
 {% block content %}
-    <p>{% trans "Your order has been placed and a confirmation email has ben sent - your order number is" %}
-        <span class="label label-success">{{ order.number }}</span></p>
-    <p>{% trans "Please make a note of this reference or print this page and quote it in any communication with us regarding your order." %}</p>
 
-    <div class="row-fluid shipping-payment">
-        <div class="span6">
-        </div>
+<div id="content" class="flex-container grayBackground">
+    <div class="flexItem"></div>
+    <div class="flex-container-vertical content-center">
 
-        <div class="span6">
-
-        </div>
-    </div>
-
-   {% block order_actions %}
-        <div class="form-actions">
-            <div class="row-fluid">
-                <div class="span3 offset6">
-                    <p><a href="{{ homepage_url }}" class="btn btn-primary btn-block btn-large">{% trans "Continue shopping" %}</a></p>
-                </div>
+        <div id="checkout-stages" class="flex-container">
+            <div class="flexItem stage">
+                <div>{% trans "Shopping Cart" %}</div>
+            </div>
+            <div class="flexItem stage">
+                <div>{% trans "Order Confirmation" %}</div>
+            </div>
+            <div class="flexItem stage selected">
+                <div>{% trans "Order Approval" %}</div>
             </div>
         </div>
-    {% endblock order_actions %}
+
+        <div id="pending-order" class="flex-container-vertical">
+            {% trans "Your items are pending for approval." %}<br/>
+            {% if order.number %}
+            {% trans "Your order number is" %}&nbsp;{{ order.number }}
+            {% endif %}
+        </div>
+
+       {% block order_actions %}
+        <div class="form-actions flex-container">
+            <a href="{% url 'customer:summary' %}">{% trans "Check Pending Items Status" %}</a>
+        </div>
+        {% endblock order_actions %}
+
+    </div>
+    <div class="flexItem"></div>
+</div>
 {% endblock content %}
 
 {% block tracking %}

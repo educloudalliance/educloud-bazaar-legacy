@@ -55,7 +55,7 @@
                                 <a href="{{ product.get_absolute_url }}">{{ line.description }}</a>
                             </div>
                             <div class="owner">
-                                by {{ product.get_owner }}
+                                {% trans "by"%} {{ product.get_owner }}
                             </div>
                             <div class="flexItem"></div>
                             <div class="remove-btn">
