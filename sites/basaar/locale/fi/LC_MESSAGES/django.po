@@ -3418,7 +3418,7 @@ msgstr "Hintaluokka"
 
 #: templates/partials/nav_primary.html:209
 msgid "Resources"
-msgstr "Lähteet"
+msgstr "Materiaalit"
 
 #: templates/partials/nav_primary.html:212
 msgid "Recipes"
