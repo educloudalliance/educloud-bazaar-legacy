@@ -1,0 +1,64 @@
+@import url(//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic);
+@import url(//fonts.googleapis.com/css?family=Nunito:400,300,700);
+@import url(//fonts.googleapis.com/css?family=Nunito:400,300,700);
+@font-face {
+  font-family: "Sanchez";
+  src: url("fonts/Sanchez.eot");
+  src: url("fonts/Sanchez.eot?#iefix") format("embedded-opentype"), url("fonts/Sanchez.woff") format("woff"), url("fonts/Sanchez.ttf") format("truetype"), url("fonts/Sanchez.otf") format("opentype"), url("fonts/Sanchez.svg#Sanchez") format("svg");
+  font-style: normal;
+  font-weight: normal;
+}
+
+/* line 5, ../sass/errors.scss */
+body, html {
+  min-height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  font-family: Nunito, Helvetica, sans-serif;
+}
+
+/* line 12, ../sass/errors.scss */
+#error-page {
+  padding: 5em;
+  min-height: 100%;
+  background-color: #4d4d4d;
+}
+/* line 20, ../sass/errors.scss */
+#error-page h1 {
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 100px;
+  margin: 30px 0px 0px 0px;
+}
+/* line 26, ../sass/errors.scss */
+#error-page h1 img {
+  height: 100px;
+  float: left;
+  margin: 15px 44px 0px 0px;
+}
+/* line 34, ../sass/errors.scss */
+#error-page .separator {
+  background-color: white;
+  height: 3px;
+  width: 65px;
+  margin: 20px 0px 50px 140px;
+  border-radius: 10px;
+}
+/* line 41, ../sass/errors.scss */
+#error-page .message {
+  color: white;
+  margin-left: 140px;
+  font-weight: lighter;
+  font-size: 14pt;
+}
+/* line 47, ../sass/errors.scss */
+#error-page .links {
+  margin-left: 140px;
+  font-weight: lighter;
+}
+/* line 50, ../sass/errors.scss */
+#error-page .links a {
+  color: #00a9e4;
+}

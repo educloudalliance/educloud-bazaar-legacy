@@ -352,6 +352,7 @@ footer {
             }
         }
         .strong-logins {
+            border-top: 10px solid #0080bc;
             padding: 7px;
         }
         
@@ -372,6 +373,9 @@ footer {
             border-left: 10px solid $dark-blue;
             border-right: 10px solid $dark-blue;
             background: white;
+            p {
+                padding: 0em 1em;
+            }
             .menu-box-footer {
                 @include user-select(none);
                 border-top: 5px solid $dark-blue;
@@ -558,7 +562,7 @@ footer {
     }
 
     article.product_pod {
-        padding: 10px;
+        padding: 10px 10px 5px 10px;
         color: $dark-gray;
         background: white;
         h3 {
@@ -586,6 +590,12 @@ footer {
             margin: 0px;
             color: red;
             text-align: right;
+            padding-right: 0.3em;
+            padding-bottom: 0.2em;
+        }
+        .star-rating {
+            font-size: 11pt;
+            margin-top: 4px;
         }
         h4 {
             margin: 0px;
@@ -659,12 +669,12 @@ footer {
 
     article.product_page {
         color: $dark-gray;
-        > .flex-container-vertical > div {
-            border-bottom: 2px solid $light-gray;
+        .box-page.details > div {
+            border-bottom: 1px solid #ccc;
             padding: 0px 0px 25px 0px;
         }
-        > .flex-container-vertical > div:first-child {
-            padding: 0px;
+        .box-page.details > div:last-child {
+            border-bottom: none;
         }
         .main {
             margin: 3.5em 0px;
@@ -743,7 +753,7 @@ footer {
         h2 {
             font-size: 19pt;
             font-weight: lighter;
-            padding: 0px;
+            padding: 1em 0em 0em 0em;
         }
         p {
             font-size: 13pt;
@@ -772,7 +782,7 @@ footer {
                 background: white;
             }
             tr:nth-child(even) {
-                background: $light-gray;
+                background: #fafafa;
             }
         }
         .carousel {
@@ -804,19 +814,19 @@ footer {
 
 .py-messages {
     position: fixed;
-    background: rgba(255,255,102,0.85);
-    border: 2px solid $dark-gray;
-    color: black;
-    top: 15px;
-    right: 15px;
-    left: 15px;
+    background: rgba(77,77,77, 0.95);
+    border: 2px solid $gray;
+    color: $gray;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
     z-index: 9999;
     ul {
         list-style: none;
         padding: 0px;
         margin: 0px;
         li {
-            padding: 20px 15px;
+            padding: 12px 15px;
         }
     }
     .close-btn {
@@ -826,9 +836,9 @@ footer {
         top: 0px;
         margin: 5px;
         border-radius: 5px;
-        border: 2px solid $dark-gray;
-        color: $dark-gray;
-        background: white;
+        border: 2px solid rgb(21,129,185);
+        color: white;
+        background: rgb(55,169,224);
         line-height: 30px;
         height: 30px;
         width: 30px;

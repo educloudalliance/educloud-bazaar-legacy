@@ -2,14 +2,14 @@
 {% load i18n %}
 
 {% block title %}
-{% trans 'Server error!' %} | {{ block.super }}
+{% trans '500 Error' %} | {{ block.super }}
 {% endblock %}
 
 {% block error_heading %}
-{% trans "Server error!" %}
+{% trans "500 Error" %}
 {% endblock %}
 
 {% block error_message %}
-<p>{% trans "We're sorry but something went terribly wrong." %}</p>
-<p>{% trans "This incident has been logged and will be addressed by an engineer as soon as possible." %}</p>
+<p>{% trans "Sorry, something went wrong with Pilviväylä Bazaar." %}</p>
+<p>{% trans "Our elite engineers have been notified and are working to fix the problem." %}</p>
 {% endblock %}

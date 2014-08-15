@@ -1,17 +1,32 @@
-{% extends "base.html" %}
-{% load i18n %}
+{% load i18n compress%}
+{% load staticfiles %}
 
-{% block layout %}
-{% include "partials/nav_accounts.html" %}
+<head>
+	<title>{% if display_version %}[{% trans "Build" %} {{ version }}] {% endif %}{% block title %}{{ shop_name }} - {{ shop_tagline }}{% endblock %}</title>
 
-<div class="container-fluid">
-    <div class="hero-unit">
-        <h1>{% block error_heading %}{% trans 'Sorry!' %}{% endblock %}</h1>
-        {% block error_message %}{% endblock %}
-        <p>
-            <a class="btn btn-primary btn-large" onclick="javascript:history.go(-1);">{% trans 'Return to previous page' %}</a>
-            <a class="btn btn-primary btn-large" href="{{ homepage_url }}">{% trans "Go to homepage" %}</a>
-        </p>
-    </div>
-</div>
-{% endblock %}
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="created" content="{% now "jS M Y h:i" %}" />
+    <meta name="description" content="{% block description %}{% endblock %}" />
+    <meta name="keywords" content="{% block keywords %}{% endblock %}" />
+    <meta name="viewport" content="{% block viewport %}width=device-width{% endblock %}" />
+
+    <link rel="stylesheet" href="{% static "shop/css/errors.css" %}">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+	{% block layout %}
+	<div id="error-page">
+	    <h1><img src="{{ STATIC_URL }}shop/img/pilvivayla.png"/> {% block error_heading %}{% trans 'Sorry!' %}{% endblock %}</h1>
+	    
+	    <div class="separator"></div>
+	    <div class="message">
+	    	{% block error_message %}{% endblock %}
+	    </div>
+	    
+	    <div class="links">
+	        <a class="btn btn-primary btn-large" href="#" onclick="javascript:history.go(-1);">{% trans 'Return to previous page' %}</a>
+	    </div>
+	</div>
+	{% endblock %}
+</body>
