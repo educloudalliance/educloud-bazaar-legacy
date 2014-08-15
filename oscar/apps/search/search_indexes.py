@@ -24,6 +24,8 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
     num_in_stock = indexes.IntegerField(null=True, faceted=True)
     rating = indexes.IntegerField(null=True, faceted=True)
 
+
+
     # Spelling suggestions
     suggestions = indexes.FacetCharField()
 

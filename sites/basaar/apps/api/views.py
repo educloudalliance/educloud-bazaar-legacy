@@ -245,6 +245,7 @@ class CMSView(APIView):
                                   dataLicense=x["dataLicense"], copyrightNotice=x["copyrightNotice"], attributionText=x["attributionText"],
                                   attributionURL=x["attributionURL"],visible=visible, product_class=itemClass)
 
+
                 #Add fullfilment into database
                 author = Partner.objects.get(code=self.splitUrl(path)[0])
 
