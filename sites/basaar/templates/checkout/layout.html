@@ -1,18 +1,10 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
 {% load i18n %}
 {% load promotion_tags %}
 {% load category_tags %}
 
 {% block layout %}
 
-    <header class="header container-fluid">
-        <div class="page_inner">
-            <div class="row-fluid">
-                {% include "partials/brand.html" %}
-            </div><!-- /row-fluid -->
-        </div>
-        {% block checkout_nav %}{% endblock %}
-    </header><!-- /header -->
 
     <div class="container-fluid page">
        <div class="page_inner">
@@ -43,12 +35,7 @@
 
             {% block content %}{% endblock %}
 
-            <div id="promotions">
-                {% for promotion in promotions_page %}
-                    {% render_promotion promotion %}
-                {% endfor %}
-            </div>
         </div><!-- /page_inner -->
     </div>
-    {% include "partials/footer_checkout.html" %}
+    {% include "partials/footer.html" %}
 {% endblock %}

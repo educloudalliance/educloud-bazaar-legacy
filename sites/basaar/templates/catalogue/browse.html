@@ -15,50 +15,6 @@
 
 {% block headertext %}{{ summary }}{% endblock %}
 
-{% block breadcrumbs %}
-    <ul class="breadcrumb">
-        <li>
-            <a href="{{ homepage_url }}">{% trans "Home" %}</a>
-            <span class="divider">/</span>
-        </li>
-        {% if not category %}
-            <li class="active">{% trans "All products" %}</li>
-        {% else %}
-            {% for category in category.get_ancestors|slice:":-1" %}
-                <li>
-                    <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-                    <span class="divider">/</span>
-                </li>
-            {% endfor %}
-            <li class="active">{{ category.name }}</li>
-        {% endif %}
-    </ul>
-{% endblock breadcrumbs %}
-
-{% block column_left %}
-    {% category_tree as tree_categories %}
-    {% if tree_categories %}
-        <div class="side_categories" style="padding: 8px 0;">
-            <ul class="nav nav-list">
-                <li class="nav-header">{% trans "Browse categories" %}</li>
-                {% for tree_category, info in tree_categories %}
-                    <li>
-                    {% if tree_category.pk == category.pk %}
-                        <strong>{{ tree_category.name }}</strong>
-                    {% else %}
-                        <a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
-                    {% endif %}
-
-                    {% if info.has_children %}<ul>{% else %}</li>{% endif %}
-                    {% for n in info.num_to_close %}
-                        </ul></li>
-                    {% endfor %}
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
-{% endblock %}
-
 {% block content %}
 <div id="content" class="grayBackground flex-container">
     {% if category.description or category.image %}
@@ -74,8 +30,18 @@
         </div>
     {% endif %}
     {% if products %}
-        <section class="product-section flexItem">
-            <h2>{% trans "Newest Arrivals" %}</h2>
+        <section class="product-section flexItem flex-container-vertical">
+            <div>
+                <ul class="product-list-title flex-container flex-wrap">
+                    <li><h2>{% trans "Newest Arrivals" %}</h2></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
             <div>
                 <ol class="productlist flex-container flex-wrap">
                     {% for product in products %}

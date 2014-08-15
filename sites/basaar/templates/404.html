@@ -1,0 +1,14 @@
+{% extends "error.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans '404 Error' %} | {{ block.super }}
+{% endblock %}
+
+{% block error_heading %}
+{% trans "404 Error" %}
+{% endblock %}
+
+{% block error_message %}
+<p>{% trans "We're sorry but the page you are looking for can't be found." %}</p>
+{% endblock %}

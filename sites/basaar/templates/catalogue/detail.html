@@ -59,7 +59,7 @@
                     <h1>{{ product.get_title }}</h1>
                 </div>
                 <div class="owner">
-                    by {{ product.get_owner }}
+                    {% blocktrans with owner=product.get_owner %}by  {{ owner }} {% endblocktrans %}
                 </div>
             </div>
             <div class="flex-container">
@@ -106,7 +106,7 @@
         
     <div class="flex-container">
         <div class="flexItem"></div>
-        <div class="box-page content-center flex-container-vertical">
+        <div class="box-page details content-center flex-container-vertical">
 
             {% block product_main %}
             {% comment %} 
@@ -131,7 +131,7 @@
                 <h2>{% trans "Product Information" %}</h2>
                 <table class="product-info">
                     <tr>
-                        <th>{% trans "Subjects" %}</th><td>{{product.categories.first}}</td>
+                        <th>{% trans "Subjects" %}</th><td>{% blocktrans with category=product.categories.first %}{{ category }}{% endblocktrans %}</td>
                     </tr>
                     <tr>
                         <th>{% trans "Grade" %}</th>
@@ -151,31 +151,19 @@
                             {% endif %}</td>
                     </tr>
                     <tr>
-                        <th>{% trans "Product Type" %}</th><td>{{ product.get_product_class.name }}</td>
+                        <th>{% trans "Product Type" %}</th><td>{% blocktrans with class=product.get_product_class.name %}{{ class }}{% endblocktrans %}</td>
                     </tr>
-                    {% if product.upc %}
-                    <tr>
-                        <th>{% trans "UPC" %}</th><td>{{ product.upc }}</td>
-                    </tr>
-                    {% endif %}
-
-                    {% purchase_info_for_product request product as session %}
+                      {% purchase_info_for_product request product as session %}
                     {% if session.price.exists %}
                         <tr>
-                            <th>{% trans "Price (excl. tax)" %}</th><td>{{ session.price.excl_tax|currency:session.price.currency }}</td>
+                            <th>{% trans "Price" %}</th><td>{{ session.price.excl_tax|currency:session.price.currency }}</td>
                         </tr>
-                        {% if session.price.is_tax_known %}
-                            <tr>
-                                <th>{% trans "Price (incl. tax)" %}</th><td>{{ session.price.incl_tax|currency:session.price.currency }}</td>
-                            </tr>
-                            <tr>
-                                <th>{% trans "Tax" %}</th><td>{{ session.price.tax|currency:session.price.currency }}</td>
-                            </tr>
-                        {% endif %}
+                        {% comment %}
                         <tr>
                             <th>{% trans "Availability" %}</th>
                             <td>{{ session.availability.message }}</td>
                         </tr>
+                        {% endcomment %}
                     {% endif %}
                     {% for av in product.attribute_values.all %}
                         <tr>
@@ -196,7 +184,7 @@
             {% with all_media=product.get_media %}
             {% if all_media|length > 0 %}
             <div id="product_images">
-                <h2>{% trans "Screen Shots" %}</h2>
+                <h2>{% trans "Media" %}</h2>
                 {% include "catalogue/partials/gallery.html" %}
             </div>
             {% endif %}
@@ -282,9 +270,11 @@
                 {% endif %}
             {% endwith %}
             
+            <!--
             <div id="product_related">
                 {% recently_viewed_products %}
             </div>
+            -->
 
         </div>
         <div class="flexItem"></div>

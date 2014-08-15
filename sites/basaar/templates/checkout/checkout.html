@@ -1,4 +1,4 @@
-{% extends "checkout/layout.html" %}
+{% extends "layout.html" %}
 {% load currency_filters %}
 {% load thumbnail %}
 {% load i18n %}
@@ -9,6 +9,17 @@
     {% trans "Checkout" %} | {{ block.super }}
 {% endblock %}
 
+<div id="checkout-stages" class="flex-container">
+    <div class="flexItem stage">
+        <div>{% trans "Shopping Cart" %}</div>
+    </div>
+    <div class="flexItem stage selected">
+        <div>{% trans "Order Confirmation" %}</div>
+    </div>
+    <div class="flexItem stage">
+        <div>{% trans "Order Approval" %}</div>
+    </div>
+</div>
 {% block checkout_nav %}
     {% include 'checkout/nav.html' %}
 {% endblock %}

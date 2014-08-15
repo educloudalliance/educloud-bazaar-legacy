@@ -1,0 +1,15 @@
+{% extends "error.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans '500 Error' %} | {{ block.super }}
+{% endblock %}
+
+{% block error_heading %}
+{% trans "500 Error" %}
+{% endblock %}
+
+{% block error_message %}
+<p>{% trans "Sorry, something went wrong with Pilviväylä Bazaar." %}</p>
+<p>{% trans "Our elite engineers have been notified and are working to fix the problem." %}</p>
+{% endblock %}

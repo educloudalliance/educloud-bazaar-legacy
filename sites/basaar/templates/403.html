@@ -1,0 +1,14 @@
+{% extends "error.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans '403 Error' %} | {{ block.super }}
+{% endblock %}
+
+{% block error_heading %}
+{% trans "403 Error" %}
+{% endblock %}
+
+{% block error_message %}
+<p>{% trans "We're sorry but you are not permitted to access this page." %}</p>
+{% endblock %}

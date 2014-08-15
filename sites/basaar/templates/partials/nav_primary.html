@@ -12,7 +12,7 @@
         <div class="flexItem">
         </div>
 
-        <div id="menu-categories">{% trans "Refine Items"%} <i class="fa fa-caret-down"></i>
+        <div id="menu-categories">{% trans "Refine Items"%}&nbsp;&nbsp;<i class="fa fa-caret-down"></i>
         </div>
 
         <div class="flexItem">
@@ -21,8 +21,8 @@
         <div id="generalSearch" class="flexItem3 flex-container">
             <form method="get" action="{% url 'search:search' %}" class="flex-container flexItem">
                 <div class="flex-container flexItem">
-                    <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_Search.svg"/>
                     <div class="flexItem">{{ search_form.q }}</div>
+                    <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_Search.svg"/>
                 </div>
             </form>
         </div>
@@ -32,7 +32,7 @@
 
         <div id="icons" class="flex-container">
                  
-            <div class="flexItem">
+            <div>
                 <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_ShoppingBasket.Icon.svg"/>
                 {% if request.basket.num_lines %}
                 <div class="notification-number">{{request.basket.num_lines}}</div>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flexItem" id="profile-icon">
+            <div id="profile-icon">
                 <img class="menu-icon svg {% if user.is_authenticated %}logged{% endif %}" src="{{ STATIC_URL }}shop/img/Bazaar_Profile.Icon.svg"/>
                 {% if num_unread_notifications > 0 %}
                 <div class="notification-number">{{num_unread_notifications}}</div>
@@ -102,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flexItem" id="language-icon">
+            <div id="language-icon">
                 <div class="menu-icon">{{LANGUAGE_CODE}} <i class="fa fa-caret-down"></i></div>
                 {% if LANGUAGES|length > 1 %}
                      <div class="menu-box">
