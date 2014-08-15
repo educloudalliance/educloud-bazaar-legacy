@@ -31,7 +31,7 @@
                     <div class="titleFade"></div>
                 </h3>
             {% endblock %}
-                <h4 class="owner">by {{ product.get_owner }}</h4>
+                <h4 class="owner">{% blocktrans with owner=product.get_owner %}by  {{ owner }} {% endblocktrans %}</h4>
 
             <div class="flexItem">
             </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-15 10:19+0300\n"
+"POT-Creation-Date: 2014-08-15 14:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,7 +65,6 @@ msgid "Status"
 msgstr ""
 
 #: apps/basket/abstract_models.py:46
-#: templates/basket/partials/basket_totals.html:38
 msgid "Vouchers"
 msgstr ""
 
@@ -87,8 +86,6 @@ msgstr ""
 #: apps/basket/abstract_models.py:58 apps/basket/abstract_models.py:545
 #: apps/order/abstract_models.py:28 templates/basket/basket.html:6
 #: templates/basket/basket.html.py:15 templates/basket/basket.html:23
-#: templates/basket/partials/basket_totals.html:8
-#: templates/basket/partials/basket_totals.html:98
 msgid "Basket"
 msgstr ""
 
@@ -410,7 +407,6 @@ msgid "Product Categories"
 msgstr ""
 
 #: apps/catalogue/abstract_models.py:205 apps/order/abstract_models.py:419
-#: templates/catalogue/detail.html:159
 msgid "UPC"
 msgstr ""
 
@@ -786,7 +782,7 @@ msgstr ""
 msgid "%s is not a valid image archive"
 msgstr ""
 
-#: apps/catalogue/views.py:151 templates/catalogue/browse.html:25
+#: apps/catalogue/views.py:151
 msgid "All products"
 msgstr ""
 
@@ -1496,7 +1492,6 @@ msgid "Price (inc. tax)"
 msgstr ""
 
 #: apps/order/abstract_models.py:431 apps/order/abstract_models.py:721
-#: templates/catalogue/detail.html:166
 msgid "Price (excl. tax)"
 msgstr ""
 
@@ -1730,6 +1725,40 @@ msgstr ""
 msgid "There is already an order with number %s"
 msgstr ""
 
+#: templates/403.html:5 templates/403.html.py:9
+msgid "Permission denied!"
+msgstr ""
+
+#: templates/403.html:13
+msgid "We're sorry but you are not permitted to access this page."
+msgstr ""
+
+#: templates/404.html:5
+msgid "Page not found"
+msgstr ""
+
+#: templates/404.html:9
+msgid "Page not found!"
+msgstr ""
+
+#: templates/404.html:13
+msgid "We're sorry but the page you are looking for can't be found."
+msgstr ""
+
+#: templates/500.html:5 templates/500.html.py:9
+msgid "Server error!"
+msgstr ""
+
+#: templates/500.html:13
+msgid "We're sorry but something went terribly wrong."
+msgstr ""
+
+#: templates/500.html:14
+msgid ""
+"This incident has been logged and will be addressed by an engineer as soon "
+"as possible."
+msgstr ""
+
 #: templates/base.html:9
 msgid "Build"
 msgstr ""
@@ -1738,8 +1767,19 @@ msgstr ""
 msgid "Version:"
 msgstr ""
 
-#: templates/basket/basket.html:12 templates/catalogue/browse.html:21
-#: templates/catalogue/detail.html:24
+#: templates/error.html:9
+msgid "Sorry!"
+msgstr ""
+
+#: templates/error.html:12
+msgid "Return to previous page"
+msgstr ""
+
+#: templates/error.html:13
+msgid "Go to homepage"
+msgstr ""
+
+#: templates/basket/basket.html:12 templates/catalogue/detail.html:24
 #: templates/catalogue/reviews/review_detail.html:11
 #: templates/catalogue/reviews/review_list.html:13
 #: templates/customer/baseaccountpage.html:14
@@ -1852,19 +1892,14 @@ msgid "Order Approval"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:43
-#: templates/basket/partials/basket_content.html:170
-#: templates/checkout/checkout.html:111
-msgid "Price"
+msgid "Individual Price"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:44
-#: templates/basket/partials/basket_quick.html:37
-msgid "Total"
+msgid "Subtotal"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:76
-#: templates/basket/partials/basket_content.html:193
-#: templates/basket/partials/basket_totals.html:47
 #: templates/catalogue/partials/add_to_wishlist.html:41
 #: templates/customer/wishlists/wishlists_delete_product.html:36
 #: templates/customer/wishlists/wishlists_detail.html:84
@@ -1876,79 +1911,22 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-#: templates/basket/partials/basket_content.html:115
-msgid "Voucher/promo code"
-msgstr ""
-
-#: templates/basket/partials/basket_content.html:117
-msgid "I have a voucher code..."
-msgstr ""
-
-#: templates/basket/partials/basket_content.html:120
-msgid "Voucher code"
-msgstr ""
-
-#: templates/basket/partials/basket_content.html:124
-msgid "Add voucher"
+#: templates/basket/partials/basket_content.html:114
+#: templates/basket/partials/basket_quick.html:37
+msgid "Total"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:125
-#: templates/catalogue/reviews/review_form.html:12
-#: templates/checkout/shipping_address.html:70
-#: templates/checkout/user_address_delete.html:30
-#: templates/checkout/user_address_form.html:25
-#: templates/customer/registration.html:31
-#: templates/customer/address/address_delete.html:21
-#: templates/customer/profile/profile_delete.html:18
-#: templates/customer/wishlists/wishlists_delete.html:36
-#: templates/customer/wishlists/wishlists_delete_product.html:36
-#: templates/customer/wishlists/wishlists_form.html:44
-#: templates/partials/form.html:9
-msgid "or"
+msgid "Proceed"
 msgstr ""
 
-#: templates/basket/partials/basket_content.html:125
-#: templates/catalogue/reviews/review_form.html:13
-#: templates/checkout/user_address_delete.html:30
-#: templates/checkout/user_address_form.html:25
-#: templates/customer/registration.html:31
-#: templates/customer/address/address_delete.html:21
-#: templates/customer/profile/profile_delete.html:18
-#: templates/customer/wishlists/wishlists_delete.html:36
-#: templates/customer/wishlists/wishlists_delete_product.html:36
-#: templates/customer/wishlists/wishlists_form.html:44
-#: templates/partials/form.html:9
-msgid "cancel"
+#: templates/basket/partials/basket_content.html:132
+msgid "Your shopping cart is empty"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:135
-#: templates/customer/anon_order.html:95
-msgid "Totals"
-msgstr ""
-
-#: templates/basket/partials/basket_content.html:147
-msgid "Proceed to checkout"
-msgstr ""
-
-#: templates/basket/partials/basket_content.html:156
-msgid "Your basket is empty."
-msgstr ""
-
-#: templates/basket/partials/basket_content.html:157
 #: templates/checkout/thank_you.html:41
 msgid "Continue shopping"
-msgstr ""
-
-#: templates/basket/partials/basket_content.html:166
-msgid "To buy later"
-msgstr ""
-
-#: templates/basket/partials/basket_content.html:169
-msgid "Items"
-msgstr ""
-
-#: templates/basket/partials/basket_content.html:210
-msgid "Move to basket"
 msgstr ""
 
 #: templates/basket/partials/basket_quick.html:26
@@ -1960,63 +1938,18 @@ msgstr ""
 msgid "Your cart is empty."
 msgstr ""
 
-#: templates/basket/partials/basket_totals.html:15
-msgid "Basket total (before discounts)"
-msgstr ""
-
-#: templates/basket/partials/basket_totals.html:27
-#: templates/customer/order/order_detail.html:75
-#: templates/customer/order/order_detail.html:108
-msgid "Discount"
-msgstr ""
-
-#: templates/basket/partials/basket_totals.html:61
-msgid "Basket total (after discounts)"
-msgstr ""
-
-#: templates/basket/partials/basket_totals.html:73
-#: templates/customer/order/order_detail.html:92
-msgid "Basket total"
-msgstr ""
-
-#: templates/basket/partials/basket_totals.html:94
-#: templates/catalogue/detail.html:173
-msgid "Tax"
-msgstr ""
-
-#: templates/basket/partials/basket_totals.html:104
-#: templates/checkout/checkout.html:28
-msgid "Shipping"
-msgstr ""
-
-#: templates/basket/partials/basket_totals.html:119
-msgid "Post order actions"
-msgstr ""
-
-#: templates/basket/partials/basket_totals.html:119
-msgid "These will be applied once your order is placed."
-msgstr ""
-
-#: templates/basket/partials/basket_totals.html:139
-#: templates/customer/anon_order.html:105
-#: templates/customer/order/order_detail.html:128
-msgid "Order total"
-msgstr ""
-
-#: templates/basket/partials/basket_totals.html:152
-msgid "Taxes will be added during checkout."
-msgstr ""
-
-#: templates/catalogue/browse.html:43
-msgid "Browse categories"
-msgstr ""
-
-#: templates/catalogue/browse.html:78
+#: templates/catalogue/browse.html:36
 msgid "Newest Arrivals"
 msgstr ""
 
-#: templates/catalogue/browse.html:89
+#: templates/catalogue/browse.html:55
 msgid "No products found."
+msgstr ""
+
+#: templates/catalogue/detail.html:62
+#: templates/catalogue/partials/product.html:34
+#, python-format
+msgid "by  %(owner)s "
 msgstr ""
 
 #: templates/catalogue/detail.html:119
@@ -2035,27 +1968,33 @@ msgstr ""
 msgid "Subjects"
 msgstr ""
 
+#: templates/catalogue/detail.html:135
+#, python-format
+msgid "%(category)s"
+msgstr ""
+
 #: templates/catalogue/detail.html:138 templates/partials/nav_primary.html:165
 msgid "Grade"
 msgstr ""
 
-#: templates/catalogue/detail.html:170
-msgid "Price (incl. tax)"
+#: templates/catalogue/detail.html:155
+#, python-format
+msgid "%(class)s"
 msgstr ""
 
-#: templates/catalogue/detail.html:177
-msgid "Availability"
+#: templates/catalogue/detail.html:160 templates/checkout/checkout.html:111
+msgid "Price"
 msgstr ""
 
-#: templates/catalogue/detail.html:189
+#: templates/catalogue/detail.html:178
 msgid "Number of reviews"
 msgstr ""
 
-#: templates/catalogue/detail.html:200
-msgid "Screen Shots"
+#: templates/catalogue/detail.html:189
+msgid "Media"
 msgstr ""
 
-#: templates/catalogue/detail.html:216
+#: templates/catalogue/detail.html:205
 #, python-format
 msgid ""
 "\n"
@@ -2068,22 +2007,22 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/catalogue/detail.html:228
+#: templates/catalogue/detail.html:217
 #: templates/catalogue/reviews/review_product.html:43
 #: templates/customer/anon_order.html:79
 #: templates/customer/order/order_detail.html:37
 msgid "Write a review"
 msgstr ""
 
-#: templates/catalogue/detail.html:240
+#: templates/catalogue/detail.html:229
 msgid "See all reviews"
 msgstr ""
 
-#: templates/catalogue/detail.html:242
+#: templates/catalogue/detail.html:231
 msgid "Customer Reviews"
 msgstr ""
 
-#: templates/catalogue/detail.html:249
+#: templates/catalogue/detail.html:238
 #, python-format
 msgid ""
 "This product does not have any reviews yet -\n"
@@ -2092,11 +2031,11 @@ msgid ""
 "                                    "
 msgstr ""
 
-#: templates/catalogue/detail.html:253
+#: templates/catalogue/detail.html:242
 msgid "This product does not have any reviews yet"
 msgstr ""
 
-#: templates/catalogue/detail.html:274
+#: templates/catalogue/detail.html:263
 msgid "Recommended items"
 msgstr ""
 
@@ -2174,6 +2113,33 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
+#: templates/catalogue/reviews/review_form.html:12
+#: templates/checkout/shipping_address.html:70
+#: templates/checkout/user_address_delete.html:30
+#: templates/checkout/user_address_form.html:25
+#: templates/customer/registration.html:31
+#: templates/customer/address/address_delete.html:21
+#: templates/customer/profile/profile_delete.html:18
+#: templates/customer/wishlists/wishlists_delete.html:36
+#: templates/customer/wishlists/wishlists_delete_product.html:36
+#: templates/customer/wishlists/wishlists_form.html:44
+#: templates/partials/form.html:9
+msgid "or"
+msgstr ""
+
+#: templates/catalogue/reviews/review_form.html:13
+#: templates/checkout/user_address_delete.html:30
+#: templates/checkout/user_address_form.html:25
+#: templates/customer/registration.html:31
+#: templates/customer/address/address_delete.html:21
+#: templates/customer/profile/profile_delete.html:18
+#: templates/customer/wishlists/wishlists_delete.html:36
+#: templates/customer/wishlists/wishlists_delete_product.html:36
+#: templates/customer/wishlists/wishlists_form.html:44
+#: templates/partials/form.html:9
+msgid "cancel"
+msgstr ""
+
 #: templates/catalogue/reviews/review_list.html:7
 #: templates/catalogue/reviews/review_list.html:28
 msgid "All reviews"
@@ -2214,6 +2180,10 @@ msgstr[1] ""
 
 #: templates/checkout/checkout.html:9 templates/partials/nav_primary.html:49
 msgid "Checkout"
+msgstr ""
+
+#: templates/checkout/checkout.html:28
+msgid "Shipping"
 msgstr ""
 
 #: templates/checkout/checkout.html:34 templates/checkout/checkout.html:65
@@ -2448,8 +2418,17 @@ msgstr ""
 msgid "Line price incl. tax"
 msgstr ""
 
+#: templates/customer/anon_order.html:95
+msgid "Totals"
+msgstr ""
+
 #: templates/customer/anon_order.html:97
 msgid "Basket total (inc. tax)"
+msgstr ""
+
+#: templates/customer/anon_order.html:105
+#: templates/customer/order/order_detail.html:128
+msgid "Order total"
 msgstr ""
 
 #: templates/customer/baseaccountpage.html:6
@@ -2859,8 +2838,17 @@ msgstr ""
 msgid "Basket total (excl. discounts)"
 msgstr ""
 
+#: templates/customer/order/order_detail.html:75
+#: templates/customer/order/order_detail.html:108
+msgid "Discount"
+msgstr ""
+
 #: templates/customer/order/order_detail.html:87
 msgid "Basket total (inc. discounts)"
+msgstr ""
+
+#: templates/customer/order/order_detail.html:92
+msgid "Basket total"
 msgstr ""
 
 #: templates/customer/order/order_detail.html:102
