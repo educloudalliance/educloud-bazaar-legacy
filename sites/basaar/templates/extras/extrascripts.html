@@ -46,11 +46,11 @@
             if($(this).parent().find('.menu-box').is(":visible")) {
                 $('.menu-box').hide('fade');
                 $('#language-icon i').removeClass('fa-caret-up').addClass('fa-caret-down');
-                $('#icons > .flexItem').removeClass('active');
+                $('#icons > div').removeClass('active');
             } else {
                 $('.menu-box').hide('fade');
                 $('#language-icon i').removeClass('fa-caret-down').addClass('fa-caret-up');
-                $('#icons > .flexItem').removeClass('active');
+                $('#icons > div').removeClass('active');
                 $(this).parent().addClass('active');
                 $(this).parent().find('.menu-box').show('fade');
             }
@@ -67,10 +67,10 @@
     function toggleMenuItem() {
         if($(this).parent().find('.menu-box').is(":visible")) {
             $('.menu-box').hide('fade');
-            $('#icons > .flexItem').removeClass('active');
+            $('#icons > div').removeClass('active');
         } else {
             $('.menu-box').hide('fade');
-            $('#icons > .flexItem').removeClass('active');
+            $('#icons > div').removeClass('active');
             $(this).parent().addClass('active');
             $(this).parent().find('.menu-box').slideDown();
         }
