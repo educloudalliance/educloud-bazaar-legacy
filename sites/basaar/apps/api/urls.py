@@ -17,7 +17,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 router = routers.DefaultRouter()
 #router.register(r'users', UserViewSet)
-#router.register(r'subjects',  views.SubjectList)
+router.register(r'subjects',  views.SubjectList)
 router.register(r'producttypes', views.ProductTypeList)
 
 urlpatterns = patterns('',
