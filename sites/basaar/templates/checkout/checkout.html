@@ -15,8 +15,8 @@
 
 {% block content %}
 <div id="content" class="flex-container grayBackground">
-        <div class="flexItem"></div>
-        <div class="flex-container-vertical content-center">
+    <div class="flexItem"></div>
+    <div class="flex-container-vertical content-center">
         
 
         <div id="checkout-stages" class="flex-container">
@@ -37,6 +37,31 @@
             </div>
         {% endif %}
 
+            <div class="flex-container">
+                <div class="flexItem half-box">
+                    <div class="sub-header">
+                        <h2>{% trans "Your Personal Information" %}</h2>
+                    </div>
+                    <ul>
+                        <li>{{ request.user.get_full_name|default:'-' }}</li>
+                        <li>{{ user.email }}</li>
+                        <li>Finland</li>
+                    </ul>
+                    <div class="disclaimer">{% trans "Data acquired from" %}&nbsp;<a href="#">OID</a><br/>
+                    <a href="#">{% trans "Report incorrect data" %}</a>
+                    </div>
+
+
+                </div>
+                <div class="flexItem half-box">
+                    <div class="sub-header">
+                        <h2>{% trans "Your Approver's Information" %}</h2>
+                    </div>
+                    <select>
+                        <option>{% trans "Select an Approver" %}</option>
+                    </select>
+                </div>
+            </div>
         {% block order_contents %}
             <div class="sub-header">
                 <h2>{% trans "Order contents" %}</h2>
@@ -53,55 +78,53 @@
                 {% purchase_info_for_line request line as session %}
                 <div class="basket-items flex-container">
                     <div>
-                        {% with image=product.primary_image %}
+                        {% with image=line.product.primary_image %}
                             {% thumbnail image.original "x155" upscale=False as thumb %}
-                            <a href="{{ product.get_absolute_url }}"><img src="{{ product.icon }}" alt="{{ product.get_title }}" class="thumbnail"></a>
+                            <a href="{{ product.get_absolute_url }}"><img src="{{ line.product.icon }}" alt="{{ line.product.get_title }}" class="thumbnail"></a>
                             {% endthumbnail %}
                         {% endwith %}
                     </div>
-                        <div class="span2">
-                            <div class="image_container">
-                                {% with image=line.product.primary_image %}
-                                    {% thumbnail image.original "100x100" upscale=False as thumb %}
-                                    <a href="{{ form.instance.product.get_absolute_url }}"><img class="thumbnail" src="{{ thumb.url }}" alt="{{ product.get_title }}"></a>
-                                    {% endthumbnail %}
-                                {% endwith %}
-                            </div>
+                    <div class="flex-container-vertical flexItem">
+                        <div class="title">
+                            <a href="{{ product.get_absolute_url }}">{{ line.description }}</a>
                         </div>
-                        <div class="span7">
-                            <h4><a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></h4>
-                            <span class="availability {{ session.availability.code }}">{{ session.availability.message }}</span>
+                        <div class="owner">
+                            {% blocktrans with owner=line.product.get_owner %}by  {{ owner }} {% endblocktrans %}
                         </div>
-                        <div class="span1 align-center">
+                        <div class="flexItem"></div>
+                    </div>
+                    <div class="checkout-quantity">
                             {{ line.quantity }}
-                        </div>
-                        <div class="span2 align-right">
-                            <p class="price_color">
-                                {% if not show_tax_separately and line.is_tax_known %}
-                                    {{ line.line_price_incl_tax|currency:basket.currency }}
-                                {% else %}
-                                    {{ line.line_price_excl_tax|currency:basket.currency }}
-                                {% endif %}
-                            </p>
-                        </div>
+                    </div>
+                    <div class="price">
+                        {% if line.is_tax_known %}
+                            {{ line.unit_price_incl_tax|currency:line.price_currency }}
+                        {% else %}
+                            {{ line.unit_price_excl_tax|currency:line.price_currency }}
+                        {% endif %}
+                    </div>
+                    <div class="subtotal">
+                        {% if not show_tax_separately and line.is_tax_known %}
+                            {{ line.line_price_incl_tax|currency:basket.currency }}
+                        {% else %}
+                            {{ line.line_price_excl_tax|currency:basket.currency }}
+                        {% endif %}
+                    </div>
                 </div>
             {% endfor %}
             </div>
 
-            <div class="row-fluid">
-                <div class="span6">&nbsp;</div>
-                <div class="span6">
-                    {% include 'basket/partials/basket_totals.html' %}
-                </div>
+            <div class="totals-line flex-container">
+                    <div class="flexItem"></div>
+                    <div class="label">
+                        {% trans "Total" %}:
+                    </div>
+                    <div class="price">
+                        {% include 'basket/partials/basket_totals.html' %}
+                    </div>
             </div>
-
         {% endblock order_contents %}
 
-        {% block shipping_method %}
-        {% endblock shipping_method %}
-
-        {% block payment_details %}
-        {% endblock payment_details %}
 
         {% block place_order %}
         {% endblock place_order %}
