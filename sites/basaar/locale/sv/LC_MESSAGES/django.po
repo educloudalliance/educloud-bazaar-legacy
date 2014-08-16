@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-16 00:09+0300\n"
+"POT-Creation-Date: 2014-08-16 10:19+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,10 +83,11 @@ msgstr ""
 
 #: apps/basket/abstract_models.py:50
 #: templates/customer/order/order_list.html:40
+#: templates/customer/profile/profile.html:123
 msgid "Date submitted"
 msgstr ""
 
-#: apps/basket/abstract_models.py:58 apps/basket/abstract_models.py:545
+#: apps/basket/abstract_models.py:58 apps/basket/abstract_models.py:547
 #: apps/order/abstract_models.py:28 templates/basket/basket.html:6
 #: templates/basket/basket.html.py:13
 msgid "Basket"
@@ -108,11 +109,11 @@ msgid ""
 "items in one order."
 msgstr ""
 
-#: apps/basket/abstract_models.py:552
+#: apps/basket/abstract_models.py:554
 msgid "Line Reference"
 msgstr ""
 
-#: apps/basket/abstract_models.py:556 apps/catalogue/abstract_models.py:177
+#: apps/basket/abstract_models.py:558 apps/catalogue/abstract_models.py:177
 #: apps/catalogue/abstract_models.py:278 apps/catalogue/abstract_models.py:775
 #: apps/catalogue/abstract_models.py:1023 apps/order/abstract_models.py:414
 #: templates/customer/anon_order.html:58
@@ -122,7 +123,7 @@ msgstr ""
 msgid "Product"
 msgstr ""
 
-#: apps/basket/abstract_models.py:562 apps/basket/forms.py:134
+#: apps/basket/abstract_models.py:564 apps/basket/forms.py:134
 #: apps/basket/forms.py:281 apps/order/abstract_models.py:421
 #: apps/order/abstract_models.py:717 apps/order/abstract_models.py:817
 #: apps/order/abstract_models.py:874
@@ -132,77 +133,77 @@ msgstr ""
 msgid "Quantity"
 msgstr ""
 
-#: apps/basket/abstract_models.py:568 apps/order/abstract_models.py:47
+#: apps/basket/abstract_models.py:570 apps/order/abstract_models.py:47
 msgid "Currency"
 msgstr ""
 
-#: apps/basket/abstract_models.py:570
+#: apps/basket/abstract_models.py:572
 msgid "Price excl. Tax"
 msgstr ""
 
-#: apps/basket/abstract_models.py:573
+#: apps/basket/abstract_models.py:575
 msgid "Price incl. Tax"
 msgstr ""
 
-#: apps/basket/abstract_models.py:576 apps/catalogue/abstract_models.py:254
+#: apps/basket/abstract_models.py:578 apps/catalogue/abstract_models.py:254
 #: apps/catalogue/abstract_models.py:1033 apps/customer/abstract_models.py:171
 #: apps/order/abstract_models.py:324 apps/order/abstract_models.py:844
 msgid "Date Created"
 msgstr ""
 
-#: apps/basket/abstract_models.py:588
+#: apps/basket/abstract_models.py:590
 msgid "Basket line"
 msgstr ""
 
-#: apps/basket/abstract_models.py:589
+#: apps/basket/abstract_models.py:591
 msgid "Basket lines"
 msgstr ""
 
-#: apps/basket/abstract_models.py:593
+#: apps/basket/abstract_models.py:595
 #, python-format
 msgid "Basket #%(basket_id)d, Product #%(product_id)d, quantity %(quantity)d"
 msgstr ""
 
-#: apps/basket/abstract_models.py:601
+#: apps/basket/abstract_models.py:603
 #, python-format
 msgid "You cannot modify a %s basket"
 msgstr ""
 
-#: apps/basket/abstract_models.py:814
+#: apps/basket/abstract_models.py:816
 #, python-format
 msgid ""
 "The price of '%(product)s' has increased from %(old_price)s to %(new_price)s "
 "since you added it to your basket"
 msgstr ""
 
-#: apps/basket/abstract_models.py:819
+#: apps/basket/abstract_models.py:821
 #, python-format
 msgid ""
 "The price of '%(product)s' has decreased from %(old_price)s to %(new_price)s "
 "since you added it to your basket"
 msgstr ""
 
-#: apps/basket/abstract_models.py:830 apps/order/abstract_models.py:689
+#: apps/basket/abstract_models.py:832 apps/order/abstract_models.py:689
 #: apps/order/abstract_models.py:716 apps/order/abstract_models.py:816
 #: apps/order/abstract_models.py:873
 msgid "Line"
 msgstr ""
 
-#: apps/basket/abstract_models.py:831 apps/catalogue/abstract_models.py:611
+#: apps/basket/abstract_models.py:833 apps/catalogue/abstract_models.py:611
 #: apps/catalogue/abstract_models.py:885 apps/catalogue/abstract_models.py:969
 #: apps/order/abstract_models.py:692 apps/order/abstract_models.py:714
 msgid "Option"
 msgstr ""
 
-#: apps/basket/abstract_models.py:832 apps/order/abstract_models.py:694
+#: apps/basket/abstract_models.py:834 apps/order/abstract_models.py:694
 msgid "Value"
 msgstr ""
 
-#: apps/basket/abstract_models.py:836
+#: apps/basket/abstract_models.py:838
 msgid "Line attribute"
 msgstr ""
 
-#: apps/basket/abstract_models.py:837
+#: apps/basket/abstract_models.py:839
 msgid "Line attributes"
 msgstr ""
 
@@ -254,7 +255,7 @@ msgstr ""
 #: apps/customer/abstract_models.py:145 apps/dashboard/users/forms.py:42
 #: apps/dashboard/vouchers/forms.py:17 apps/dashboard/vouchers/forms.py:88
 #: apps/order/abstract_models.py:749 apps/order/abstract_models.py:904
-#: apps/order/reports.py:21 templates/customer/profile/profile.html:17
+#: apps/order/reports.py:21 templates/customer/profile/profile.html:25
 #: templates/customer/wishlists/wishlists_list.html:9
 msgid "Name"
 msgstr ""
@@ -276,6 +277,7 @@ msgstr ""
 
 #: apps/basket/reports.py:23 apps/basket/reports.py:81
 #: templates/customer/order/order_list.html:38
+#: templates/customer/profile/profile.html:121
 msgid "Num items"
 msgstr ""
 
@@ -1024,7 +1026,7 @@ msgstr ""
 
 #: apps/customer/forms.py:94 apps/customer/forms.py:132
 #: apps/dashboard/partners/forms.py:118
-#: templates/customer/profile/profile.html:21
+#: templates/customer/profile/profile.html:29
 msgid "Email address"
 msgstr ""
 
@@ -1063,6 +1065,7 @@ msgstr ""
 #: apps/dashboard/offers/reports.py:13 apps/dashboard/orders/forms.py:65
 #: apps/dashboard/orders/views.py:331 apps/order/abstract_models.py:21
 #: apps/order/reports.py:20 templates/customer/order/order_list.html:37
+#: templates/customer/profile/profile.html:120
 msgid "Order number"
 msgstr ""
 
@@ -1146,7 +1149,7 @@ msgstr ""
 
 #: apps/customer/views.py:246 templates/customer/baseaccountpage.html:32
 #: templates/customer/partials/nav_account.html:20
-#: templates/customer/profile/profile.html:8
+#: templates/customer/profile/profile.html:13
 #: templates/partials/nav_primary.html:66
 msgid "Profile"
 msgstr ""
@@ -1159,7 +1162,7 @@ msgstr ""
 msgid "Profile updated"
 msgstr ""
 
-#: apps/customer/views.py:343 templates/customer/profile/profile.html:56
+#: apps/customer/views.py:343 templates/customer/profile/profile.html:54
 msgid "Delete profile"
 msgstr ""
 
@@ -3043,7 +3046,7 @@ msgid "Update"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:100
-#: templates/basket/partials/basket_quick.html:37
+#: templates/basket/partials/basket_quick.html:40
 #: templates/checkout/checkout.html:120
 msgid "Total"
 msgstr ""
@@ -3060,12 +3063,12 @@ msgstr ""
 msgid "Continue shopping"
 msgstr ""
 
-#: templates/basket/partials/basket_quick.html:26
+#: templates/basket/partials/basket_quick.html:29
 #: templates/customer/order/order_detail.html:20
 msgid "Qty"
 msgstr ""
 
-#: templates/basket/partials/basket_quick.html:33
+#: templates/basket/partials/basket_quick.html:36
 msgid "Your cart is empty."
 msgstr ""
 
@@ -3318,7 +3321,7 @@ msgid "Checkout"
 msgstr ""
 
 #: templates/checkout/checkout.html:43
-#: templates/customer/profile/profile.html:12
+#: templates/customer/profile/profile.html:20
 msgid "Your Personal Information"
 msgstr ""
 
@@ -3413,6 +3416,8 @@ msgstr ""
 #: templates/customer/address/address_list.html:37
 #: templates/customer/notifications/list.html:40
 #: templates/customer/notifications/list.html:50
+#: templates/customer/profile/profile.html:94
+#: templates/customer/profile/profile.html:104
 #: templates/customer/profile/profile_delete.html:17
 #: templates/customer/wishlists/wishlists_delete.html:36
 #: templates/customer/wishlists/wishlists_list.html:31
@@ -3883,21 +3888,26 @@ msgid "Archive"
 msgstr ""
 
 #: templates/customer/notifications/list.html:36
+#: templates/customer/profile/profile.html:90
 #: templates/customer/wishlists/wishlists_list.html:19
 msgid "View"
 msgstr ""
 
 #: templates/customer/notifications/list.html:38
 #: templates/customer/notifications/list.html:48
+#: templates/customer/profile/profile.html:92
+#: templates/customer/profile/profile.html:102
 msgctxt "verb"
 msgid "Archive"
 msgstr ""
 
 #: templates/customer/notifications/list.html:46
+#: templates/customer/profile/profile.html:100
 msgid "With selected items:"
 msgstr ""
 
 #: templates/customer/notifications/list.html:56
+#: templates/customer/profile/profile.html:110
 msgid "There are no notifications to display."
 msgstr ""
 
@@ -3981,41 +3991,38 @@ msgid "Reset"
 msgstr ""
 
 #: templates/customer/order/order_list.html:39
+#: templates/customer/profile/profile.html:122
 msgid "Total inc tax"
 msgstr ""
 
 #: templates/customer/order/order_list.html:53
+#: templates/customer/profile/profile.html:136
 msgid "You haven't placed any orders."
 msgstr ""
 
-#: templates/customer/profile/profile.html:33
-msgid "Date registered"
+#: templates/customer/profile/profile.html:15
+#: templates/partials/nav_primary.html:74
+msgid "Logout"
 msgstr ""
 
 #: templates/customer/profile/profile.html:43
-msgid "Recent Activity"
+msgid "Date registered"
 msgstr ""
 
-#: templates/customer/profile/profile.html:48
-#: templates/partials/nav_accounts.html:10
-msgid "There are no notifications"
-msgstr ""
-
-#: templates/customer/profile/profile.html:51
-msgid "Purchases"
-msgstr ""
-
-#: templates/customer/profile/profile.html:54
+#: templates/customer/profile/profile.html:50
 msgid "Change password"
 msgstr ""
 
-#: templates/customer/profile/profile.html:55
+#: templates/customer/profile/profile.html:52
 msgid "Edit profile"
 msgstr ""
 
-#: templates/customer/profile/profile.html:57
-#: templates/partials/nav_primary.html:74
-msgid "Logout"
+#: templates/customer/profile/profile.html:63
+msgid "Recent Activity"
+msgstr ""
+
+#: templates/customer/profile/profile.html:114
+msgid "Purchases"
 msgstr ""
 
 #: templates/customer/profile/profile_delete.html:5
@@ -4163,6 +4170,10 @@ msgstr ""
 
 #: templates/partials/form_fields.html:5
 msgid "please check the error messages below and try again"
+msgstr ""
+
+#: templates/partials/nav_accounts.html:10
+msgid "There are no notifications"
 msgstr ""
 
 #: templates/partials/nav_accounts.html:13

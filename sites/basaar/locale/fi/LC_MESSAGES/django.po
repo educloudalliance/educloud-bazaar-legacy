@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-oscar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-16 00:09+0300\n"
+"POT-Creation-Date: 2014-08-16 10:19+0300\n"
 "PO-Revision-Date: 2014-08-15 07:05+0000\n"
 "Last-Translator: preriasusi <coyotronics@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/django-oscar/"
@@ -89,10 +89,11 @@ msgstr "Yhdistämispäivämäärä"
 
 #: apps/basket/abstract_models.py:50
 #: templates/customer/order/order_list.html:40
+#: templates/customer/profile/profile.html:123
 msgid "Date submitted"
 msgstr "Hyväksymispäivämäärä"
 
-#: apps/basket/abstract_models.py:58 apps/basket/abstract_models.py:545
+#: apps/basket/abstract_models.py:58 apps/basket/abstract_models.py:547
 #: apps/order/abstract_models.py:28 templates/basket/basket.html:6
 #: templates/basket/basket.html.py:13
 msgid "Basket"
@@ -116,11 +117,11 @@ msgstr ""
 "Teknisten rajoitteiden vuoksi emme kykene toimittamaan %(threshold)d kpl "
 "enempää tuotteita yhtä tilausta kohden."
 
-#: apps/basket/abstract_models.py:552
+#: apps/basket/abstract_models.py:554
 msgid "Line Reference"
 msgstr "Tilausviite"
 
-#: apps/basket/abstract_models.py:556 apps/catalogue/abstract_models.py:177
+#: apps/basket/abstract_models.py:558 apps/catalogue/abstract_models.py:177
 #: apps/catalogue/abstract_models.py:278 apps/catalogue/abstract_models.py:775
 #: apps/catalogue/abstract_models.py:1023 apps/order/abstract_models.py:414
 #: templates/customer/anon_order.html:58
@@ -130,7 +131,7 @@ msgstr "Tilausviite"
 msgid "Product"
 msgstr "Tuote"
 
-#: apps/basket/abstract_models.py:562 apps/basket/forms.py:134
+#: apps/basket/abstract_models.py:564 apps/basket/forms.py:134
 #: apps/basket/forms.py:281 apps/order/abstract_models.py:421
 #: apps/order/abstract_models.py:717 apps/order/abstract_models.py:817
 #: apps/order/abstract_models.py:874
@@ -140,43 +141,43 @@ msgstr "Tuote"
 msgid "Quantity"
 msgstr "Määrä"
 
-#: apps/basket/abstract_models.py:568 apps/order/abstract_models.py:47
+#: apps/basket/abstract_models.py:570 apps/order/abstract_models.py:47
 msgid "Currency"
 msgstr "Valuutta"
 
-#: apps/basket/abstract_models.py:570
+#: apps/basket/abstract_models.py:572
 msgid "Price excl. Tax"
 msgstr "Veroton hinta"
 
-#: apps/basket/abstract_models.py:573
+#: apps/basket/abstract_models.py:575
 msgid "Price incl. Tax"
 msgstr "Verollinen hinta"
 
-#: apps/basket/abstract_models.py:576 apps/catalogue/abstract_models.py:254
+#: apps/basket/abstract_models.py:578 apps/catalogue/abstract_models.py:254
 #: apps/catalogue/abstract_models.py:1033 apps/customer/abstract_models.py:171
 #: apps/order/abstract_models.py:324 apps/order/abstract_models.py:844
 msgid "Date Created"
 msgstr "Luontipäivämäärä"
 
-#: apps/basket/abstract_models.py:588
+#: apps/basket/abstract_models.py:590
 msgid "Basket line"
 msgstr "Ostosrivi"
 
-#: apps/basket/abstract_models.py:589
+#: apps/basket/abstract_models.py:591
 msgid "Basket lines"
 msgstr "Ostosrivit"
 
-#: apps/basket/abstract_models.py:593
+#: apps/basket/abstract_models.py:595
 #, python-format
 msgid "Basket #%(basket_id)d, Product #%(product_id)d, quantity %(quantity)d"
 msgstr "Kori #%(basket_id)d, Tuote #%(product_id)d, määrä %(quantity)d"
 
-#: apps/basket/abstract_models.py:601
+#: apps/basket/abstract_models.py:603
 #, python-format
 msgid "You cannot modify a %s basket"
 msgstr "Et voi muokata %s:n koria"
 
-#: apps/basket/abstract_models.py:814
+#: apps/basket/abstract_models.py:816
 #, python-format
 msgid ""
 "The price of '%(product)s' has increased from %(old_price)s to %(new_price)s "
@@ -185,7 +186,7 @@ msgstr ""
 "Tuotteen '%(product)s' hint on noussut %(old_price)s:sta %(new_price)s:n "
 "koriin lisäämisen jälkeen"
 
-#: apps/basket/abstract_models.py:819
+#: apps/basket/abstract_models.py:821
 #, python-format
 msgid ""
 "The price of '%(product)s' has decreased from %(old_price)s to %(new_price)s "
@@ -194,27 +195,27 @@ msgstr ""
 "Tuotteen '%(product)s' hint on laskenut %(old_price)s:sta %(new_price)s:n "
 "koriin lisäämisen jälkeen"
 
-#: apps/basket/abstract_models.py:830 apps/order/abstract_models.py:689
+#: apps/basket/abstract_models.py:832 apps/order/abstract_models.py:689
 #: apps/order/abstract_models.py:716 apps/order/abstract_models.py:816
 #: apps/order/abstract_models.py:873
 msgid "Line"
 msgstr "Rivi"
 
-#: apps/basket/abstract_models.py:831 apps/catalogue/abstract_models.py:611
+#: apps/basket/abstract_models.py:833 apps/catalogue/abstract_models.py:611
 #: apps/catalogue/abstract_models.py:885 apps/catalogue/abstract_models.py:969
 #: apps/order/abstract_models.py:692 apps/order/abstract_models.py:714
 msgid "Option"
 msgstr "Vaihtoehto"
 
-#: apps/basket/abstract_models.py:832 apps/order/abstract_models.py:694
+#: apps/basket/abstract_models.py:834 apps/order/abstract_models.py:694
 msgid "Value"
 msgstr "Arvo"
 
-#: apps/basket/abstract_models.py:836
+#: apps/basket/abstract_models.py:838
 msgid "Line attribute"
 msgstr "Tilausmääre"
 
-#: apps/basket/abstract_models.py:837
+#: apps/basket/abstract_models.py:839
 msgid "Line attributes"
 msgstr "Tilausmääreet"
 
@@ -272,7 +273,7 @@ msgstr "Käyttäjätunniste"
 #: apps/customer/abstract_models.py:145 apps/dashboard/users/forms.py:42
 #: apps/dashboard/vouchers/forms.py:17 apps/dashboard/vouchers/forms.py:88
 #: apps/order/abstract_models.py:749 apps/order/abstract_models.py:904
-#: apps/order/reports.py:21 templates/customer/profile/profile.html:17
+#: apps/order/reports.py:21 templates/customer/profile/profile.html:25
 #: templates/customer/wishlists/wishlists_list.html:9
 msgid "Name"
 msgstr "Nimi"
@@ -294,6 +295,7 @@ msgstr "Rivien lkm"
 
 #: apps/basket/reports.py:23 apps/basket/reports.py:81
 #: templates/customer/order/order_list.html:38
+#: templates/customer/profile/profile.html:121
 msgid "Num items"
 msgstr "Tuotteiden lkm"
 
@@ -1090,7 +1092,7 @@ msgstr "Sulkemispäivämäärä"
 
 #: apps/customer/forms.py:94 apps/customer/forms.py:132
 #: apps/dashboard/partners/forms.py:118
-#: templates/customer/profile/profile.html:21
+#: templates/customer/profile/profile.html:29
 msgid "Email address"
 msgstr "Sähköpostiosoite"
 
@@ -1129,6 +1131,7 @@ msgstr "Kenelle"
 #: apps/dashboard/offers/reports.py:13 apps/dashboard/orders/forms.py:65
 #: apps/dashboard/orders/views.py:331 apps/order/abstract_models.py:21
 #: apps/order/reports.py:20 templates/customer/order/order_list.html:37
+#: templates/customer/profile/profile.html:120
 msgid "Order number"
 msgstr "Tilausnumero"
 
@@ -1218,7 +1221,7 @@ msgstr "Kiitos rekisteröitymisestä!"
 
 #: apps/customer/views.py:246 templates/customer/baseaccountpage.html:32
 #: templates/customer/partials/nav_account.html:20
-#: templates/customer/profile/profile.html:8
+#: templates/customer/profile/profile.html:13
 #: templates/partials/nav_primary.html:66
 msgid "Profile"
 msgstr "Profiili"
@@ -1231,7 +1234,7 @@ msgstr "Muokkaa profiilia"
 msgid "Profile updated"
 msgstr "Profiilipäivitys"
 
-#: apps/customer/views.py:343 templates/customer/profile/profile.html:56
+#: apps/customer/views.py:343 templates/customer/profile/profile.html:54
 msgid "Delete profile"
 msgstr "Poista profiili"
 
@@ -3161,7 +3164,7 @@ msgid "Update"
 msgstr "Päivitys"
 
 #: templates/basket/partials/basket_content.html:100
-#: templates/basket/partials/basket_quick.html:37
+#: templates/basket/partials/basket_quick.html:40
 #: templates/checkout/checkout.html:120
 msgid "Total"
 msgstr "Yhteensä"
@@ -3178,12 +3181,12 @@ msgstr "Ostoskorisi on tyhjä"
 msgid "Continue shopping"
 msgstr "Jatka ostoksia"
 
-#: templates/basket/partials/basket_quick.html:26
+#: templates/basket/partials/basket_quick.html:29
 #: templates/customer/order/order_detail.html:20
 msgid "Qty"
 msgstr "Määrä"
 
-#: templates/basket/partials/basket_quick.html:33
+#: templates/basket/partials/basket_quick.html:36
 msgid "Your cart is empty."
 msgstr "Ostoskorisi on tyhjä"
 
@@ -3253,7 +3256,7 @@ msgid "Media"
 msgstr ""
 
 #: templates/catalogue/detail.html:205
-#, fuzzy, python-format
+#,python-format
 msgid ""
 "\n"
 "                                1 customer review\n"
@@ -3453,7 +3456,7 @@ msgid "Checkout"
 msgstr "Maksamaan"
 
 #: templates/checkout/checkout.html:43
-#: templates/customer/profile/profile.html:12
+#: templates/customer/profile/profile.html:20
 msgid "Your Personal Information"
 msgstr "Omat tietosi"
 
@@ -3551,6 +3554,8 @@ msgstr "Toimita tähän osoitteeseen"
 #: templates/customer/address/address_list.html:37
 #: templates/customer/notifications/list.html:40
 #: templates/customer/notifications/list.html:50
+#: templates/customer/profile/profile.html:94
+#: templates/customer/profile/profile.html:104
 #: templates/customer/profile/profile_delete.html:17
 #: templates/customer/wishlists/wishlists_delete.html:36
 #: templates/customer/wishlists/wishlists_list.html:31
@@ -4074,21 +4079,26 @@ msgid "Archive"
 msgstr "Arkisto"
 
 #: templates/customer/notifications/list.html:36
+#: templates/customer/profile/profile.html:90
 #: templates/customer/wishlists/wishlists_list.html:19
 msgid "View"
 msgstr "Katso"
 
 #: templates/customer/notifications/list.html:38
 #: templates/customer/notifications/list.html:48
+#: templates/customer/profile/profile.html:92
+#: templates/customer/profile/profile.html:102
 msgctxt "verb"
 msgid "Archive"
 msgstr "Arkisto"
 
 #: templates/customer/notifications/list.html:46
+#: templates/customer/profile/profile.html:100
 msgid "With selected items:"
 msgstr "Valituille tuoteille:"
 
 #: templates/customer/notifications/list.html:56
+#: templates/customer/profile/profile.html:110
 msgid "There are no notifications to display."
 msgstr "Ei näytettäviä ilmoituksia."
 
@@ -4172,42 +4182,39 @@ msgid "Reset"
 msgstr "Nollaa"
 
 #: templates/customer/order/order_list.html:39
+#: templates/customer/profile/profile.html:122
 msgid "Total inc tax"
 msgstr "Yhteensä veroineen"
 
 #: templates/customer/order/order_list.html:53
+#: templates/customer/profile/profile.html:136
 msgid "You haven't placed any orders."
 msgstr "Et ole tilannut mitään"
 
-#: templates/customer/profile/profile.html:33
-msgid "Date registered"
-msgstr "Rekisteröintipäivämäärä"
-
-#: templates/customer/profile/profile.html:43
-msgid "Recent Activity"
-msgstr "Viimeaikainen toiminta"
-
-#: templates/customer/profile/profile.html:48
-#: templates/partials/nav_accounts.html:10
-msgid "There are no notifications"
-msgstr "Ei näytettäviä ilmoituksia."
-
-#: templates/customer/profile/profile.html:51
-msgid "Purchases"
-msgstr "Ostokset"
-
-#: templates/customer/profile/profile.html:54
-msgid "Change password"
-msgstr "Vaihda salasana"
-
-#: templates/customer/profile/profile.html:55
-msgid "Edit profile"
-msgstr "Muokkaa profiilia"
-
-#: templates/customer/profile/profile.html:57
+#: templates/customer/profile/profile.html:15
 #: templates/partials/nav_primary.html:74
 msgid "Logout"
 msgstr "Kirjaudu ulos"
+
+#: templates/customer/profile/profile.html:43
+msgid "Date registered"
+msgstr "Rekisteröintipäivämäärä"
+
+#: templates/customer/profile/profile.html:50
+msgid "Change password"
+msgstr "Vaihda salasana"
+
+#: templates/customer/profile/profile.html:52
+msgid "Edit profile"
+msgstr "Muokkaa profiilia"
+
+#: templates/customer/profile/profile.html:63
+msgid "Recent Activity"
+msgstr "Viimeaikainen toiminta"
+
+#: templates/customer/profile/profile.html:114
+msgid "Purchases"
+msgstr "Ostokset"
 
 #: templates/customer/profile/profile_delete.html:5
 msgid "Please confirm your password to delete your profile."
@@ -4387,6 +4394,10 @@ msgstr "Hupsista! Löysimme virheitä."
 #: templates/partials/form_fields.html:5
 msgid "please check the error messages below and try again"
 msgstr "Tarkista allaolevat virheet ja yritä uudelleen."
+
+#: templates/partials/nav_accounts.html:10
+msgid "There are no notifications"
+msgstr "Ei näytettäviä ilmoituksia."
 
 #: templates/partials/nav_accounts.html:13
 #, fuzzy
@@ -5997,28 +6008,28 @@ msgstr "Takaisin hakutuloksiin"
 #~ msgid "Shipping total (after discounts)"
 #~ msgstr "Toimitus yhteensä (alennusten jälkeen)"
 
-#~ msgid ""
-#~ "\n"
-#~ "                Reviewed by you on %(review_date)s\n"
-#~ "                "
-#~ msgstr ""
-#~ "\n"
-#~ "Arvioit tämän %(review_date)s"
+msgid ""
+"\n"
+"                Reviewed by you on %(review_date)s\n"
+"                "
+msgstr ""
+"\n"
+"Arvioit tämän %(review_date)s"
 
-#~ msgid ""
-#~ "\n"
-#~ "                    Reviewed by <strong>%(name)s</strong> on "
-#~ "%(review_date)s\n"
-#~ "                "
-#~ msgstr ""
-#~ "\n"
-#~ " <strong>%(name)s</strong> arvioinut tämän %(review_date)s"
+msgid ""
+"\n"
+"                    Reviewed by <strong>%(name)s</strong> on "
+"%(review_date)s\n"
+"                "
+msgstr ""
+"\n"
+" <strong>%(name)s</strong> arvioinut tämän %(review_date)s"
 
-#~ msgid "Permalink"
-#~ msgstr "Pysyvä linkki"
+msgid "Permalink"
+msgstr "Pysyvä linkki"
 
-#~ msgid "Is this review helpful?"
-#~ msgstr "Onko tämä arvio hyödyllinen? "
+msgid "Is this review helpful?"
+msgstr "Onko tämä arvio hyödyllinen? "
 
 #~ msgid "Yes"
 #~ msgstr "Kyllä"
@@ -6045,8 +6056,8 @@ msgstr "Takaisin hakutuloksiin"
 #~ "<strong>%(num_up_votes)s</strong> asiakasta %(num_votes)s asiakkaasta "
 #~ "piti tätä hyödyllisenä"
 
-#~ msgid "This review has no votes."
-#~ msgstr "Tällä arvioilla ei ole peukutuksia."
+msgid "This review has no votes."
+msgstr "Tällä arvioilla ei ole peukutuksia."
 
 #~ msgid "Save review"
 #~ msgstr "Tallenna arvostelu"
