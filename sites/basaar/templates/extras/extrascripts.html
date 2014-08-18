@@ -80,6 +80,12 @@
 
         });
 
+        $('.basket-items .checkout-quantity input').on('change', function(){
+            if ($(this).val() > 0) {
+                $(this).parents('.basket-items').find('.checkout-quantity button').click();
+            };
+        });
+
     });
 
     function toggleMenuItem() {
@@ -156,6 +162,18 @@
 
             }
         });
+
+        $('#clear-all-filters a').on('click', function() {
+            $('#categories-bar li:not(.all-option)').removeClass('selected');
+            $('#categories-bar li.all-option').addClass('selected');
+            $( "#price-slider" ).slider( "values", [0,500] );
+            $( "#price-range" ).val( "€" + $( "#price-slider" ).slider( "values", 0 ) +
+            " - €" + $( "#price-slider" ).slider( "values", 1 ) );
+        });
+
+
+
+
 
         $( "#price-slider" ).slider({
           range: true,
