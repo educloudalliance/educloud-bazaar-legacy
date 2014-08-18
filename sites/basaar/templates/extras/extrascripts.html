@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <script src="{{ STATIC_URL }}shop/js/bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 <script src="{{ STATIC_URL }}shop/js/bower_components/jquery.oembed/index.js"></script>
 
@@ -62,6 +64,14 @@
         // Oembed implementation
         $("a.embed").oembed(null, {
            embedMethod: 'fill'
+        });
+
+        $('.remove-all-btn a').on('click', function(){
+            var answer = confirm("{% trans "Are you sure to remove all the items from the shopping cart?"%}");
+            if(answer){
+                $('.basket-items').find('.checkout-quantity input').val(0);
+                $('.basket-items').find('.checkout-quantity button').first().click();
+            }
         });
 
         $('.remove-btn a').on('click', function(){

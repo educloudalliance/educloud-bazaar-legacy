@@ -239,6 +239,7 @@ footer {
 
     .menu-icon {
         @media screen and (max-width: $r1024-content-width) {
+        
         }
         cursor: pointer;
         margin: 0px;
@@ -625,7 +626,7 @@ footer {
             padding-bottom: 0.2em;
         }
         .number-rating {
-            font-size: 10pt;
+            font-size: 9pt;
         }
         .star-rating {
             font-size: 11pt;
@@ -722,7 +723,6 @@ footer {
                     margin-right: 2em;
                     height: 191px;
                     width: 191px;
-                    border: 1px solid $light-gray;
                     background-color: $dark-gray;
                 }
             }
@@ -745,6 +745,7 @@ footer {
             }
             .price {
                 .price_color {
+                    padding-top: 0.5em;
                     font-weight: normal;
                 }
                 text-align: left;
@@ -752,12 +753,16 @@ footer {
                 font-weight: bold;
 
             }
+            .number-rating {
+                margin-top: 0.7em;
+                font-size: 11pt;
+            }
             .rating {
+                font-size: 13pt;
+                font-weight: bold;
                 .star-rating {
                     font-size: 15pt;
                 }
-                font-size: 13pt;
-                font-weight: bold;
                 p {
                     margin: 5px 0px;
                     i.fa {

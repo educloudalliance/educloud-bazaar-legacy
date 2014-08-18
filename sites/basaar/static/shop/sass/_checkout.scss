@@ -53,6 +53,16 @@
   width: 140px;
 }
 
+.remove-all-btn {
+  padding-bottom: 1em;
+  a {
+    text-decoration: none;
+    color: $dark-gray;
+  }
+  a:hover {
+    color: red;
+  }
+}
 #basket_formset {
   .basket-items:last-child {
     border-bottom: 1px solid $gray;
@@ -80,6 +90,7 @@
       font-size: 10pt;
       font-weight: lighter;
       color: $gray;
+      margin-bottom: 0.2em;
       a {
         color: $gray;
         text-decoration: none;
@@ -102,6 +113,7 @@
         border-radius: 5px;
       }
       button {
+        display: none;
         background: $dark-blue;
         color: white;
         border: none;
@@ -116,6 +128,7 @@
     }
     .thumbnail {
       margin-right: 0.8em;
+      margin-top: 0.25em;
       height: 100px;
       width: 100px;
       background: $dark-gray;

@@ -22,7 +22,11 @@
     </div>
 </div>
 
+
 {% if not basket.is_empty %}
+    <div class="remove-all-btn">
+        <a href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove"><i class="fa fa-times-circle"></i> {% trans "Remove all items" %}</a>
+    </div>
     {% block basket_form_headers %}
         <div class="legend-bar flex-container">
             <div class="thumbnail-ghost"></div>

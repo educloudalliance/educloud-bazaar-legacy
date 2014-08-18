@@ -70,7 +70,7 @@
                             <img src="{{ STATIC_URL }}shop/img/noimage.jpg" alt="{{ product.get_title }} class="thumbnail"/ >
                         {% endif %}
                 </div>
-                <div class="flexItem flex-container-vertical summary">
+                <div class="flexItem flex-container-vertical">
                     
                     <div class="price flexItem flex-container-vertical">
                         {% block product_stock_record %}
@@ -78,6 +78,15 @@
                         {% endblock %}
                     </div>
                     <div class="rating flexItem flex-container-vertical">
+                        <div class="flex-container">
+                            <div class="number-rating">
+                                {% blocktrans count product.num_approved_reviews as num_reviews %}
+                                1 review
+                                {% plural %}
+                                {{ num_reviews }} reviews
+                                {% endblocktrans %}
+                            </div>
+                        </div>
                         <div class="flex-container">
                             {{product.rating}}&nbsp;
                             <div class="star-rating {{ product.rating|as_stars }}">
