@@ -54,7 +54,7 @@
     <div class="flex-container">
         <div class="flexItem"></div>
         <div class="content-center back-button">
-            <a href="javascript:history.back()"><i class="fa fa-arrow-circle-left"></i>&nbsp;{% trans "Go back"%}</a>
+            <a href="javascript:history.back()"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;{% trans "Go back"%}</a>
         </div>
         <div class="flexItem"></div>
     </div>
@@ -204,66 +204,43 @@
             {% endif %}
             {% endwith %}
             <div id="product_reviews">
-                {% iffeature "reviews" %}
-                    {% if product.rating != None %}
-                        <h4 class="star-rating {{ product.rating|as_stars }}">
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
-                            <i class="icon-star"></i>
-
-                            <small><a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}">
-                                {% blocktrans count product.num_approved_reviews as num_reviews %}
-                                1 customer review
-                                {% plural %}
-                                {{ num_reviews }} customer reviews
-                                {% endblocktrans %}
-                            </a></small>
-                            &nbsp;
-                    {% else %}
-                        <h4>
-                    {% endif %}
-                    {% if product|is_review_permitted:user %}
-                        <a id="write_review" href="{% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id %}#addreview" class="btn btn-success btn-small">
-                            {% trans "Write a review" %}
-                        </a>
-                    {% endif %}
-                    </h4>
-                {% endiffeature %}
 
 
                 {% iffeature "reviews" %}
                     {% block product_review %}
-                    <section>
-                        <div id="reviews" class="sub-header">
-                            {% if product.num_approved_reviews > 3 %}
-                                <a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}" class="btn pull-right">{% trans "See all reviews" %}</a>
-                            {% endif %}
-                            <h2>{% trans "Customer Reviews" %}</h2>
-                        </div>
+                        <h2>{% trans "Customer Reviews" %}</h2>
 
                         {% if product.num_approved_reviews == 0 %}
-                            <p>
-                                {% if product|is_review_permitted:user %}
-                                    {% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id as add_review_url %}
-                                        {% blocktrans %}This product does not have any reviews yet -
-                                        <a href="{{ add_review_url }}#addreview">be the first to write one</a>.
-                                    {% endblocktrans %}
-                                {% else %}
-                                    {% trans "This product does not have any reviews yet" %}.
-                                {% endif %}
-                            </p>
+                        <p>
+                            {% if product|is_review_permitted:user %}
+                                {% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id as add_review_url %}
+                                    {% blocktrans %}This product does not have any reviews yet -
+                                    <a href="{{ add_review_url }}#addreview">be the first to write one</a>.
+                                {% endblocktrans %}
+                            {% else %}
+                                {% trans "This product does not have any reviews yet" %}.
+                            {% endif %}
+                        </p>
                         {% else %}
-                            <ol class="flex-container review-list">
-                                {% for review in reviews|slice:":2" %}
-                                    <li>
-                                    {% include 'catalogue/partials/review.html' %}
-                                    </li>
-                                {% endfor %}
-                            </ol>
+                        <div class="flex-container review-container">
+                            <div class="fade-left"></div>
+                            <div class="fade-container">
+                                <ol class="flexItem review-list" style="min-width:{% widthratio product.num_approved_reviews 1 400 %}px">
+                                    {% for review in reviews|slice:":6" %}
+                                        <li>
+                                        {% include 'catalogue/partials/review.html' %}
+                                        </li>
+                                    {% endfor %}
+                                </ol>
+                            </div>
+                            <div class="fade-right"></div>
+                        </div>
+                            <div>
+                                {% if product.num_approved_reviews > 3 %}
+                                    <a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}">{% trans "See all reviews" %}</a>
+                                {% endif %}
+                            </div>
                         {% endif %}
-                    </section>
                     {% endblock product_review %}
                 {% endiffeature %}
             </div>

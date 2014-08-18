@@ -447,6 +447,7 @@ footer {
             list-style: none;
             padding: 0px;
             li {
+                transition: all 0.5s;
                 padding: 5px 0px;
                 cursor: pointer;
                 span.small{
@@ -882,10 +883,50 @@ footer {
                 right: -5px;
             }
         }
-        .review-list {
-            list-style: none;
-            justify-content: center;
-            -webkit-justify-content: center;
+        .review-container {
+            position: relative;
+        }
+        .fade-left, .fade-right {
+            position: absolute;
+            width: 50px;
+            height: 100%;
+            top: 0px;
+            bottom: 0px;
+        }
+        .fade-left {
+            left: 0px;
+            @include background-image(linear-gradient(left,  rgba(241,241,241,1) 0%,rgba(241,241,241,1) 30%,rgba(241,241,241,0.75) 70%,rgba(241,241,241,0) 100%));
+        }
+        .fade-right {
+            right: 0px;
+            @include background-image(linear-gradient(left,  rgba(241,241,241,0) 0%,rgba(241,241,241,0.75) 30%,rgba(241,241,241,1) 70%,rgba(241,241,241,1) 100%));
+        }
+        .fade-container {
+            overflow: scroll;
+            width: 100%;
+
+            .review-list {
+                list-style: none;
+                padding: 0px 50px;
+                margin: 0px;
+                justify-content: center;
+                -webkit-justify-content: center;
+                li {
+                    display: inline-block;
+                    width: 400px;
+                    background: white;
+                    margin: 1em;
+                    padding: 1em;
+                    box-shadow: 0px 0px 7px rgba(0,0,0,0.1);
+
+                    .review {
+                        h2{
+                            padding: 0px;
+                            margin: 0px;
+                        }
+                    }
+                }
+            }
         }
     }
 }
