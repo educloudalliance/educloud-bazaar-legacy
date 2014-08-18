@@ -553,6 +553,21 @@ footer {
 #content {
     width: 100%;
 
+    .back-button {
+        padding: 2.5em 0em;
+        a {
+            color: $gray;
+            text-transform: uppercase;
+            font-size: 13pt;
+            font-weight: lighter;
+            text-decoration: none;
+            transition: all 0.5s;
+        }
+        a:hover {
+            color: $dark-gray;
+        }
+    }
+
     #profile-page {
         padding: 2em 0em;
         h1 {
@@ -730,7 +745,7 @@ footer {
             border-bottom: none;
         }
         .main {
-            margin: 3.5em 0px;
+            margin: 0em 0em 3.5em 0em;
             padding: 2em 0px;
             box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
             h1, h2, h3, h4, h5, h6, p {
@@ -758,12 +773,13 @@ footer {
             .owner {
                 font-size: 15pt;
                 font-weight: lighter;
-                margin-bottom: 1em;
+                margin-bottom: 0.5em;
+                margin-top: 0.3em;
                 color: $gray;
             }
             .price {
                 .price_color {
-                    padding-top: 0.5em;
+                    padding: 0em;
                     font-weight: normal;
                 }
                 text-align: left;
@@ -773,11 +789,16 @@ footer {
             }
             .number-rating {
                 margin-top: 0.7em;
+                margin-bottom: 0.3em;
                 font-size: 11pt;
             }
             .rating {
                 font-size: 13pt;
                 font-weight: bold;
+                padding-bottom: 1em;
+                .rating-value {
+                    padding-top: 0.1em;
+                }
                 .star-rating {
                     font-size: 15pt;
                 }
@@ -808,7 +829,7 @@ footer {
             }
         }
         h2 {
-            font-size: 19pt;
+            font-size: 20pt;
             font-weight: lighter;
             padding: 1em 0em 0em 0em;
         }

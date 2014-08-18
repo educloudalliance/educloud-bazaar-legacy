@@ -51,6 +51,13 @@
 {% block content %}
 <div id="content" class="grayBackground">
     <article class="product_page flex-container-vertical"><!-- Start of product page -->
+    <div class="flex-container">
+        <div class="flexItem"></div>
+        <div class="content-center back-button">
+            <a href="javascript:history.back()"><i class="fa fa-arrow-circle-left"></i>&nbsp;{% trans "Go back"%}</a>
+        </div>
+        <div class="flexItem"></div>
+    </div>
     <div class="flex-container whiteBackground main">
         <div class="flexItem"></div>
         <div class="box-page content-center flex-container-vertical">
@@ -78,17 +85,15 @@
                         {% endblock %}
                     </div>
                     <div class="rating flexItem flex-container-vertical">
-                        <div class="flex-container">
-                            <div class="number-rating">
+                        <div class="number-rating">
                                 {% blocktrans count product.num_approved_reviews as num_reviews %}
                                 1 review
                                 {% plural %}
                                 {{ num_reviews }} reviews
                                 {% endblocktrans %}
-                            </div>
                         </div>
                         <div class="flex-container">
-                            {{product.rating}}&nbsp;
+                            <div class="rating-value">{{product.rating}}&nbsp;</div>
                             <div class="star-rating {{ product.rating|as_stars }}">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
