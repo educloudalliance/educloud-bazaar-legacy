@@ -16,7 +16,6 @@
 {% block headertext %}{{ summary }}{% endblock %}
 
 {% block content %}
-<div id="content" class="grayBackground flex-container">
     {% if category.description or category.image %}
         <div>
             {% if category.description and not category.image %}
@@ -29,6 +28,7 @@
             {% endif %}
         </div>
     {% endif %}
+<div id="content" class="grayBackground flex-container">
     {% if products %}
         <section class="product-section flexItem flex-container-vertical">
             <div>
