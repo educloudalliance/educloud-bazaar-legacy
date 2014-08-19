@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-16 10:19+0300\n"
+"POT-Creation-Date: 2014-08-18 11:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,7 +83,9 @@ msgstr ""
 
 #: apps/basket/abstract_models.py:50
 #: templates/customer/order/order_list.html:40
+#: templates/customer/profile/change_password_form.html:99
 #: templates/customer/profile/profile.html:123
+#: templates/customer/profile/profile_form.html:100
 msgid "Date submitted"
 msgstr ""
 
@@ -277,7 +279,9 @@ msgstr ""
 
 #: apps/basket/reports.py:23 apps/basket/reports.py:81
 #: templates/customer/order/order_list.html:38
+#: templates/customer/profile/change_password_form.html:97
 #: templates/customer/profile/profile.html:121
+#: templates/customer/profile/profile_form.html:98
 msgid "Num items"
 msgstr ""
 
@@ -1065,7 +1069,9 @@ msgstr ""
 #: apps/dashboard/offers/reports.py:13 apps/dashboard/orders/forms.py:65
 #: apps/dashboard/orders/views.py:331 apps/order/abstract_models.py:21
 #: apps/order/reports.py:20 templates/customer/order/order_list.html:37
+#: templates/customer/profile/change_password_form.html:96
 #: templates/customer/profile/profile.html:120
+#: templates/customer/profile/profile_form.html:97
 msgid "Order number"
 msgstr ""
 
@@ -1149,7 +1155,9 @@ msgstr ""
 
 #: apps/customer/views.py:246 templates/customer/baseaccountpage.html:32
 #: templates/customer/partials/nav_account.html:20
+#: templates/customer/profile/change_password_form.html:11
 #: templates/customer/profile/profile.html:13
+#: templates/customer/profile/profile_form.html:11
 #: templates/partials/nav_primary.html:66
 msgid "Profile"
 msgstr ""
@@ -3234,6 +3242,19 @@ msgstr ""
 msgid "Please login to add products to a wish list."
 msgstr ""
 
+#: templates/catalogue/partials/product.html:43
+#, python-format
+msgid ""
+"\n"
+"                                1 review\n"
+"                                "
+msgid_plural ""
+"\n"
+"                                %(num_reviews)s reviews\n"
+"                                "
+msgstr[0] ""
+msgstr[1] ""
+
 #: templates/catalogue/partials/stock_record.html:10
 msgid "Free"
 msgstr ""
@@ -3275,7 +3296,9 @@ msgstr ""
 #: templates/checkout/user_address_form.html:25
 #: templates/customer/registration.html:31
 #: templates/customer/address/address_delete.html:21
+#: templates/customer/profile/change_password_form.html:30
 #: templates/customer/profile/profile_delete.html:18
+#: templates/customer/profile/profile_form.html:30
 #: templates/customer/wishlists/wishlists_delete.html:36
 #: templates/customer/wishlists/wishlists_delete_product.html:36
 #: templates/customer/wishlists/wishlists_form.html:44
@@ -3321,7 +3344,9 @@ msgid "Checkout"
 msgstr ""
 
 #: templates/checkout/checkout.html:43
+#: templates/customer/profile/change_password_form.html:19
 #: templates/customer/profile/profile.html:20
+#: templates/customer/profile/profile_form.html:19
 msgid "Your Personal Information"
 msgstr ""
 
@@ -3416,9 +3441,13 @@ msgstr ""
 #: templates/customer/address/address_list.html:37
 #: templates/customer/notifications/list.html:40
 #: templates/customer/notifications/list.html:50
+#: templates/customer/profile/change_password_form.html:70
+#: templates/customer/profile/change_password_form.html:80
 #: templates/customer/profile/profile.html:94
 #: templates/customer/profile/profile.html:104
 #: templates/customer/profile/profile_delete.html:17
+#: templates/customer/profile/profile_form.html:71
+#: templates/customer/profile/profile_form.html:81
 #: templates/customer/wishlists/wishlists_delete.html:36
 #: templates/customer/wishlists/wishlists_list.html:31
 msgid "Delete"
@@ -3477,6 +3506,8 @@ msgid "Yes!"
 msgstr ""
 
 #: templates/checkout/user_address_form.html:24
+#: templates/customer/profile/change_password_form.html:29
+#: templates/customer/profile/profile_form.html:29
 #: templates/customer/wishlists/wishlists_form.html:43
 #: templates/partials/form.html:8
 msgid "Save"
@@ -3888,26 +3919,36 @@ msgid "Archive"
 msgstr ""
 
 #: templates/customer/notifications/list.html:36
+#: templates/customer/profile/change_password_form.html:66
 #: templates/customer/profile/profile.html:90
+#: templates/customer/profile/profile_form.html:67
 #: templates/customer/wishlists/wishlists_list.html:19
 msgid "View"
 msgstr ""
 
 #: templates/customer/notifications/list.html:38
 #: templates/customer/notifications/list.html:48
+#: templates/customer/profile/change_password_form.html:68
+#: templates/customer/profile/change_password_form.html:78
 #: templates/customer/profile/profile.html:92
 #: templates/customer/profile/profile.html:102
+#: templates/customer/profile/profile_form.html:69
+#: templates/customer/profile/profile_form.html:79
 msgctxt "verb"
 msgid "Archive"
 msgstr ""
 
 #: templates/customer/notifications/list.html:46
+#: templates/customer/profile/change_password_form.html:76
 #: templates/customer/profile/profile.html:100
+#: templates/customer/profile/profile_form.html:77
 msgid "With selected items:"
 msgstr ""
 
 #: templates/customer/notifications/list.html:56
+#: templates/customer/profile/change_password_form.html:86
 #: templates/customer/profile/profile.html:110
+#: templates/customer/profile/profile_form.html:87
 msgid "There are no notifications to display."
 msgstr ""
 
@@ -3991,18 +4032,36 @@ msgid "Reset"
 msgstr ""
 
 #: templates/customer/order/order_list.html:39
+#: templates/customer/profile/change_password_form.html:98
 #: templates/customer/profile/profile.html:122
+#: templates/customer/profile/profile_form.html:99
 msgid "Total inc tax"
 msgstr ""
 
 #: templates/customer/order/order_list.html:53
+#: templates/customer/profile/change_password_form.html:112
 #: templates/customer/profile/profile.html:136
+#: templates/customer/profile/profile_form.html:113
 msgid "You haven't placed any orders."
 msgstr ""
 
+#: templates/customer/profile/change_password_form.html:13
 #: templates/customer/profile/profile.html:15
+#: templates/customer/profile/profile_form.html:13
 #: templates/partials/nav_primary.html:74
 msgid "Logout"
+msgstr ""
+
+#: templates/customer/profile/change_password_form.html:39
+#: templates/customer/profile/profile.html:63
+#: templates/customer/profile/profile_form.html:40
+msgid "Recent Activity"
+msgstr ""
+
+#: templates/customer/profile/change_password_form.html:90
+#: templates/customer/profile/profile.html:114
+#: templates/customer/profile/profile_form.html:91
+msgid "Purchases"
 msgstr ""
 
 #: templates/customer/profile/profile.html:43
@@ -4015,14 +4074,6 @@ msgstr ""
 
 #: templates/customer/profile/profile.html:52
 msgid "Edit profile"
-msgstr ""
-
-#: templates/customer/profile/profile.html:63
-msgid "Recent Activity"
-msgstr ""
-
-#: templates/customer/profile/profile.html:114
-msgid "Purchases"
 msgstr ""
 
 #: templates/customer/profile/profile_delete.html:5
