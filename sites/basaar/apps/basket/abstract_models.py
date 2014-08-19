@@ -169,7 +169,9 @@ class AbstractBasket(models.Model):
             self.save()
 
         # Ensure that all lines are the same currency
-        price_currency = self.currency
+        #TODO Fix this quick fi
+        #price_currency = self.currency
+        price_currency = "EUR"
         stock_info = self.strategy.fetch_for_product(product)
         if price_currency and stock_info.price.currency != price_currency:
             raise ValueError((

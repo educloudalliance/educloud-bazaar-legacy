@@ -9,19 +9,6 @@
     "{{ query }}" | {{ block.super }}
 {% endblock %}
 
-{% block breadcrumbs %}
-    <ul class="breadcrumb">
-        <li>
-            <a href="{{ homepage_url }}">{% trans "Home" %}</a>
-            <span class="divider">/</span>
-        </li>
-        <li>
-            {% trans "Search" %}
-            <span class="divider">/</span>
-        </li>
-        <li class="active">"{{ query }}"</li>
-    </ul>
-{% endblock %}
 
 {% block column_left %}
     {% if has_facets %}
@@ -44,7 +31,7 @@
 
 {% block content %}
 
-
+<div id="content" class="grayBackground flex-container">
     <form method="get" action="." class="form-horizontal">
         {# Render other search params in a hidden block #}
         <div style="display:none">
@@ -75,11 +62,22 @@
 
 
     {% if page.object_list %}
-        <section>
+        <section class="product-section flexItem flex-container-vertical">
             <div>
-                <ol class="row-fluid">
+                <ul class="product-list-title flex-container flex-wrap">
+                    <li><h2>{% trans "Newest Arrivals" %}</h2></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div>
+                <ol class="productlist flex-container flex-wrap">
                     {% for result in page.object_list %}
-                        <li class="span3 {% if forloop.counter0|divisibleby:"4" %}no-margin{% endif %}">{% render_product result.object %}</li>
+                        <li>{% render_product result.object %}</li>
                     {% endfor %}
                 </ol>
                 {% include "partials/pagination.html" with page_obj=page %}
@@ -87,6 +85,7 @@
         </section>
     {% endif %}
 
+</div>
 {% endblock %}
 
 {% block onbodyload %}

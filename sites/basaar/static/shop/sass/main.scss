@@ -54,6 +54,10 @@ textarea, input { outline: none; }
     flex-wrap: wrap;
     -webkit-flex-wrap: wrap;
 }
+.space-between {
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+}
 .flexItem{
     -webkit-flex: 1;
     flex: 1;
@@ -114,7 +118,7 @@ footer {
     font-weight: lighter;
     font-size: 10pt;
     @include user-select(none);
-    
+
     .content-center {
         border-top: 1px solid #bbb;
         
@@ -239,6 +243,7 @@ footer {
 
     .menu-icon {
         @media screen and (max-width: $r1024-content-width) {
+        
         }
         cursor: pointer;
         margin: 0px;
@@ -442,6 +447,7 @@ footer {
             list-style: none;
             padding: 0px;
             li {
+                transition: all 0.5s;
                 padding: 5px 0px;
                 cursor: pointer;
                 span.small{
@@ -492,6 +498,20 @@ footer {
             text-align: center;
         }
     }
+    #clear-all-filters {
+        font-size: 13pt;
+        letter-spacing: 0px;
+        text-transform: uppercase;
+        padding: 0.5em;
+        text-align: right;
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        a:hover {
+            color: $blue;
+        }
+    }
 }
 #tabs-bar {
     line-height: $nav-height * 0.6;
@@ -534,35 +554,75 @@ footer {
 #content {
     width: 100%;
 
-    
-    .box-page {
-        color: $dark-gray;
-
-        .profile-pic-medium {
-            border-radius: 200px;
-            height: 60px;
-            width: 60px;
-            background-color: $dark-gray;
-            background-size: cover;
-            background-position: center;
-            float: left;
-            margin-top: 10px;
-            margin-right: 15px;
-            border: 1px solid $dark-gray;
+    .back-button {
+        padding: 2.5em 0em;
+        a {
+            color: $gray;
+            text-transform: uppercase;
+            font-size: 13pt;
+            font-weight: lighter;
+            text-decoration: none;
+            transition: all 0.5s;
         }
-
-        h2 {
-            font-weight: normal;
-            padding: 0px 10px;
-        }
-
-        .content-box {
-            background: $light-gray;
-            padding: 10px;
-            margin: 10px;
-            min-width: 350px;
+        a:hover {
+            color: $dark-gray;
         }
     }
+
+    #profile-page {
+        padding: 2em 0em;
+        h1 {
+            font-size: 30pt;
+            margin: 0em;
+            padding: 1.3em 0em;
+        }
+        .btn-topright {
+            background: $blue;
+            color: white;
+            text-decoration: none;
+            padding: 0.5em 2em;
+            margin: 1em 0em;
+            font-size: 13pt;
+            float: right;
+        }
+        h2 {
+            font-weight: lighter;
+            padding: 0.5em 0px;
+            margin: 0px;
+        }
+        .gray-box {
+            background: $light-gray;
+            padding: 1em;
+        }
+        .column-spacer {
+            width: 30px;
+        }
+        .row-spacer {
+            height: 30px;
+        }
+        .btn, .btn-danger {
+            padding: 0.5em 1em;
+            color: white;
+            text-decoration: none;
+            margin: 1em 0.3em;
+        }
+        .btn {
+            background: $blue;
+        }
+        .btn-danger {
+            background: #cc0000;
+        }
+        .table-info {
+            text-align: left;
+            th {
+                padding: 0.1em 1em;
+            }
+            td {
+                padding: 0.1em 1em;
+            }
+        }
+    }
+
 
     article.product_pod {
         padding: 10px 10px 5px 10px;
@@ -588,17 +648,23 @@ footer {
             font-size: 11pt;
             color: $gray;
         }
+        .product_price {
+            -webkit-justify-content: flex-end;
+            justify-content: flex-end;
+        }
         .product_price h2 {
             font-size: 13pt;
             margin: 0px;
             color: red;
             text-align: right;
-            padding-right: 0.3em;
             padding-bottom: 0.2em;
+        }
+        .number-rating {
+            font-size: 9pt;
         }
         .star-rating {
             font-size: 11pt;
-            margin-top: 4px;
+            margin-bottom: 3px;
         }
         h4 {
             margin: 0px;
@@ -680,7 +746,7 @@ footer {
             border-bottom: none;
         }
         .main {
-            margin: 3.5em 0px;
+            margin: 0em 0em 3.5em 0em;
             padding: 2em 0px;
             box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
             h1, h2, h3, h4, h5, h6, p {
@@ -691,7 +757,6 @@ footer {
                     margin-right: 2em;
                     height: 191px;
                     width: 191px;
-                    border: 1px solid $light-gray;
                     background-color: $dark-gray;
                 }
             }
@@ -709,11 +774,13 @@ footer {
             .owner {
                 font-size: 15pt;
                 font-weight: lighter;
-                margin-bottom: 1em;
+                margin-bottom: 0.5em;
+                margin-top: 0.3em;
                 color: $gray;
             }
             .price {
                 .price_color {
+                    padding: 0em;
                     font-weight: normal;
                 }
                 text-align: left;
@@ -721,12 +788,21 @@ footer {
                 font-weight: bold;
 
             }
+            .number-rating {
+                margin-top: 0.7em;
+                margin-bottom: 0.3em;
+                font-size: 11pt;
+            }
             .rating {
+                font-size: 13pt;
+                font-weight: bold;
+                padding-bottom: 1em;
+                .rating-value {
+                    padding-top: 0.1em;
+                }
                 .star-rating {
                     font-size: 15pt;
                 }
-                font-size: 13pt;
-                font-weight: bold;
                 p {
                     margin: 5px 0px;
                     i.fa {
@@ -754,7 +830,7 @@ footer {
             }
         }
         h2 {
-            font-size: 19pt;
+            font-size: 20pt;
             font-weight: lighter;
             padding: 1em 0em 0em 0em;
         }
@@ -807,10 +883,50 @@ footer {
                 right: -5px;
             }
         }
-        .review-list {
-            list-style: none;
-            justify-content: center;
-            -webkit-justify-content: center;
+        .review-container {
+            position: relative;
+        }
+        .fade-left, .fade-right {
+            position: absolute;
+            width: 50px;
+            height: 100%;
+            top: 0px;
+            bottom: 0px;
+        }
+        .fade-left {
+            left: 0px;
+            @include background-image(linear-gradient(left,  rgba(241,241,241,1) 0%,rgba(241,241,241,1) 30%,rgba(241,241,241,0.75) 70%,rgba(241,241,241,0) 100%));
+        }
+        .fade-right {
+            right: 0px;
+            @include background-image(linear-gradient(left,  rgba(241,241,241,0) 0%,rgba(241,241,241,0.75) 30%,rgba(241,241,241,1) 70%,rgba(241,241,241,1) 100%));
+        }
+        .fade-container {
+            overflow: scroll;
+            width: 100%;
+
+            .review-list {
+                list-style: none;
+                padding: 0px 50px;
+                margin: 0px;
+                justify-content: center;
+                -webkit-justify-content: center;
+                li {
+                    display: inline-block;
+                    width: 400px;
+                    background: white;
+                    margin: 1em;
+                    padding: 1em;
+                    box-shadow: 0px 0px 7px rgba(0,0,0,0.1);
+
+                    .review {
+                        h2{
+                            padding: 0px;
+                            margin: 0px;
+                        }
+                    }
+                }
+            }
         }
     }
 }

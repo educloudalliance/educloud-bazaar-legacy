@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from django.template import RequestContext, loader
 from oscar.core.loading import get_class, get_model
 from django.http import Http404
+from django.contrib import messages
 import requests
 import json
 # Create your views here.
@@ -37,11 +38,6 @@ def index(request):
         print User.objects.filter(mepinId = ID).exists()
         print ID
         if not User.objects.filter(mepinId = ID).exists():
-           #cuser = User.objects.create_user(ID, 'a@a.com')
-           #cuser.set_password('mepin')
-           #cuser.mepinId=ID
-           #cuser.username=ID
-           #cuser.save()
            cuser = User.create()
            cuser.username = ID
            cuser.email = ID + '@mepin.com'
@@ -77,7 +73,9 @@ def index(request):
     print redirecttoprofile
     #return HttpResponse(template.render(context))
     if redirecttoprofile == True:
+        messages.add_message(request, messages.INFO, 'Please change your email address. Notifications will be sent to your email.')
         return HttpResponseRedirect("/accounts/profile/edit")
     else:
+        messages.add_message(request, messages.INFO, 'Successfully logged in. Welcome back!')
         return HttpResponseRedirect("/catalogue/")
 

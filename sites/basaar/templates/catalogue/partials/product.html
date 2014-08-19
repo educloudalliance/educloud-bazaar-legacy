@@ -38,18 +38,27 @@
             <div class="flex-container">
                 {% block product_review %}
                     {% iffeature "reviews" %}
-                        <div class="star-rating {{ product.rating|as_stars }}">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                        <div class="flex-container-vertical">
+                            <div class="number-rating">
+                                {% blocktrans count product.num_approved_reviews as num_reviews %}
+                                1 review
+                                {% plural %}
+                                {{ num_reviews }} reviews
+                                {% endblocktrans %}
+                            </div>
+                            <div class="star-rating {{ product.rating|as_stars }}">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
                         </div>
                     {% endiffeature %}
                 {% endblock %}
 
                 {% block product_price %}
-                    <div class="flexItem product_price">
+                    <div class="flexItem product_price flex-container-vertical">
                         {% include "catalogue/partials/stock_record.html" %}
                         {% if not product.is_group %}
                             {% include "catalogue/partials/add_to_basket_form_compact.html" %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-15 20:11+0300\n"
+"POT-Creation-Date: 2014-08-16 10:19+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,13 +22,13 @@ msgstr ""
 msgid "British English"
 msgstr ""
 
-#: settings.py:66 templates/partials/nav_primary.html:154
-#: templates/partials/nav_primary.html:155
+#: settings.py:66 templates/partials/nav_primary.html:153
+#: templates/partials/nav_primary.html:154
 msgid "Finnish"
 msgstr ""
 
-#: settings.py:67 templates/partials/nav_primary.html:158
-#: templates/partials/nav_primary.html:159
+#: settings.py:67 templates/partials/nav_primary.html:157
+#: templates/partials/nav_primary.html:158
 msgid "Swedish"
 msgstr ""
 
@@ -57,14 +57,17 @@ msgid "Submitted - has been ordered at the checkout"
 msgstr ""
 
 #: apps/basket/abstract_models.py:40 apps/catalogue/abstract_models.py:964
-#: apps/customer/abstract_models.py:313 apps/order/abstract_models.py:74
+#: apps/customer/abstract_models.py:313 apps/dashboard/catalogue/forms.py:367
+#: apps/dashboard/orders/forms.py:74 apps/dashboard/ranges/models.py:27
+#: apps/dashboard/reviews/forms.py:13 apps/dashboard/reviews/forms.py:26
+#: apps/dashboard/users/forms.py:41 apps/order/abstract_models.py:74
 #: apps/order/abstract_models.py:460 templates/customer/anon_order.html:14
 #: templates/customer/anon_order.html:59
 #: templates/customer/alerts/alert_list.html:13
 msgid "Status"
 msgstr ""
 
-#: apps/basket/abstract_models.py:46
+#: apps/basket/abstract_models.py:46 apps/dashboard/vouchers/views.py:70
 msgid "Vouchers"
 msgstr ""
 
@@ -80,10 +83,11 @@ msgstr ""
 
 #: apps/basket/abstract_models.py:50
 #: templates/customer/order/order_list.html:40
+#: templates/customer/profile/profile.html:123
 msgid "Date submitted"
 msgstr ""
 
-#: apps/basket/abstract_models.py:58 apps/basket/abstract_models.py:545
+#: apps/basket/abstract_models.py:58 apps/basket/abstract_models.py:547
 #: apps/order/abstract_models.py:28 templates/basket/basket.html:6
 #: templates/basket/basket.html.py:13
 msgid "Basket"
@@ -105,11 +109,11 @@ msgid ""
 "items in one order."
 msgstr ""
 
-#: apps/basket/abstract_models.py:552
+#: apps/basket/abstract_models.py:554
 msgid "Line Reference"
 msgstr ""
 
-#: apps/basket/abstract_models.py:556 apps/catalogue/abstract_models.py:177
+#: apps/basket/abstract_models.py:558 apps/catalogue/abstract_models.py:177
 #: apps/catalogue/abstract_models.py:278 apps/catalogue/abstract_models.py:775
 #: apps/catalogue/abstract_models.py:1023 apps/order/abstract_models.py:414
 #: templates/customer/anon_order.html:58
@@ -119,87 +123,87 @@ msgstr ""
 msgid "Product"
 msgstr ""
 
-#: apps/basket/abstract_models.py:562 apps/basket/forms.py:134
+#: apps/basket/abstract_models.py:564 apps/basket/forms.py:134
 #: apps/basket/forms.py:281 apps/order/abstract_models.py:421
 #: apps/order/abstract_models.py:717 apps/order/abstract_models.py:817
 #: apps/order/abstract_models.py:874
 #: templates/basket/partials/basket_content.html:30
-#: templates/checkout/checkout.html:47 templates/customer/anon_order.html:61
+#: templates/checkout/checkout.html:72 templates/customer/anon_order.html:61
 #: templates/customer/wishlists/wishlists_detail.html:34
 msgid "Quantity"
 msgstr ""
 
-#: apps/basket/abstract_models.py:568 apps/order/abstract_models.py:47
+#: apps/basket/abstract_models.py:570 apps/order/abstract_models.py:47
 msgid "Currency"
 msgstr ""
 
-#: apps/basket/abstract_models.py:570
+#: apps/basket/abstract_models.py:572
 msgid "Price excl. Tax"
 msgstr ""
 
-#: apps/basket/abstract_models.py:573
+#: apps/basket/abstract_models.py:575
 msgid "Price incl. Tax"
 msgstr ""
 
-#: apps/basket/abstract_models.py:576 apps/catalogue/abstract_models.py:254
+#: apps/basket/abstract_models.py:578 apps/catalogue/abstract_models.py:254
 #: apps/catalogue/abstract_models.py:1033 apps/customer/abstract_models.py:171
 #: apps/order/abstract_models.py:324 apps/order/abstract_models.py:844
 msgid "Date Created"
 msgstr ""
 
-#: apps/basket/abstract_models.py:588
+#: apps/basket/abstract_models.py:590
 msgid "Basket line"
 msgstr ""
 
-#: apps/basket/abstract_models.py:589
+#: apps/basket/abstract_models.py:591
 msgid "Basket lines"
 msgstr ""
 
-#: apps/basket/abstract_models.py:593
+#: apps/basket/abstract_models.py:595
 #, python-format
 msgid "Basket #%(basket_id)d, Product #%(product_id)d, quantity %(quantity)d"
 msgstr ""
 
-#: apps/basket/abstract_models.py:601
+#: apps/basket/abstract_models.py:603
 #, python-format
 msgid "You cannot modify a %s basket"
 msgstr ""
 
-#: apps/basket/abstract_models.py:814
+#: apps/basket/abstract_models.py:816
 #, python-format
 msgid ""
 "The price of '%(product)s' has increased from %(old_price)s to %(new_price)s "
 "since you added it to your basket"
 msgstr ""
 
-#: apps/basket/abstract_models.py:819
+#: apps/basket/abstract_models.py:821
 #, python-format
 msgid ""
 "The price of '%(product)s' has decreased from %(old_price)s to %(new_price)s "
 "since you added it to your basket"
 msgstr ""
 
-#: apps/basket/abstract_models.py:830 apps/order/abstract_models.py:689
+#: apps/basket/abstract_models.py:832 apps/order/abstract_models.py:689
 #: apps/order/abstract_models.py:716 apps/order/abstract_models.py:816
 #: apps/order/abstract_models.py:873
 msgid "Line"
 msgstr ""
 
-#: apps/basket/abstract_models.py:831 apps/catalogue/abstract_models.py:611
+#: apps/basket/abstract_models.py:833 apps/catalogue/abstract_models.py:611
 #: apps/catalogue/abstract_models.py:885 apps/catalogue/abstract_models.py:969
 #: apps/order/abstract_models.py:692 apps/order/abstract_models.py:714
 msgid "Option"
 msgstr ""
 
-#: apps/basket/abstract_models.py:832 apps/order/abstract_models.py:694
+#: apps/basket/abstract_models.py:834 apps/order/abstract_models.py:694
 msgid "Value"
 msgstr ""
 
-#: apps/basket/abstract_models.py:836
+#: apps/basket/abstract_models.py:838
 msgid "Line attribute"
 msgstr ""
 
-#: apps/basket/abstract_models.py:837
+#: apps/basket/abstract_models.py:839
 msgid "Line attributes"
 msgstr ""
 
@@ -213,6 +217,7 @@ msgstr ""
 
 #: apps/basket/forms.py:124 apps/catalogue/abstract_models.py:598
 #: apps/catalogue/abstract_models.py:956 apps/customer/abstract_models.py:139
+#: apps/dashboard/vouchers/forms.py:18 apps/dashboard/vouchers/forms.py:89
 #: apps/order/abstract_models.py:750 apps/order/abstract_models.py:906
 #: apps/order/abstract_models.py:955
 msgid "Code"
@@ -247,15 +252,17 @@ msgstr ""
 #: apps/catalogue/abstract_models.py:76 apps/catalogue/abstract_models.py:596
 #: apps/catalogue/abstract_models.py:861 apps/catalogue/abstract_models.py:900
 #: apps/catalogue/abstract_models.py:925 apps/catalogue/abstract_models.py:955
-#: apps/customer/abstract_models.py:145 apps/order/abstract_models.py:749
-#: apps/order/abstract_models.py:904 apps/order/reports.py:21
-#: templates/customer/profile/profile.html:17
+#: apps/customer/abstract_models.py:145 apps/dashboard/users/forms.py:42
+#: apps/dashboard/vouchers/forms.py:17 apps/dashboard/vouchers/forms.py:88
+#: apps/order/abstract_models.py:749 apps/order/abstract_models.py:904
+#: apps/order/reports.py:21 templates/customer/profile/profile.html:25
 #: templates/customer/wishlists/wishlists_list.html:9
 msgid "Name"
 msgstr ""
 
 #: apps/basket/reports.py:20 apps/customer/abstract_models.py:122
 #: apps/customer/abstract_models.py:294 apps/customer/views.py:416
+#: apps/dashboard/users/forms.py:12 apps/dashboard/users/forms.py:43
 #: apps/order/reports.py:22
 msgid "Email"
 msgstr ""
@@ -270,6 +277,7 @@ msgstr ""
 
 #: apps/basket/reports.py:23 apps/basket/reports.py:81
 #: templates/customer/order/order_list.html:38
+#: templates/customer/profile/profile.html:121
 msgid "Num items"
 msgstr ""
 
@@ -331,7 +339,7 @@ msgstr ""
 msgid "No voucher found with code '%(code)s'"
 msgstr ""
 
-#: apps/basket/views.py:427
+#: apps/basket/views.py:427 apps/dashboard/vouchers/forms.py:66
 msgid "Please enter a voucher code"
 msgstr ""
 
@@ -376,7 +384,7 @@ msgid "Description"
 msgstr ""
 
 #: apps/catalogue/abstract_models.py:78 apps/catalogue/abstract_models.py:614
-#: templates/partials/nav_primary.html:177
+#: templates/partials/nav_primary.html:176
 msgid "Image"
 msgstr ""
 
@@ -406,7 +414,8 @@ msgstr ""
 msgid "Product Categories"
 msgstr ""
 
-#: apps/catalogue/abstract_models.py:205 apps/order/abstract_models.py:419
+#: apps/catalogue/abstract_models.py:205 apps/dashboard/catalogue/forms.py:91
+#: apps/dashboard/orders/forms.py:68 apps/order/abstract_models.py:419
 msgid "UPC"
 msgstr ""
 
@@ -428,7 +437,7 @@ msgid ""
 "product)."
 msgstr ""
 
-#: apps/catalogue/abstract_models.py:221
+#: apps/catalogue/abstract_models.py:221 apps/dashboard/catalogue/forms.py:93
 msgid "Product title"
 msgstr ""
 
@@ -589,7 +598,7 @@ msgid "File"
 msgstr ""
 
 #: apps/catalogue/abstract_models.py:618 apps/catalogue/abstract_models.py:905
-#: apps/order/abstract_models.py:693 templates/partials/nav_primary.html:174
+#: apps/order/abstract_models.py:693 templates/partials/nav_primary.html:173
 msgid "Type"
 msgstr ""
 
@@ -905,7 +914,7 @@ msgstr ""
 #: templates/customer/email/email_detail.html:20
 #: templates/customer/email/email_list.html:9
 #: templates/customer/notifications/detail.html:24
-#: templates/partials/nav_primary.html:130
+#: templates/partials/nav_primary.html:129
 msgid "Subject"
 msgstr ""
 
@@ -1016,11 +1025,13 @@ msgid "Date closed"
 msgstr ""
 
 #: apps/customer/forms.py:94 apps/customer/forms.py:132
-#: templates/customer/profile/profile.html:21
+#: apps/dashboard/partners/forms.py:118
+#: templates/customer/profile/profile.html:29
 msgid "Email address"
 msgstr ""
 
 #: apps/customer/forms.py:117 apps/customer/forms.py:134
+#: apps/dashboard/partners/forms.py:67
 msgid "Password"
 msgstr ""
 
@@ -1036,22 +1047,25 @@ msgstr ""
 msgid "A user with that email address already exists"
 msgstr ""
 
-#: apps/customer/forms.py:161
+#: apps/customer/forms.py:161 apps/dashboard/partners/forms.py:82
 msgid "The two password fields didn't match."
 msgstr ""
 
-#: apps/customer/forms.py:186
+#: apps/customer/forms.py:186 apps/dashboard/orders/forms.py:20
 msgctxt "start date"
 msgid "From"
 msgstr ""
 
-#: apps/customer/forms.py:188
+#: apps/customer/forms.py:188 apps/dashboard/orders/forms.py:22
 msgctxt "end date"
 msgid "To"
 msgstr ""
 
-#: apps/customer/forms.py:189 apps/order/abstract_models.py:21
+#: apps/customer/forms.py:189 apps/dashboard/communications/forms.py:24
+#: apps/dashboard/offers/reports.py:13 apps/dashboard/orders/forms.py:65
+#: apps/dashboard/orders/views.py:331 apps/order/abstract_models.py:21
 #: apps/order/reports.py:20 templates/customer/order/order_list.html:37
+#: templates/customer/profile/profile.html:120
 msgid "Order number"
 msgstr ""
 
@@ -1059,7 +1073,8 @@ msgstr ""
 msgid "At least one field is required."
 msgstr ""
 
-#: apps/customer/forms.py:204
+#: apps/customer/forms.py:204 apps/dashboard/orders/forms.py:28
+#: apps/dashboard/orders/forms.py:51 apps/dashboard/orders/views.py:149
 msgid "All orders"
 msgstr ""
 
@@ -1070,7 +1085,7 @@ msgid ""
 "containing %(order_number)s"
 msgstr ""
 
-#: apps/customer/forms.py:218
+#: apps/customer/forms.py:218 apps/dashboard/orders/forms.py:39
 #, python-format
 msgid "Orders placed between %(date_from)s and %(date_to)s"
 msgstr ""
@@ -1134,7 +1149,7 @@ msgstr ""
 
 #: apps/customer/views.py:246 templates/customer/baseaccountpage.html:32
 #: templates/customer/partials/nav_account.html:20
-#: templates/customer/profile/profile.html:8
+#: templates/customer/profile/profile.html:13
 #: templates/partials/nav_primary.html:66
 msgid "Profile"
 msgstr ""
@@ -1147,7 +1162,7 @@ msgstr ""
 msgid "Profile updated"
 msgstr ""
 
-#: apps/customer/views.py:343 templates/customer/profile/profile.html:56
+#: apps/customer/views.py:343 templates/customer/profile/profile.html:54
 msgid "Delete profile"
 msgstr ""
 
@@ -1370,6 +1385,1115 @@ msgstr ""
 msgid "'%(title)s' moved to '%(name)s' wishlist"
 msgstr ""
 
+#: apps/dashboard/catalogue/forms.py:36
+msgid "Category with the given path already exists."
+msgstr ""
+
+#: apps/dashboard/catalogue/forms.py:76
+msgid "Create a new product of type"
+msgstr ""
+
+#: apps/dashboard/catalogue/forms.py:77
+msgid "-- Choose type --"
+msgstr ""
+
+#: apps/dashboard/catalogue/forms.py:175
+msgid ""
+"At least one stock record must be set to a partner that you're associated "
+"with."
+msgstr ""
+
+#: apps/dashboard/catalogue/forms.py:254
+msgid "Is group product?"
+msgstr ""
+
+#: apps/dashboard/catalogue/forms.py:257
+msgid ""
+"Check this if this product is a group/parent product that has variants (eg "
+"different sizes/colours available)"
+msgstr ""
+
+#: apps/dashboard/catalogue/forms.py:391
+msgid "A top-level product must have at least one category"
+msgstr ""
+
+#: apps/dashboard/catalogue/forms.py:394
+msgid "A variant product should not have categories"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:71
+#, python-format
+msgid "Products %(upc_filter)s %(title_filter)s"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:81
+#, python-format
+msgid "Last %(num_products)d edited products"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:135
+#, python-format
+msgid " including an item with UPC '%s'"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:141
+#, python-format
+msgid " including an item with title matching '%s'"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:158
+msgid "Please choose a product type"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:234
+#, python-format
+msgid "Create new %s product"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:309
+msgid "Your submitted data was not valid - please correct the errors below"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:351
+#, python-format
+msgid "Deleted product '%s'"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:373
+#, python-format
+msgid "Alerts with status \"%s\""
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:376
+msgid "All alerts"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:421
+msgid "Add a new category"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:425
+msgid "Category created successfully"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:443
+#, python-format
+msgid "Update category '%s'"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:447
+msgid "Category updated successfully"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:461
+msgid "Category deleted successfully"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:483
+msgid "Add a new product type"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:487
+msgid "Product type created successfully"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:499
+msgid "Product Types"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:510
+#, python-format
+msgid "Update product type '%s'"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:514
+msgid "Product type update successfully"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:526
+#, python-format
+msgid "Delete product type '%s'"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:531
+#, python-format
+msgid "Unable to delete '%s'"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:533
+#, python-format
+msgid "%i products are still assigned to this type"
+msgstr ""
+
+#: apps/dashboard/catalogue/views.py:538
+msgid "Product type deleted successfully"
+msgstr ""
+
+#: apps/dashboard/communications/forms.py:15
+msgid "Email subject template"
+msgstr ""
+
+#: apps/dashboard/communications/forms.py:17
+msgid "Email body text template"
+msgstr ""
+
+#: apps/dashboard/communications/forms.py:20
+msgid "Email body HTML template"
+msgstr ""
+
+#: apps/dashboard/communications/forms.py:25
+msgid "Preview email"
+msgstr ""
+
+#: apps/dashboard/communications/forms.py:67
+msgid "No order found with this number"
+msgstr ""
+
+#: apps/dashboard/communications/forms.py:76
+msgid "Please enter an email address"
+msgstr ""
+
+#: apps/dashboard/communications/views.py:32
+msgid ""
+"The submitted form was not valid, please correct the errors and resubmit"
+msgstr ""
+
+#: apps/dashboard/communications/views.py:41
+msgid "Email saved"
+msgstr ""
+
+#: apps/dashboard/communications/views.py:82
+#, python-format
+msgid "A preview email has been sent to %s"
+msgstr ""
+
+#: apps/dashboard/offers/forms.py:24
+msgid "Start date"
+msgstr ""
+
+#: apps/dashboard/offers/forms.py:27
+msgid "End date"
+msgstr ""
+
+#: apps/dashboard/offers/forms.py:47
+msgid "The end date must be after the start date"
+msgstr ""
+
+#: apps/dashboard/offers/forms.py:54
+msgid "Custom condition"
+msgstr ""
+
+#: apps/dashboard/offers/forms.py:86
+msgid ""
+"Please either choose a range, type and value OR select a custom condition"
+msgstr ""
+
+#: apps/dashboard/offers/forms.py:92
+msgid "A range is required"
+msgstr ""
+
+#: apps/dashboard/offers/forms.py:108
+msgid "Custom incentive"
+msgstr ""
+
+#: apps/dashboard/offers/forms.py:139
+msgid ""
+"Please either choose a range, type and value OR select a custom incentive"
+msgstr ""
+
+#: apps/dashboard/offers/forms.py:145
+msgid "No other options can be set if you are using a custom incentive"
+msgstr ""
+
+#: apps/dashboard/offers/forms.py:160 apps/order/abstract_models.py:951
+msgid "Offer name"
+msgstr ""
+
+#: apps/dashboard/offers/forms.py:161
+msgid "Is active?"
+msgstr ""
+
+#: apps/dashboard/offers/reports.py:14
+msgid "Order date"
+msgstr ""
+
+#: apps/dashboard/offers/reports.py:15 templates/customer/anon_order.html:105
+#: templates/customer/order/order_detail.html:128
+msgid "Order total"
+msgstr ""
+
+#: apps/dashboard/offers/reports.py:16
+#: templates/checkout/shipping_methods.html:25
+msgid "Cost"
+msgstr ""
+
+#: apps/dashboard/offers/views.py:43
+msgid "All offers"
+msgstr ""
+
+#: apps/dashboard/offers/views.py:56
+#, python-format
+msgid "Offers matching '%s'"
+msgstr ""
+
+#: apps/dashboard/offers/views.py:89
+#, python-format
+msgid "%s step not complete"
+msgstr ""
+
+#: apps/dashboard/offers/views.py:242
+#, python-format
+msgid "Offer '%s' updated"
+msgstr ""
+
+#: apps/dashboard/offers/views.py:244
+#, python-format
+msgid "Offer '%s' created!"
+msgstr ""
+
+#: apps/dashboard/offers/views.py:274
+msgid "Name and description"
+msgstr ""
+
+#: apps/dashboard/offers/views.py:290
+msgid "Incentive"
+msgstr ""
+
+#: apps/dashboard/offers/views.py:320
+msgid "Restrictions"
+msgstr ""
+
+#: apps/dashboard/offers/views.py:329
+msgid "Offer deleted!"
+msgstr ""
+
+#: apps/dashboard/offers/views.py:352
+msgid "Offer is already suspended"
+msgstr ""
+
+#: apps/dashboard/offers/views.py:355
+msgid "Offer suspended"
+msgstr ""
+
+#: apps/dashboard/offers/views.py:363
+msgid "Offer cannot be reinstated as it is not currently suspended"
+msgstr ""
+
+#: apps/dashboard/offers/views.py:367
+msgid "Offer reinstated"
+msgstr ""
+
+#: apps/dashboard/orders/forms.py:45
+#, python-format
+msgid "Orders placed since %s"
+msgstr ""
+
+#: apps/dashboard/orders/forms.py:48
+#, python-format
+msgid "Orders placed until %s"
+msgstr ""
+
+#: apps/dashboard/orders/forms.py:66 apps/dashboard/reviews/forms.py:29
+msgid "Customer name"
+msgstr ""
+
+#: apps/dashboard/orders/forms.py:67
+msgid "Product name"
+msgstr ""
+
+#: apps/dashboard/orders/forms.py:69 apps/order/abstract_models.py:390
+msgid "Partner SKU"
+msgstr ""
+
+#: apps/dashboard/orders/forms.py:77 apps/dashboard/reports/forms.py:22
+#: apps/dashboard/reviews/forms.py:27
+msgid "Date from"
+msgstr ""
+
+#: apps/dashboard/orders/forms.py:78 apps/dashboard/reports/forms.py:23
+msgid "Date to"
+msgstr ""
+
+#: apps/dashboard/orders/forms.py:80
+msgid "Voucher code"
+msgstr ""
+
+#: apps/dashboard/orders/forms.py:83
+msgid "Payment method"
+msgstr ""
+
+#: apps/dashboard/orders/forms.py:86
+msgid "HTML"
+msgstr ""
+
+#: apps/dashboard/orders/forms.py:87
+msgid "CSV"
+msgstr ""
+
+#: apps/dashboard/orders/forms.py:91
+msgid "Get results as"
+msgstr ""
+
+#: apps/dashboard/orders/forms.py:139
+msgid "New order status"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:116
+#, python-format
+msgid ""
+"%(main_filter)s %(name_filter)s %(title_filter)s%(upc_filter)s "
+"%(sku_filter)s %(date_filter)s%(voucher_filter)s %(payment_filter)s"
+"%(status_filter)s"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:163
+msgid "Orders without an order status"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:165
+#, python-format
+msgid "Orders with status '%s'"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:170
+#, python-format
+msgid "Orders with number starting with \"%(order_number)s\""
+msgstr ""
+
+#: apps/dashboard/orders/views.py:174
+#, python-format
+msgid " with customer name matching '%(name)s'"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:179
+#, python-format
+msgid " including an item with title matching '%(product_title)s'"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:183
+#, python-format
+msgid " including an item with UPC '%(upc)s'"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:187
+#, python-format
+msgid " including an item with ID '%(partner_sku)s'"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:192
+#, python-format
+msgid " placed between %(start_date)s and %(end_date)s"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:196
+#, python-format
+msgid " placed since %s"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:200
+#, python-format
+msgid " placed before %s"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:203
+#, python-format
+msgid " using voucher '%(voucher)s'"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:207
+#, python-format
+msgid " paid for by %(payment_method)s"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:211
+#, python-format
+msgid " with status %(status)s"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:332
+msgid "Order value"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:333
+msgid "Date of purchase"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:334
+msgid "Number of items"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:335
+msgid "Order status"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:336
+msgid "Customer email address"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:337
+msgid "Deliver to name"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:338
+msgid "Bill to name"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:403
+msgid "No valid action submitted"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:407 apps/dashboard/orders/views.py:412
+msgid "Invalid action"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:418
+msgid "You must select some lines to act on"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:421
+msgid "Invalid lines requested"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:432
+#, python-format
+msgid "The entered quantity for line #%s is not valid"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:436
+#, python-format
+msgid ""
+"The entered quantity for line #%(line_id)s should not be higher than "
+"%(quantity)s"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:504
+msgid "Note saved"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:514
+msgid "Note cannot be deleted"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:516
+msgid "Note deleted"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:523
+msgid "Invalid form submission"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:529
+#, python-format
+msgid "Order status changed from '%(old_status)s' to '%(new_status)s'"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:537
+#, python-format
+msgid "Unable to change order status due to payment error: %s"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:543
+msgid "Unable to change order status as the requested new status is not valid"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:557 apps/dashboard/orders/views.py:635
+msgid "Please choose a valid amount"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:566
+#, python-format
+msgid "The new status '%s' is not valid"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:572
+#, python-format
+msgid "'%(status)s' is not a valid new status for line %(line_id)d"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:581
+#, python-format
+msgid ""
+"Status of line #%(line_id)d changed from '%(old_status)s' to '%(new_status)s'"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:598 apps/dashboard/orders/views.py:648
+#, python-format
+msgid "The event type '%s' is not valid"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:609 apps/dashboard/orders/views.py:612
+#, python-format
+msgid "Unable to create shipping event: %s"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:614
+#, python-format
+msgid "Unable to create shipping event due to payment error: %s"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:617
+msgid "Shipping event created"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:654
+#, python-format
+msgid "Unable to create payment event due to payment error: %s"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:658
+#, python-format
+msgid "Unable to create payment event: %s"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:660
+msgid "Payment event created"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:713
+#, python-format
+msgid "%(field)s changed from '%(old_value)s' to '%(new_value)s'"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:746
+#, python-format
+msgid ""
+"Delivery address updated:\n"
+"%s"
+msgstr ""
+
+#: apps/dashboard/orders/views.py:752
+msgid "Delivery address updated"
+msgstr ""
+
+#: apps/dashboard/pages/forms.py:14
+msgctxt "Page title"
+msgid "Title"
+msgstr ""
+
+#: apps/dashboard/pages/forms.py:23 apps/dashboard/promotions/forms.py:60
+msgid "URL"
+msgstr ""
+
+#: apps/dashboard/pages/forms.py:24
+msgid "Example: '/about/contact/'."
+msgstr ""
+
+#: apps/dashboard/pages/views.py:39
+msgid "All pages"
+msgstr ""
+
+#: apps/dashboard/pages/views.py:53
+#, python-format
+msgid " with title containing '%s'"
+msgstr ""
+
+#: apps/dashboard/pages/views.py:76
+msgid "Create New Page"
+msgstr ""
+
+#: apps/dashboard/pages/views.py:150
+#, python-format
+msgid "Deleted page '%s'"
+msgstr ""
+
+#: apps/dashboard/partners/forms.py:17
+msgctxt "Partner's name"
+msgid "Name"
+msgstr ""
+
+#: apps/dashboard/partners/forms.py:26
+msgid "Full dashboard access"
+msgstr ""
+
+#: apps/dashboard/partners/forms.py:27
+msgid "Limited dashboard access"
+msgstr ""
+
+#: apps/dashboard/partners/forms.py:33 apps/dashboard/partners/forms.py:65
+msgid "User role"
+msgstr ""
+
+#: apps/dashboard/partners/forms.py:73
+msgid "Confirm Password"
+msgstr ""
+
+#: apps/dashboard/partners/views.py:36
+msgid "All partners"
+msgstr ""
+
+#: apps/dashboard/partners/views.py:49
+#, python-format
+msgid "Partners matching '%s'"
+msgstr ""
+
+#: apps/dashboard/partners/views.py:70
+msgid "Create new partner"
+msgstr ""
+
+#: apps/dashboard/partners/views.py:75
+#, python-format
+msgid "Partner '%s' was created successfully."
+msgstr ""
+
+#: apps/dashboard/partners/views.py:120
+#, python-format
+msgid "Partner '%s' was updated successfully."
+msgstr ""
+
+#: apps/dashboard/partners/views.py:129
+msgid "Address was updated successfully."
+msgstr ""
+
+#: apps/dashboard/partners/views.py:143
+#, python-format
+msgid "Partner '%s' was deleted successfully."
+msgstr ""
+
+#: apps/dashboard/partners/views.py:167
+msgid "Create user"
+msgstr ""
+
+#: apps/dashboard/partners/views.py:178
+#, python-format
+msgid "User '%s' was created successfully."
+msgstr ""
+
+#: apps/dashboard/partners/views.py:243
+#, python-format
+msgid "User '%(name)s' was linked to '%(partner_name)s'"
+msgstr ""
+
+#: apps/dashboard/partners/views.py:248
+#, python-format
+msgid "User '%(name)s' is already linked to '%(partner_name)s'"
+msgstr ""
+
+#: apps/dashboard/partners/views.py:288
+#, python-format
+msgid "User '%(name)s' is not linked to '%(partner_name)s'"
+msgstr ""
+
+#: apps/dashboard/partners/views.py:311
+#, python-format
+msgid "Edit user '%s'"
+msgstr ""
+
+#: apps/dashboard/partners/views.py:317
+#, python-format
+msgid "User '%s' was updated successfully."
+msgstr ""
+
+#: apps/dashboard/promotions/forms.py:22
+msgid "Promotion type"
+msgstr ""
+
+#: apps/dashboard/promotions/forms.py:63
+msgid "Position"
+msgstr ""
+
+#: apps/dashboard/promotions/forms.py:64
+msgid "Where in the page this content block will appear"
+msgstr ""
+
+#: apps/dashboard/promotions/forms.py:77
+msgid "Content blocks can only be linked to internal URLs"
+msgstr ""
+
+#: apps/dashboard/promotions/views.py:126
+msgid "Content block removed successfully"
+msgstr ""
+
+#: apps/dashboard/promotions/views.py:139
+msgid "Content block created successfully"
+msgstr ""
+
+#: apps/dashboard/promotions/views.py:152
+#, python-format
+msgid "Create a new %s content block"
+msgstr ""
+
+#: apps/dashboard/promotions/views.py:198
+msgid "Product list content block created"
+msgstr ""
+
+#: apps/dashboard/promotions/views.py:216
+msgid "Update content block"
+msgstr ""
+
+#: apps/dashboard/promotions/views.py:232
+msgid "Content block updated successfully"
+msgstr ""
+
+#: apps/dashboard/promotions/views.py:241
+#, python-format
+msgid "Content block '%(block)s' added to page '%(page)s'"
+msgstr ""
+
+#: apps/dashboard/promotions/views.py:258
+msgid "No link found to delete"
+msgstr ""
+
+#: apps/dashboard/promotions/views.py:262
+#, python-format
+msgid "Content block removed from page '%s'"
+msgstr ""
+
+#: apps/dashboard/promotions/views.py:310
+msgid "Product list promotion updated"
+msgstr ""
+
+#: apps/dashboard/promotions/views.py:325
+msgid "Content block deleted successfully"
+msgstr ""
+
+#: apps/dashboard/ranges/forms.py:23
+msgid "Product SKUs or UPCs"
+msgstr ""
+
+#: apps/dashboard/ranges/forms.py:25
+msgid "You can paste in a selection of SKUs or UPCs"
+msgstr ""
+
+#: apps/dashboard/ranges/forms.py:27
+msgid "File of SKUs or UPCs"
+msgstr ""
+
+#: apps/dashboard/ranges/forms.py:28
+msgid "Either comma-separated, or one identifier per line"
+msgstr ""
+
+#: apps/dashboard/ranges/forms.py:38
+msgid "You must submit either a list of SKU/UPCs or a file"
+msgstr ""
+
+#: apps/dashboard/ranges/forms.py:57 apps/dashboard/ranges/views.py:162
+#, python-format
+msgid "The products with SKUs or UPCs matching %s are already in this range"
+msgstr ""
+
+#: apps/dashboard/ranges/forms.py:65
+#, python-format
+msgid "No products exist with a SKU or UPC matching %s"
+msgstr ""
+
+#: apps/dashboard/ranges/models.py:14
+msgid "Range"
+msgstr ""
+
+#: apps/dashboard/ranges/models.py:15
+msgid "File Path"
+msgstr ""
+
+#: apps/dashboard/ranges/models.py:16
+msgid "Size"
+msgstr ""
+
+#: apps/dashboard/ranges/models.py:18
+msgid "Uploaded By"
+msgstr ""
+
+#: apps/dashboard/ranges/models.py:19
+msgid "Date Uploaded"
+msgstr ""
+
+#: apps/dashboard/ranges/models.py:29
+msgid "Error Message"
+msgstr ""
+
+#: apps/dashboard/ranges/models.py:33
+msgid "Date Processed"
+msgstr ""
+
+#: apps/dashboard/ranges/models.py:34
+msgid "Number of New SKUs"
+msgstr ""
+
+#: apps/dashboard/ranges/models.py:36
+msgid "Number of Unknown SKUs"
+msgstr ""
+
+#: apps/dashboard/ranges/models.py:39
+msgid "Number of Duplicate SKUs"
+msgstr ""
+
+#: apps/dashboard/ranges/models.py:43
+msgid "Range Product Uploaded File"
+msgstr ""
+
+#: apps/dashboard/ranges/models.py:44
+msgid "Range Product Uploaded Files"
+msgstr ""
+
+#: apps/dashboard/ranges/views.py:51
+msgid "Create range"
+msgstr ""
+
+#: apps/dashboard/ranges/views.py:90
+msgid "Range deleted"
+msgstr ""
+
+#: apps/dashboard/ranges/views.py:129
+#, python-format
+msgid "Removed %d product from range"
+msgid_plural "Removed %d products from range"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/dashboard/ranges/views.py:155
+#, python-format
+msgid "%d product added to range"
+msgid_plural "%d products added to range"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/dashboard/ranges/views.py:169
+#, python-format
+msgid "No product(s) were found with SKU or UPC matching %s"
+msgstr ""
+
+#: apps/dashboard/reports/forms.py:17
+msgid "Report Type"
+msgstr ""
+
+#: apps/dashboard/reports/forms.py:18
+msgid "Only the offer and order reports use the selected date range"
+msgstr ""
+
+#: apps/dashboard/reports/forms.py:24
+msgid "The report is inclusive of this date"
+msgstr ""
+
+#: apps/dashboard/reports/forms.py:26
+msgid "Download"
+msgstr ""
+
+#: apps/dashboard/reports/forms.py:32
+msgid "Your start date must be before your end date"
+msgstr ""
+
+#: apps/dashboard/reports/reports.py:30
+#, python-format
+msgid "%(report_filter)s between %(start_date)s and %(end_date)s"
+msgstr ""
+
+#: apps/dashboard/reports/views.py:40
+msgid "You do not have access to this report"
+msgstr ""
+
+#: apps/dashboard/reviews/forms.py:10
+msgid "Approved"
+msgstr ""
+
+#: apps/dashboard/reviews/forms.py:11
+msgid "Rejected"
+msgstr ""
+
+#: apps/dashboard/reviews/forms.py:24
+msgid "Keyword"
+msgstr ""
+
+#: apps/dashboard/reviews/forms.py:28
+msgid "to"
+msgstr ""
+
+#: apps/dashboard/reviews/views.py:28
+#, python-format
+msgid ""
+"%(main_filter)s %(date_filter)s %(status_filter)s%(kw_filter)s "
+"%(name_filter)s"
+msgstr ""
+
+#: apps/dashboard/reviews/views.py:57
+#, python-format
+msgid " created between %(start_date)s and %(end_date)s"
+msgstr ""
+
+#: apps/dashboard/reviews/views.py:64
+#, python-format
+msgid " created after %s"
+msgstr ""
+
+#: apps/dashboard/reviews/views.py:70
+#, python-format
+msgid " created before %s"
+msgstr ""
+
+#: apps/dashboard/reviews/views.py:79
+#: templates/catalogue/reviews/review_list.html:7
+#: templates/catalogue/reviews/review_list.html:28
+msgid "All reviews"
+msgstr ""
+
+#: apps/dashboard/reviews/views.py:99 apps/dashboard/users/views.py:150
+#, python-format
+msgid " with status matching '%s'"
+msgstr ""
+
+#: apps/dashboard/reviews/views.py:107
+#, python-format
+msgid " with keyword matching '%s'"
+msgstr ""
+
+#: apps/dashboard/reviews/views.py:127 apps/dashboard/users/views.py:167
+#, python-format
+msgid " with customer name matching '%s'"
+msgstr ""
+
+#: apps/dashboard/users/forms.py:14
+msgctxt "User's name"
+msgid "Name"
+msgstr ""
+
+#: apps/dashboard/users/views.py:30
+#, python-format
+msgid "%(main_filter)s %(email_filter)s %(name_filter)s"
+msgstr ""
+
+#: apps/dashboard/users/views.py:37
+msgid "All users"
+msgstr ""
+
+#: apps/dashboard/users/views.py:57
+#, python-format
+msgid " with email matching '%s'"
+msgstr ""
+
+#: apps/dashboard/users/views.py:70
+#, python-format
+msgid " with name matching '%s'"
+msgstr ""
+
+#: apps/dashboard/users/views.py:91
+msgid "Users' status successfully changed"
+msgstr ""
+
+#: apps/dashboard/users/views.py:122
+msgid "A password reset email has been sent"
+msgstr ""
+
+#: apps/dashboard/users/views.py:134
+msgid "All Alerts"
+msgstr ""
+
+#: apps/dashboard/users/views.py:175
+#, python-format
+msgid " with customer email matching '%s'"
+msgstr ""
+
+#: apps/dashboard/users/views.py:193
+msgid "Product alert saved"
+msgstr ""
+
+#: apps/dashboard/users/views.py:203
+msgid "Product alert deleted"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:22
+msgid "Start datetime"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:24
+msgid "End datetime"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:25
+msgid "Usage"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:28
+msgid "Which products get a discount?"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:32
+msgid "Percentage off of products in range"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:33
+msgid "Fixed amount off of products in range"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:35
+msgid "Discount is a percentage off of the shipping cost"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:37
+msgid "Discount is a fixed amount of the shipping cost"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:38
+msgid "Get shipping for a fixed price"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:42
+msgid "Discount type"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:45
+msgid "Discount value"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:59
+#, python-format
+msgid "The name '%s' is already in use"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:73
+#, python-format
+msgid "The code '%s' is already in use"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:82
+msgid "The start date must be before the end date"
+msgstr ""
+
+#: apps/dashboard/vouchers/forms.py:90
+msgid "Is Active?"
+msgstr ""
+
+#: apps/dashboard/vouchers/views.py:27
+#, python-format
+msgid "%(main_filter)s %(name_filter)s %(code_filter)s"
+msgstr ""
+
+#: apps/dashboard/vouchers/views.py:35
+msgid "All vouchers"
+msgstr ""
+
+#: apps/dashboard/vouchers/views.py:53
+#, python-format
+msgid "with name matching '%s'"
+msgstr ""
+
+#: apps/dashboard/vouchers/views.py:57
+#, python-format
+msgid "with code '%s'"
+msgstr ""
+
+#: apps/dashboard/vouchers/views.py:61
+msgid "Active vouchers"
+msgstr ""
+
+#: apps/dashboard/vouchers/views.py:83
+msgid "Create voucher"
+msgstr ""
+
+#: apps/dashboard/vouchers/views.py:100
+#, python-format
+msgid "Offer for voucher '%s'"
+msgstr ""
+
+#: apps/dashboard/vouchers/views.py:116
+msgid "Voucher created"
+msgstr ""
+
+#: apps/dashboard/vouchers/views.py:191
+msgid "Voucher updated"
+msgstr ""
+
+#: apps/dashboard/vouchers/views.py:201
+msgid "Voucher deleted"
+msgstr ""
+
 #: apps/order/abstract_models.py:24
 msgid "Site"
 msgstr ""
@@ -1464,10 +2588,6 @@ msgstr ""
 
 #: apps/order/abstract_models.py:389
 msgid "Partner name"
-msgstr ""
-
-#: apps/order/abstract_models.py:390
-msgid "Partner SKU"
 msgstr ""
 
 #: apps/order/abstract_models.py:395
@@ -1671,10 +2791,6 @@ msgstr ""
 
 #: apps/order/abstract_models.py:949
 msgid "Offer ID"
-msgstr ""
-
-#: apps/order/abstract_models.py:951
-msgid "Offer name"
 msgstr ""
 
 #: apps/order/abstract_models.py:953
@@ -1885,33 +3001,34 @@ msgid "Important messages about items in your basket"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:15
-#: templates/checkout/checkout.html:24
+#: templates/checkout/checkout.html:24 templates/checkout/thank_you.html:20
 msgid "Shopping Cart"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:18
-#: templates/checkout/checkout.html:27
+#: templates/checkout/checkout.html:27 templates/checkout/thank_you.html:23
 msgid "Order Confirmation"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:21
-#: templates/checkout/checkout.html:30
+#: templates/checkout/checkout.html:30 templates/checkout/thank_you.html:26
 msgid "Order Approval"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:31
-#: templates/checkout/checkout.html:48
+#: templates/checkout/checkout.html:73
 msgid "Individual Price"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:32
-#: templates/checkout/checkout.html:49
+#: templates/checkout/checkout.html:74
 msgid "Subtotal"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:58
 #: templates/catalogue/detail.html:62
 #: templates/catalogue/partials/product.html:34
+#: templates/checkout/checkout.html:92
 #, python-format
 msgid "by  %(owner)s "
 msgstr ""
@@ -1929,7 +3046,8 @@ msgid "Update"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:100
-#: templates/basket/partials/basket_quick.html:37
+#: templates/basket/partials/basket_quick.html:40
+#: templates/checkout/checkout.html:120
 msgid "Total"
 msgstr ""
 
@@ -1942,16 +3060,15 @@ msgid "Your shopping cart is empty"
 msgstr ""
 
 #: templates/basket/partials/basket_content.html:121
-#: templates/checkout/thank_you.html:41
 msgid "Continue shopping"
 msgstr ""
 
-#: templates/basket/partials/basket_quick.html:26
+#: templates/basket/partials/basket_quick.html:29
 #: templates/customer/order/order_detail.html:20
 msgid "Qty"
 msgstr ""
 
-#: templates/basket/partials/basket_quick.html:33
+#: templates/basket/partials/basket_quick.html:36
 msgid "Your cart is empty."
 msgstr ""
 
@@ -1999,7 +3116,7 @@ msgstr ""
 msgid "%(category)s"
 msgstr ""
 
-#: templates/catalogue/detail.html:138 templates/partials/nav_primary.html:165
+#: templates/catalogue/detail.html:138 templates/partials/nav_primary.html:164
 msgid "Grade"
 msgstr ""
 
@@ -2166,11 +3283,6 @@ msgstr ""
 msgid "cancel"
 msgstr ""
 
-#: templates/catalogue/reviews/review_list.html:7
-#: templates/catalogue/reviews/review_list.html:28
-msgid "All reviews"
-msgstr ""
-
 #: templates/catalogue/reviews/review_list.html:42
 msgid "Sort by:"
 msgstr ""
@@ -2208,7 +3320,28 @@ msgstr[1] ""
 msgid "Checkout"
 msgstr ""
 
-#: templates/checkout/checkout.html:42 templates/customer/anon_order.html:53
+#: templates/checkout/checkout.html:43
+#: templates/customer/profile/profile.html:20
+msgid "Your Personal Information"
+msgstr ""
+
+#: templates/checkout/checkout.html:50
+msgid "Data acquired from"
+msgstr ""
+
+#: templates/checkout/checkout.html:51
+msgid "Report incorrect data"
+msgstr ""
+
+#: templates/checkout/checkout.html:58
+msgid "Your Approver's Information"
+msgstr ""
+
+#: templates/checkout/checkout.html:61
+msgid "Select an Approver"
+msgstr ""
+
+#: templates/checkout/checkout.html:67 templates/customer/anon_order.html:53
 msgid "Order contents"
 msgstr ""
 
@@ -2248,15 +3381,11 @@ msgstr ""
 msgid "Order preview"
 msgstr ""
 
-#: templates/checkout/preview.html:13
-msgid "Preview order"
-msgstr ""
-
-#: templates/checkout/preview.html:35
+#: templates/checkout/preview.html:25
 msgid "Submitting..."
 msgstr ""
 
-#: templates/checkout/preview.html:35
+#: templates/checkout/preview.html:25
 msgid "Place order"
 msgstr ""
 
@@ -2287,6 +3416,8 @@ msgstr ""
 #: templates/customer/address/address_list.html:37
 #: templates/customer/notifications/list.html:40
 #: templates/customer/notifications/list.html:50
+#: templates/customer/profile/profile.html:94
+#: templates/customer/profile/profile.html:104
 #: templates/customer/profile/profile_delete.html:17
 #: templates/customer/wishlists/wishlists_delete.html:36
 #: templates/customer/wishlists/wishlists_list.html:31
@@ -2303,10 +3434,6 @@ msgstr ""
 
 #: templates/checkout/shipping_methods.html:24
 msgid "Method"
-msgstr ""
-
-#: templates/checkout/shipping_methods.html:25
-msgid "Cost"
 msgstr ""
 
 #: templates/checkout/shipping_methods.html:39
@@ -2328,24 +3455,16 @@ msgstr ""
 msgid "Confirmation of order"
 msgstr ""
 
-#: templates/checkout/thank_you.html:15
-msgid "Confirmation"
+#: templates/checkout/thank_you.html:31
+msgid "Your items are pending for approval."
 msgstr ""
 
-#: templates/checkout/thank_you.html:21
-msgid "Order confirmation"
+#: templates/checkout/thank_you.html:33
+msgid "Your order number is"
 msgstr ""
 
-#: templates/checkout/thank_you.html:24
-msgid ""
-"Your order has been placed and a confirmation email has ben sent - your "
-"order number is"
-msgstr ""
-
-#: templates/checkout/thank_you.html:26
-msgid ""
-"Please make a note of this reference or print this page and quote it in any "
-"communication with us regarding your order."
+#: templates/checkout/thank_you.html:39
+msgid "Check Pending Items Status"
 msgstr ""
 
 #: templates/checkout/user_address_delete.html:29
@@ -2403,11 +3522,6 @@ msgstr ""
 msgid "Basket total (inc. tax)"
 msgstr ""
 
-#: templates/customer/anon_order.html:105
-#: templates/customer/order/order_detail.html:128
-msgid "Order total"
-msgstr ""
-
 #: templates/customer/baseaccountpage.html:6
 #: templates/customer/baseaccountpage.html:18
 #: templates/customer/order/order_list.html:13
@@ -2422,7 +3536,6 @@ msgstr ""
 
 #: templates/customer/login_registration.html:5
 #: templates/customer/login_registration.html:14
-#: templates/partials/nav_primary.html:98
 msgid "Login or register"
 msgstr ""
 
@@ -2775,21 +3888,26 @@ msgid "Archive"
 msgstr ""
 
 #: templates/customer/notifications/list.html:36
+#: templates/customer/profile/profile.html:90
 #: templates/customer/wishlists/wishlists_list.html:19
 msgid "View"
 msgstr ""
 
 #: templates/customer/notifications/list.html:38
 #: templates/customer/notifications/list.html:48
+#: templates/customer/profile/profile.html:92
+#: templates/customer/profile/profile.html:102
 msgctxt "verb"
 msgid "Archive"
 msgstr ""
 
 #: templates/customer/notifications/list.html:46
+#: templates/customer/profile/profile.html:100
 msgid "With selected items:"
 msgstr ""
 
 #: templates/customer/notifications/list.html:56
+#: templates/customer/profile/profile.html:110
 msgid "There are no notifications to display."
 msgstr ""
 
@@ -2873,45 +3991,38 @@ msgid "Reset"
 msgstr ""
 
 #: templates/customer/order/order_list.html:39
+#: templates/customer/profile/profile.html:122
 msgid "Total inc tax"
 msgstr ""
 
 #: templates/customer/order/order_list.html:53
+#: templates/customer/profile/profile.html:136
 msgid "You haven't placed any orders."
 msgstr ""
 
-#: templates/customer/profile/profile.html:12
-msgid "Your Personal Information"
-msgstr ""
-
-#: templates/customer/profile/profile.html:33
-msgid "Date registered"
+#: templates/customer/profile/profile.html:15
+#: templates/partials/nav_primary.html:74
+msgid "Logout"
 msgstr ""
 
 #: templates/customer/profile/profile.html:43
-msgid "Recent Activity"
+msgid "Date registered"
 msgstr ""
 
-#: templates/customer/profile/profile.html:48
-#: templates/partials/nav_accounts.html:10
-msgid "There are no notifications"
-msgstr ""
-
-#: templates/customer/profile/profile.html:51
-msgid "Purchases"
-msgstr ""
-
-#: templates/customer/profile/profile.html:54
+#: templates/customer/profile/profile.html:50
 msgid "Change password"
 msgstr ""
 
-#: templates/customer/profile/profile.html:55
+#: templates/customer/profile/profile.html:52
 msgid "Edit profile"
 msgstr ""
 
-#: templates/customer/profile/profile.html:57
-#: templates/partials/nav_primary.html:74
-msgid "Logout"
+#: templates/customer/profile/profile.html:63
+msgid "Recent Activity"
+msgstr ""
+
+#: templates/customer/profile/profile.html:114
+msgid "Purchases"
 msgstr ""
 
 #: templates/customer/profile/profile_delete.html:5
@@ -3061,6 +4172,10 @@ msgstr ""
 msgid "please check the error messages below and try again"
 msgstr ""
 
+#: templates/partials/nav_accounts.html:10
+msgid "There are no notifications"
+msgstr ""
+
 #: templates/partials/nav_accounts.html:13
 msgid "You are not logged in"
 msgstr ""
@@ -3081,115 +4196,115 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: templates/partials/nav_primary.html:134
-#: templates/partials/nav_primary.html:167
-#: templates/partials/nav_primary.html:176
-#: templates/partials/nav_primary.html:186
+#: templates/partials/nav_primary.html:133
+#: templates/partials/nav_primary.html:166
+#: templates/partials/nav_primary.html:175
+#: templates/partials/nav_primary.html:185
 msgid "all"
 msgstr ""
 
-#: templates/partials/nav_primary.html:135
+#: templates/partials/nav_primary.html:134
 msgid "Biology"
 msgstr ""
 
-#: templates/partials/nav_primary.html:136
+#: templates/partials/nav_primary.html:135
 msgid "Chemistry"
 msgstr ""
 
-#: templates/partials/nav_primary.html:137
+#: templates/partials/nav_primary.html:136
 msgid "Environmental & Natural Science"
 msgstr ""
 
-#: templates/partials/nav_primary.html:138
+#: templates/partials/nav_primary.html:137
 msgid "Geography"
 msgstr ""
 
-#: templates/partials/nav_primary.html:139
+#: templates/partials/nav_primary.html:138
 msgid "Health Education"
 msgstr ""
 
-#: templates/partials/nav_primary.html:140
+#: templates/partials/nav_primary.html:139
 msgid "History"
 msgstr ""
 
-#: templates/partials/nav_primary.html:141
+#: templates/partials/nav_primary.html:140
 msgid "Mathematics"
 msgstr ""
 
-#: templates/partials/nav_primary.html:142
+#: templates/partials/nav_primary.html:141
 msgid "Physics"
 msgstr ""
 
-#: templates/partials/nav_primary.html:143
+#: templates/partials/nav_primary.html:142
 msgid "Religion & Ethics Culture"
 msgstr ""
 
-#: templates/partials/nav_primary.html:144
+#: templates/partials/nav_primary.html:143
 msgid "Art & Design"
 msgstr ""
 
-#: templates/partials/nav_primary.html:149
+#: templates/partials/nav_primary.html:148
 msgid "Crafts"
 msgstr ""
 
-#: templates/partials/nav_primary.html:150
+#: templates/partials/nav_primary.html:149
 msgid "Music"
 msgstr ""
 
-#: templates/partials/nav_primary.html:151
+#: templates/partials/nav_primary.html:150
 msgid "Physical Education"
 msgstr ""
 
-#: templates/partials/nav_primary.html:152
+#: templates/partials/nav_primary.html:151
 msgid "Home Economics"
 msgstr ""
 
-#: templates/partials/nav_primary.html:153
+#: templates/partials/nav_primary.html:152
 msgid "English"
 msgstr ""
 
-#: templates/partials/nav_primary.html:155
-#: templates/partials/nav_primary.html:159
+#: templates/partials/nav_primary.html:154
+#: templates/partials/nav_primary.html:158
 msgid "as a second language"
 msgstr ""
 
-#: templates/partials/nav_primary.html:156
+#: templates/partials/nav_primary.html:155
 msgid "French"
 msgstr ""
 
-#: templates/partials/nav_primary.html:157
+#: templates/partials/nav_primary.html:156
 msgid "Russian"
 msgstr ""
 
-#: templates/partials/nav_primary.html:178
+#: templates/partials/nav_primary.html:177
 msgid "Video"
 msgstr ""
 
-#: templates/partials/nav_primary.html:179
+#: templates/partials/nav_primary.html:178
 msgid "PDF"
 msgstr ""
 
-#: templates/partials/nav_primary.html:180
+#: templates/partials/nav_primary.html:179
 msgid "Other"
 msgstr ""
 
-#: templates/partials/nav_primary.html:184
+#: templates/partials/nav_primary.html:183
 msgid "Publisher"
 msgstr ""
 
-#: templates/partials/nav_primary.html:199
+#: templates/partials/nav_primary.html:198
 msgid "Price Range"
 msgstr ""
 
-#: templates/partials/nav_primary.html:209
+#: templates/partials/nav_primary.html:208
 msgid "Resources"
 msgstr ""
 
-#: templates/partials/nav_primary.html:212
+#: templates/partials/nav_primary.html:211
 msgid "Recipes"
 msgstr ""
 
-#: templates/partials/nav_primary.html:215
+#: templates/partials/nav_primary.html:214
 msgid "Q&A"
 msgstr ""
 

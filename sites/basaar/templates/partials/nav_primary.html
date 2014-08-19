@@ -93,7 +93,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-container strong-logins">
-                                    <div class="mepin-link" data-theme="light" data-layout="standard"
+                                    <div class="mepin-login" data-theme="light" data-layout="standard"
                                          data-applicationid="a4fdd84bc8c959788f781b3d81498059" data-cburl="https://demo.pilvivayla.fi/mepin"></div>
                                 </div>
                             </div>
@@ -194,12 +194,17 @@
                     <li>Pub9</li>
                 </ul>
             </div>
-            <div class="flexItem options" id="options-price">
-                <h2>{% trans "Price Range"%}</h2>
-                <div>
-                    <div id="price-slider"></div>
+            <div class="flexItem flex-container-vertical space-between">
+                <div id="options-price" class="options">
+                    <h2>{% trans "Price Range"%}</h2>
+                    <div>
+                        <div id="price-slider"></div>
+                    </div>
+                    <p><input type="text" id="price-range" readonly></p>
                 </div>
-                <p><input type="text" id="price-range" readonly></p>
+                <div id="clear-all-filters">
+                    <a href="#"><i class="fa fa-times-circle"></i> Clear all</a>
+                </div>
             </div>
         </div>
     </div>
