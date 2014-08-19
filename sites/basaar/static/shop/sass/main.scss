@@ -957,7 +957,7 @@ footer {
         padding: 0px;
         margin: 0px;
         li {
-            padding: 12px 15px;
+            padding: 8px 15px;
         }
     }
     .close-btn {
@@ -979,6 +979,14 @@ footer {
     }
     .close-btn:hover {
         background: $light-blue;
+    }
+    a.link {
+        color: white;
+        margin: 0em 1.5em;
+        text-decoration: none;
+    }
+    a.link:hover {
+        color: $blue;
     }
 }
 

@@ -80,13 +80,13 @@
                     <div>
                         {% with image=line.product.primary_image %}
                             {% thumbnail image.original "x155" upscale=False as thumb %}
-                            <a href="{{ product.get_absolute_url }}"><img src="{{ line.product.icon }}" alt="{{ line.product.get_title }}" class="thumbnail"></a>
+                            <a href="{{ line.product.get_absolute_url }}"><img src="{{ line.product.icon }}" alt="{{ line.product.get_title }}" class="thumbnail"></a>
                             {% endthumbnail %}
                         {% endwith %}
                     </div>
                     <div class="flex-container-vertical flexItem">
                         <div class="title">
-                            <a href="{{ product.get_absolute_url }}">{{ line.description }}</a>
+                            <a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a>
                         </div>
                         <div class="owner">
                             {% blocktrans with owner=line.product.get_owner %}by  {{ owner }} {% endblocktrans %}

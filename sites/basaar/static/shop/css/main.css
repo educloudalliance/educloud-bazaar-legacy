@@ -8799,7 +8799,7 @@ footer .content-center img {
 }
 /* line 959, ../sass/main.scss */
 .py-messages ul li {
-  padding: 12px 15px;
+  padding: 8px 15px;
 }
 /* line 963, ../sass/main.scss */
 .py-messages .close-btn {
@@ -8822,10 +8822,20 @@ footer .content-center img {
 .py-messages .close-btn:hover {
   background: #96ceee;
 }
+/* line 983, ../sass/main.scss */
+.py-messages a.link {
+  color: white;
+  margin: 0em 1.5em;
+  text-decoration: none;
+}
+/* line 988, ../sass/main.scss */
+.py-messages a.link:hover {
+  color: #00a9e4;
+}
 
 /* Responsive: Portrait tablets and up */
 @media print {
-  /* line 995, ../sass/main.scss */
+  /* line 1003, ../sass/main.scss */
   #uppermenu, #product_related, #product_recommended {
     display: none !important;
   }
