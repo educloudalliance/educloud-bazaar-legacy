@@ -26,9 +26,6 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
     num_in_stock = indexes.IntegerField(null=True, faceted=True)
     rating = indexes.IntegerField(null=True, faceted=True)
 
-
-
-
     # Spelling suggestions
     suggestions = indexes.FacetCharField()
 
@@ -53,7 +50,7 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
         categories = obj.categories.all()
         if len(categories) > 0:
             return [category.full_name for category in categories]
-    
+
 
     def prepare_rating(self, obj):
         if obj.rating is not None:
