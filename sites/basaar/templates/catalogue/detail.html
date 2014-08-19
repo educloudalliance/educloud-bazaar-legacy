@@ -102,14 +102,11 @@
                                 <i class="fa fa-star"></i>
                             </div>
                         </div>
-                        <!--
-                        <p><i class="fa fa-thumbs-o-up"></i>{{product.rating}}&nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-o-down"></i>{{product.rating}}</p>
-                        -->
                     </div>
                     <div class="buttons flex-container flexItem">
                         {% block product_basket_form %}
                             {% include "catalogue/partials/add_to_basket_form.html" %}
-                            {% include "catalogue/partials/add_to_wishlist_form.html" %}
+                            {#% include "catalogue/partials/add_to_wishlist_form.html" %#}
                         {% endblock %}
                     </div>
                 </div>
@@ -123,15 +120,6 @@
         <div class="box-page details content-center flex-container-vertical">
 
             {% block product_main %}
-            {% comment %} 
-            This is a but clunky here.  Better to have some kind of JS-driven dashboard menu that 
-            pops out when clicked.  A bit like the Django-Debug-Toolbar button
-            {% endcomment %}
-            <!--
-            {% if user.is_authenticated and user.is_staff %}
-                <a class="pull-right hidden-phone" href="{% url 'dashboard:catalogue-product' pk=product.id %}"><small><i class="icon-edit"></i> {% trans "Edit this product" %}</small></a>
-            {% endif %}
-            -->
             {% block product_description %}
             {% if product.description %}
             <div id="product_description">
@@ -235,11 +223,15 @@
                             </div>
                             <div class="fade-right"></div>
                         </div>
-                            <div>
-                                {% if product.num_approved_reviews > 3 %}
-                                    <a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}">{% trans "See all reviews" %}</a>
-                                {% endif %}
-                            </div>
+                        {% if not product|is_review_permitted:user %}
+                            {% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id as add_review_url %}
+                            <a class="btn" href="{{ add_review_url }}#addreview">{% trans "Write a review"%}</a>
+                        {% endif %}
+                        <div>
+                            {% if product.num_approved_reviews > 3 %}
+                                <a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}">{% trans "See all reviews" %}</a>
+                            {% endif %}
+                        </div>
                         {% endif %}
                     {% endblock product_review %}
                 {% endiffeature %}

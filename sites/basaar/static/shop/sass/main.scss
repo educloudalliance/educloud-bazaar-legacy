@@ -106,9 +106,17 @@ textarea, input { outline: none; }
 .hidden {
     display: none;
 }
+.hideSmall {
+    @media screen and (max-width: $r1024-content-width) {
+        display: none;
+    }
+}
 .barshadow {
     height: $nav-height * 1.6;
     width: 100%;
+    @media screen and (max-width: $r1024-content-width) {
+        height: $nav-height * 1.12;
+    }
 }
 footer {
     background: $light-gray;
@@ -142,17 +150,27 @@ footer {
     z-index: 200;
     box-shadow: 0px 0px 6px rgba(0,0,0,0.6);
     @include user-select(none);
+    @media screen and (max-width: $r1024-content-width) {
+        height: $nav-height * 0.7;
+    }
 
     .menu-header {
         height: $nav-height;
         justify-content: flex-start;
         -webkit-justify-content: flex-start;
+        @media screen and (max-width: $r1024-content-width) {
+            height: $nav-height * 0.7;
+        }
         .menu-head-icon {
             width: 137px;
             height: $nav-height - 19;
             margin: 10px;
             background-repeat: no-repeat;
             background-size: 100% 100%;
+            @media screen and (max-width: $r1024-content-width) {
+                height: $nav-height *0.7 - 19;
+                width: 80px;
+            }
         }
     }
     #profile-icon{
@@ -173,12 +191,19 @@ footer {
                 margin: $nav-height*0.25 20px;
                 -webkit-transition: all 0.5s;
                 transition: all 0.5s;
+                @media screen and (max-width: $r1024-content-width) {
+                    margin: $nav-height*0.1 20px;
+                }
             }
             svg {
                 border-left: 1px solid;
                 height: $nav-height - $nav-height*0.5 - 4px;
                 width: $nav-height - $nav-height*0.5;
                 padding: 5px;
+                @media screen and (max-width: $r1024-content-width) {
+                    height: $nav-height*0.7 - $nav-height*0.2 - 4px;
+                    width: $nav-height*0.7 - $nav-height*0.2;
+                }
             }
             input {
                 float: left;
@@ -242,14 +267,16 @@ footer {
     }
 
     .menu-icon {
-        @media screen and (max-width: $r1024-content-width) {
-        
-        }
         cursor: pointer;
         margin: 0px;
         width: $nav-height * 1.2;
         height: $nav-height;
         padding: (($nav-height - $menu-icons-width) / 2);
+        @media screen and (max-width: $r1024-content-width) {
+            width: $nav-height *0.9;
+            height: $nav-height *0.7;
+            padding: (($nav-height - $menu-icons-width) / 2)*0.7;
+        }
     }
     #icons > div:hover {
         background: $blue;
@@ -293,6 +320,10 @@ footer {
         padding: 0px 3px;
         text-align: center;
         cursor: pointer;
+        @media screen and (max-width: $r1024-content-width) {
+            bottom: 4px;
+            right: 4px;
+        }
     }
     #language-icon {
         text-align: center;
@@ -301,6 +332,9 @@ footer {
         .menu-icon {
             padding: 2px;
             width: 100px;
+            @media screen and (max-width: $r1024-content-width) {
+                height: 60px;
+            }
         }
         .menu-icon:hover {
             color: white;
@@ -420,7 +454,12 @@ footer {
         -webkit-transition: all 0.1s; /* For Safari 3.1 to 6.0 */
         transition: all 0.1s;
         @media screen and (max-width: $r1024-content-width) {
-            padding: 0px 2px;
+            height: $nav-height *0.7;
+            line-height: $nav-height *0.7;
+            letter-spacing: 0px;
+            font-size: 14px;
+            padding: 0px 5px;
+            border: none;
         }
     }
     #menu-categories:hover {
@@ -518,6 +557,10 @@ footer {
     height: $nav-height * 0.6;
     background: $blue;
     @include user-select(none);
+    @media screen and (max-width: $r1024-content-width) {
+        height: $nav-height * 0.42;
+        line-height: $nav-height * 0.42;
+    }
     .tab {
         text-align: center;
         color: white;
@@ -528,6 +571,9 @@ footer {
         font-size: 11pt;
         cursor: pointer;
         border: 1px solid $dark-blue;
+        @media screen and (max-width: $r1024-content-width) {
+            font-size: 9pt;
+        }
     }
     .tab:hover {
         background: rgba(255,255,255,0.2);
@@ -710,6 +756,9 @@ footer {
     section.product-section {
         width: 100%;
         padding: $nav-height $nav-height;
+        @media screen and (max-width: $r1024-content-width) {
+            padding: $nav-height/4 $nav-height/4;
+        }
         .product-list-title {
             list-style: none;
             padding: 0px;
@@ -761,6 +810,17 @@ footer {
             margin: 0em 0em 3.5em 0em;
             padding: 2em 0px;
             box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
+            .btn {
+                background: $blue;
+                color: white;
+                border: none;
+                font-weight: lighter;
+                text-decoration: none;
+                padding: 0em 2em;
+                margin: 0px 2em 0px 0em;
+                line-height: 3em;
+                height: 3em;
+            }
             h1, h2, h3, h4, h5, h6, p {
                 margin: 0px;
             }
@@ -826,11 +886,12 @@ footer {
             .buttons {
                 -webkit-align-items: flex-end;
                 align-items: flex-end;
-                button {
+                button, .button {
                     background: $blue;
                     color: white;
                     border: none;
                     font-weight: lighter;
+                    text-decoration: none;
                     padding: 0em 2em;
                     margin: 0px 2em 0px 0em;
                     line-height: 3em;
@@ -838,6 +899,31 @@ footer {
                 }
                 button[disabled=disabled] {
                     background: $gray;
+                }
+                .dropdown-btn {
+                    position: relative;
+                    cursor: pointer;
+                    ul {
+                        display: none;
+                        position: absolute;
+                        top: 3em;
+                        left: 0px;
+                        list-style: none;
+                        margin: 0px;
+                        padding: 0px;
+                        background: $dark-blue;
+                        li{
+                            a {
+                                padding: 1em 1em;
+                                text-decoration: none;
+                                color: white;
+                                line-height: 2em;
+                            }
+                        }
+                        li:hover {
+                            background: rgba(255,255,255,0.2);
+                        }
+                    }
                 }
             }
         }

@@ -171,10 +171,6 @@
             " - €" + $( "#price-slider" ).slider( "values", 1 ) );
         });
 
-
-
-
-
         $( "#price-slider" ).slider({
           range: true,
           min: 0,
@@ -187,6 +183,14 @@
         $( "#price-range" ).val( "€" + $( "#price-slider" ).slider( "values", 0 ) +
             " - €" + $( "#price-slider" ).slider( "values", 1 ) );
 
+
+        $('.dropdown-btn').on('click', function() {
+            if($(this).find('ul').is(":visible")){
+                $(this).find('ul').hide();
+            } else {
+                $(this).find('ul').show('fade');
+            }
+        });
 
         $('.py-messages .close-btn').click(function(){
             $(this).parent().hide('fade');
