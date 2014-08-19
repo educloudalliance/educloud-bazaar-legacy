@@ -730,6 +730,18 @@ footer {
                     margin: 10px 5px;
                     letter-spacing: 1px;
                     font-size: 12.5pt;
+                    .controls {
+                        display: inline-block;
+                        margin: 0px 0px 0px 0.5em;
+                        select {
+                            height: 18px;
+                            background: $blue;
+                            font-size: 9.5pt;
+                            border: 1px solid $dark-blue;
+                            color: white;
+                        }
+                    }
+
                 }
             }
 

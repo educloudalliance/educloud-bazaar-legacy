@@ -23,12 +23,6 @@
     {% endif %}
 {% endblock %}
 
-{% block headertext %}
-    {% blocktrans with q=query %}
-        Products matching "{{ q }}"
-    {% endblocktrans %}
-{% endblock %}
-
 {% block content %}
 
 <div id="content" class="grayBackground flex-container">
@@ -38,6 +32,13 @@
         <section class="product-section flexItem flex-container-vertical">
             <div>
                 <ul class="product-list-title flex-container flex-wrap">
+                    <li>
+                        <h2>
+                            {% blocktrans with q=query %}
+                                Searching for "{{ q }}"
+                            {% endblocktrans %}
+                        </h2>
+                    </li>
                     <li>
                         <h2>
                             <form method="get" action="." class="form-horizontal">
@@ -52,9 +53,6 @@
                                     {% blocktrans with start=page.start_index end=page.end_index total=paginator.count %}
                                         Showing <strong>{{ start }}</strong> to <strong>{{ end }}</strong> of <strong>{{ total }}</strong> results.
                                     {% endblocktrans %}
-                                    <div class="pull-right">
-                                        {% include "partials/form_field.html" with field=search_form.sort_by %}
-                                    </div>
                                 {% else %}
                                     <p>
                                         {% trans "Found <strong>0</strong> results." %}
@@ -69,8 +67,13 @@
                             </form>
                         </h2>
                     </li>
-                    <li></li>
-                    <li></li>
+                    <li>
+                        {% if paginator.count %}
+                        <h2>
+                            {% include "partials/form_field.html" with field=search_form.sort_by %}
+                        </h2>
+                        {% endif %}
+                    </li>
                     <li></li>
                     <li></li>
                     <li></li>
