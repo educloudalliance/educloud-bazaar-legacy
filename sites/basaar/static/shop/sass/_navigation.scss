@@ -1,0 +1,466 @@
+@import "compass";
+
+#navbar {
+    z-index: 100;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+}
+#uppermenu {
+    color: $gray;
+    height: $nav-height;
+    background: $dark-gray;
+    z-index: 200;
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.6);
+    @include user-select(none);
+    @media screen and (max-width: $r1024-content-width) {
+        height: $nav-height * 0.7;
+    }
+
+    .menu-header {
+        height: $nav-height;
+        justify-content: flex-start;
+        -webkit-justify-content: flex-start;
+        @media screen and (max-width: $r1024-content-width) {
+            height: $nav-height * 0.7;
+        }
+        .menu-head-icon {
+            width: 137px;
+            height: $nav-height - 19;
+            margin: 10px;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            @media screen and (max-width: $r1024-content-width) {
+                height: $nav-height *0.7 - 19;
+                width: 80px;
+            }
+        }
+    }
+    #profile-icon{
+        svg.logged {
+            path.hoverable {
+                fill: $blue;
+            }
+            circle.hoverable {
+                stroke: $blue;
+            }
+        }
+    }
+    #generalSearch {
+        form {
+            line-height: $nav-height;
+            > div {
+                border: 2px solid $gray;
+                margin: $nav-height*0.25 20px;
+                -webkit-transition: all 0.5s;
+                transition: all 0.5s;
+                @media screen and (max-width: $r1024-content-width) {
+                    margin: $nav-height*0.1 20px;
+                }
+            }
+            svg {
+                transition: all 0.5s;
+                border-left: 2px solid;
+                height: $nav-height - $nav-height*0.5 - 4px;
+                width: $nav-height - $nav-height*0.5;
+                padding: 5px;
+                @media screen and (max-width: $r1024-content-width) {
+                    height: $nav-height*0.7 - $nav-height*0.2 - 4px;
+                    width: $nav-height*0.7 - $nav-height*0.2;
+                }
+            }
+            input {
+                float: left;
+                color: white;
+                border: none;
+                padding: 0px 2%;
+                width: 96%;
+                font-weight: lighter;
+                background: transparent;
+                height: $nav-height * 0.5 - 4px;
+            }
+            input:focus ~ svg {
+                background: $blue;
+                g path {
+                    fill: white;
+                }
+            }
+        }
+    }
+    .basket-mini {
+        overflow: scroll;
+        max-height: 300px;
+        font-size: 11pt;
+        .basket-mini-item {
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+            li {
+                padding: 5px 10px;
+                text-align: left;
+                font-weight: lighter;
+                height: 49px;
+                p {
+                    margin: 0px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+                .qty {
+                    font-size: 9.5pt;
+                }
+                a{
+                    color: $dark-gray;
+                }
+            }
+            li:nth-child(even){
+                background: white;
+            }
+            li:nth-child(odd){
+                background: $light-gray;
+            }
+            .mini-basket-total {
+                height: 49px;
+                line-height: 44px;
+            }
+        }
+    }
+    .mini-basket-total {
+        .flexItem3 {
+            padding-right: 10px;
+            text-align: right;
+        }
+        .flexItem {
+            padding-right: 10px;
+            text-align: left;
+        }
+    }
+
+    .menu-icon {
+        cursor: pointer;
+        margin: 0px;
+        width: $nav-height * 1.2;
+        height: $nav-height;
+        padding: (($nav-height - $menu-icons-width) / 2);
+        @media screen and (max-width: $r1024-content-width) {
+            width: $nav-height *0.9;
+            height: $nav-height *0.7;
+            padding: (($nav-height - $menu-icons-width) / 2)*0.7;
+        }
+    }
+    #icons > div:hover {
+        background: $dark-blue;
+
+        path.hoverable {
+            fill: #ffffff;
+        }
+        circle.hoverable {
+            stroke: #ffffff;
+        }
+    }
+    #icons > div.active {
+        background: $dark-blue;
+        color: white;
+        path.hoverable {
+            fill: #ffffff;
+        }
+        circle.hoverable {
+            stroke: #ffffff;
+        }
+    }
+    #icons > div.active:hover {
+        background: $dark-blue;
+    }
+    #icons > div {
+        position: relative;
+        -webkit-transition: all 0.1s; /* For Safari 3.1 to 6.0 */
+        transition: all 0.1s;
+        border-left: 1px solid $gray;
+    }
+    .notification-number {
+        position: absolute;
+        bottom: 13px;
+        right: 13px;
+        min-width: 20px;
+        background: $notification-red;
+        border-radius: 50px;
+        color: white;
+        font-size: 14px;
+        line-height: 20px;
+        padding: 0px 3px;
+        text-align: center;
+        cursor: pointer;
+        @media screen and (max-width: $r1024-content-width) {
+            bottom: 4px;
+            right: 4px;
+        }
+    }
+    #language-icon {
+        text-align: center;
+        font-weight: lighter;
+        font-size: 10pt;
+        .menu-icon {
+            padding: 2px;
+            width: 100px;
+            @media screen and (max-width: $r1024-content-width) {
+                height: 60px;
+            }
+        }
+        .menu-icon:hover {
+            color: white;
+        }
+        .menu-box {
+            display: none;
+            min-width: 130px;
+            min-height: 30px;
+            font-size: 10pt;
+            padding: 10px 5px;
+            background: $dark-blue;
+            select {
+                color: black;
+            }
+            button {
+                color: black;
+            }
+        }
+    }
+    .menu-box {
+        display: none;
+        position: absolute;
+        right: 0px;
+        top: $nav-height;
+        color: white;
+        min-height: $nav-height * 0.7;
+        min-width: 350px;
+        z-index: 200;
+        box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.5);
+
+        .social-logins {
+            padding: 5px;
+            .flexItem {
+                transition: all 0.5s;
+                text-align: center;
+                margin: 1px;
+                background: $dark-gray;
+                color: white;
+                height: 35px;
+                line-height: 35px;
+                font-size: 25px;
+                border: 2px solid white;
+            }
+            .flexItem:hover {
+                border-color: $gray;
+            }
+            #facebook-login{
+                background: #3b5998;
+            }
+            #twitter-login{
+                background: #00aced;
+            }
+            #google-login{
+                background: #dd4b39;
+            }
+            #linkedin-login{
+                background: #007bb6;
+            }
+        }
+        .strong-logins {
+            border-top: 10px solid #0080bc;
+            padding: 7px;
+        }
+        
+        .menu-box-header {
+            background: $dark-blue;
+            height: $nav-height * 0.7;
+            line-height: $nav-height * 0.7;
+            font-size: 12pt;
+            text-align: left;
+            padding: 0px 15px;
+            text-transform: uppercase;
+            font-weight: lighter;
+        }
+        .menu-box-content {
+            color: $dark-gray;
+            @include user-select(text);
+            border-bottom: 10px solid $dark-blue;
+            border-left: 10px solid $dark-blue;
+            border-right: 10px solid $dark-blue;
+            background: white;
+            p {
+                padding: 0em 1em;
+            }
+            .menu-box-footer {
+                @include user-select(none);
+                border-top: 5px solid $dark-blue;
+                height: $nav-height * 0.8;
+                line-height: $nav-height * 0.8;
+
+                a.btn {
+                    transition: all 0.5s;
+                    text-align: center;
+                    text-decoration: none;
+                    color: $dark-gray;
+                }
+                a.btn:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+        
+    }
+
+    #menu-categories {
+        letter-spacing: 1px;
+        text-align: center;
+        font-size: 17px;
+        padding: 0px 2.5em;
+        margin: 0px;
+        border-right: 1px solid $gray;
+        border-left: 1px solid $gray;
+        text-transform: uppercase;
+        height: $nav-height;
+        line-height: $nav-height;
+        cursor: pointer;
+        position: relative;
+        font-weight: lighter;
+        -webkit-transition: all 0.1s; /* For Safari 3.1 to 6.0 */
+        transition: all 0.1s;
+        @media screen and (max-width: $r1024-content-width) {
+            height: $nav-height *0.7;
+            line-height: $nav-height *0.7;
+            letter-spacing: 0px;
+            font-size: 14px;
+            padding: 0px 5px;
+            border: none;
+        }
+    }
+    #menu-categories:hover {
+        transition: all 0.5s;
+        color: white;
+        background: $dark-blue;
+    }
+    #menu-categories.active {
+        background: $dark-blue;
+        color: white;
+    }
+
+}
+#categories-bar {
+    display: none;
+    background: $dark-gray;
+    color: $gray;
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+    @include user-select(none);
+    > div > .flexItem, > div > .flexItem2, > div > .flexItem3 {
+        padding: 10px 15px;
+        min-width: 220px;
+        font-weight: lighter;
+        ul {
+            list-style: none;
+            padding: 0px;
+            li {
+                transition: all 0.5s;
+                padding: 5px 0px;
+                cursor: pointer;
+                span.small{
+                    font-size: 9pt;
+                }
+            }
+            li:hover {
+                transition: all 0.5s;
+                text-decoration: underline;
+            }
+            li.selected {
+                color: white;
+                text-decoration: underline;
+            }
+        }
+    }
+    h2 {
+        color: $blue;
+        border-bottom: 1px solid $blue;
+        font-weight: normal;
+        font-size: 15pt;
+        margin: 0px;
+        padding: 10px 0px 2px 0px;
+    }
+    #options-price{
+        > div {
+            padding: 2em 1em 1em 1em;
+            #price-slider {
+                background: $gray;
+                border-radius: 0px;
+                border: none;
+                .ui-slider-range{
+                    background: $light-gray;
+                }
+                .ui-slider-handle {
+                    background: $light-gray;
+                    border: 1px solid $dark-blue;
+                    height: 1.3em;
+                }
+            }
+        }
+        p {
+            margin: 0px;
+        }
+        input {
+            background: transparent;
+            color: white;
+            border: none;
+            text-align: center;
+        }
+    }
+    #clear-all-filters {
+        font-size: 13pt;
+        letter-spacing: 0px;
+        text-transform: uppercase;
+        padding: 0.5em;
+        text-align: right;
+        a {
+            transition: all 0.5s;
+            color: white;
+            text-decoration: none;
+        }
+        a:hover {
+            color: $blue;
+        }
+    }
+}
+#tabs-bar {
+    line-height: $nav-height * 0.6;
+    height: $nav-height * 0.6;
+    background: $blue;
+    @include user-select(none);
+    @media screen and (max-width: $r1024-content-width) {
+        height: $nav-height * 0.42;
+        line-height: $nav-height * 0.42;
+    }
+    .tab {
+        transition: all 0.5s;
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        font-size: 11pt;
+        cursor: pointer;
+        border: 1px solid $dark-blue;
+        @media screen and (max-width: $r1024-content-width) {
+            font-size: 9pt;
+        }
+    }
+    .tab:hover {
+        background: rgba(255,255,255,0.2);
+    }
+    .tab.active {
+        color: $dark-gray;
+        background: $light-gray;
+        font-weight: normal;
+        border: 1px solid rgb(102,102,102);
+    }
+    .tab.active:hover {
+        background: $light-gray;
+    }
+}

@@ -9,25 +9,25 @@
             </a>
         </div>
 
-        <div class="flexItem">
+        <div class="flexItem hideSmall">
         </div>
 
         <div id="menu-categories">{% trans "Refine Items"%}&nbsp;&nbsp;<i class="fa fa-caret-down"></i>
         </div>
 
-        <div class="flexItem">
+        <div class="flexItem hideSmall">
         </div>
 
         <div id="generalSearch" class="flexItem3 flex-container">
             <form method="get" action="{% url 'search:search' %}" class="flex-container flexItem">
                 <div class="flex-container flexItem">
-                    <div class="flexItem">{{ search_form.q }}</div>
+                    {{ search_form.q }}
                     <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_Search.svg"/>
                 </div>
             </form>
         </div>
         
-        <div class="flexItem">
+        <div class="flexItem hideSmall">
         </div>
 
         <div id="icons" class="flex-container">
@@ -203,7 +203,7 @@
                     <p><input type="text" id="price-range" readonly></p>
                 </div>
                 <div id="clear-all-filters">
-                    <a href="#"><i class="fa fa-times-circle"></i> Clear all</a>
+                    <a href="#"><i class="fa fa-times-circle"></i> {% trans "Clear all"%}</a>
                 </div>
             </div>
         </div>

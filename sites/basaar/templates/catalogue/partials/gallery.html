@@ -1,6 +1,7 @@
 {% load thumbnail %}
 {% load i18n %}
 {% load staticfiles %}
+{% load oembed_tags %}
 
 {% with all_media=product.get_media %}
 
@@ -17,10 +18,19 @@
 
 {% if all_media|length > 0 %}
 
+{% comment %}
 <div id="product_gallery">
     <div class="carousel">
         {% for url in all_media %}
             <a href="{{ url }}" class="embed"></a>
+        {% endfor %}
+    </div>
+</div>
+{% endcomment %}
+<div id="product_gallery">
+    <div class="carousel">
+        {% for url in all_media %}
+            {{ url|oembed|safe }}
         {% endfor %}
     </div>
 </div>

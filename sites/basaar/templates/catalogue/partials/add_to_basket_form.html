@@ -10,7 +10,7 @@
     <form id="add_to_basket_form" action="{% url 'basket:add'%}" method="post">
         {% csrf_token %}
         <div class="hidden">{% include "partials/form_fields.html" with form=basket_form %}</div>
-        <button type="submit" class="btn btn-large btn-primary btn-block" value="{% trans "Add to basket" %}">{% trans "Add to basket" %}</button>
+        <button type="submit" value="{% trans "Add to basket" %}">{% trans "Add to basket" %}</button>
     </form>
 {% else %}
     {% if has_active_alert %}

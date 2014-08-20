@@ -27,11 +27,18 @@
 						    {% include 'partials/form_fields.html' %}
 						    <div class="form-actions">
 						        <button class="btn btn-large btn-primary" type="submit">{% trans "Save" %}</button>
-						        <a href="#" onclick="history.go(-1);return false" >{% trans "cancel" %}</a>
+						        <a href="{% url 'customer:summary' %}">{% trans "cancel" %}</a>
 						    </div>
 						</form>
 					</form>
                 </div>
+                <script type="text/javascript">
+                $(document).ready(function(){
+                    if ( $('input#id_email').val().toLowerCase().indexOf("@mepin.com") >= 0) {
+                        $('input#id_email').val("");
+                    }
+                });
+                </script>
 
             </div>
             <div class="column-spacer">
