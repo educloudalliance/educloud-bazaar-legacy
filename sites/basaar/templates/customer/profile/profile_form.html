@@ -32,6 +32,13 @@
 						</form>
 					</form>
                 </div>
+                <script type="text/javascript">
+                $(document).ready(function(){
+                    if ( $('input#id_email').val().toLowerCase().indexOf("@mepin.com") >= 0) {
+                        $('input#id_email').val("");
+                    }
+                });
+                </script>
 
             </div>
             <div class="column-spacer">
