@@ -213,7 +213,7 @@
                         <div class="flex-container review-container">
                             <div class="fade-left"></div>
                             <div class="fade-container">
-                                <ol class="flexItem review-list" style="min-width:{% widthratio product.num_approved_reviews 1 400 %}px">
+                                <ol class="flex-container flexItem review-list" style="min-width:{% widthratio product.num_approved_reviews 1 400 %}px">
                                     {% for review in reviews|slice:":6" %}
                                         <li>
                                         {% include 'catalogue/partials/review.html' %}
