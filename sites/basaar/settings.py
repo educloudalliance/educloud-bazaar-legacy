@@ -308,6 +308,7 @@ INSTALLED_APPS = [
     'cookie_message',
     'rest_framework_swagger',
     'haystack',
+    'json_field',       #https://github.com/derek-schaefer/django-json-field
 ] + get_core_apps(['apps.catalogue', 'apps.search', 'apps.order', 'apps.customer.*', 'apps.checkout'])
 
 

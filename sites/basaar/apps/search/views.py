@@ -35,6 +35,7 @@ class FacetedSearchView(views.FacetedSearchView):
     # convert Haystack's default facet data into a more useful structure so we
     # have to do less work in the template.
     def extra_context(self):
+        print (str(self.form.cleaned_data) + "viewsin extracontent")
         extra = super(FacetedSearchView, self).extra_context()
 
         # Show suggestion no matter what.  Haystack 2.1 only shows a suggestion

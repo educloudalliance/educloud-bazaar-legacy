@@ -16,7 +16,6 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
 
     upc = indexes.CharField(model_attr="upc", null=True)
     title = indexes.EdgeNgramField(model_attr='title', null=True)
-    #title = indexes.CharField(model_attr="contentLicense", null=True)
     contentLicense = indexes.CharField(model_attr="contentLicense", null=True)
 
     # Fields for faceting
