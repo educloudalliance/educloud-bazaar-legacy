@@ -599,9 +599,19 @@ footer {
         padding: 2em 0em;
         margin: 0em;
         li {
-            line-height: 3em;
+            line-height: 2.7em;
             text-align: center;
-            min-width: 150px;
+            margin: 0.3em;
+            min-width: 80px;
+            font-size: 11pt;
+            @media screen and (max-width: $r1024-content-width) {
+                line-height: 1em;
+                min-width: 28px;
+                margin: 0.3em;
+            }
+        }
+        .current {
+            margin: 0.5em 1em;
         }
         .previous {
             text-align: right;
@@ -610,13 +620,23 @@ footer {
             text-align: left;
         }
         .btn {
+            font-size: 11pt;
             background: $blue;
             color: white;
             border: none;
             font-weight: lighter;
             text-decoration: none;
-            padding: 0.5em 2em;
+            padding: 0.5em 1.5em;
             line-height: 3em;
+            letter-spacing: 1px;
+            @media screen and (max-width: $r1024-content-width) {
+                padding: 0.4em 0.8em;
+                font-size: 1.2em;
+                line-height: 12pt;
+            }
+        }
+        i.fa {
+            display: inline;
         }
     }
 }
