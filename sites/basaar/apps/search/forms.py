@@ -24,7 +24,7 @@ class SearchForm(FacetedSearchForm):
     # focus on the search widget.
     q = forms.CharField(
         required=False, label=_('Search'),
-        widget=SearchInput({"placeholder": _('Search'), "tabindex": "1", "required": ""}))
+        widget=SearchInput({"placeholder": _('Search for resources, recipes and questions'), "tabindex": "1", "required": ""}))
 
     # Search
     RELEVANCY = "relevancy"

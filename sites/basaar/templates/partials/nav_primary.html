@@ -21,7 +21,7 @@
         <div id="generalSearch" class="flexItem3 flex-container">
             <form method="get" action="{% url 'search:search' %}" class="flex-container flexItem">
                 <div class="flex-container flexItem">
-                    <div class="flexItem">{{ search_form.q }}</div>
+                    {{ search_form.q }}
                     <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_Search.svg"/>
                 </div>
             </form>
