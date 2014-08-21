@@ -130,7 +130,7 @@
             {% endblock %}
             <div id="product_information">
                 {% block product_info %}
-                <h2>{% trans "Product Information" %}</h2>
+                <h2>{% trans "Features" %}</h2>
                 <table class="product-info">
                     <tr>
                         <th>{% trans "Subjects" %}</th><td>{% blocktrans with category=product.categories.first %}{{ category }}{% endblocktrans %}</td>
@@ -204,6 +204,10 @@
                     <tr>
                         <th>{% trans "Attribution" %}</th>
                         <td><a href='product.attributionURL'>{{ product.attributionText }}</a></td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Platforms" %}</th>
+                        <td>{% trans "Compatible with all platforms" %}</td>
                     </tr>
                 </table>
                 {% endblock %}
