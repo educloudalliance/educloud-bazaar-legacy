@@ -179,6 +179,34 @@
                             <td>{{ product.num_approved_reviews }}</td>
                         </tr>
                     {% endiffeature %}
+                    <tr>
+                        <th>{% trans "More info" %}</th>
+                        <td><a title="{% trans 'More info' %}" href="{{ product.moreInfoUrl }}">{{ product.moreInfoUrl }}</a></td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Maximum age" %}</th>
+                        <td>{{ product.maximumAge }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Minimum age" %}</th>
+                        <td>{{ product.minimumAge }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Copyright notice" %}</th>
+                        <td>{{ product.copyrightNotice }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Content license" %}</th>
+                        <td>{{ product.contentLicense }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Attribution" %}</th>
+                        <td>{{ product.attributionText }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Attribution link" %}</th>
+                        <td>{{ product.attributionURL }}</td>
+                    </tr>
                 </table>
                 {% endblock %}
             </div>

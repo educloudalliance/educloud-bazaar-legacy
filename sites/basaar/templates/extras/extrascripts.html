@@ -166,16 +166,37 @@
         $('#clear-all-filters a').on('click', function() {
             $('#categories-bar li:not(.all-option)').removeClass('selected');
             $('#categories-bar li.all-option').addClass('selected');
-            $( "#price-slider" ).slider( "values", [0,500] );
+            $('#options-price input[type="checkbox"]').prop('checked', true);
+            $('#price-slider').slider("enable");
+            $('#options-price .option').addClass('selected');
+            $('#price-range').removeClass("disabled");
+            $( "#price-slider" ).slider( "values", [0,100] );
             $( "#price-range" ).val( "€" + $( "#price-slider" ).slider( "values", 0 ) +
             " - €" + $( "#price-slider" ).slider( "values", 1 ) );
         });
 
+        $('#options-price input[type="checkbox"]').change(function() {
+            if ($(this).is(":checked")) {
+                 $(this).parent().addClass('selected');
+            } else {
+                 $(this).parent().removeClass('selected');
+            }
+        }); 
+        $('#options-price input[type="checkbox"][value="paid"]').change(function() {
+            if ($(this).is(":checked")) {
+                 $('#price-slider').slider("enable");
+                 $('#price-range').removeClass("disabled");
+            } else {
+                 $('#price-slider').slider("disable");
+                 $('#price-range').addClass("disabled");
+            }
+        }); 
+
         $( "#price-slider" ).slider({
           range: true,
           min: 0,
-          max: 500,
-          values: [ 0, 500 ],
+          max: 100,
+          values: [ 0, 100 ],
           slide: function( event, ui ) {
             $( "#price-range" ).val( "€" + ui.values[ 0 ] + " - €" + ui.values[ 1 ] );
           }
@@ -204,14 +225,14 @@
 
         var request = {};
 
-        request['searchString'] = $('#generalSearch input').val();
         request['selectedSubjects'] = $('#options-subject').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
         request['selectedGrade'] = $('#options-grade').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
+        request['selectedTechnology'] = $('#options-technology').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
         request['selectedType'] = $('#options-type').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
-        request['selectedPublisher'] = $('#options-publisher').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
         request['selectedPrice'] = {min : $( "#price-slider" ).slider( "values", 0 ), max : $( "#price-slider" ).slider( "values", 1 )};
 
         console.log(JSON.stringify(request));
+        console.log(encodeURIComponent(JSON.stringify(request)));
         //TODO send to backend, retrieve results and show them.
     }
 

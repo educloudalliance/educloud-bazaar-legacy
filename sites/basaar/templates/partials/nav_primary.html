@@ -18,7 +18,7 @@
         <div class="flexItem hideSmall">
         </div>
 
-        <div id="generalSearch" class="flexItem3 flex-container">
+        <div id="generalSearch" class="flexItem5 flex-container">
             <form method="get" action="{% url 'search:search' %}" class="flex-container flexItem">
                 <div class="flex-container flexItem">
                     {{ search_form.q }}
@@ -120,7 +120,6 @@
                      </div>
                 {% endif %}
             </div>
-
         </div>
     </div>
     <div id="categories-bar">
@@ -164,13 +163,20 @@
                 <h2>{% trans "Grade"%}</h2>
                 <ul>
                     <li class="all-option selected">{% trans "all"%}</li>
-                    <li>1-2</li>
-                    <li>3-6</li>
-                    <li>7-9</li>
+                    <li>Pre-school</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
                 </ul>
             </div>
-            <div class="flexItem options" id="options-type">
-                <h2>{% trans "Type"%}</h2>
+            <div class="flexItem options" id="options-technology">
+                <h2>{% trans "Techonology"%}</h2>
                 <ul>
                     <li class="all-option selected">{% trans "all"%}</li>
                     <li>{% trans "Image"%}</li>
@@ -179,25 +185,26 @@
                     <li>{% trans "Other"%}</li>
                 </ul>
             </div>
-            <div class="flexItem options" id="options-publisher">
-                <h2>{% trans "Publisher"%}</h2>
+            <div class="flexItem options" id="options-type">
+                <h2>{% trans "Type"%}</h2>
                 <ul>
                     <li class="all-option selected">{% trans "all"%}</li>
-                    <li>Pub1</li>
-                    <li>Pub2</li>
-                    <li>Pub3</li>
-                    <li>Pub4</li>
-                    <li>Pub5</li>
-                    <li>Pub6</li>
-                    <li>Pub7</li>
-                    <li>Pub8</li>
-                    <li>Pub9</li>
+                    <li>{% trans "Textbook"%}</li>
+                    <li>{% trans "Exercise book"%}</li>
+                    <li>{% trans "Hybrid"%}</li>
+                    <li>{% trans "Teacher's material"%}</li>
+                    <li>{% trans "Additional material"%}</li>
+                    <li>{% trans "Exam"%}</li>
                 </ul>
             </div>
             <div class="flexItem flex-container-vertical space-between">
                 <div id="options-price" class="options">
                     <h2>{% trans "Price Range"%}</h2>
-                    <div>
+                    <div class="option selected">
+                        <input checked type="checkbox" name="price" value="free">Free</div>
+                    <div class="option selected">
+                        <input checked type="checkbox" name="price" value="paid">Paid</div>
+                    <div class="slider">
                         <div id="price-slider"></div>
                     </div>
                     <p><input type="text" id="price-range" readonly></p>
