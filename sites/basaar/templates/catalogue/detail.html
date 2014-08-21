@@ -184,12 +184,8 @@
                         <td><a title="{% trans 'More info' %}" href="{{ product.moreInfoUrl }}">{{ product.moreInfoUrl }}</a></td>
                     </tr>
                     <tr>
-                        <th>{% trans "Maximum age" %}</th>
-                        <td>{{ product.maximumAge }}</td>
-                    </tr>
-                    <tr>
-                        <th>{% trans "Minimum age" %}</th>
-                        <td>{{ product.minimumAge }}</td>
+                        <th>{% trans "Age recommendation" %}</th>
+                        <td>{{ product.minimumAge }} ― {{ product.maximumAge }}</td>
                     </tr>
                     <tr>
                         <th>{% trans "Copyright notice" %}</th>
@@ -201,11 +197,7 @@
                     </tr>
                     <tr>
                         <th>{% trans "Attribution" %}</th>
-                        <td>{{ product.attributionText }}</td>
-                    </tr>
-                    <tr>
-                        <th>{% trans "Attribution link" %}</th>
-                        <td>{{ product.attributionURL }}</td>
+                        <td><a href='product.attributionURL'>{{ product.attributionText }}</a></td>
                     </tr>
                 </table>
                 {% endblock %}
