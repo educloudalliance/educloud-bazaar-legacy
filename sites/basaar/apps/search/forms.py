@@ -4,6 +4,7 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from haystack.forms import FacetedSearchForm
 from json_field.forms import JSONFormField
+from django.http import Http404
 
 class SearchInput(Input):
     """
@@ -73,13 +74,12 @@ class SearchForm(FacetedSearchForm):
             jsonParams = self.cleaned_data['params']
             print jsonParams
         except KeyError:
-            return self.defaultSearch()
+            raise Http404
 
         return self.defaultSearch()
 
 
     # execute search based only on q string. The default implementation of Haystack/Oscar.
-    # done in case the search query is somehow damaged resulting to KeyError.
     def defaultSearch(self):
         sqs = super(FacetedSearchForm, self).search()
 
