@@ -72,7 +72,10 @@ class SearchForm(FacetedSearchForm):
         print "json:"
         try:
             jsonParams = self.cleaned_data['params']
+            sqs = self.defaultSearch()
+
             print jsonParams
+            return sqs
         except KeyError:
             raise Http404
 
