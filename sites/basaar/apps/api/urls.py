@@ -19,6 +19,7 @@ router = routers.DefaultRouter()
 #router.register(r'users', UserViewSet)
 router.register(r'subjects',  views.SubjectList)
 router.register(r'producttypes', views.ProductTypeList)
+router.register(r'productformats', views.ProductFormatList)
 
 urlpatterns = patterns('',
     # ex: /

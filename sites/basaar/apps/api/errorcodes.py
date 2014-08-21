@@ -32,6 +32,17 @@ class ProductTypeNotFound(RollbackException):
     def __str__(self):
         return repr(self.msg)
 
+class ProductFormatNotFound(RollbackException):
+    msg = "Error: Product format with slug '{}' could not be found. To get a list of available formats, call /api/productformats"
+    httpStatus = 400
+    apiCode = 11
+    def __init__(self, productFormat):
+        self.msg = self.msg.format(productFormat)
+        self.apiCode = 11
+        self.httpStatus = 400
+    def __str__(self):
+        return repr(self.msg)
+
 class WrongAmountOfSubjects(RollbackException):
     msg = "Error: 1-5 subjects has to be specified. To get a list of available subjects, call /api/subjects"
     httpStatus = 400

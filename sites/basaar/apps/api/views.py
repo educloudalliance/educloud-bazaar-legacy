@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.contrib.auth import get_user_model
 from django.db.models import Count
 from rest_framework import viewsets
-from apps.api.serializers import UserSerializer, GroupSerializer, APINodeSerializer, ProductSerializer, ProductTypeSerializer, SubjectSerializer, ProductPurchasedSerializer
+from apps.api.serializers import UserSerializer, GroupSerializer, APINodeSerializer, ProductSerializer, ProductTypeSerializer, SubjectSerializer, ProductPurchasedSerializer, ProductFormatSerializer
 from django.db import IntegrityError
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
@@ -38,6 +38,7 @@ ProductClass = get_model('catalogue', 'ProductClass')
 Partner = get_model('partner', 'Partner')
 StockRecord = get_model('partner', 'StockRecord')
 ProductPurchased = get_model('library', 'ProductPurchased')
+ProductFormat = get_model('catalogue', 'ProductFormat')
 
 #success messages:
 postSuccess = {"message" : "Operation successful."}
@@ -45,24 +46,6 @@ putSuccess = {"message" : "Operation successful."}
 
 # Create your views here.
 # API-views
-'''
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-'''
-
-
 class ProductTypeList(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that lists the producttypes available for POST and PUT calls
@@ -80,6 +63,16 @@ class SubjectList(viewsets.ReadOnlyModelViewSet):
     """
     queryset = Category.objects.all()
     serializer_class = SubjectSerializer
+    paginate_by = 100
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+class ProductFormatList(viewsets.ReadOnlyModelViewSet):
+    """
+    API endpoint that lists the productFormats available for POST and PUT calls
+    of materials.
+    """
+    queryset = ProductFormat.objects.all()
+    serializer_class = ProductFormatSerializer
     paginate_by = 100
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
@@ -235,15 +228,25 @@ class CMSView(APIView):
                 else:
                     moreInfoUrl = None
 
+                if "productFormat" in x:
+                    try:
+                        pformat = ProductFormat.objects.get(slug=x["productFormat"])
+                    except:
+                        raise ProductFormatNotFound(x["productFormat"])
+                else:
+                    pformat = ProductFormat.objects.get(slug="other")
+
                 if x["price"] < 0:
                     raise BadPrice()
+
+
 
                 visible = self.str2Bool(x["visible"], "visible")
                 product = Product(title=x["title"], upc=createdUPC, description=x["description"], materialUrl=x["materialUrl"],
                                   moreInfoUrl=moreInfoUrl,  uuid=x["uuid"], version=x["version"],
                                   maximumAge=x["maximumAge"], minimumAge=x["minimumAge"], contentLicense=x["contentLicense"],
                                   dataLicense=x["dataLicense"], copyrightNotice=x["copyrightNotice"], attributionText=x["attributionText"],
-                                  attributionURL=x["attributionURL"],visible=visible, product_class=itemClass)
+                                  attributionURL=x["attributionURL"],visible=visible, product_class=itemClass, product_format=pformat)
 
 
                 #Add fullfilment into database
@@ -478,6 +481,15 @@ class CMSView(APIView):
             obj.product_class = itemClass
         except ProductClass.DoesNotExist:
             raise ProductTypeNotFound(DATA["productType"])
+
+        if "productFormat" in DATA:
+            try:
+                pformat = ProductFormat.objects.get(slug=DATA["productFormat"])
+                obj.product_format = pformat
+            except:
+                raise ProductFormatNotFound(DATA["productFormat"])
+        else:
+            obj.product_format = ProductFormat.objects.get(slug="other")
 
         if "contributionDate" in DATA:
             try:

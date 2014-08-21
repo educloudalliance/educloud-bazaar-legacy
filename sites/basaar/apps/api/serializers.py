@@ -12,6 +12,7 @@ Category = get_model('catalogue', 'Category')
 ProductCategory = get_model('catalogue', 'ProductCategory')
 ProductClass = get_model('catalogue', 'ProductClass')
 ProductPurchased = get_model('library', 'ProductPurchased')
+ProductFormat = get_model('catalogue', 'ProductFormat')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -38,7 +39,8 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     languages = serializers.SerializerMethodField('languageLookup')
     price = serializers.SerializerMethodField('priceLookup')
     subject = serializers.SerializerMethodField("subjectLookup")
-    producttype = serializers.SerializerMethodField("productTypeLookup")
+    productType = serializers.SerializerMethodField("productTypeLookup")
+    productFormat = serializers.SerializerMethodField("productFormatLookup")
 
     def mediaUrlLookup(self, obj):
         objs = EmbeddedMedia.objects.filter(product=obj)
@@ -57,6 +59,9 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     def productTypeLookup(self, obj):
         return obj.product_class.slug
 
+    def productFormatLookup(self, obj):
+        return obj.product_format.slug
+
     def subjectLookup(self, obj):
         productCategories = ProductCategory.objects.filter(product=obj)
         categories = []
@@ -70,7 +75,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('uuid', 'title', 'description', 'materialUrl', 'moreInfoUrl', 'version',
         'contributionDate', 'maximumAge', 'minimumAge', 'contentLicense',
         'dataLicense', 'copyrightNotice', 'attributionText', 'attributionURL', 'embedMedia', 'tags', 'languages',
-        'price', 'producttype', 'subject', 'visible', 'iconUrl')
+        'price', 'productType', 'productFormat','subject', 'visible', 'iconUrl')
         #read_only_fields = ('mTitle', 'slug')
 
 class APINodeSerializer(serializers.HyperlinkedModelSerializer):
@@ -107,6 +112,12 @@ class PriceSerializer(serializers.HyperlinkedModelSerializer):
 class SubjectSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
+        fields = ('name', 'slug')
+        read_only_fields = ('name', 'slug',)
+
+class ProductFormatSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ProductFormat
         fields = ('name', 'slug')
         read_only_fields = ('name', 'slug',)
 
