@@ -131,31 +131,31 @@
                     <div class="flexItem">
                         <ul>
                             <li class="all-option selected">{% trans "all"%}</li>
-                            <li>{% trans "Biology"%}</li>
-                            <li>{% trans "Chemistry"%}</li>
-                            <li>{% trans "Environmental & Natural Science"%}</li>
-                            <li>{% trans "Geography"%}</li>
-                            <li>{% trans "Health Education"%}</li>
-                            <li>{% trans "History"%}</li>
-                            <li>{% trans "Mathematics"%}</li>
-                            <li>{% trans "Physics"%}</li>
-                            <li>{% trans "Religion & Ethics Culture"%}</li>
-                            <li>{% trans "Art & Design"%}</li>
+                            <li data="biology">{% trans "Biology"%}</li>
+                            <li data="chemistry">{% trans "Chemistry"%}</li>
+                            <li data="environmental_and_natural_science">{% trans "Environmental & Natural Science"%}</li>
+                            <li data="geography">{% trans "Geography"%}</li>
+                            <li data="health_education">{% trans "Health Education"%}</li>
+                            <li data="history">{% trans "History"%}</li>
+                            <li data="mathematics">{% trans "Mathematics"%}</li>
+                            <li data="physics">{% trans "Physics"%}</li>
+                            <li data="religion_and_ethics_culture">{% trans "Religion & Ethics Culture"%}</li>
+                            <li data="art_and_design">{% trans "Art & Design"%}</li>
                         </ul>
                     </div>
                     <div class="flexItem">
                         <ul>
-                            <li>{% trans "Crafts"%}</li>
-                            <li>{% trans "Music"%}</li>
-                            <li>{% trans "Physical Education"%}</li>
-                            <li>{% trans "Home Economics"%}</li>
-                            <li>{% trans "English"%}</li>
-                            <li>{% trans "Finnish"%}</li>
-                            <li>{% trans "Finnish"%} <span class="small">{% trans "as a second language"%}</span></li>
-                            <li>{% trans "French"%}</li>
-                            <li>{% trans "Russian"%}</li>
-                            <li>{% trans "Swedish"%}</li>
-                            <li>{% trans "Swedish"%} <span class="small">{% trans "as a second language"%}</span></li>
+                            <li data="crafts">{% trans "Crafts"%}</li>
+                            <li data="music">{% trans "Music"%}</li>
+                            <li data="physical_education">{% trans "Physical Education"%}</li>
+                            <li data="home_economics">{% trans "Home Economics"%}</li>
+                            <li data="english">{% trans "English"%}</li>
+                            <li data="finnish">{% trans "Finnish"%}</li>
+                            <li data="finnish_as_second_language">{% trans "Finnish"%} <span class="small">{% trans "as a second language"%}</span></li>
+                            <li data="french">{% trans "French"%}</li>
+                            <li data="russian">{% trans "Russian"%}</li>
+                            <li data="swedish">{% trans "Swedish"%}</li>
+                            <li data="swedish_as_second_language">{% trans "Swedish"%} <span class="small">{% trans "as a second language"%}</span></li>
                         </ul>
                     </div>
                 </div>
@@ -164,38 +164,38 @@
                 <h2>{% trans "Grade"%}</h2>
                 <ul>
                     <li class="all-option selected">{% trans "all"%}</li>
-                    <li>Pre-school</li>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                    <li>6</li>
-                    <li>7</li>
-                    <li>8</li>
-                    <li>9</li>
+                    <li data="pre-school">{% trans "Pre-school"%}</li>
+                    <li data="1">1</li>
+                    <li data="2">2</li>
+                    <li data="3">3</li>
+                    <li data="4">4</li>
+                    <li data="5">5</li>
+                    <li data="6">6</li>
+                    <li data="7">7</li>
+                    <li data="8">8</li>
+                    <li data="9">9</li>
                 </ul>
             </div>
             <div class="flexItem options" id="options-technology">
                 <h2>{% trans "Techonology"%}</h2>
                 <ul>
                     <li class="all-option selected">{% trans "all"%}</li>
-                    <li>{% trans "Image"%}</li>
-                    <li>{% trans "Video"%}</li>
-                    <li>{% trans "PDF"%}</li>
-                    <li>{% trans "Other"%}</li>
+                    <li data="image">{% trans "Image"%}</li>
+                    <li data="video">{% trans "Video"%}</li>
+                    <li data="pdf">{% trans "PDF"%}</li>
+                    <li data="other">{% trans "Other"%}</li>
                 </ul>
             </div>
             <div class="flexItem options" id="options-type">
                 <h2>{% trans "Type"%}</h2>
                 <ul>
                     <li class="all-option selected">{% trans "all"%}</li>
-                    <li>{% trans "Textbook"%}</li>
-                    <li>{% trans "Exercise book"%}</li>
-                    <li>{% trans "Hybrid"%}</li>
-                    <li>{% trans "Teacher's material"%}</li>
-                    <li>{% trans "Additional material"%}</li>
-                    <li>{% trans "Exam"%}</li>
+                    <li data="textbook">{% trans "Textbook"%}</li>
+                    <li data="exercise_book">{% trans "Exercise book"%}</li>
+                    <li data="hybrid">{% trans "Hybrid"%}</li>
+                    <li data="teachers_material">{% trans "Teacher's material"%}</li>
+                    <li data="additional_material">{% trans "Additional material"%}</li>
+                    <li data="exam">{% trans "Exam"%}</li>
                 </ul>
             </div>
             <div class="flexItem flex-container-vertical space-between">
@@ -212,7 +212,9 @@
                     </div>
                     <p><input class="disabled" type="text" id="price-range" readonly></p>
                 </div>
-                
+                <div id="options-schools">
+                    {% blocktrans %}Refining items by <strong>Primary School</strong>{% endblocktrans %}
+                </div>
                 <div id="clear-all-filters">
                     <a href="#"><i class="fa fa-times-circle"></i> {% trans "Clear all"%}</a>
                 </div>
