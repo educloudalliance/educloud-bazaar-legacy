@@ -35,7 +35,7 @@ class SearchForm(FacetedSearchForm):
         widget=SearchInput({"placeholder": _('Search for resources, recipes and questions'), "tabindex": "1", "required": ""}))
 
     #includes the additional search parameters in a json-format
-    params = JSONFormField(required=False, label=_('Params'), widget=HiddenInput({}))
+    params = JSONFormField(required=False, label=_('Params'), widget=HiddenInput({"value":"{}"}))
 
     # Search
     RELEVANCY = "relevancy"
