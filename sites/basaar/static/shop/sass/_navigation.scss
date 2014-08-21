@@ -417,7 +417,7 @@
             color: $gray;
         }
         .option {
-            padding: 0.5em 0em;
+            padding: 0.2em 0em;
             transition: all 0.5s;
         }
         .option.selected {
@@ -428,8 +428,8 @@
             margin: 0px;
             text-align: center;
         }
-        input[type="checkbox"] {
-            margin-right: 0.5em;
+        input[type="radio"] {
+            margin-right: 0.4em;
         }
         input[type="text"] {
             background: transparent;

@@ -174,31 +174,29 @@
             $( "#price-slider" ).slider( "values", [0,100] );
             $( "#price-range" ).val( "€" + $( "#price-slider" ).slider( "values", 0 ) +
             " - €" + $( "#price-slider" ).slider( "values", 1 ) );
-            updateParamsField();
+            $('#id_params').val(JSON.stringify({}));
         });
 
-        $('#options-price input[type="checkbox"]').change(function() {
+        $('#options-price input[type="radio"]').change(function() {
+            $('#options-price input[type="radio"]').parent().removeClass('selected');
             if ($(this).is(":checked")) {
                  $(this).parent().addClass('selected');
-            } else {
-                 $(this).parent().removeClass('selected');
             }
-            updateParamsField();
-        }); 
-        $('#options-price input[type="checkbox"][value="paid"]').change(function() {
-            if ($(this).is(":checked")) {
+            if( $('#options-price input[type="radio"][value="paid"]').is(":checked") ) {
                  $('#price-slider').slider("enable");
                  $('#price-range').removeClass("disabled");
             } else {
                  $('#price-slider').slider("disable");
                  $('#price-range').addClass("disabled");
             }
+            updateParamsField();
         }); 
 
         $( "#price-slider" ).slider({
           range: true,
           min: 0,
           max: 100,
+          disabled: true,
           values: [ 0, 100 ],
           slide: function( event, ui ) {
             $( "#price-range" ).val( "€" + ui.values[ 0 ] + " - €" + ui.values[ 1 ] );
@@ -230,15 +228,33 @@
 
         var request = {};
 
-        request['selectedSubjects'] = $('#options-subject').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
-        request['selectedGrade'] = $('#options-grade').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
-        request['selectedTechnology'] = $('#options-technology').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
-        request['selectedType'] = $('#options-type').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
-        request['selectedPrice'] = {free : $('#options-price input[value="free"]').is(":checked"),
+        var selectedSubjects = $('#options-subject').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
+        if(selectedSubjects.length > 0) {
+            request['selectedSubjects'] = selectedSubjects;
+        }
+        var selectedGrade = $('#options-grade').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
+        if(selectedGrade.length > 0){
+            request['selectedGrade'] = selectedGrade;
+        }
+        var selectedTechnology = $('#options-technology').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
+        if(selectedTechnology.length > 0){
+            request['selectedTechnology'] =  selectedTechnology;
+        }
+        var selectedType = $('#options-type').find('li.selected:not(.all-option)').map(function(){return $(this).text();}).get();
+        if(selectedType.length > 0){
+            request['selectedType'] = selectedType;
+        }
+        var selectedPrice = $('#options-price input[type="radio"]:checked').val();
+        if (selectedPrice == "free") {
+            request['selectedPrice'] = {free : true};
+        } else if (selectedPrice == "paid") {
+            request['selectedPrice'] = {free : false,
             min : $( "#price-slider" ).slider( "values", 0 ),
             max : $( "#price-slider" ).slider( "values", 1 )};
+        }
 
-        $('#params').val(JSON.stringify(request));
+
+        $('#id_params').val(JSON.stringify(request));
     }
 
 </script>
