@@ -1170,56 +1170,60 @@ textarea, input {
   padding: 10px 0px 2px 0px;
 }
 /* line 397, ../sass/_navigation.scss */
-#categories-bar #options-price .slider {
-  padding: 0em 1em 1em 1em;
+#categories-bar #options-price h2 {
+  margin-bottom: 1em;
 }
-/* line 399, ../sass/_navigation.scss */
+/* line 400, ../sass/_navigation.scss */
+#categories-bar #options-price .slider {
+  padding: 1em 1em 1em 1em;
+}
+/* line 402, ../sass/_navigation.scss */
 #categories-bar #options-price .slider #price-slider {
   background: #999999;
   border-radius: 0px;
   border: none;
 }
-/* line 403, ../sass/_navigation.scss */
+/* line 406, ../sass/_navigation.scss */
 #categories-bar #options-price .slider #price-slider .ui-slider-range {
   background: #f1f1f1;
 }
-/* line 406, ../sass/_navigation.scss */
+/* line 409, ../sass/_navigation.scss */
 #categories-bar #options-price .slider #price-slider .ui-slider-handle {
   background: #f1f1f1;
   border: 1px solid #0080bc;
   height: 1.3em;
 }
-/* line 413, ../sass/_navigation.scss */
+/* line 416, ../sass/_navigation.scss */
 #categories-bar #options-price #price-range.disabled {
   color: #999999;
 }
-/* line 416, ../sass/_navigation.scss */
+/* line 419, ../sass/_navigation.scss */
 #categories-bar #options-price .option {
-  padding: 1em 0em;
+  padding: 0.5em 0em;
   transition: all 0.5s;
 }
-/* line 420, ../sass/_navigation.scss */
+/* line 423, ../sass/_navigation.scss */
 #categories-bar #options-price .option.selected {
   color: white;
   text-decoration: underline;
 }
-/* line 424, ../sass/_navigation.scss */
+/* line 427, ../sass/_navigation.scss */
 #categories-bar #options-price p {
   margin: 0px;
   text-align: center;
 }
-/* line 428, ../sass/_navigation.scss */
+/* line 431, ../sass/_navigation.scss */
 #categories-bar #options-price input[type="checkbox"] {
   margin-right: 0.5em;
 }
-/* line 431, ../sass/_navigation.scss */
+/* line 434, ../sass/_navigation.scss */
 #categories-bar #options-price input[type="text"] {
   background: transparent;
   color: white;
   border: none;
   text-align: center;
 }
-/* line 438, ../sass/_navigation.scss */
+/* line 441, ../sass/_navigation.scss */
 #categories-bar #clear-all-filters {
   font-size: 13pt;
   letter-spacing: 0px;
@@ -1227,18 +1231,18 @@ textarea, input {
   padding: 0.5em;
   text-align: right;
 }
-/* line 444, ../sass/_navigation.scss */
+/* line 447, ../sass/_navigation.scss */
 #categories-bar #clear-all-filters a {
   transition: all 0.5s;
   color: white;
   text-decoration: none;
 }
-/* line 449, ../sass/_navigation.scss */
+/* line 452, ../sass/_navigation.scss */
 #categories-bar #clear-all-filters a:hover {
   color: #00a9e4;
 }
 
-/* line 454, ../sass/_navigation.scss */
+/* line 457, ../sass/_navigation.scss */
 #tabs-bar {
   line-height: 39px;
   height: 39px;
@@ -1248,13 +1252,13 @@ textarea, input {
   user-select: none;
 }
 @media screen and (max-width: 1024px) {
-  /* line 454, ../sass/_navigation.scss */
+  /* line 457, ../sass/_navigation.scss */
   #tabs-bar {
     height: 27.3px;
     line-height: 27.3px;
   }
 }
-/* line 463, ../sass/_navigation.scss */
+/* line 466, ../sass/_navigation.scss */
 #tabs-bar .tab {
   transition: all 0.5s;
   text-align: center;
@@ -1268,23 +1272,23 @@ textarea, input {
   border: 1px solid #0080bc;
 }
 @media screen and (max-width: 1024px) {
-  /* line 463, ../sass/_navigation.scss */
+  /* line 466, ../sass/_navigation.scss */
   #tabs-bar .tab {
     font-size: 9pt;
   }
 }
-/* line 478, ../sass/_navigation.scss */
+/* line 481, ../sass/_navigation.scss */
 #tabs-bar .tab:hover {
   background: rgba(255, 255, 255, 0.2);
 }
-/* line 481, ../sass/_navigation.scss */
+/* line 484, ../sass/_navigation.scss */
 #tabs-bar .tab.active {
   color: #4d4d4d;
   background: #f1f1f1;
   font-weight: normal;
   border: 1px solid #666666;
 }
-/* line 487, ../sass/_navigation.scss */
+/* line 490, ../sass/_navigation.scss */
 #tabs-bar .tab.active:hover {
   background: #f1f1f1;
 }

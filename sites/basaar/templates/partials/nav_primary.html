@@ -22,6 +22,7 @@
             <form method="get" action="{% url 'search:search' %}" class="flex-container flexItem">
                 <div class="flex-container flexItem">
                     {{ search_form.q }}
+                    <input type="hidden" name="params" id="params"/>
                     <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_Search.svg"/>
                 </div>
             </form>
@@ -199,7 +200,7 @@
             </div>
             <div class="flexItem flex-container-vertical space-between">
                 <div id="options-price" class="options">
-                    <h2>{% trans "Price Range"%}</h2>
+                    <h2>{% trans "Price"%}</h2>
                     <div class="option selected">
                         <input checked type="checkbox" name="price" value="free">Free</div>
                     <div class="option selected">
