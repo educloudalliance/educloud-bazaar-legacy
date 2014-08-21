@@ -105,6 +105,35 @@ class Product(AbstractProduct):
 
         return owner.name
 
+    def get_min_grade(self):
+        product = StockRecord.objects.get(product=self)
+        owner = product.partner
+        return owner.name
+
+    def get_max_grade(self):
+        grade = 0
+        if self.maximumAge >= 15:
+            grade = 9
+        elif self.maximumAge <=7:
+            grade = 1
+        else:
+            grade = self.maximumAge - 6
+
+        return grade
+
+    def get_min_grade(self):
+        grade = 0
+        if self.minimumAge <= 7:
+            grade = 1
+        elif self.minimumAge >= 15:
+            grade=9
+        else:
+            grade = self.minimumAge -6
+
+        return grade
+
+
+
 
 class Language(models.Model):
     name = models.CharField(max_length=128)
