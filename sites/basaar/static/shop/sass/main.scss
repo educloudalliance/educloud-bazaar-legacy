@@ -162,6 +162,8 @@ footer {
             }
             td {
                 padding: 0.1em 1em;
+                word-wrap: break-word;
+                max-width: 300px;
             }
         }
     }
