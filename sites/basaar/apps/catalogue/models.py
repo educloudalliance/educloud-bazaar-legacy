@@ -2,6 +2,7 @@ from django.db import models
 import tempfile
 import os
 from oscar.apps.catalogue.abstract_models import *
+from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _, pgettext_lazy
 
 
@@ -28,6 +29,10 @@ class Product(AbstractProduct):
     contributionDate = models.DateField(null=True)
     maximumAge = models.IntegerField(null=True)
     minimumAge = models.IntegerField(null=True)
+    product_format = models.ForeignKey(
+        'catalogue.ProductFormat', null=True, on_delete=models.PROTECT,
+        verbose_name=_('Product Format'), related_name="products",
+        help_text=_("Choose what is product format"))
     contentLicense = models.CharField(max_length=4000)  # Apache limit from www.boutell.com/newfaq/misc/urllength.html
     dataLicense = models.CharField(max_length=4000)
     copyrightNotice = models.CharField(max_length=4000)
@@ -160,6 +165,18 @@ class EmbeddedMedia(models.Model):
         obj = cls()
         return obj
 
+
+class ProductFormat(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(unique=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+    @classmethod
+    def create(cls):
+        obj = cls()
+        return obj
 
 class Tags(models.Model):
     name = models.CharField(max_length=128)
