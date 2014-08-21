@@ -4,6 +4,7 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from haystack.forms import FacetedSearchForm
 from json_field.forms import JSONFormField
+from django.http import Http404
 
 class SearchInput(Input):
     """
@@ -76,10 +77,17 @@ class SearchForm(FacetedSearchForm):
         # handle range queries
         print self.selected_facets
         print "json:"
-        jsonParams = self.cleaned_data['params']
-        print jsonParams
-        # Note, we call super on a parent class as the default faceted view
-        # escapes everything (which doesn't work for price range queries)
+        try:
+            jsonParams = self.cleaned_data['params']
+            print jsonParams
+        except KeyError:
+            raise Http404
+
+        return self.defaultSearch()
+
+
+    # execute search based only on q string. The default implementation of Haystack/Oscar.
+    def defaultSearch(self):
         sqs = super(FacetedSearchForm, self).search()
 
         # We need to process each facet to ensure that the field name and the
@@ -101,6 +109,5 @@ class SearchForm(FacetedSearchForm):
                 self.cleaned_data['sort_by'], None)
             if sort_field:
                 sqs = sqs.order_by(sort_field)
-
 
         return sqs
