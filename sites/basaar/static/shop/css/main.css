@@ -1199,7 +1199,7 @@ textarea, input {
 }
 /* line 419, ../sass/_navigation.scss */
 #categories-bar #options-price .option {
-  padding: 0.5em 0em;
+  padding: 0.2em 0em;
   transition: all 0.5s;
 }
 /* line 423, ../sass/_navigation.scss */
@@ -1213,8 +1213,8 @@ textarea, input {
   text-align: center;
 }
 /* line 431, ../sass/_navigation.scss */
-#categories-bar #options-price input[type="checkbox"] {
-  margin-right: 0.5em;
+#categories-bar #options-price input[type="radio"] {
+  margin-right: 0.4em;
 }
 /* line 434, ../sass/_navigation.scss */
 #categories-bar #options-price input[type="text"] {

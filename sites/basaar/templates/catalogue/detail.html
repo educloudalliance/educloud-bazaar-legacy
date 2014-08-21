@@ -135,6 +135,7 @@
                     <tr>
                         <th>{% trans "Subjects" %}</th><td>{% blocktrans with category=product.categories.first %}{{ category }}{% endblocktrans %}</td>
                     </tr>
+                    {% comment %}
                     <tr>
                         <th>{% trans "Grade" %}</th>
                         <td>{% if product.minAge < 7 and product.maxAge > 14 %}
@@ -151,6 +152,15 @@
                                     {% endif %}
                                 {% endif %}
                             {% endif %}</td>
+                    </tr>
+                    {% endcomment %}
+                    <tr>
+                        <th>{% trans "Grade" %}</th>
+                        {% if product.get_min_grade == product.get_max_grade %}
+                            <td>{{ product.get_min_grade }}</td>
+                        {% else %}
+                            <td>{{ product.get_min_grade }} - {{ product.get_max_grade }}</td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <th>{% trans "Product Type" %}</th><td>{% blocktrans with class=product.get_product_class.name %}{{ class }}{% endblocktrans %}</td>
@@ -184,14 +194,6 @@
                         <td><a title="{% trans 'More info' %}" href="{{ product.moreInfoUrl }}">{{ product.moreInfoUrl }}</a></td>
                     </tr>
                     <tr>
-                        <th>{% trans "Maximum age" %}</th>
-                        <td>{{ product.maximumAge }}</td>
-                    </tr>
-                    <tr>
-                        <th>{% trans "Minimum age" %}</th>
-                        <td>{{ product.minimumAge }}</td>
-                    </tr>
-                    <tr>
                         <th>{% trans "Copyright notice" %}</th>
                         <td>{{ product.copyrightNotice }}</td>
                     </tr>
@@ -201,11 +203,7 @@
                     </tr>
                     <tr>
                         <th>{% trans "Attribution" %}</th>
-                        <td>{{ product.attributionText }}</td>
-                    </tr>
-                    <tr>
-                        <th>{% trans "Attribution link" %}</th>
-                        <td>{{ product.attributionURL }}</td>
+                        <td><a href='product.attributionURL'>{{ product.attributionText }}</a></td>
                     </tr>
                 </table>
                 {% endblock %}

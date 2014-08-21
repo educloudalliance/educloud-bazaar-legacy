@@ -22,7 +22,7 @@
             <form method="get" action="{% url 'search:search' %}" class="flex-container flexItem">
                 <div class="flex-container flexItem">
                     {{ search_form.q }}
-                    <input type="hidden" name="params" id="params"/>
+                    {{ search_form.params }}
                     <img class="menu-icon svg" src="{{ STATIC_URL }}shop/img/Bazaar_Search.svg"/>
                 </div>
             </form>
@@ -202,14 +202,17 @@
                 <div id="options-price" class="options">
                     <h2>{% trans "Price"%}</h2>
                     <div class="option selected">
-                        <input checked type="checkbox" name="price" value="free">Free</div>
-                    <div class="option selected">
-                        <input checked type="checkbox" name="price" value="paid">Paid</div>
+                        <input checked type="radio" name="price" value="all">{% trans "All"%}</div>
+                    <div class="option">
+                        <input type="radio" name="price" value="free">{% trans "Free"%}</div>
+                    <div class="option">
+                        <input type="radio" name="price" value="paid">{% trans "Paid"%}</div>
                     <div class="slider">
                         <div id="price-slider"></div>
                     </div>
-                    <p><input type="text" id="price-range" readonly></p>
+                    <p><input class="disabled" type="text" id="price-range" readonly></p>
                 </div>
+                
                 <div id="clear-all-filters">
                     <a href="#"><i class="fa fa-times-circle"></i> {% trans "Clear all"%}</a>
                 </div>
