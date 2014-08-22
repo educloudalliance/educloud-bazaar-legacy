@@ -1169,80 +1169,127 @@ textarea, input {
   margin: 0px;
   padding: 10px 0px 2px 0px;
 }
-/* line 397, ../sass/_navigation.scss */
+/* line 396, ../sass/_navigation.scss */
+#categories-bar #options-price {
+  margin-bottom: 3em;
+}
+/* line 398, ../sass/_navigation.scss */
 #categories-bar #options-price h2 {
   margin-bottom: 1em;
 }
-/* line 400, ../sass/_navigation.scss */
+/* line 401, ../sass/_navigation.scss */
 #categories-bar #options-price .slider {
   padding: 1em 1em 1em 1em;
 }
-/* line 402, ../sass/_navigation.scss */
+/* line 403, ../sass/_navigation.scss */
 #categories-bar #options-price .slider #price-slider {
   background: #999999;
   border-radius: 0px;
   border: none;
 }
-/* line 406, ../sass/_navigation.scss */
+/* line 407, ../sass/_navigation.scss */
 #categories-bar #options-price .slider #price-slider .ui-slider-range {
   background: #f1f1f1;
 }
-/* line 409, ../sass/_navigation.scss */
+/* line 410, ../sass/_navigation.scss */
 #categories-bar #options-price .slider #price-slider .ui-slider-handle {
   background: #f1f1f1;
   border: 1px solid #0080bc;
   height: 1.3em;
 }
-/* line 416, ../sass/_navigation.scss */
+/* line 417, ../sass/_navigation.scss */
 #categories-bar #options-price #price-range.disabled {
   color: #999999;
 }
-/* line 419, ../sass/_navigation.scss */
+/* line 420, ../sass/_navigation.scss */
 #categories-bar #options-price .option {
   padding: 0.2em 0em;
   transition: all 0.5s;
 }
-/* line 423, ../sass/_navigation.scss */
+/* line 424, ../sass/_navigation.scss */
 #categories-bar #options-price .option.selected {
   color: white;
   text-decoration: underline;
 }
-/* line 427, ../sass/_navigation.scss */
+/* line 428, ../sass/_navigation.scss */
 #categories-bar #options-price p {
   margin: 0px;
   text-align: center;
 }
-/* line 431, ../sass/_navigation.scss */
+/* line 432, ../sass/_navigation.scss */
 #categories-bar #options-price input[type="radio"] {
   margin-right: 0.4em;
 }
-/* line 434, ../sass/_navigation.scss */
+/* line 435, ../sass/_navigation.scss */
 #categories-bar #options-price input[type="text"] {
   background: transparent;
   color: white;
   border: none;
   text-align: center;
 }
-/* line 441, ../sass/_navigation.scss */
+/* line 442, ../sass/_navigation.scss */
+#categories-bar #options-schools {
+  color: #999999;
+  font-size: 10pt;
+}
+/* line 445, ../sass/_navigation.scss */
+#categories-bar #options-schools strong {
+  text-transform: uppercase;
+  color: white;
+}
+/* line 449, ../sass/_navigation.scss */
+#categories-bar #options-schools input[type="checkbox"] {
+  margin-right: 0.4em;
+}
+/* line 452, ../sass/_navigation.scss */
+#categories-bar #options-schools p {
+  margin: 0px;
+  transition: all 0.5s;
+}
+/* line 456, ../sass/_navigation.scss */
+#categories-bar #options-schools .title {
+  color: #00a9e4;
+}
+/* line 459, ../sass/_navigation.scss */
+#categories-bar #options-schools .selected {
+  color: white;
+  text-decoration: underline;
+}
+/* line 463, ../sass/_navigation.scss */
+#categories-bar #options-schools .change-btn {
+  cursor: pointer;
+  font-size: 8pt;
+  margin: 0em 0.5em;
+  text-transform: lowercase;
+  transition: all 0.5s;
+  color: white;
+  text-decoration: none;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+/* line 474, ../sass/_navigation.scss */
+#categories-bar #options-schools .change-btn:hover {
+  color: #00a9e4;
+}
+/* line 478, ../sass/_navigation.scss */
 #categories-bar #clear-all-filters {
   font-size: 13pt;
-  letter-spacing: 0px;
   text-transform: uppercase;
   padding: 0.5em;
   text-align: right;
 }
-/* line 447, ../sass/_navigation.scss */
+/* line 483, ../sass/_navigation.scss */
 #categories-bar #clear-all-filters a {
   transition: all 0.5s;
   color: white;
   text-decoration: none;
 }
-/* line 452, ../sass/_navigation.scss */
+/* line 488, ../sass/_navigation.scss */
 #categories-bar #clear-all-filters a:hover {
   color: #00a9e4;
 }
 
-/* line 457, ../sass/_navigation.scss */
+/* line 493, ../sass/_navigation.scss */
 #tabs-bar {
   line-height: 39px;
   height: 39px;
@@ -1252,13 +1299,13 @@ textarea, input {
   user-select: none;
 }
 @media screen and (max-width: 1024px) {
-  /* line 457, ../sass/_navigation.scss */
+  /* line 493, ../sass/_navigation.scss */
   #tabs-bar {
     height: 27.3px;
     line-height: 27.3px;
   }
 }
-/* line 466, ../sass/_navigation.scss */
+/* line 502, ../sass/_navigation.scss */
 #tabs-bar .tab {
   transition: all 0.5s;
   text-align: center;
@@ -1272,23 +1319,23 @@ textarea, input {
   border: 1px solid #0080bc;
 }
 @media screen and (max-width: 1024px) {
-  /* line 466, ../sass/_navigation.scss */
+  /* line 502, ../sass/_navigation.scss */
   #tabs-bar .tab {
     font-size: 9pt;
   }
 }
-/* line 481, ../sass/_navigation.scss */
+/* line 517, ../sass/_navigation.scss */
 #tabs-bar .tab:hover {
   background: rgba(255, 255, 255, 0.2);
 }
-/* line 484, ../sass/_navigation.scss */
+/* line 520, ../sass/_navigation.scss */
 #tabs-bar .tab.active {
   color: #4d4d4d;
   background: #f1f1f1;
   font-weight: normal;
   border: 1px solid #666666;
 }
-/* line 490, ../sass/_navigation.scss */
+/* line 526, ../sass/_navigation.scss */
 #tabs-bar .tab.active:hover {
   background: #f1f1f1;
 }

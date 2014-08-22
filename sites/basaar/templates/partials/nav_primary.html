@@ -213,7 +213,14 @@
                     <p><input class="disabled" type="text" id="price-range" readonly></p>
                 </div>
                 <div id="options-schools">
-                    {% blocktrans %}Refining items by <strong>Primary School</strong>{% endblocktrans %}
+                    <p class="title">
+                        {% trans "Refining items by"%}<br/><strong>{% trans "Primary School"%}</strong><a class="change-btn">change</a>
+                    </p>
+                    <div style="height:10px"></div>
+                    <p class="title">{% trans "Also include:"%}</p>
+                    <p><input type="checkbox" value="vocational_school">{% trans "Vocational school"%}</p>
+                    <p><input type="checkbox" value="high_school">{% trans "High school"%}</p>
+                    <p><input type="checkbox" value="university">{% trans "University"%}</p>
                 </div>
                 <div id="clear-all-filters">
                     <a href="#"><i class="fa fa-times-circle"></i> {% trans "Clear all"%}</a>

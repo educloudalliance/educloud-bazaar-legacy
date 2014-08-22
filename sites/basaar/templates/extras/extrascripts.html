@@ -131,6 +131,7 @@
                 $(this).addClass('active');
                 $('#menu-categories i').removeClass('fa-caret-down').addClass('fa-caret-up');
                 $('#categories-bar').slideDown();
+                $("html, body").scrollTop($("#navbar").offset().top);
             }
         });
 
@@ -213,6 +214,13 @@
         $( "#price-range" ).val( "€" + $( "#price-slider" ).slider( "values", 0 ) +
             " - €" + $( "#price-slider" ).slider( "values", 1 ) );
 
+        $('#options-schools input[type="checkbox"]').change(function() {
+            if ($(this).is(":checked")) {
+                 $(this).parent().addClass('selected');
+            } else {
+                 $(this).parent().removeClass('selected');
+            }
+        }); 
 
         $('.dropdown-btn').on('click', function() {
             if($(this).find('ul').is(":visible")){
