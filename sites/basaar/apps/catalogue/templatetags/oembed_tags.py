@@ -1,8 +1,9 @@
 from django import template
 from django.template.defaultfilters import stringfilter
-from urlparse import urlparse
+from os.path import splitext, basename
 from xml.dom import minidom
-import urllib2, json, re
+from urlparse import urlparse
+import urllib2, json, re, os
 
 register = template.Library()
 
@@ -16,7 +17,8 @@ def oembed(oembed_url):
         'youtu.be': 'yoube',
         'vimeo.com': 'vimeo',
         'vine.co': 'vine',
-        'facebook.com': 'facebook'
+        'facebook.com': 'facebook',
+        #'imgur.com': 'imgur'
     }
 
     parsedUrl = urlparse(oembed_url)
@@ -25,7 +27,17 @@ def oembed(oembed_url):
     url = url.replace("www.", "", 1)
 
     if url not in services:
-        print url
+        # Check if url is image
+        images = ['.jpg', '.jpeg', '.gif', '.png']
+        disassembled = urlparse(oembed_url)
+        filename, file_ext = splitext(basename(disassembled.path))
+
+        print file_ext
+        if file_ext in images:
+            embedHtml = "<a href='{image}' ><img src='{image}' height=300 alt='{name}' /></a>".format(image=oembed_url, name=filename)
+            return embedHtml
+        else:
+            return ""
     else:
         provider = services[url]
         try:
@@ -67,6 +79,22 @@ def oembed(oembed_url):
                 if parsedUrl.scheme is "http":
                     embedHtml = re.sub('http', 'https', embedHtml)
                 return embedHtml
-            
+
+            # Imgur TODO
+            '''
+            elif provider is 'imgur':
+                # Check if url is image
+                images = ['.jpg', '.jpeg', '.gif', '.png']
+                disassembled = urlparse(oembed_url)
+                filename, file_ext = splitext(basename(disassembled.path))
+
+                print file_ext
+                if file_ext in images:
+                    embedHtml = "<a href='{image}' ><img src='{image}' height=300 alt='{name}' /></a>".format(image=oembed_url, name=filename)
+                    return embedHtml
+                else:
+                    # Try to show picture anyway
+
+             '''
         except Exception:
             return ""
