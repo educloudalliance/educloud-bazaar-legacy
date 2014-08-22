@@ -4,6 +4,8 @@
 {% if basket.is_empty %}
     {% trans "Your basket is now empty" %}
 {% else %}
+
+{% comment %}
     {% if basket.is_tax_known %}
         {% blocktrans with total=basket.total_incl_tax|currency:basket.currency %}
         Basket total now <strong>{{ total }}</strong>
@@ -13,6 +15,8 @@
         Basket total now <strong>{{ total }}</strong>
         {% endblocktrans %}
     {% endif %}
+{% endcomment %}
+
 {% endif %}
 
 {% if include_buttons %}

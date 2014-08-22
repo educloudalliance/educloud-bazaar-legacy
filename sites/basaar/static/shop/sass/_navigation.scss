@@ -222,7 +222,7 @@
             background: $dark-blue;
             select {
                 color: white;
-                background: transparent;
+                background: $dark-blue;
                 border: none;
             }
             button {
@@ -394,7 +394,7 @@
         padding: 10px 0px 2px 0px;
     }
     #options-price{
-        margin-bottom: 3em;
+        margin-bottom: 2em;
         h2 {
             margin-bottom: 1em;
         }

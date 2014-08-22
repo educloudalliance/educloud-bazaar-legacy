@@ -3,9 +3,15 @@
 
 {% block basket_total %}
     {# No discounts to basket #}
+    
+    {% comment %}
         {% if not show_tax_separately and basket.is_tax_known %}
             {{ basket.total_incl_tax|currency:basket.currency }}
         {% else %}
             {{ basket.total_excl_tax|currency:basket.currency }}
         {% endif %}
+    {% endcomment %}
+
+    {% trans "Free" %}
+    
 {% endblock %}

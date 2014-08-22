@@ -78,18 +78,26 @@
                             </p>
                         </div>
                         <div class="price">
-                                {% if line.is_tax_known %}
-                                    {{ line.unit_price_incl_tax|currency:line.price_currency }}
-                                {% else %}
-                                    {{ line.unit_price_excl_tax|currency:line.price_currency }}
-                                {% endif %}
+                            {% comment %}
+                            {% if line.is_tax_known %}
+                                {{ line.unit_price_incl_tax|currency:line.price_currency }}
+                            {% else %}
+                                {{ line.unit_price_excl_tax|currency:line.price_currency }}
+                            {% endif %}
+                            {% endcomment %}
+
+                            {% trans "Free" %}
                         </div>
                         <div class="subtotal">
-                                {% if line.is_tax_known %}
-                                    {{ line.line_price_incl_tax|currency:line.price_currency }}
-                                {% else %}
-                                    {{ line.line_price_excl_tax|currency:line.price_currency }}
-                                {% endif %}
+                            {% comment %}
+                            {% if line.is_tax_known %}
+                                {{ line.line_price_incl_tax|currency:line.price_currency }}
+                            {% else %}
+                                {{ line.line_price_excl_tax|currency:line.price_currency }}
+                            {% endif %}
+                            {% endcomment %}
+
+                            {% trans "Free" %}
                         </div>
                     </div>
                 {% endwith %}

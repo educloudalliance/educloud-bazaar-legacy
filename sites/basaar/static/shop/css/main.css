@@ -965,7 +965,7 @@ textarea, input {
 /* line 223, ../sass/_navigation.scss */
 #uppermenu #language-icon .menu-box select {
   color: white;
-  background: transparent;
+  background: #0080bc;
   border: none;
 }
 /* line 228, ../sass/_navigation.scss */
@@ -1171,7 +1171,7 @@ textarea, input {
 }
 /* line 396, ../sass/_navigation.scss */
 #categories-bar #options-price {
-  margin-bottom: 3em;
+  margin-bottom: 2em;
 }
 /* line 398, ../sass/_navigation.scss */
 #categories-bar #options-price h2 {
