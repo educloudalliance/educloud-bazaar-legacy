@@ -662,13 +662,18 @@ class PaymentDetailsView(OrderPlacementMixin, generic.TemplateView):
         userLines = BasketLine.objects.filter(basket=basket)
 
         for userLine in userLines:
-            newPurchase = ProductPurchased.create()
-            newPurchase.owner = basket.owner
-            newPurchase.product = userLine.product
-            newPurchase.basket = basket
-            newPurchase.quantity = userLine.quantity
-            newPurchase.validated = True
-            newPurchase.save()
+            if ProductPurchased.objects.filter(owner=basket.owner, product=userLine.product).count() is 0:
+                newPurchase = ProductPurchased.create()
+                newPurchase.owner = basket.owner
+                newPurchase.product = userLine.product
+                newPurchase.basket = basket
+                newPurchase.quantity = userLine.quantity
+                newPurchase.validated = True
+                newPurchase.save()
+            else:
+                oldProduct = ProductPurchased.objects.get(owner=basket.owner, product=userLine.product)
+                oldProduct.quantity = oldProduct.quantity + userLine.quantity
+                oldProduct.save()
 
         return True
 

@@ -26,7 +26,6 @@ def oembed(oembed_url):
 
     if url not in services:
         print url
-        return "EI VIDEOO"
     else:
         provider = services[url]
         try:
