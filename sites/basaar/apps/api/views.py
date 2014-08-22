@@ -334,7 +334,7 @@ class CMSView(APIView):
                 #TODO: THIS IS BAD. BUT IT IS NECESSARY TO FIX ONE BAD ZERO PRICE BUG FOR NOW. PLEASE FIX THIS
                 #TODO: ASAP. WE ARE SORRY ;__;
                 if x["price"] == 0:
-                    f = StockRecord(product=product, partner=author, price_excl_tax=0.01, price_retail=0.01, partner_sku=0.01, num_in_stock=1)
+                    f = StockRecord(product=product, partner=author, price_excl_tax=0.01, price_retail=0.01, partner_sku=x["uuid"], num_in_stock=1)
                 else:
                     f = StockRecord(product=product, partner=author, price_excl_tax=x["price"], price_retail=x["price"], partner_sku=x["uuid"], num_in_stock=1)
                 f.save()
