@@ -167,9 +167,11 @@
                     </tr>
                       {% purchase_info_for_product request product as session %}
                     {% if session.price.exists %}
+                        {% comment %}
                         <tr>
                             <th>{% trans "Price" %}</th><td>{{ session.price.excl_tax|currency:session.price.currency }}</td>
                         </tr>
+                        {% endcomment %}
                         {% comment %}
                         <tr>
                             <th>{% trans "Availability" %}</th>

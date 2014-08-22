@@ -27,12 +27,13 @@
     </div>
 </div>
 {% endcomment %}
+
 <div id="product_gallery">
-    <div class="carousel">
+        <div>
         {% for url in all_media %}
             {{ url|oembed|safe }}
         {% endfor %}
-    </div>
+        </div>
 </div>
 {% else %}
 
