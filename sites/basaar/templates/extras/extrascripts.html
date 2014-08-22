@@ -28,7 +28,7 @@
                 if(typeof imgClass !== 'undefined') {
                     $svg = $svg.attr('class', imgClass+' replaced-svg');
                     if( imgClass.indexOf('menu-icon') > -1) {
-                        $svg = $svg.on('click touchend',toggleMenuItem);
+                        $svg = $svg.on('click',toggleMenuItem);
                     }
                 }
 
@@ -41,10 +41,10 @@
             }, 'xml');
 
         });
-        $('.notification-number').on('click touchend',toggleMenuItem);
+        $('.notification-number').on('click',toggleMenuItem);
 
         
-        $('#language-icon .menu-icon').on('click touchend',function() {
+        $('#language-icon .menu-icon').on('click',function() {
             if($(this).parent().find('.menu-box').is(":visible")) {
                 $('.menu-box').hide('fade');
                 $('#language-icon i').removeClass('fa-caret-up').addClass('fa-caret-down');
