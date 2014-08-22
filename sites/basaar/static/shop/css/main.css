@@ -1249,13 +1249,16 @@ textarea, input {
 /* line 456, ../sass/_navigation.scss */
 #categories-bar #options-schools .title {
   color: #00a9e4;
+  border-bottom: 1px solid #00a9e4;
+  padding: 10px 0px 1px 0px;
+  margin-bottom: 3px;
 }
-/* line 459, ../sass/_navigation.scss */
+/* line 462, ../sass/_navigation.scss */
 #categories-bar #options-schools .selected {
   color: white;
   text-decoration: underline;
 }
-/* line 463, ../sass/_navigation.scss */
+/* line 466, ../sass/_navigation.scss */
 #categories-bar #options-schools .change-btn {
   cursor: pointer;
   font-size: 8pt;
@@ -1267,29 +1270,29 @@ textarea, input {
   font-style: italic;
   letter-spacing: 1px;
 }
-/* line 474, ../sass/_navigation.scss */
+/* line 477, ../sass/_navigation.scss */
 #categories-bar #options-schools .change-btn:hover {
   color: #00a9e4;
 }
-/* line 478, ../sass/_navigation.scss */
+/* line 481, ../sass/_navigation.scss */
 #categories-bar #clear-all-filters {
   font-size: 13pt;
   text-transform: uppercase;
   padding: 0.5em;
   text-align: right;
 }
-/* line 483, ../sass/_navigation.scss */
+/* line 486, ../sass/_navigation.scss */
 #categories-bar #clear-all-filters a {
   transition: all 0.5s;
   color: white;
   text-decoration: none;
 }
-/* line 488, ../sass/_navigation.scss */
+/* line 491, ../sass/_navigation.scss */
 #categories-bar #clear-all-filters a:hover {
   color: #00a9e4;
 }
 
-/* line 493, ../sass/_navigation.scss */
+/* line 496, ../sass/_navigation.scss */
 #tabs-bar {
   line-height: 39px;
   height: 39px;
@@ -1299,13 +1302,13 @@ textarea, input {
   user-select: none;
 }
 @media screen and (max-width: 1024px) {
-  /* line 493, ../sass/_navigation.scss */
+  /* line 496, ../sass/_navigation.scss */
   #tabs-bar {
     height: 27.3px;
     line-height: 27.3px;
   }
 }
-/* line 502, ../sass/_navigation.scss */
+/* line 505, ../sass/_navigation.scss */
 #tabs-bar .tab {
   transition: all 0.5s;
   text-align: center;
@@ -1319,23 +1322,23 @@ textarea, input {
   border: 1px solid #0080bc;
 }
 @media screen and (max-width: 1024px) {
-  /* line 502, ../sass/_navigation.scss */
+  /* line 505, ../sass/_navigation.scss */
   #tabs-bar .tab {
     font-size: 9pt;
   }
 }
-/* line 517, ../sass/_navigation.scss */
+/* line 520, ../sass/_navigation.scss */
 #tabs-bar .tab:hover {
   background: rgba(255, 255, 255, 0.2);
 }
-/* line 520, ../sass/_navigation.scss */
+/* line 523, ../sass/_navigation.scss */
 #tabs-bar .tab.active {
   color: #4d4d4d;
   background: #f1f1f1;
   font-weight: normal;
   border: 1px solid #666666;
 }
-/* line 526, ../sass/_navigation.scss */
+/* line 529, ../sass/_navigation.scss */
 #tabs-bar .tab.active:hover {
   background: #f1f1f1;
 }

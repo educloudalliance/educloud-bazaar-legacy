@@ -214,9 +214,11 @@
                 </div>
                 <div id="options-schools">
                     <p class="title">
-                        {% trans "Refining items by"%}<br/><strong>{% trans "Primary School"%}</strong><a class="change-btn">change</a>
+                        {% trans "Refining items by"%}
                     </p>
-                    <div style="height:10px"></div>
+                    <p>
+                        <strong>{% trans "Primary School"%}</strong><a class="change-btn">{% trans "change"%}</a>
+                    </p>
                     <p class="title">{% trans "Also include:"%}</p>
                     <p><input type="checkbox" value="vocational_school">{% trans "Vocational school"%}</p>
                     <p><input type="checkbox" value="high_school">{% trans "High school"%}</p>

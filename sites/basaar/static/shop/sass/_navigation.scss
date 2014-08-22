@@ -455,6 +455,9 @@
         }
         .title {
             color: $blue;
+            border-bottom: 1px solid $blue;
+            padding: 10px 0px 1px 0px;
+            margin-bottom: 3px;
         }
         .selected {
             color: white;
