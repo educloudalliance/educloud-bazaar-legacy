@@ -326,17 +326,16 @@
         }
     }
 
-    function getResults(path){
-        $.getJSON( "/api/" + path + "/?format=json", function( data ) {
+    function getSubjects(){
+        $.getJSON( "/api/subjects/?format=json", function( data ) {
           var items = [];
           var arraySize = data.count;
           for (var i=0; i < arraySize; i++) {
             items.push( "<li data='" + data.results[i].slug + "'>" + data.results[i].name + "</li>" );
           };
+
+          $("#options-subject div ul").append(items);
          
-          $( "<ul/>", {
-            html: items.join("");
-          }).appendTo("#options-subject div");
         });
     }
 

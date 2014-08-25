@@ -364,6 +364,10 @@
         padding: 10px 15px;
         min-width: 220px;
         font-weight: lighter;
+        @media screen and (max-width: $r1024-content-width) {
+            -webkit-flex-basis: 350px;
+            flex-basis: 350px;
+        }
         ul {
             list-style: none;
             padding: 0px;

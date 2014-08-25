@@ -1135,32 +1135,39 @@ textarea, input {
   min-width: 220px;
   font-weight: lighter;
 }
-/* line 367, ../sass/_navigation.scss */
+@media screen and (max-width: 1024px) {
+  /* line 363, ../sass/_navigation.scss */
+  #categories-bar > div > .flexItem, #categories-bar > div > .flexItem2, #categories-bar > div > .flexItem3 {
+    -webkit-flex-basis: 350px;
+    flex-basis: 350px;
+  }
+}
+/* line 371, ../sass/_navigation.scss */
 #categories-bar > div > .flexItem ul, #categories-bar > div > .flexItem2 ul, #categories-bar > div > .flexItem3 ul {
   list-style: none;
   padding: 0px;
 }
-/* line 370, ../sass/_navigation.scss */
+/* line 374, ../sass/_navigation.scss */
 #categories-bar > div > .flexItem ul li, #categories-bar > div > .flexItem2 ul li, #categories-bar > div > .flexItem3 ul li {
   transition: all 0.5s;
   padding: 5px 0px;
   cursor: pointer;
 }
-/* line 374, ../sass/_navigation.scss */
+/* line 378, ../sass/_navigation.scss */
 #categories-bar > div > .flexItem ul li span.small, #categories-bar > div > .flexItem2 ul li span.small, #categories-bar > div > .flexItem3 ul li span.small {
   font-size: 9pt;
 }
-/* line 378, ../sass/_navigation.scss */
+/* line 382, ../sass/_navigation.scss */
 #categories-bar > div > .flexItem ul li:hover, #categories-bar > div > .flexItem2 ul li:hover, #categories-bar > div > .flexItem3 ul li:hover {
   transition: all 0.5s;
   text-decoration: underline;
 }
-/* line 382, ../sass/_navigation.scss */
+/* line 386, ../sass/_navigation.scss */
 #categories-bar > div > .flexItem ul li.selected, #categories-bar > div > .flexItem2 ul li.selected, #categories-bar > div > .flexItem3 ul li.selected {
   color: white;
   text-decoration: underline;
 }
-/* line 388, ../sass/_navigation.scss */
+/* line 392, ../sass/_navigation.scss */
 #categories-bar h2 {
   color: #00a9e4;
   border-bottom: 1px solid #00a9e4;
@@ -1169,96 +1176,96 @@ textarea, input {
   margin: 0px;
   padding: 10px 0px 2px 0px;
 }
-/* line 396, ../sass/_navigation.scss */
+/* line 400, ../sass/_navigation.scss */
 #categories-bar #options-price {
   margin-bottom: 2em;
 }
-/* line 398, ../sass/_navigation.scss */
+/* line 402, ../sass/_navigation.scss */
 #categories-bar #options-price h2 {
   margin-bottom: 1em;
 }
-/* line 401, ../sass/_navigation.scss */
+/* line 405, ../sass/_navigation.scss */
 #categories-bar #options-price .slider {
   padding: 1em 1em 1em 1em;
 }
-/* line 403, ../sass/_navigation.scss */
+/* line 407, ../sass/_navigation.scss */
 #categories-bar #options-price .slider #price-slider {
   background: #999999;
   border-radius: 0px;
   border: none;
 }
-/* line 407, ../sass/_navigation.scss */
+/* line 411, ../sass/_navigation.scss */
 #categories-bar #options-price .slider #price-slider .ui-slider-range {
   background: #f1f1f1;
 }
-/* line 410, ../sass/_navigation.scss */
+/* line 414, ../sass/_navigation.scss */
 #categories-bar #options-price .slider #price-slider .ui-slider-handle {
   background: #f1f1f1;
   border: 1px solid #0080bc;
   height: 1.3em;
 }
-/* line 417, ../sass/_navigation.scss */
+/* line 421, ../sass/_navigation.scss */
 #categories-bar #options-price #price-range.disabled {
   color: #999999;
 }
-/* line 420, ../sass/_navigation.scss */
+/* line 424, ../sass/_navigation.scss */
 #categories-bar #options-price .option {
   padding: 0.2em 0em;
   transition: all 0.5s;
 }
-/* line 424, ../sass/_navigation.scss */
+/* line 428, ../sass/_navigation.scss */
 #categories-bar #options-price .option.selected {
   color: white;
   text-decoration: underline;
 }
-/* line 428, ../sass/_navigation.scss */
+/* line 432, ../sass/_navigation.scss */
 #categories-bar #options-price p {
   margin: 0px;
   text-align: center;
 }
-/* line 432, ../sass/_navigation.scss */
+/* line 436, ../sass/_navigation.scss */
 #categories-bar #options-price input[type="radio"] {
   margin-right: 0.4em;
 }
-/* line 435, ../sass/_navigation.scss */
+/* line 439, ../sass/_navigation.scss */
 #categories-bar #options-price input[type="text"] {
   background: transparent;
   color: white;
   border: none;
   text-align: center;
 }
-/* line 442, ../sass/_navigation.scss */
+/* line 446, ../sass/_navigation.scss */
 #categories-bar #options-schools {
   color: #999999;
   font-size: 10pt;
 }
-/* line 445, ../sass/_navigation.scss */
+/* line 449, ../sass/_navigation.scss */
 #categories-bar #options-schools strong {
   text-transform: uppercase;
   color: white;
 }
-/* line 449, ../sass/_navigation.scss */
+/* line 453, ../sass/_navigation.scss */
 #categories-bar #options-schools input[type="checkbox"] {
   margin-right: 0.4em;
 }
-/* line 452, ../sass/_navigation.scss */
+/* line 456, ../sass/_navigation.scss */
 #categories-bar #options-schools p {
   margin: 0px;
   transition: all 0.5s;
 }
-/* line 456, ../sass/_navigation.scss */
+/* line 460, ../sass/_navigation.scss */
 #categories-bar #options-schools .title {
   color: #00a9e4;
   border-bottom: 1px solid #00a9e4;
   padding: 10px 0px 1px 0px;
   margin-bottom: 3px;
 }
-/* line 462, ../sass/_navigation.scss */
+/* line 466, ../sass/_navigation.scss */
 #categories-bar #options-schools .selected {
   color: white;
   text-decoration: underline;
 }
-/* line 466, ../sass/_navigation.scss */
+/* line 470, ../sass/_navigation.scss */
 #categories-bar #options-schools .change-btn {
   cursor: pointer;
   font-size: 8pt;
@@ -1270,29 +1277,29 @@ textarea, input {
   font-style: italic;
   letter-spacing: 1px;
 }
-/* line 477, ../sass/_navigation.scss */
+/* line 481, ../sass/_navigation.scss */
 #categories-bar #options-schools .change-btn:hover {
   color: #00a9e4;
 }
-/* line 481, ../sass/_navigation.scss */
+/* line 485, ../sass/_navigation.scss */
 #categories-bar #clear-all-filters {
   font-size: 13pt;
   text-transform: uppercase;
   padding: 0.5em;
   text-align: right;
 }
-/* line 486, ../sass/_navigation.scss */
+/* line 490, ../sass/_navigation.scss */
 #categories-bar #clear-all-filters a {
   transition: all 0.5s;
   color: white;
   text-decoration: none;
 }
-/* line 491, ../sass/_navigation.scss */
+/* line 495, ../sass/_navigation.scss */
 #categories-bar #clear-all-filters a:hover {
   color: #00a9e4;
 }
 
-/* line 496, ../sass/_navigation.scss */
+/* line 500, ../sass/_navigation.scss */
 #tabs-bar {
   line-height: 39px;
   height: 39px;
@@ -1302,13 +1309,13 @@ textarea, input {
   user-select: none;
 }
 @media screen and (max-width: 1024px) {
-  /* line 496, ../sass/_navigation.scss */
+  /* line 500, ../sass/_navigation.scss */
   #tabs-bar {
     height: 27.3px;
     line-height: 27.3px;
   }
 }
-/* line 505, ../sass/_navigation.scss */
+/* line 509, ../sass/_navigation.scss */
 #tabs-bar .tab {
   transition: all 0.5s;
   text-align: center;
@@ -1322,23 +1329,23 @@ textarea, input {
   border: 1px solid #0080bc;
 }
 @media screen and (max-width: 1024px) {
-  /* line 505, ../sass/_navigation.scss */
+  /* line 509, ../sass/_navigation.scss */
   #tabs-bar .tab {
     font-size: 9pt;
   }
 }
-/* line 520, ../sass/_navigation.scss */
+/* line 524, ../sass/_navigation.scss */
 #tabs-bar .tab:hover {
   background: rgba(255, 255, 255, 0.2);
 }
-/* line 523, ../sass/_navigation.scss */
+/* line 527, ../sass/_navigation.scss */
 #tabs-bar .tab.active {
   color: #4d4d4d;
   background: #f1f1f1;
   font-weight: normal;
   border: 1px solid #666666;
 }
-/* line 529, ../sass/_navigation.scss */
+/* line 533, ../sass/_navigation.scss */
 #tabs-bar .tab.active:hover {
   background: #f1f1f1;
 }
