@@ -80,7 +80,9 @@ class SearchForm(FacetedSearchForm):
         try:
             jsonParams = self.cleaned_data['params']
             sqs = self.defaultSearch()
+            sqs = self.priceRange(sqs, jsonParams)
 
+            #sqs = sqs.filter(product_class="compressed")
             print jsonParams
             return sqs
         except KeyError:
@@ -88,6 +90,25 @@ class SearchForm(FacetedSearchForm):
 
         return self.defaultSearch()
 
+
+    #set pricerange parameters
+    def priceRange(self, sqs, jsonParams):
+        try:
+            # Check to see if a price range was chosen.
+            if jsonParams["selectedPrice"] and jsonParams["selectedPrice"]["min"]:
+                sqs = sqs.filter(price__gte=jsonParams["selectedPrice"]["min"])
+            else:
+                sqs = sqs.filter(price__gte=0.02)
+
+            # Check to see if a price range was chosen.
+            if jsonParams["selectedPrice"] and jsonParams["selectedPrice"]["max"]:
+                sqs = sqs.filter(price__lte=jsonParams["selectedPrice"]["max"])
+            else:
+                sqs = sqs.filter(price__lte=1000)
+        except:
+            return sqs
+
+        return sqs
 
     # execute search based only on q string. The default implementation of Haystack/Oscar.
     def defaultSearch(self):
