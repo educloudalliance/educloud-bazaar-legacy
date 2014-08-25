@@ -64,18 +64,20 @@ class Product(AbstractProduct):
                 # Resize
                 size = (200, 200)
                 image = Image.open(f.name)
+
                 image.thumbnail(size, Image.ANTIALIAS)
                 image_size = image.size
 
                 thumb = image.crop((0, 0, size[0], size[1]))
                 offset_x = max((size[0] - image_size[0]) / 2, 0)
                 offset_y = max((size[1] - image_size[1]) / 2, 0)
+                offset_tuple = (offset_x, offset_y)
 
-                thumb = ImageChops.offset(thumb, offset_x, offset_y)
                 fileFolder = sPath + '/public/media/icons/'
                 filename = self.upc + ".png"
-                thumb.save(fileFolder + filename)
-                print "Icon resized!"
+                final_thumb = Image.new(mode='RGBA',size=size,color=(255,255,255,0)) #create the image object to be the final product
+                final_thumb.paste(image, offset_tuple) #paste the thumbnail into the full sized image
+                final_thumb.save(fileFolder + filename,'PNG') #save (the PNG format will retain the alpha band unlike JPEG)
 
                 self.icon = os.path.join(self.upload_path, filename)
                 super(Product, self).save()
