@@ -5,6 +5,10 @@
 
 {% purchase_info_for_product request product as session %}
 
+<h2 class="price_color">{% trans "Free" %}</h2>
+
+{% comment %}
+
 {% if session.price.exists %}
     {% if session.price.excl_tax == 0 %}
         <h2 class="price_color">{% trans "Free" %}</h2>
@@ -16,13 +20,5 @@
 {% else %}
     <h2 class="price_color">&nbsp;</h2>
 {% endif %}
-<!--
-<p class="{{ session.availability.code }} availability">
-    <i class="icon-{% if session.availability.is_available_to_buy %}ok{% else %}remove{% endif %}"></i>
-    {% if verbose %}
-        {{ session.availability.message }}
-    {% else %}
-        {{ session.availability.short_message }}
-    {% endif %}
-</p>
--->
+
+{% endcomment %}

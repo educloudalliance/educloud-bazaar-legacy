@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-oscar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-21 13:51+0300\n"
+"POT-Creation-Date: 2014-08-22 13:00+0300\n"
 "PO-Revision-Date: 2014-08-15 07:05+0000\n"
 "Last-Translator: preriasusi <coyotronics@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/django-oscar/"
@@ -28,13 +28,13 @@ msgstr ""
 msgid "British English"
 msgstr ""
 
-#: settings.py:66 templates/partials/nav_primary.html:152
-#: templates/partials/nav_primary.html:153
+#: settings.py:66 templates/partials/nav_primary.html:153
+#: templates/partials/nav_primary.html:154
 msgid "Finnish"
 msgstr "Suomi"
 
-#: settings.py:67 templates/partials/nav_primary.html:156
-#: templates/partials/nav_primary.html:157
+#: settings.py:67 templates/partials/nav_primary.html:157
+#: templates/partials/nav_primary.html:158
 msgid "Swedish"
 msgstr "Ruotsi"
 
@@ -410,7 +410,7 @@ msgid "Description"
 msgstr "Kuvaus"
 
 #: apps/catalogue/abstract_models.py:78 apps/catalogue/abstract_models.py:614
-#: templates/partials/nav_primary.html:182
+#: templates/partials/nav_primary.html:183
 msgid "Image"
 msgstr "Kuva"
 
@@ -476,7 +476,7 @@ msgid "Product title"
 msgstr "Tuotteen otsikko"
 
 #: apps/catalogue/abstract_models.py:229 apps/catalogue/abstract_models.py:595
-#: templates/catalogue/detail.html:156
+#: templates/catalogue/detail.html:167
 msgid "Product Type"
 msgstr "Tuotetyyppi"
 
@@ -646,7 +646,7 @@ msgid "File"
 msgstr "Tiedosto"
 
 #: apps/catalogue/abstract_models.py:618 apps/catalogue/abstract_models.py:905
-#: apps/order/abstract_models.py:693 templates/partials/nav_primary.html:189
+#: apps/order/abstract_models.py:693 templates/partials/nav_primary.html:190
 msgid "Type"
 msgstr "Tyyppi"
 
@@ -844,7 +844,17 @@ msgstr "Tuotteen kuva"
 msgid "Product Images"
 msgstr "Tuotteen kuvat"
 
-#: apps/catalogue/models.py:95
+#: apps/catalogue/models.py:34
+#, fuzzy
+msgid "Product Format"
+msgstr "Tuotetiedot"
+
+#: apps/catalogue/models.py:35
+#, fuzzy
+msgid "Choose what is product format"
+msgstr "Valitse tyyppi tälle tuotteelle"
+
+#: apps/catalogue/models.py:100
 msgid "Embedded media"
 msgstr ""
 
@@ -984,9 +994,9 @@ msgstr "Käyttäjät"
 #: templates/customer/email/email_detail.html:20
 #: templates/customer/email/email_list.html:9
 #: templates/customer/notifications/detail.html:24
-#: templates/partials/nav_primary.html:128
+#: templates/partials/nav_primary.html:129
 msgid "Subject"
-msgstr "Aine"
+msgstr "Oppiaine"
 
 #: apps/customer/abstract_models.py:116
 msgid "Body Text"
@@ -1230,7 +1240,7 @@ msgstr "Kiitos rekisteröitymisestä!"
 #: templates/customer/profile/change_password_form.html:11
 #: templates/customer/profile/profile.html:13
 #: templates/customer/profile/profile_form.html:11
-#: templates/partials/nav_primary.html:66
+#: templates/partials/nav_primary.html:67
 msgid "Profile"
 msgstr "Profiili"
 
@@ -2948,35 +2958,39 @@ msgstr "Tyhjää koria ei voi jättää käsittelyyn"
 msgid "There is already an order with number %s"
 msgstr "Numerolla %s on jo tilaus"
 
-#: apps/search/forms.py:26 apps/search/forms.py:30
+#: apps/search/forms.py:34
 msgid "Search"
 msgstr "Haku"
 
-#: apps/search/forms.py:27
+#: apps/search/forms.py:35
 msgid "Search for resources, recipes and questions"
 msgstr "Etsi materiaaleja, reseptejä ja kysymyksiä"
 
-#: apps/search/forms.py:41
+#: apps/search/forms.py:38
+msgid "Params"
+msgstr ""
+
+#: apps/search/forms.py:49
 msgid "Relevancy"
 msgstr "Osuvuus"
 
-#: apps/search/forms.py:42
+#: apps/search/forms.py:50
 msgid "Newest"
 msgstr "Uusimmat"
 
-#: apps/search/forms.py:43
+#: apps/search/forms.py:51
 msgid "Price high To low"
 msgstr "Laskeva hinta"
 
-#: apps/search/forms.py:44
+#: apps/search/forms.py:52
 msgid "Price low To high"
 msgstr "Nouseva hinta"
 
-#: apps/search/forms.py:45
+#: apps/search/forms.py:53
 msgid "Title A to Z"
 msgstr "Otsikko A:sta Ö:hön"
 
-#: apps/search/forms.py:46
+#: apps/search/forms.py:54
 msgid "Title Z to A"
 msgstr "Otsikko Ö:stä A:han"
 
@@ -3203,7 +3217,6 @@ msgid "Your cart is empty."
 msgstr "Ostoskorisi on tyhjä"
 
 #: templates/catalogue/browse.html:36
-#, fuzzy
 msgid "All resources"
 msgstr "Materiaalit"
 
@@ -3253,65 +3266,69 @@ msgid "Product Description"
 msgstr "Tuotteen kuvaus"
 
 #: templates/catalogue/detail.html:133
-msgid "Product Information"
-msgstr "Tuotetiedot"
+msgid "Features"
+msgstr "Ominaisuudet"
 
 #: templates/catalogue/detail.html:136
 msgid "Subjects"
-msgstr "Aineet"
+msgstr "Oppiaineet"
 
 #: templates/catalogue/detail.html:136
 #, fuzzy, python-format
 msgid "%(category)s"
 msgstr "Luokka"
 
-#: templates/catalogue/detail.html:139 templates/partials/nav_primary.html:163
+#: templates/catalogue/detail.html:159 templates/partials/nav_primary.html:164
 msgid "Grade"
 msgstr "Luokka-aste"
 
-#: templates/catalogue/detail.html:156
+#: templates/catalogue/detail.html:167
 #, python-format
 msgid "%(class)s"
 msgstr ""
 
-#: templates/catalogue/detail.html:161
+#: templates/catalogue/detail.html:172 templates/partials/nav_primary.html:203
 msgid "Price"
 msgstr "Hinta"
 
-#: templates/catalogue/detail.html:179
+#: templates/catalogue/detail.html:190
 msgid "Number of reviews"
 msgstr "Arvioiden määrä"
 
-#: templates/catalogue/detail.html:184 templates/catalogue/detail.html:185
+#: templates/catalogue/detail.html:195 templates/catalogue/detail.html:196
 msgid "More info"
 msgstr "Lisää tietoa"
 
-#: templates/catalogue/detail.html:188
-msgid "Age recommendation"
-msgstr "Ikäsuositus"
-
-#: templates/catalogue/detail.html:192
+#: templates/catalogue/detail.html:199
 msgid "Copyright notice"
 msgstr "Tekijänoikeudet"
 
-#: templates/catalogue/detail.html:196
+#: templates/catalogue/detail.html:203
 msgid "Content license"
 msgstr "Sisältölisenssi"
 
-#: templates/catalogue/detail.html:200
+#: templates/catalogue/detail.html:207
 msgid "Attribution"
 msgstr "Omistaja"
 
-#: templates/catalogue/detail.html:210
+#: templates/catalogue/detail.html:211
+msgid "Platforms"
+msgstr "Alustat"
+
+#: templates/catalogue/detail.html:212
+msgid "Compatible with all platforms"
+msgstr "Yhteensopiva kaikkien alustojen kanssa"
+
+#: templates/catalogue/detail.html:221
 msgid "Media"
 msgstr ""
 
-#: templates/catalogue/detail.html:220
+#: templates/catalogue/detail.html:231
 msgid "Customer Reviews"
 msgstr "Asiakasarviot"
 
-#: templates/catalogue/detail.html:226
-#, fuzzy, python-format
+#: templates/catalogue/detail.html:237
+#, python-format
 msgid ""
 "This product does not have any reviews yet -\n"
 "                                    <a href=\"%(add_review_url)s#addreview"
@@ -3321,22 +3338,22 @@ msgstr ""
 "Tällä tuotteella ei vielä ole arvioita -\n"
 "<a href=\"%(add_review_url)s#addreview\">kirjoita ensimmäinen</a>."
 
-#: templates/catalogue/detail.html:230
+#: templates/catalogue/detail.html:241
 msgid "This product does not have any reviews yet"
 msgstr "Tällä tuotteella ei vielä ole arvioita"
 
-#: templates/catalogue/detail.html:249
+#: templates/catalogue/detail.html:260
 #: templates/catalogue/reviews/review_product.html:43
 #: templates/customer/anon_order.html:79
 #: templates/customer/order/order_detail.html:37
 msgid "Write a review"
 msgstr "Kirjoita arvostelu"
 
-#: templates/catalogue/detail.html:253
+#: templates/catalogue/detail.html:264
 msgid "See all reviews"
 msgstr "Katso kaikki arvostelut"
 
-#: templates/catalogue/detail.html:265
+#: templates/catalogue/detail.html:276
 msgid "Recommended items"
 msgstr "Suositellut tuotteet"
 
@@ -3460,6 +3477,7 @@ msgid "This review has no votes."
 msgstr "Tällä arvioilla ei ole peukutuksia."
 
 #: templates/catalogue/partials/stock_record.html:10
+#: templates/partials/nav_primary.html:207
 msgid "Free"
 msgstr "Ilmainen"
 
@@ -3511,11 +3529,9 @@ msgid "cancel"
 msgstr "Peruuta"
 
 #: templates/catalogue/reviews/review_list.html:42
-msgid "SORT BY"
-msgstr "Järjestysavain:"
-
 msgid "Sort by:"
 msgstr "Järjestysavain:"
+
 #: templates/catalogue/reviews/review_list.html:45
 msgid "Score"
 msgstr "Pisteet"
@@ -3549,7 +3565,7 @@ msgstr[1] ""
 "\n"
 "%(num_reviews)s asiakasarviota"
 
-#: templates/checkout/checkout.html:9 templates/partials/nav_primary.html:49
+#: templates/checkout/checkout.html:9 templates/partials/nav_primary.html:50
 msgid "Checkout"
 msgstr "Maksamaan"
 
@@ -3778,7 +3794,7 @@ msgstr "Kori yhteensä (veroineen)"
 #: templates/customer/wishlists/wishlists_detail.html:12
 #: templates/customer/wishlists/wishlists_form.html:11
 #: templates/partials/nav_accounts.html:7
-#: templates/partials/nav_primary.html:73
+#: templates/partials/nav_primary.html:74
 msgid "Account"
 msgstr "Tili"
 
@@ -3789,7 +3805,7 @@ msgstr "Kirjaudu tai rekisteröidy"
 
 #: templates/customer/login_registration.html:25
 #: templates/customer/login_registration.html:29
-#: templates/partials/nav_primary.html:79
+#: templates/partials/nav_primary.html:80
 msgid "Log In"
 msgstr "Kirjaudu"
 
@@ -4314,7 +4330,7 @@ msgstr "Et ole tilannut mitään"
 #: templates/customer/profile/change_password_form.html:13
 #: templates/customer/profile/profile.html:15
 #: templates/customer/profile/profile_form.html:13
-#: templates/partials/nav_primary.html:74
+#: templates/partials/nav_primary.html:75
 msgid "Logout"
 msgstr "Kirjaudu ulos"
 
@@ -4460,7 +4476,7 @@ msgstr "Sinulla ei ole vielä toivelistoja"
 msgid "No products found"
 msgstr "Tuotteita ei löytynyt"
 
-#: templates/extras/extrascripts.html:70
+#: templates/extras/extrascripts.html:69
 #, fuzzy
 msgid "Are you sure to remove all the items from the shopping cart?"
 msgstr "Oletko varma, että haluat poistaa tämän toimitustavan?"
@@ -4539,157 +4555,188 @@ msgstr "Et ole kirjautuneena sisään"
 msgid "Refine Items"
 msgstr "Rajaa hakua"
 
-#: templates/partials/nav_primary.html:42
+#: templates/partials/nav_primary.html:43
 msgid "Shopping cart summary"
 msgstr "Yhteenveto ostoksista"
 
-#: templates/partials/nav_primary.html:47
+#: templates/partials/nav_primary.html:48
 msgid "View your cart"
 msgstr "Tarkista ostoskori"
 
-#: templates/partials/nav_primary.html:71
+#: templates/partials/nav_primary.html:72
 msgid "Dashboard"
 msgstr "Kojelauta"
 
-#: templates/partials/nav_primary.html:132
-#: templates/partials/nav_primary.html:165
-#: templates/partials/nav_primary.html:181
-#: templates/partials/nav_primary.html:191
+#: templates/partials/nav_primary.html:133
+#: templates/partials/nav_primary.html:166
+#: templates/partials/nav_primary.html:182
+#: templates/partials/nav_primary.html:192
 msgid "all"
 msgstr "Kaikki"
 
-#: templates/partials/nav_primary.html:133
+#: templates/partials/nav_primary.html:134
 msgid "Biology"
 msgstr "Biologia"
 
-#: templates/partials/nav_primary.html:134
+#: templates/partials/nav_primary.html:135
 msgid "Chemistry"
 msgstr "Kemia"
 
-#: templates/partials/nav_primary.html:135
+#: templates/partials/nav_primary.html:136
 msgid "Environmental & Natural Science"
 msgstr "Ympäristöoppi"
 
-#: templates/partials/nav_primary.html:136
+#: templates/partials/nav_primary.html:137
 msgid "Geography"
 msgstr "Maantieto"
 
-#: templates/partials/nav_primary.html:137
+#: templates/partials/nav_primary.html:138
 msgid "Health Education"
 msgstr "Terveystieto"
 
-#: templates/partials/nav_primary.html:138
+#: templates/partials/nav_primary.html:139
 msgid "History"
 msgstr "Historia"
 
-#: templates/partials/nav_primary.html:139
+#: templates/partials/nav_primary.html:140
 msgid "Mathematics"
 msgstr "Matematiikka"
 
-#: templates/partials/nav_primary.html:140
+#: templates/partials/nav_primary.html:141
 msgid "Physics"
 msgstr "Fysiikka"
 
-#: templates/partials/nav_primary.html:141
+#: templates/partials/nav_primary.html:142
 msgid "Religion & Ethics Culture"
 msgstr "Uskonto ja elämänkatsomustieto"
 
-#: templates/partials/nav_primary.html:142
+#: templates/partials/nav_primary.html:143
 msgid "Art & Design"
 msgstr "Kuvataide"
 
-#: templates/partials/nav_primary.html:147
+#: templates/partials/nav_primary.html:148
 msgid "Crafts"
 msgstr "Käsityöt"
 
-#: templates/partials/nav_primary.html:148
+#: templates/partials/nav_primary.html:149
 msgid "Music"
 msgstr "Musiikki"
 
-#: templates/partials/nav_primary.html:149
+#: templates/partials/nav_primary.html:150
 msgid "Physical Education"
 msgstr "Liikunta"
 
-#: templates/partials/nav_primary.html:150
+#: templates/partials/nav_primary.html:151
 msgid "Home Economics"
 msgstr "Kotitalous"
 
-#: templates/partials/nav_primary.html:151
+#: templates/partials/nav_primary.html:152
 msgid "English"
 msgstr "Englanti"
 
-#: templates/partials/nav_primary.html:153
-#: templates/partials/nav_primary.html:157
+#: templates/partials/nav_primary.html:154
+#: templates/partials/nav_primary.html:158
 msgid "as a second language"
 msgstr "toisena kielenä"
 
-#: templates/partials/nav_primary.html:154
+#: templates/partials/nav_primary.html:155
 msgid "French"
 msgstr "Ranska"
 
-#: templates/partials/nav_primary.html:155
+#: templates/partials/nav_primary.html:156
 msgid "Russian"
 msgstr "Venäjä"
 
-#: templates/partials/nav_primary.html:179
-msgid "Techonology"
-msgstr ""
+#: templates/partials/nav_primary.html:167
+msgid "Pre-school"
+msgstr "Esikoulu"
 
-#: templates/partials/nav_primary.html:183
+#: templates/partials/nav_primary.html:180
+msgid "Techonology"
+msgstr "Teknologia"
+
+#: templates/partials/nav_primary.html:184
 msgid "Video"
 msgstr "Video"
 
-#: templates/partials/nav_primary.html:184
+#: templates/partials/nav_primary.html:185
 msgid "PDF"
 msgstr "PDF"
 
-#: templates/partials/nav_primary.html:185
+#: templates/partials/nav_primary.html:186
 msgid "Other"
 msgstr "Muu"
 
-#: templates/partials/nav_primary.html:192
-#, fuzzy
-msgid "Textbook"
-msgstr "Teksti"
-
 #: templates/partials/nav_primary.html:193
-msgid "Exercise book"
-msgstr ""
+msgid "Textbook"
+msgstr "Tekstikirja"
 
 #: templates/partials/nav_primary.html:194
-msgid "Hybrid"
-msgstr ""
+msgid "Exercise book"
+msgstr "Työkirja"
 
 #: templates/partials/nav_primary.html:195
-msgid "Teacher's material"
-msgstr ""
+msgid "Hybrid"
+msgstr "Hybridi"
 
 #: templates/partials/nav_primary.html:196
-#, fuzzy
-msgid "Additional material"
-msgstr "Ehdollinen tarjous"
+msgid "Teacher's material"
+msgstr "Opettajan materiaali"
 
 #: templates/partials/nav_primary.html:197
+msgid "Additional material"
+msgstr "Lisämateriaali"
+
+#: templates/partials/nav_primary.html:198
 msgid "Exam"
-msgstr ""
+msgstr "Koe"
 
-#: templates/partials/nav_primary.html:202
-msgid "Price Range"
-msgstr "Hintaluokka"
+#: templates/partials/nav_primary.html:205
+#, fuzzy
+msgid "All"
+msgstr "Kaikki"
 
-#: templates/partials/nav_primary.html:213
-msgid "Clear all"
-msgstr ""
+#: templates/partials/nav_primary.html:209
+msgid "Paid"
+msgstr "Maksullinen"
+
+#: templates/partials/nav_primary.html:217
+msgid "Refining items by"
+msgstr "Rajaa hakua"
+
+#: templates/partials/nav_primary.html:217
+msgid "Primary School"
+msgstr "Peruskoulu"
 
 #: templates/partials/nav_primary.html:220
+msgid "Also include:"
+msgstr "Näytä myös:"
+
+#: templates/partials/nav_primary.html:221
+msgid "Vocational school"
+msgstr "Ammattikoulu"
+
+#: templates/partials/nav_primary.html:222
+msgid "High school"
+msgstr "Lukio"
+
+#: templates/partials/nav_primary.html:223
+msgid "University"
+msgstr "Yliopisto"
+
+#: templates/partials/nav_primary.html:226
+msgid "Clear all"
+msgstr "Tyhjennä"
+
+#: templates/partials/nav_primary.html:233
 msgid "Resources"
 msgstr "Materiaalit"
 
-#: templates/partials/nav_primary.html:223
+#: templates/partials/nav_primary.html:236
 msgid "Recipes"
 msgstr "Reseptit"
 
-#: templates/partials/nav_primary.html:226
+#: templates/partials/nav_primary.html:239
 msgid "Q&A"
 msgstr "Kysy & vastaa"
 
@@ -4768,6 +4815,18 @@ msgstr ""
 #: templatetags/history_tags.py:62
 msgid "Back to search results"
 msgstr "Takaisin hakutuloksiin"
+
+#~ msgid "Refining items by <strong>Primary School</strong>"
+#~ msgstr "Näytetään <strong>peruskoulun</strong> tuotteet"
+
+#~ msgid "Age recommendation"
+#~ msgstr "Ikäsuositus"
+
+#~ msgid "SORT BY"
+#~ msgstr "Järjestysavain:"
+
+#~ msgid "Price Range"
+#~ msgstr "Hintaluokka"
 
 #, fuzzy
 #~ msgid "Attribution link"

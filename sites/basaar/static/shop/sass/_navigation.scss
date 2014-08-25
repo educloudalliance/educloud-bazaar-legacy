@@ -222,7 +222,7 @@
             background: $dark-blue;
             select {
                 color: white;
-                background: transparent;
+                background: $dark-blue;
                 border: none;
             }
             button {
@@ -394,6 +394,7 @@
         padding: 10px 0px 2px 0px;
     }
     #options-price{
+        margin-bottom: 2em;
         h2 {
             margin-bottom: 1em;
         }
@@ -438,9 +439,47 @@
             text-align: center;
         }
     }
+    #options-schools {
+        color: $gray;
+        font-size: 10pt;
+        strong {
+            text-transform: uppercase;
+            color: white;
+        }
+        input[type="checkbox"] {
+            margin-right: 0.4em;
+        }
+        p {
+            margin: 0px;
+            transition: all 0.5s;
+        }
+        .title {
+            color: $blue;
+            border-bottom: 1px solid $blue;
+            padding: 10px 0px 1px 0px;
+            margin-bottom: 3px;
+        }
+        .selected {
+            color: white;
+            text-decoration: underline;
+        }
+        .change-btn {
+            cursor: pointer;
+            font-size: 8pt;
+            margin: 0em 0.5em;
+            text-transform: lowercase;
+            transition: all 0.5s;
+            color: white;
+            text-decoration: none;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+        .change-btn:hover {
+            color: $blue;
+        }
+    }
     #clear-all-filters {
         font-size: 13pt;
-        letter-spacing: 0px;
         text-transform: uppercase;
         padding: 0.5em;
         text-align: right;

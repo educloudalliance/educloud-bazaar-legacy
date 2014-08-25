@@ -28,7 +28,7 @@
                 if(typeof imgClass !== 'undefined') {
                     $svg = $svg.attr('class', imgClass+' replaced-svg');
                     if( imgClass.indexOf('menu-icon') > -1) {
-                        $svg = $svg.click(toggleMenuItem);
+                        $svg = $svg.on('click',toggleMenuItem);
                     }
                 }
 
@@ -41,10 +41,10 @@
             }, 'xml');
 
         });
-        $('.notification-number').click(toggleMenuItem);
+        $('.notification-number').on('click',toggleMenuItem);
 
         
-        $('#language-icon .menu-icon').click(function() {
+        $('#language-icon .menu-icon').on('click',function() {
             if($(this).parent().find('.menu-box').is(":visible")) {
                 $('.menu-box').hide('fade');
                 $('#language-icon i').removeClass('fa-caret-up').addClass('fa-caret-down');
@@ -131,6 +131,7 @@
                 $(this).addClass('active');
                 $('#menu-categories i').removeClass('fa-caret-down').addClass('fa-caret-up');
                 $('#categories-bar').slideDown();
+                $("html, body").scrollTop($("#navbar").offset().top);
             }
         });
 
@@ -213,6 +214,13 @@
         $( "#price-range" ).val( "€" + $( "#price-slider" ).slider( "values", 0 ) +
             " - €" + $( "#price-slider" ).slider( "values", 1 ) );
 
+        $('#options-schools input[type="checkbox"]').change(function() {
+            if ($(this).is(":checked")) {
+                 $(this).parent().addClass('selected');
+            } else {
+                 $(this).parent().removeClass('selected');
+            }
+        }); 
 
         $('.dropdown-btn').on('click', function() {
             if($(this).find('ul').is(":visible")){
@@ -316,6 +324,20 @@
             }
 
         }
+    }
+
+    function getResults(path){
+        $.getJSON( "/api/" + path + "/?format=json", function( data ) {
+          var items = [];
+          var arraySize = data.count;
+          for (var i=0; i < arraySize; i++) {
+            items.push( "<li data='" + data.results[i].slug + "'>" + data.results[i].name + "</li>" );
+          };
+         
+          $( "<ul/>", {
+            html: items.join("");
+          }).appendTo("#options-subject div");
+        });
     }
 
 </script>

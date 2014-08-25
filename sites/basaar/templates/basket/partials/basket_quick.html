@@ -27,7 +27,12 @@
                         <p><a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></p>
                         <p class="qty">{% trans "Qty" %} ({{ line.quantity }})</p>
                     </div>
-                    <div class="flexItem">{{ line.unit_price_excl_tax|currency:request.basket.currency }}</div>
+                    <div class="flexItem">
+                        {% comment %}
+                        {{ line.unit_price_excl_tax|currency:request.basket.currency }}
+                        {% endcomment %}
+                        {% trans "Free" %}
+                    </div>
                 </div>
             </li>
         {% endfor %}
@@ -40,11 +45,14 @@
         </div>
         <div class="flexItem">
             <strong>
+            {% comment %}
             {% if request.basket.is_tax_known %}
                 {{ request.basket.total_incl_tax|currency:request.basket.currency }}
             {% else %}
                 {{ request.basket.total_excl_tax|currency:request.basket.currency }}
             {% endif %}
+            {% endcomment %}
+            {% trans "Free" %}
             </strong>
         </div>
     </li>
