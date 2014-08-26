@@ -22,7 +22,6 @@
 
 # Docs
 /docs/build/*
-*.pdf
 TODO
 
 # Test files
