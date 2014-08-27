@@ -79,6 +79,7 @@ class SearchForm(FacetedSearchForm):
         print "json:"
         try:
             jsonParams = self.cleaned_data['params']
+            print jsonParams
             sqs = self.defaultSearch()
             sqs = self.priceRange(sqs, jsonParams)
 
