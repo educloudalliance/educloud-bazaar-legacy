@@ -5,8 +5,8 @@
     <div id="paginator">
         <ul class="flex-container">
             {% if page_obj.has_previous %}
-                <li class="previous"><a href="?{% get_parameters page %}page=1" class="btn" title="{% trans 'first' %}"><i class="fa fa-angle-double-left"></i><span class="hideSmall">&nbsp;{% trans "first" %}</span></a></li>
-                <li class="previous"><a href="?{% get_parameters page %}page={{ page_obj.previous_page_number }}" class="btn" title="{% trans 'previous' %}"><i class="fa fa-angle-left"></i><span class="hideSmall">&nbsp;{% trans "previous" %}</span></a></li>
+                <li class="previous"><a href="?{% get_parameters page %}page=1" class="one btn" title="{% trans 'first' %}"><i class="fa fa-angle-double-left"></i><span class="hideSmall">&nbsp;{% trans "first" %}</span></a></li>
+                <li class="previous"><a href="?{% get_parameters page %}page={{ page_obj.previous_page_number }}" class="one btn" title="{% trans 'previous' %}"><i class="fa fa-angle-left"></i><span class="hideSmall">&nbsp;{% trans "previous" %}</span></a></li>
             {% endif %}
             <li class="current">
             {% blocktrans with page_num=page_obj.number total_pages=paginator.num_pages %}
@@ -15,10 +15,10 @@
             </li>
             {% if page_obj.has_next %}
                 <li class="next">
-                    <a href="?{% get_parameters page %}page={{ page_obj.next_page_number }}" class="btn" title="{% trans 'next' %}"><span class="hideSmall">{% trans "next" %}&nbsp;</span><i class="fa fa-angle-right"></i></a>
+                    <a href="?{% get_parameters page %}page={{ page_obj.next_page_number }}" class="one btn" title="{% trans 'next' %}"><span class="hideSmall">{% trans "next" %}&nbsp;</span><i class="fa fa-angle-right"></i></a>
                 </li>
                 <li class="next">
-                    <a href="?{% get_parameters page %}page=last" class="btn" title="{% trans 'last' %}"><span class="hideSmall">{% trans "last" %}&nbsp;</span><i class="fa fa-angle-double-right"></i></a>
+                    <a href="?{% get_parameters page %}page=last" class="one btn" title="{% trans 'last' %}"><span class="hideSmall">{% trans "last" %}&nbsp;</span><i class="fa fa-angle-double-right"></i></a>
                 </li>
             {% endif %}
         </ul>

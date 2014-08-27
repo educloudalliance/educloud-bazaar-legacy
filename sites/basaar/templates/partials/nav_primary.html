@@ -4,7 +4,7 @@
 <div id="navbar" class="flex-container-vertical">
     <div id="uppermenu" class="flex-container">
         <div class="menu-header flex-container">
-            <a href="/catalogue">
+            <a class="one" href="/catalogue">
             <div class="menu-head-icon" style="background-image:url('{{ STATIC_URL }}shop/img/logo_grey.png');"></div>
             </a>
         </div>
@@ -45,7 +45,7 @@
                             {% include "partials/mini_basket.html" %}
                             <div class="menu-box-footer flex-container-vertical">
                                 <div class="flex-container flexItem">
-                                    <a class="btn flexItem" href="{% url 'basket:summary' %}">{% trans "View your cart" %}</a>
+                                    <a class="one btn flexItem" href="{% url 'basket:summary' %}">{% trans "View your cart" %}</a>
                                     <!--
                                     <a class="btn flexItem" href="{% url 'checkout:preview' %}">{% trans "Checkout" %}</a>
                                     -->
@@ -69,10 +69,10 @@
                                 {% include "partials/nav_accounts.html" %}
                                 <div class="menu-box-footer flex-container">
                                     {% if user.is_staff or perms.partner.dashboard_access %}
-                                        <a class="btn flexItem" href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
+                                        <a class="one btn flexItem" href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
                                     {% endif %}
-                                    <a class="btn flexItem" href="{% url 'customer:summary' %}">{% trans "Account" %}</a>
-                                    <a class="btn flexItem" href="{% url 'customer:logout' %}">{% trans "Logout" %}</a>
+                                    <a class="one btn flexItem" href="{% url 'customer:summary' %}">{% trans "Account" %}</a>
+                                    <a class="one btn flexItem" href="{% url 'customer:logout' %}">{% trans "Logout" %}</a>
                                 </div>
                             </div>
                         {% else %}
@@ -235,13 +235,13 @@
         </div>
     </div>
     <div id="tabs-bar" class="flex-container">
-        <a class="tab active flexItem" href="/catalogue">
+        <a class="tab one active flexItem" href="/catalogue">
             {% trans "Resources"%}
         </a>
-        <a class="tab flexItem" href="#">
-            {% trans "Recipes"%}
+        <a class="tab one flexItem" href="#">
+            {% trans "Get inspired"%}
         </a>
-        <a class="tab flexItem" href="#">
+        <a class="tab one flexItem" href="#">
             {% trans "Q&A"%}
         </a>
     </div>

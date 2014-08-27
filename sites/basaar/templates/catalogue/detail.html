@@ -18,33 +18,6 @@
     {{ product.description|default:""|striptags }}
 {% endblock %}
 
-{% block breadcrumbs %}
-<ul class="breadcrumb">
-    <li>
-        <a href="{{ homepage_url }}">{% trans "Home" %}</a>
-        <span class="divider">/</span>
-    </li>
-    {% with category=product.categories.all.0 %}
-        {% for c in category.get_ancestors %}
-        <li>
-            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-            <span class="divider">/</span>
-        </li>
-        {% endfor %}
-        <li class="active">{{ product.title }}</li>
-
-        {% get_back_button as backbutton %}
-        {% if backbutton %}
-            <li class="pull-right">
-                <a href="{{ backbutton.url }}">
-                    <i class="icon-arrow-left"></i> {{ backbutton.title }}
-                </a>
-            </li>
-        {% endif %}
-    {% endwith %}
-</ul>
-{% endblock %}
-
 {% block header %}
 {% endblock header %}
 
@@ -235,7 +208,7 @@
                             {% if product|is_review_permitted:user %}
                                 {% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id as add_review_url %}
                                     {% blocktrans %}This product does not have any reviews yet -
-                                    <a href="{{ add_review_url }}#addreview">be the first to write one</a>.
+                                    <a class="one" href="{{ add_review_url }}#addreview">be the first to write one</a>.
                                 {% endblocktrans %}
                             {% else %}
                                 {% trans "This product does not have any reviews yet" %}.
@@ -257,11 +230,11 @@
                         </div>
                         {% if not product|is_review_permitted:user %}
                             {% url 'catalogue:reviews-add' product_slug=product.slug product_pk=product.id as add_review_url %}
-                            <a class="btn" href="{{ add_review_url }}#addreview">{% trans "Write a review"%}</a>
+                            <a class="one btn" href="{{ add_review_url }}#addreview">{% trans "Write a review"%}</a>
                         {% endif %}
                         <div>
                             {% if product.num_approved_reviews > 3 %}
-                                <a href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}">{% trans "See all reviews" %}</a>
+                                <a class="one" href="{% url 'catalogue:reviews-list' product_slug=product.slug product_pk=product.id %}">{% trans "See all reviews" %}</a>
                             {% endif %}
                         </div>
                         {% endif %}
