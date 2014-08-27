@@ -98,6 +98,13 @@
 
     function preparePage(){
 
+        // Allows only one click in links
+        // with the class 'one'
+        $(".one").one("click", function() {
+            $(this).click(function () { return false; });
+        });
+
+        // Hover of the logo
         $('.menu-head-icon').hover(
             function(){
                 $(this).css('background-image',"url('{{ STATIC_URL }}shop/img/logo_blue.png')");
@@ -107,11 +114,12 @@
 
         });
 
+        // When focusing the search bar
         $('#generalSearch input').focus(function(){
             $('.menu-box').hide('fade');
             $('#icons > .flexItem').removeClass('active');
         });
-
+        // Show Refine Items menu
         $('#menu-categories').on('click', function(){
             $('.menu-box').hide('fade');
             $('#icons > .flexItem').removeClass('active');
@@ -132,6 +140,7 @@
             }
         });
 
+        // Selection of one of the Refine Items menu item
         $('#categories-bar li').on('click', function() {
             
             if($(this).hasClass('all-option')){
@@ -168,6 +177,7 @@
             updateParamsField();
         });
 
+        // Clear all selections in Refine Items menu
         $('#clear-all-filters a').on('click', function() {
             $('#categories-bar li:not(.all-option)').removeClass('selected');
             $('#categories-bar li.all-option').addClass('selected');
@@ -182,6 +192,7 @@
             $('#id_params').val(JSON.stringify({}));
         });
 
+        // Logic in price selection in Refine Items menu
         $('#options-price input[type="radio"]').change(function() {
             $('#options-price input[type="radio"]').parent().removeClass('selected');
             if ($(this).is(":checked")) {

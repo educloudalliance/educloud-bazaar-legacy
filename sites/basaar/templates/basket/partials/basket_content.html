@@ -25,7 +25,7 @@
 
 {% if not basket.is_empty %}
     <div class="remove-all-btn">
-        <a href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove"><i class="fa fa-times-circle"></i> {% trans "Remove all items" %}</a>
+        <a class="one" href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove"><i class="fa fa-times-circle"></i> {% trans "Remove all items" %}</a>
     </div>
     {% block basket_form_headers %}
         <div class="legend-bar flex-container">
@@ -50,25 +50,25 @@
                             {{ form.id }}
                             {% with image=product.primary_image %}
                                 {% thumbnail image.original "x155" upscale=False as thumb %}
-                                <a href="{{ product.get_absolute_url }}"><img src="{{ product.icon }}" alt="{{ product.get_title }}" class="thumbnail"></a>
+                                <a href="{{ product.get_absolute_url }}"><img src="{{ product.icon }}" alt="{{ product.get_title }}" class="one thumbnail"></a>
                                 {% endthumbnail %}
                             {% endwith %}
                         </div>
                         <div class="flex-container-vertical flexItem">
                             <div class="title">
-                                <a href="{{ product.get_absolute_url }}">{{ line.description }}</a>
+                                <a class="one" href="{{ product.get_absolute_url }}">{{ line.description }}</a>
                             </div>
                             <div class="owner">
                                 {% blocktrans with owner=product.get_owner %}by  {{ owner }} {% endblocktrans %}
                             </div>
                             <div class="flexItem"></div>
                             <div class="remove-btn">
-                                <a href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove"><i class="fa fa-times-circle"></i> {% trans "Remove" %}</a>
+                                <a class="one" href="#" data-id="{{ forloop.counter0 }}" data-behaviours="remove"><i class="fa fa-times-circle"></i> {% trans "Remove" %}</a>
                             </div>
                         </div>
                         <div class="checkout-quantity {% if form.errors %}error{% endif %}">
                             {{ form.quantity }}
-                            <button class="btn" type="submit">{% trans "Update" %}</button>
+                            <button class="one" class="btn" type="submit">{% trans "Update" %}</button>
                             <p>
                                 {% for field_errors in form.errors.values %}
                                     {% for error in field_errors %}
@@ -120,7 +120,7 @@
 
     {% block formactions %}
         <div class="form-actions flex-container">
-            <a href="{% url 'checkout:index' %}">{% trans "Proceed" %}</a>
+            <a class="one" href="{% url 'checkout:index' %}">{% trans "Proceed" %}</a>
         </div>
     {% endblock formactions %}
 
@@ -130,7 +130,7 @@
             -&nbsp;&nbsp;{% trans "Your shopping cart is empty" %}&nbsp;&nbsp;-
         </div>
         <div class="form-actions flex-container">
-            <a href="{{ homepage_url }}">{% trans "Continue shopping" %}</a>
+            <a class="one" href="{{ homepage_url }}">{% trans "Continue shopping" %}</a>
         </div>
     {% endblock %}
 {% endif %}
