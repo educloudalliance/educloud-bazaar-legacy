@@ -167,6 +167,24 @@ footer {
             }
         }
     }
+    #change_password_form, #profile_form {
+        .control-group {
+            padding-top: 0.5em;
+        }
+        input {
+            padding: 0em 0.3em;
+            border: 1px solid $gray;
+        }
+        a, button {
+            border: none;
+            background: #00a9e4;
+            color: white;
+            padding: 0.4em 2em;
+            text-decoration: none;
+            font-size: 14pt;
+        }
+
+    }
 
 
     article.product_pod {
