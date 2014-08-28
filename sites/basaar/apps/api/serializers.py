@@ -136,5 +136,5 @@ class ProductPurchasedSerializer(serializers.HyperlinkedModelSerializer):
         return self.context["request"].build_absolute_uri("/api/lms/content/" + obj.product.uuid)
     class Meta:
         model = ProductPurchased
-        fields = ('productuuid', 'productTitle', 'productUrl')
+        fields = ('productuuid', 'productTitle', 'productUrl', 'quantity')
         #read_only_fields = ('mTitle', 'slug')
