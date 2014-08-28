@@ -166,6 +166,16 @@ footer {
                 max-width: 300px;
             }
         }
+        .alert-warning {
+            background: #ffff8f;
+            border-radius: 5px;
+            border: 1px solid $gray;
+            margin: 2em;
+            padding: 1em;
+            h1, h2, h3 {
+                margin: 0em 0em 0.5em 0em;
+            }
+        }
     }
     #change_password_form, #profile_form {
         .control-group {
