@@ -1,7 +1,9 @@
+{% load i18n %}
+
 {% if productList %}
     <ul>
     {% for product in productList %}
-        <li><a href="{{ product.get_absolute_url }}">{{ product.title }}</a> - <a href="edit/{{ product.upc }}">{% trans "Edit"%}</a></li>
+        <li><a href="{{ product.get_absolute_url }}">{{ product.title }}</a> - <a href="edit/{{ product.upc }}">{% trans "Edit" %}</a></li>
     {% endfor %}
     </ul>
 {% else %}

@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.core.exceptions import PermissionDenied
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from django.template import RequestContext, loader
 from oscar.core.loading import get_class, get_model
 
+User = get_model('user', 'User')
 Product = get_model('catalogue', 'product')
 Partner = get_model('partner', 'partner')
 Category = get_model('catalogue', 'category')
@@ -15,7 +17,7 @@ Language = get_model('catalogue', 'language')
 
 def index(request):
     if not request.user.is_authenticated():
-        raise PermissionDenied()
+        return redirect('', foo='bar')
 
     user = User.objects.get(username=request.user.username)
     try:
