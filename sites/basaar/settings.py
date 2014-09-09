@@ -311,9 +311,6 @@ INSTALLED_APPS = [
     'json_field',       #https://github.com/derek-schaefer/django-json-field
 ] + get_core_apps(['apps.catalogue', 'apps.search', 'apps.order', 'apps.customer.*', 'apps.checkout'])
 
-
-
-
 # Add Oscar's custom auth backend so users can sign in using their email
 # address.
 
