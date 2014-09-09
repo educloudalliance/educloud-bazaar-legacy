@@ -18,7 +18,11 @@ class User(AbstractUser):
         ])
     oid = models.CharField(max_length=255, blank=True)
     mepinId = models.CharField(max_length=255, blank=True)
+    
     @classmethod
     def create(cls):
         obj = cls()
         return obj
+
+    def __unicode__(self):
+	return self.email

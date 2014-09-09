@@ -127,6 +127,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'oscar.apps.checkout.context_processors.checkout',
     'oscar.core.context_processors.metadata',
     'oscar.apps.customer.notifications.context_processors.notifications',
+    # Shibboleth
+    'shibboleth.context_processors.login_link',
+    'shibboleth.context_processors.logout_link',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -134,6 +137,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'shibboleth.middleware.ShibbolethRemoteUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
@@ -292,6 +296,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django_extensions',
+    #Shibboleth
+    'shibboleth',
     # Debug toolbar + extensions
     'debug_toolbar',
     'template_timings_panel',
@@ -318,8 +324,9 @@ INSTALLED_APPS = [
 # address.
 
 AUTHENTICATION_BACKENDS = (
-    'oscar.apps.customer.auth_backends.Emailbackend',
-    'django.contrib.auth.backends.ModelBackend',
+    #'oscar.apps.customer.auth_backends.Emailbackend',
+    #'django.contrib.auth.backends.ModelBackend',
+    'shibboleth.backends.ShibbolethRemoteUserBackend',
 )
 
 """
@@ -499,3 +506,13 @@ except ImportError:
 
 # New User model
 AUTH_USER_MODEL = "user.User"
+
+#Shibboleth
+LOGIN_URL = 'https://test.pilvivayla.fi/Shibboleth.sso/Login'
+
+SHIBBOLETH_ATTRIBUTE_MAP = {
+   "HTTP_SHIB_USER": (True, "username"),
+   "HTTP_SHIB_GIVEN_NAME": (True, "first_name"),
+   "HTTP_SHIP_SN": (True, "last_name"),
+   "HTTP_SHIB_MAIL": (False, "email"),
+}

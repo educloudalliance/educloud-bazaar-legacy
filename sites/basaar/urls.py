@@ -1,4 +1,4 @@
-from django.conf.urls import include, url
+from django.conf.urls import include, url, patterns
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
@@ -56,4 +56,7 @@ if settings.DEBUG:
         url(r'^500$', handler500),
         url(r'^__debug__/', include(debug_toolbar.urls)),
     ]
-
+    # Shibboleth
+    urlpatterns += patterns('',
+	url(r'^shib/', include('shibboleth.urls', namespace='shibboleth')),
+    )
