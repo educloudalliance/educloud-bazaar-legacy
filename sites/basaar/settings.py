@@ -326,16 +326,18 @@ AUTHENTICATION_BACKENDS = (
     'shibboleth.backends.ShibbolethRemoteUserBackend',
 )
 
-"""
-REST_FRAMEWORK = (
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',
-    'rest_framework.permissions.DjangoModelPermissions',),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-    'rest_framework.authentication.OAuth2Authentication',),
-    'PAGINATE_BY': 10,
+# New User model
+AUTH_USER_MODEL = "user.User"
 
-)
-"""
+#Shibboleth
+LOGIN_URL = 'https://test.pilvivayla.fi/Shibboleth.sso/Login'
+
+SHIBBOLETH_ATTRIBUTE_MAP = {
+   "HTTP_SHIB_USER": (True, "username"),
+   "HTTP_SHIB_GIVEN_NAME": (True, "first_name"),
+   "HTTP_SHIP_SN": (True, "last_name"),
+   "HTTP_SHIB_MAIL": (False, "email"),
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',
@@ -500,16 +502,3 @@ try:
     from settings_local import *
 except ImportError:
     pass
-
-# New User model
-AUTH_USER_MODEL = "user.User"
-
-#Shibboleth
-LOGIN_URL = 'https://test.pilvivayla.fi/Shibboleth.sso/Login'
-
-SHIBBOLETH_ATTRIBUTE_MAP = {
-   "HTTP_SHIB_USER": (True, "username"),
-   "HTTP_SHIB_GIVEN_NAME": (True, "first_name"),
-   "HTTP_SHIP_SN": (True, "last_name"),
-   "HTTP_SHIB_MAIL": (False, "email"),
-}
