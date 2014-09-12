@@ -15,17 +15,21 @@ http://basaar.pilvivayla.fi
 
 Basaar development environment
 ------------------------------
-Requirements: Virtualbox, Vagrant
+Requirements: Virtualbox , Vagrant , Git. In Ubuntu all can be installed via Software center.
 
-Run "vagrant up" and have a coffee.
+* Clone repository "git clone git@github.com:koulutuksenpilvivayla/pilvivayla-basaari.git"
 
-After installation, "vagrant ssh" to Virtualbox
+* Go to repository folder "pilviväylä-basaari" and 
 
-cd basaar && python sites/basaar/manage.py runserver 0.0.0.0:8000
+* Run "vagrant up" and have a coffee.
 
-Open browser [http://localhost:8000/](http://localhost:8000)
+* After installation, "vagrant ssh" to Virtualbox
 
-Voíla, you have Basaar Demo running locally!
+* cd basaar && python sites/basaar/manage.py runserver 0.0.0.0:8000
+
+* Open browser [http://localhost:8000/](http://localhost:8000)
+
+* Voíla, you have Basaar Demo running locally!
 
 ## Robot Framework tests
 
