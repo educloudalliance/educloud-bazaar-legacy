@@ -1,5 +1,5 @@
 from django.db import connection
-from django.contrib.auth.models import User, Permission
+from user import User
 from django.contrib.auth.backends import RemoteUserBackend
 
 class ShibbolethRemoteUserBackend(RemoteUserBackend):
