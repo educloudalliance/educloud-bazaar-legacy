@@ -137,7 +137,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'shibboleth.middleware.ShibbolethRemoteUserMiddleware', # Shibboleth RemoteUserMiddleware
+    # Shibboleth RemoteUserMiddleware
+    'shibboleth.middleware.ShibbolethRemoteUserMiddleware',    
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
@@ -330,7 +331,7 @@ AUTHENTICATION_BACKENDS = (
 AUTH_USER_MODEL = "user.User"
 
 #Shibboleth
-LOGIN_URL = 'https://test.pilvivayla.fi/Shibboleth.sso/Login'
+SHIBBOLETH_LOGIN_URL = 'https://test.pilvivayla.fi/Shibboleth.sso/Login'
 
 SHIBBOLETH_ATTRIBUTE_MAP = {
    "HTTP_SHIB_USER": (True, "username"),
