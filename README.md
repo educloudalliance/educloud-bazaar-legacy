@@ -18,17 +18,11 @@ Basaar development environment
 Requirements: Virtualbox , Vagrant , Git. In Ubuntu all can be installed via Software center.
 
 * Clone repository "git clone git@github.com:koulutuksenpilvivayla/pilvivayla-basaari.git"
-
 * Go to repository folder "pilviväylä-basaari" and 
-
 * Run "vagrant up" and have a coffee.
-
 * After installation, "vagrant ssh" to Virtualbox
-
 * cd basaar && python sites/basaar/manage.py runserver 0.0.0.0:8000
-
 * Open browser [http://localhost:8000/](http://localhost:8000)
-
 * Voíla, you have Basaar Demo running locally!
 * After this you need to update your local repository now and then to keep it updated by issuing command "git pull" inside the repository (folder)
 
