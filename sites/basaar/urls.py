@@ -18,7 +18,7 @@ urlpatterns = [
     # use the dashboard
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include('apps.api.urls')),
-    url(r'^editor/', include('apps.editor.urls')),
+    url(r'^panel/', include('apps.panel.urls')),
     url(r'^library/', include('apps.library.urls')),
     url(r'^mepin/', include('apps.mepin.urls')),
     # i18n URLS need to live outside of i18n_patterns scope of the shop

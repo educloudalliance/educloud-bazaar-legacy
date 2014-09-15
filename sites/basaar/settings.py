@@ -299,7 +299,7 @@ INSTALLED_APPS = [
     'compressor',       # Oscar's templates use compressor
     'apps.gateway',     # For allowing dashboard access
     'apps.api',
-    'apps.editor',
+    'apps.panel',
     'apps.library',
     'rest_framework',
     'provider',

@@ -17,7 +17,7 @@ Language = get_model('catalogue', 'language')
 
 def index(request):
     if not request.user.is_authenticated():
-        return redirect('', foo='bar')
+        return redirect('/accounts/login')
 
     user = User.objects.get(username=request.user.username)
     try:
@@ -28,7 +28,7 @@ def index(request):
     ids = StockRecord.objects.values_list('product', flat=True).filter(partner=userPartner)
     productList = Product.objects.filter(pk__in=set(ids))
 
-    template = loader.get_template('editor/index.html')
+    template = loader.get_template('panel/index.html')
     context = RequestContext(request, {
         'productList': productList,
     })
@@ -47,7 +47,7 @@ def edit(request, productUpc):
 
     product = get_object_or_404(Product, upc=productUpc)
 
-    template = loader.get_template('editor/edit.html')
+    template = loader.get_template('panel/edit.html')
     context = RequestContext(request, {
         'product': product,
     })
