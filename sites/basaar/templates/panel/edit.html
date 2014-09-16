@@ -2,58 +2,18 @@
 
 {% if product %}
         <h2>{{ product.uuid }}</h2>
-    <ul>
-        <form action="/editor/save" method="post">
-            <li><label for="formTitle">Title: </label>
-            <input id="formTitle" type="text" name="formTitle" value="{{ product.title }}"></li>
-            <li><label for="formDesc">Description: </label>
-            <textarea name="formTitle" id="formTitle" rows="4" cols="50">
-                {{ product.description }}
-            </textarea></li>
-            <li><label for="formMaterialURL">Material url: </label>
-            <input id="formMaterialURL" type="text" name="formMaterialURL" value="{{ product.materialUrl }}"></li>
-            <!-- PRODUCT TYPE HERE -->
-            <li><label for="formIconUrl">Icon url: </label>
-            <input id="formIconUrl" type="text" name="formIconUrl" value="{{ product.iconUrl }}"></li>
-             <!-- oEMBED HERE -->
-             <li><label for="formMoreInfo">More info url: </label>
-            <input id="formMoreInfo" type="text" name="formMoreInfo" value="{{ product.moreInfoUrl }}"></li>
-            <li><label for="formVersion">Version: </label>
-            <input id="formVersion" type="text" name="formVersion" value="{{ product.version }}"></li>
-            <li><label for="formPrice">Price: </label>
-            <input id="formPrice" type="text" name="formPrice" value="{{ product.price }}"></li>
-            <!-- TAGS HERE -->
-            <!-- VISIBLE HERE -->
-            <li><label for="formVisible">Visible: </label>
-            <input type="checkbox" name="formVisible" id="formVisible" value="1" {% if product.visible == True %} checked {% endif %}>
-            <!-- SUBJECT HERE -->
-            <li><label for="formSubject">Subject: </label>
-            <li><select name="formSubject" id="formSubject">
-            {% for subject in product.subjects %}
-              <option value="{{ subject }}">{{ subject }}</option>
-            {% endfor %}
-            </select></li>
-            <!-- LANGUAGE HERE -->
-            <li><label for="formContribution">Contribution date: </label>
-            <input id="formContribution" type="text" name="formContribution" value="{{ product.contributionDate }}"></li>
-            <li><label for="formMaxAge">Maximum age: </label>
-            <input id="formMaxAge" type="number" name="formMaxAge" min="1" max="99" value="{{ product.maximumAge }}"></li>
-            <li><label for="formMinAge">Minimum age: </label>
-            <input id="formMinAge" type="number" name="formMinAge" min="1" max="99" value="{{ product.minimumAge }}"></li>
-            <li><label for="formContentLicense">Content license: </label>
-            <input id="formContentLicense" type="text" name="formContentLicense" value="{{ product.contentLicense }}"></li>
-            <li><label for="formDataLicense">Data license: </label>
-            <input id="formDataLicense" type="text" name="formDataLicense" value="{{ product.dataLicense }}"></li>
-            <li><label for="formCopyrightNotice">Copyright notice: </label>
-            <input id="formCopyrightNotice" type="text" name="formCopyrightNotice" value="{{ product.copyrightNotice }}"></li>
-            <li><label for="formAttributionText">Attribution text: </label>
-            <input id="formAttributionText" type="text" name="formAttributionText" value="{{ product.attributionText }}"></li>
-            <li><label for="formAttributionUrl">Attribution url: </label>
-            <input id="formAttributionUrl" type="text" name="formAttributionUrl" value="{{ product.attributionURL }}"></li>
-
+        {% if form.errors %}
+            <p style="color: red;">
+                Please correct the error{{ form.errors|pluralize }} below.
+            </p>
+        {% endif %}
+        <form action="" method="post">
+            <table>
+                {{ form.as_table }}
+            </table>
+            {% csrf_token %}
             <input type="submit" value="Submit">
         </form>
-    </ul>
 {% else %}
     <p>{% trans "No products found"%}</p>
 {% endif %}
