@@ -1,3 +1,4 @@
+import uuid as libuuid
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate
 from django.http import HttpResponse, HttpResponseRedirect
@@ -47,11 +48,22 @@ def new(request):
         raise PermissionDenied()
 
     if request.method == 'POST':
-        form = NewForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            save_edited_database()
+        f = NewForm(request.POST)
+        if f.is_valid():
+            cd = f.cleaned_data
+            new_item = f.instance
+            new_item.upc = createUPC()
+            #f.save()
+            new_item.save()
+
+            # Create new instances in Stock Records
+            f = StockRecord(product=new_item, partner=userPartner, price_excl_tax=cd['price'], price_retail=cd['price'], partner_sku=cd['uuid'], num_in_stock=1)
+            f.save()
+
             return HttpResponseRedirect('/panel')
+        else:
+            errors = f.errors
+            return render(request, 'panel/new.html', {'form': f, 'errors': errors})
     else:
         form = NewForm()
         return render(request, 'panel/new.html', {'form': form})
@@ -73,14 +85,25 @@ def edit(request, productUpc):
         form = EditForm(request.POST, instance=product)
         if form.is_valid():
             cd = form.cleaned_data
-            save_edited_database()
+            form.save()
             return HttpResponseRedirect('/panel')
+        else:
+            errors = form.errors
+            form = EditForm(instance=product)
+            return render(request, 'panel/edit.html', {'form': form, 'product': product, 'errors': errors})
     else:
         form = EditForm(instance=product)
         return render(request, 'panel/edit.html', {'form': form, 'product': product})
 
-def save_new_database():
-    pass
+ #Create unique UPC for material
+def createUPC():
+    UPC = str(libuuid.uuid4())
+    UPC = UPC.replace("-", "")
+    UPC = UPC[0:10]
 
-def save_edited_database():
-    pass
+    while Product.objects.filter(upc=UPC).exists():
+        UPC = str(libuuid.uuid4())
+        UPC = UPC.replace("-", "")
+        UPC = UPC[0:15]
+
+    return UPC

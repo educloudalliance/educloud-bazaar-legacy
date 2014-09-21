@@ -1,15 +1,21 @@
+{% extends "layout.html" %}
 {% load i18n %}
+{% block title %}
+    {{ summary }} | {{ block.super }}
+{% endblock %}
 
-<h2>New Product</h2>
-{% if form.errors %}
-    <p style="color: red;">
-        Please correct the error{{ form.errors|pluralize }} below.
-    </p>
-{% endif %}
-<form action="" method="post">
-    <table>
-        {{ form.as_table }}
-    </table>
-    {% csrf_token %}
-    <input type="submit" value="Submit">
-</form>
+{% block content %}
+    {% if errors %}
+                <p style="color: red;">
+                    {{ errors }}
+                </p>
+    {% endif %}
+
+            <form action="" method="post">
+                <table>
+                    {{ form.as_table }}
+                </table>
+                {% csrf_token %}
+                <input type="submit" value="Submit">
+            </form>
+{% endblock content %}

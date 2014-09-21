@@ -1,19 +1,27 @@
+{% extends "layout.html" %}
 {% load i18n %}
+{% block title %}
+    {{ summary }} | {{ block.super }}
+{% endblock %}
 
-{% if product %}
-        <h2>{{ product.uuid }}</h2>
-        {% if form.errors %}
-            <p style="color: red;">
-                Please correct the error{{ form.errors|pluralize }} below.
-            </p>
-        {% endif %}
-        <form action="" method="post">
-            <table>
-                {{ form.as_table }}
-            </table>
-            {% csrf_token %}
-            <input type="submit" value="Submit">
-        </form>
-{% else %}
-    <p>{% trans "No products found"%}</p>
-{% endif %}
+{% block content %}
+    {% if errors %}
+                <p style="color: red;">
+                    {{ errors }}
+                </p>
+    {% endif %}
+
+    {% if product %}
+            <h2>{{ product.uuid }}</h2>
+
+            <form action="" method="post">
+                <table>
+                    {{ form.as_table }}
+                </table>
+                {% csrf_token %}
+                <input type="submit" value="Submit">
+            </form>
+    {% else %}
+        <p>{% trans "No products found"%}</p>
+    {% endif %}
+{% endblock content %}
