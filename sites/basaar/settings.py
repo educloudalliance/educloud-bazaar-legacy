@@ -138,7 +138,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     # Shibboleth RemoteUserMiddleware
-    'shibboleth.middleware.ShibbolethRemoteUserMiddleware',    
+    'shibboleth.middleware.ShibbolethRemoteUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
@@ -298,7 +298,8 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django_extensions',
     #Shibboleth
-    'shibboleth',
+    'apps.shibboleth',
+    'apps.test_shibboleth',
     # Debug toolbar + extensions
     'debug_toolbar',
     'template_timings_panel',
@@ -318,17 +319,14 @@ INSTALLED_APPS = [
     'json_field',       #https://github.com/derek-schaefer/django-json-field
 ] + get_core_apps(['apps.catalogue', 'apps.search', 'apps.order', 'apps.customer.*', 'apps.checkout'])
 
-# Add Oscar's custom auth backend so users can sign in using their email
-# address.
+# Bazaar User model
+AUTH_USER_MODEL = "user.User"
 
 AUTHENTICATION_BACKENDS = (
     #'oscar.apps.customer.auth_backends.Emailbackend',
     #'django.contrib.auth.backends.ModelBackend',
     'shibboleth.backends.ShibbolethRemoteUserBackend',
 )
-
-# New User model
-AUTH_USER_MODEL = "user.User"
 
 #Shibboleth
 SHIBBOLETH_LOGIN_URL = 'https://test.pilvivayla.fi/Shibboleth.sso/Login'

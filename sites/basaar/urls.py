@@ -9,6 +9,7 @@ from oscar.views import handler500, handler404, handler403  # noqa
 
 from apps.sitemaps import base_sitemaps
 from apps.api import *
+from apps.test_shibboleth import views
 
 admin.autodiscover()
 
@@ -58,5 +59,9 @@ if settings.DEBUG:
     ]
     # Shibboleth
     urlpatterns += patterns('',
-	url(r'^shib/', include('shibboleth.urls', namespace='shibboleth')),
+	url(r'^shibboleth/', include('shibboleth.urls', namespace='shibboleth')),
+    )
+    # test_shibboleth attributes
+    urlpatterns += patterns('',
+	url(r'^shib/login', 'apps.test_shibboleth.views.foo'),
     )
