@@ -16,7 +16,7 @@ http://bazaar.pilvivayla.fi
 Bazaar development environment
 ------------------------------
 
-Instructions and scripts for setting up Bazaar development environment is described in [provisioning repo](https://github.com/koulutuksenpilvivayla/pilvivayla-provisioning).
+Instructions and scripts for setting up Bazaar development environment is described in [pilvivayla-provisioning](https://github.com/koulutuksenpilvivayla/pilvivayla-provisioning).
 
 ## Robot Framework tests
 
