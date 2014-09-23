@@ -5,13 +5,16 @@ Service and material distribution channel
 
 EduCloud Bazaar is built on top of [Oscar framework](http://oscarcommerce.com/)
 
-The site is deployed to two locations:
+The locations this site is deployed:
 
-Demo
-http://demo.pilvivayla.fi
+Test (for development and testing)
+https://test.pilvivayla.fi
 
-Production (not yet)
-http://bazaar.pilvivayla.fi
+Demo (production version in the Pilot phase)
+https://demo.pilvivayla.fi
+
+Production (in the future, currently points to Demo)
+https://bazaar.pilvivayla.fi
 
 Bazaar development environment
 ------------------------------
