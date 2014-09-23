@@ -50,7 +50,7 @@ from django.views.generic import TemplateView
 from urllib import quote
 
 #Logout settings.
-from shibboleth.app_settings import SHIBBOLETH_LOGIN_URL, SHIBBOLETH_LOGOUT_URL, LOGOUT_REDIRECT_URL, LOGOUT_SESSION_KEY
+from app_settings import SHIBBOLETH_LOGIN_URL, SHIBBOLETH_LOGOUT_URL, LOGOUT_REDIRECT_URL, LOGOUT_SESSION_KEY
 
 class ShibbolethView(TemplateView):
     """

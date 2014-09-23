@@ -59,9 +59,9 @@ if settings.DEBUG:
     ]
     # Shibboleth
     urlpatterns += patterns('',
-	url(r'^shibboleth/', include('shibboleth.urls', namespace='shibboleth')),
+    url(r'^shib', include('apps.customer.urls', namespace='shibboleth')),
     )
     # test_shibboleth attributes
     urlpatterns += patterns('',
-	url(r'^shib/login', 'apps.test_shibboleth.views.foo'),
+    url(r'^shibboleth/login', 'apps.test_shibboleth.views.foo'),
     )
