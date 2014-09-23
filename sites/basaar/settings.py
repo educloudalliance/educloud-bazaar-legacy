@@ -128,8 +128,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'oscar.core.context_processors.metadata',
     'oscar.apps.customer.notifications.context_processors.notifications',
     # Shibboleth
-    'shibboleth.context_processors.login_link',
-    'shibboleth.context_processors.logout_link',
+    'apps.customer.context_processors.login_link',
+    'apps.customer.context_processors.logout_link',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -138,7 +138,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     # Shibboleth RemoteUserMiddleware
-    'shibboleth.middleware.ShibbolethRemoteUserMiddleware',
+    'apps.customer.middleware.ShibbolethRemoteUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
@@ -297,8 +297,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django_extensions',
-    #Shibboleth
-    'apps.shibboleth',
+    #Shibboleth_test
     'apps.test_shibboleth',
     # Debug toolbar + extensions
     'debug_toolbar',
@@ -325,7 +324,7 @@ AUTH_USER_MODEL = "user.User"
 AUTHENTICATION_BACKENDS = (
     #'oscar.apps.customer.auth_backends.Emailbackend',
     #'django.contrib.auth.backends.ModelBackend',
-    'shibboleth.backends.ShibbolethRemoteUserBackend',
+    'apps.customer.auth_backends.ShibbolethRemoteUserBackend',
 )
 
 #Shibboleth
