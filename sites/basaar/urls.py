@@ -43,6 +43,10 @@ urlpatterns += i18n_patterns('',
     # Oscar's normal URLs
     url(r'', include(shop.urls)),
 )
+# Shibboleth
+urlpatterns += patterns('',
+    url(r'^shib', include('apps.customer.urls', namespace='shibboleth')),
+)
 
 if settings.DEBUG:
     import debug_toolbar
@@ -57,10 +61,6 @@ if settings.DEBUG:
         url(r'^500$', handler500),
         url(r'^__debug__/', include(debug_toolbar.urls)),
     ]
-    # Shibboleth
-    urlpatterns += patterns('',
-    url(r'^shib', include('apps.customer.urls', namespace='shibboleth')),
-    )
     # test_shibboleth attributes
     urlpatterns += patterns('',
     url(r'^shibboleth/login', 'apps.test_shibboleth.views.foo'),

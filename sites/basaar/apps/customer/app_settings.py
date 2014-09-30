@@ -1,4 +1,3 @@
-
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
@@ -25,5 +24,3 @@ SHIBBOLETH_LOGOUT_URL = getattr(settings, 'SHIBBOLETH_LOGOUT_URL', None)
 LOGOUT_REDIRECT_URL = getattr(settings, 'SHIBBOLETH_LOGOUT_REDIRECT_URL', None)
 #Name of key.  Probably no need to change this.  
 LOGOUT_SESSION_KEY = getattr(settings, 'SHIBBOLETH_FORCE_REAUTH_SESSION_KEY', 'shib_force_reauth')
-
-
