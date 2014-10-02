@@ -319,7 +319,7 @@ INSTALLED_APPS = [
 ] + get_core_apps(['apps.catalogue', 'apps.search', 'apps.order', 'apps.customer.*', 'apps.checkout'])
 
 # Bazaar User model
-AUTH_USER_MODEL = "user.User"
+AUTH_USER_MODEL = "user.BazaarUser"
 
 AUTHENTICATION_BACKENDS = (
     #'oscar.apps.customer.auth_backends.Emailbackend',

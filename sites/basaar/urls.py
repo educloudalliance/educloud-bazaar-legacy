@@ -11,13 +11,13 @@ from apps.sitemaps import base_sitemaps
 from apps.api import *
 from apps.test_shibboleth import views
 
-admin.autodiscover()
-
+#from apps.customer import admin
+#admin.autodiscover()
 
 urlpatterns = [
     # Include admin as convenience. It's unsupported and you should
     # use the dashboard
-    url(r'^admin/', include(admin.site.urls)),
+    #url(r'^admin/', include('admin.site.urls')),
     url(r'^api/', include('apps.api.urls')),
     url(r'^editor/', include('apps.editor.urls')),
     url(r'^library/', include('apps.library.urls')),
@@ -45,7 +45,7 @@ urlpatterns += i18n_patterns('',
 )
 # Shibboleth
 urlpatterns += patterns('',
-    url(r'^shib', include('apps.customer.urls', namespace='shibboleth')),
+    url(r'^shib/', include('apps.customer.urls', namespace='shibboleth')),
 )
 
 if settings.DEBUG:
