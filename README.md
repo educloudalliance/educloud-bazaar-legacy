@@ -1,30 +1,25 @@
-EduCloud Basaar
+EduCloud Bazaar
 ==================
 
 Service and material distribution channel 
 
-EduCloud Basaar is built on top of [Oscar framework](http://oscarcommerce.com/)
+EduCloud Bazaar is built on top of [Oscar framework](http://oscarcommerce.com/)
 
-The site is deployed to two locations:
+The locations this site is deployed:
 
-Demo
-http://demo.pilvivayla.fi
+Test (for development and testing)
+https://test.pilvivayla.fi
 
-Production (not yet)
-http://basaar.pilvivayla.fi
+Demo (production version in the Pilot phase)
+https://demo.pilvivayla.fi
 
-Basaar development environment
+Production (in the future, currently points to Demo)
+https://bazaar.pilvivayla.fi
+
+Bazaar development environment
 ------------------------------
-Requirements: Virtualbox , Vagrant , Git. In Ubuntu all can be installed via Software center.
 
-* Clone repository "`git clone git@github.com:koulutuksenpilvivayla/pilvivayla-basaari.git`"
-* Go to repository folder "pilviväylä-basaari" and 
-* Run "`vagrant up`" and have a coffee.
-* After installation, "`vagrant ssh`" to Virtualbox
-* `cd basaar && python sites/basaar/manage.py runserver 0.0.0.0:8000`
-* Open browser [http://localhost:8000/](http://localhost:8000)
-* Voíla, you have Basaar Demo running locally!
-* After this you need to update your local repository now and then to keep it updated by issuing command "`git pull`" inside the repository (folder)
+Instructions and scripts for setting up Bazaar development environment is described in [pilvivayla-provisioning](https://github.com/koulutuksenpilvivayla/pilvivayla-provisioning).
 
 ## Robot Framework tests
 
