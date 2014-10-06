@@ -7656,13 +7656,19 @@ footer .content-center img {
 
 .panelBox
 {
-    background: #F5F5DC;
+    background: #EBEBEB;
     width: 300px;
     min-height: 300px;
     float: left;
     margin: 10px;
 }
 
+.panelBoxText{
+    padding-top: 2em;
+    text-align: center;
+    color: #828282;
+
+}
 .panelWindow {
     width: 100%;
 
