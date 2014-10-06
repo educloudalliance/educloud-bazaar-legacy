@@ -1,18 +1,19 @@
-{% extends "layout.html" %}
+{% extends "layout_panel.html" %}
 {% load i18n %}
 {% block title %}
-    {{ summary }} | {{ block.super }}
+    {{ summary }} Control Panel | {{ block.super }}
 {% endblock %}
 
 {% block content %}
-    <a href="/panel/new"><h3>Create a new item</h3></a>
-    {% if productList %}
-        <ul>
-        {% for product in productList %}
-            <li><a href="{{ product.get_absolute_url }}">{{ product.title }}</a> - <a href="edit/{{ product.upc }}">{% trans "Edit" %}</a></li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>{% trans "No products found"%}</p>
-    {% endif %}
+    <div class="panelBoxWrapper">
+        <div class="panelBox">
+            <div class="panelBoxTitle"><a href="/panel/products/">Products</h3></a></div>
+        </div>
+        <div class="panelBox">
+            <div class="panelBoxTitle"><a href="/panel/stats/">Statistics</a></div>
+        </div>
+        <div class="panelBox">
+             <div class="panelBoxTitle"><a href="/panel/help">Help</a></div>
+        </div>
+    </div>
 {% endblock content %}
