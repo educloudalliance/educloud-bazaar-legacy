@@ -33,43 +33,30 @@ nosetests.xml
 /htmlcov/*
 /.tox/*
 
-# Example sites
+# Site specific
 settings_local.py
-/sites/sandbox/*.sqlite
-/sites/sandbox/assets/
-/sites/sandbox/public/
-/sites/sandbox/whoosh_index/
-/sites/sandbox/logs/
-/sites/basaar/*.sqlite
-/sites/basaar/assets/
-/sites/basaar/public/
-/sites/basaar/whoosh_index/
-/sites/basaar/logs/
-/sites/basaar/build/
-/sites/demo/*.sqlite
-/sites/demo/assets/
-/sites/demo/public/
-/sites/demo/whoosh_index/
-/sites/demo/logs/
-/sites/us/public/
-/sites/us/logs/
-sites/puppet/modules/
+/bazaar/*.sqlite
+/bazaar/assets/
+/bazaar/public/
+/bazaar/whoosh_index/
+/bazaar/logs/
+/bazaar/build/
 
 # Frontend dev files
 *.scssc
-/sites/basaar/apps/catalogue/migrations/
-/sites/basaar/apps/api/migrations/
+/bazaar/apps/catalogue/migrations/
+/bazaar/apps/api/migrations/
 
 #icons
-/sites/basaar/static/shop/img/icons/*
-/sites/basaar/apps/checkout/migrations/0001_initial.py
-/sites/basaar/apps/checkout/migrations/__init__.py
-/sites/basaar/apps/customer/migrations/0010_auto__add_productlibrary.py
-/sites/basaar/apps/library/migrations/0001_initial.py
-/sites/basaar/apps/user/migrations/0001_initial.py
-/sites/basaar/apps/user/migrations/__init__.py
-/sites/basaar/apps/user/migrations/0002_auto__add_field_user_mepinId.py
-/sites/basaar/apps/library/migrations/0002_auto__del_productlibrary__add_productpurchased.py
+/bazaar/static/shop/img/icons/*
+/bazaar/apps/checkout/migrations/0001_initial.py
+/bazaar/apps/checkout/migrations/__init__.py
+/bazaar/apps/customer/migrations/0010_auto__add_productlibrary.py
+/bazaar/apps/library/migrations/0001_initial.py
+/bazaar/apps/user/migrations/0001_initial.py
+/bazaar/apps/user/migrations/__init__.py
+/bazaar/apps/user/migrations/0002_auto__add_field_user_mepinId.py
+/bazaar/apps/library/migrations/0002_auto__del_productlibrary__add_productpurchased.py
 
 #Robot
 robot/log.html
