@@ -329,6 +329,8 @@ AUTHENTICATION_BACKENDS = (
 
 #Shibboleth
 SHIBBOLETH_LOGIN_URL = 'https://test.pilvivayla.fi/Shibboleth.sso/Login'
+SHIBBOLETH_LOGOUT_URL = 'https://test.pilvivayla.fi/Shibboleth.sso/Logout'
+SHIBBOLETH_LOGOUT_REDIRECT_URL = '/'
 
 SHIBBOLETH_ATTRIBUTE_MAP = {
    "HTTP_SHIB_USER": (True, "username"),
@@ -350,7 +352,6 @@ REST_FRAMEWORK = {
 
 }
 
-LOGIN_REDIRECT_URL = '/'
 APPEND_SLASH = True
 
 # Haystack settings

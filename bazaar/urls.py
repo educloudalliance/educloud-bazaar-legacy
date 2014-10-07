@@ -63,5 +63,5 @@ if settings.DEBUG:
     ]
     # test_shibboleth attributes
     urlpatterns += patterns('',
-    url(r'^shibboleth/login', 'apps.test_shibboleth.views.foo'),
+        url(r'^shibboleth/login', 'apps.test_shibboleth.views.foo'),
     )
