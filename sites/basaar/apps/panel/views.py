@@ -146,7 +146,13 @@ def new(request):
             uuid = slugify(uuid)
 
             # Create new instances in Stock Records
-            f = StockRecord(product=new_item, partner=userPartner, price_excl_tax=cd['price'], price_retail=cd['price'], partner_sku=uuid, num_in_stock=1)
+            # TODO AWFUL BUG FIX
+            if cd['price'] == 0:
+                price = 0.01
+            else:
+                price = cd['price']
+
+            f = StockRecord(product=new_item, partner=userPartner, price_excl_tax=price, price_retail=price, partner_sku=uuid, num_in_stock=1)
             f.save()
 
             return HttpResponseRedirect('/panel/products')
@@ -242,8 +248,15 @@ def edit(request, productUpc):
 
             # Create new instances in Stock Records
             f = StockRecord.objects.get(product=product)
-            f.price_retail = cd['price']
-            f.price_excl_tax = cd['price']
+
+            # TODO AWFUL BUG FIX
+            if cd['price'] == 0:
+                price = 0.01
+            else:
+                price = cd['price']
+
+            f.price_retail = price
+            f.price_excl_tax = price
             f.save()
 
             return HttpResponseRedirect('/panel/products')
