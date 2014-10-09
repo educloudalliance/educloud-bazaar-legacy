@@ -58,9 +58,11 @@ class Command(BaseCommand):
 
         url = 'http://demo.pilvivayla.fi/api/cms/' + username
 
+        ''' #TODO
         # Create new token
         token = Token.objects.create(user=user)
         key = token.key
+        '''
 
         # Print everything to the user
         self.stdout.write('New CMS %s created!' % username)
@@ -69,5 +71,5 @@ class Command(BaseCommand):
         self.stdout.write('Password:  %s' % password)
         self.stdout.write('-----------------------------------')
         self.stdout.write('API root-node:  %s' % url)
-        self.stdout.write('Token:  %s' % key)
+        #self.stdout.write('Token:  %s' % key)
         return 0
