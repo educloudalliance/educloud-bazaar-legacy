@@ -300,6 +300,7 @@ INSTALLED_APPS = [
     'apps.gateway',     # For allowing dashboard access
     'apps.api',
     'apps.panel',
+    'apps.info',
     'apps.library',
     'rest_framework',
     'provider',
