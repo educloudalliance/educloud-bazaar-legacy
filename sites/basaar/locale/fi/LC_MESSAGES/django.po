@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-oscar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-09 10:28+0300\n"
+"POT-Creation-Date: 2014-10-10 12:31+0300\n"
 "PO-Revision-Date: 2014-08-15 07:05+0000\n"
 "Last-Translator: preriasusi <coyotronics@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/django-oscar/"
@@ -238,7 +238,6 @@ msgid "Code"
 msgstr "Koodi"
 
 #: apps/basket/forms.py:179
-#, fuzzy
 msgid "Variant"
 msgstr "Muunnokset"
 
@@ -834,7 +833,6 @@ msgid ""
 msgstr "Näyttöjärjestyksessä kuva numero nolla on pääkuva tuotteelle"
 
 #: apps/catalogue/abstract_models.py:1041
-#, fuzzy
 msgid "Product Image"
 msgstr "Tuotteen kuva"
 
@@ -3143,9 +3141,8 @@ msgid "Order Approval"
 msgstr "Tilauksen hyväksyntä"
 
 #: templates/basket/partials/basket_content.html:28
-#, fuzzy
 msgid "Remove all items"
-msgstr "Uudelleentilaa kaikki tuotteet"
+msgstr "Poista kaikki tuotteet"
 
 #: templates/basket/partials/basket_content.html:35
 #: templates/checkout/checkout.html:73
@@ -3308,7 +3305,7 @@ msgid "Customer Reviews"
 msgstr "Asiakasarviot"
 
 #: templates/catalogue/detail.html:213
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This product does not have any reviews yet -\n"
 "                                    <a class=\"one\" href="
@@ -3365,7 +3362,7 @@ msgid "Add to wish list"
 msgstr "Lisää toivelistaan"
 
 #: templates/catalogue/partials/add_to_wishlist.html:16
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "                                        Add to '%(name)s' wish list\n"
@@ -4460,9 +4457,8 @@ msgstr "Sinulla ei ole vielä toivelistoja"
 
 #: templates/extras/extrascripts.html:66
 #: templates/extras/extrascripts_panel.html:66
-#, fuzzy
 msgid "Are you sure to remove all the items from the shopping cart?"
-msgstr "Oletko varma, että haluat poistaa tämän toimitustavan?"
+msgstr "Haluatko varmasti poistaa kaikki tuotteet korista?"
 
 #: templates/gateway/email.txt:2
 #, python-format
@@ -4519,14 +4515,12 @@ msgstr "Nollausviesti lähetetty"
 
 #: templates/panel/products/edit.html:25
 #: templates/panel/products/index.html:17
-#, fuzzy
 msgid "No products found"
 msgstr "Tuotteita ei löytynyt"
 
 #: templates/panel/products/index.html:9
-#, fuzzy
 msgid "Create a new item"
-msgstr "Luo uusi toivelista"
+msgstr "Luo uusi tuote"
 
 #: templates/partials/form_fields.html:5
 msgid "Oops! We found some errors"
@@ -4541,7 +4535,6 @@ msgid "There are no notifications"
 msgstr "Ei näytettäviä ilmoituksia."
 
 #: templates/partials/nav_accounts.html:13
-#, fuzzy
 msgid "You are not logged in"
 msgstr "Et ole kirjautuneena sisään"
 
@@ -4710,7 +4703,6 @@ msgid "Price"
 msgstr "Hinta"
 
 #: templates/partials/nav_primary.html:209
-#, fuzzy
 msgid "All"
 msgstr "Kaikki"
 
@@ -4756,7 +4748,7 @@ msgstr "Materiaalit"
 
 #: templates/partials/nav_primary.html:242
 msgid "Get inspired"
-msgstr "Inspiroidu"
+msgstr "Innostu!"
 
 #: templates/partials/nav_primary.html:245
 msgid "Q&A"
