@@ -1,7 +1,6 @@
 from django.conf.urls import include, url, patterns
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
-from django.contrib import admin
 from django.conf.urls.static import static
 
 from app import shop
@@ -11,13 +10,13 @@ from apps.sitemaps import base_sitemaps
 from apps.api import *
 from apps.test_shibboleth import views
 
-#from apps.customer import admin
-#admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = [
     # Include admin as convenience. It's unsupported and you should
     # use the dashboard
-    #url(r'^admin/', include('admin.site.urls')),
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include('apps.api.urls')),
     url(r'^editor/', include('apps.editor.urls')),
     url(r'^library/', include('apps.library.urls')),

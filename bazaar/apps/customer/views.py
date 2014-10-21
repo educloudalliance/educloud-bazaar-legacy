@@ -5,7 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django import http
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth import logout as auth_logout, login as auth_login
+from django.contrib.auth import logout as auth_logout, login as auth_login, authenticate
 from django.contrib.sites.models import get_current_site
 from django.conf import settings
 
@@ -192,6 +192,9 @@ class AccountAuthView(RegisterUserMixin, generic.TemplateView):
         login = SHIBBOLETH_LOGIN_URL + '?target=%s' % quote(self.request.GET.get(self.redirect_field_name))
         if settings.DEBUG:
             print "Here I go again."
+        user = authenticate(request_meta=self.request.META)
+        if user is not None:
+            auth_login(self.request, user)
         return redirect(login)
 
     def get_context_data(self, *args, **kwargs):

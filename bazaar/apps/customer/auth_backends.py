@@ -1,6 +1,8 @@
 from django.contrib.auth.backends import ModelBackend
 from django.core.exceptions import ImproperlyConfigured
 from oscar.apps.customer.utils import normalise_email
+import base64
+import json
 
 from oscar.core.compat import get_user_model
 
@@ -32,7 +34,7 @@ class ShibbolethRemoteUserBackend(RemoteUserBackend):
     # Create a User object if not already in the database?
     create_unknown_user = True
 
-    def authenticate(self, remote_user, shib_meta):
+    def authenticate(self, request_meta=None):
         """
         The username passed as ``remote_user`` is considered trusted.  This
         method simply returns the ``User`` object with the given username,
@@ -41,16 +43,26 @@ class ShibbolethRemoteUserBackend(RemoteUserBackend):
         Returns None if ``create_unknown_user`` is ``False`` and a ``User``
         object with the given username is not found in the database.
         """
-        if not remote_user:
-            return
+	print repr(request_meta)
+        print "Trying authenticate"
+        if not request_meta:
+            return None
         user = None
+	if 'HTTP_USER_OID' not in request_meta:
+            return None
+	remote_user = request_meta['HTTP_USER_OID']
         username = self.clean_username(remote_user)
-        shib_user_params = dict([(k, shib_meta[k]) for k in User._meta.get_all_field_names() if k in shib_meta])
-        # Note that this could be accomplished in one try-except clause, but
-        # instead we use get_or_create when creating unknown users since it has
-        # built-in safeguards for multiple threads.
+        data = request_meta['HTTP_USER_DATA']
+        data = base64.b64decode(data)
+        data = json.loads(data)
+
         if self.create_unknown_user:
-            user, created = User.objects.get_or_create(username=shib_user_params.get('username'), defaults=shib_user_params)
+	    defaults = {
+	        'first_name': 'foo', #data['first_name'],
+                'last_name': 'foo', #data['last_name'],
+                'email': '%s@huuhaa.se' % username,
+	    }
+            user, created = User.objects.get_or_create(username=username, defaults=defaults)
             if created:
                 user = self.configure_user(user)
         else:
@@ -58,6 +70,7 @@ class ShibbolethRemoteUserBackend(RemoteUserBackend):
                 user = User.objects.get(**shib_user_params)
             except User.DoesNotExist:
                 pass
+        print "Authenticating"
         return user
 
 

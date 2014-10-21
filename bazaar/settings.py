@@ -319,12 +319,12 @@ INSTALLED_APPS = [
 ] + get_core_apps(['apps.catalogue', 'apps.search', 'apps.order', 'apps.customer.*', 'apps.checkout'])
 
 # Bazaar User model
-AUTH_USER_MODEL = "user.BazaarUser"
+AUTH_USER_MODEL = "user.User"
 
 AUTHENTICATION_BACKENDS = (
-    #'oscar.apps.customer.auth_backends.Emailbackend',
-    #'django.contrib.auth.backends.ModelBackend',
     'apps.customer.auth_backends.ShibbolethRemoteUserBackend',
+    'oscar.apps.customer.auth_backends.Emailbackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 #Shibboleth
@@ -333,10 +333,7 @@ SHIBBOLETH_LOGOUT_URL = 'https://test.pilvivayla.fi/Shibboleth.sso/Logout'
 SHIBBOLETH_LOGOUT_REDIRECT_URL = '/'
 
 SHIBBOLETH_ATTRIBUTE_MAP = {
-   "HTTP_SHIB_USER": (True, "username"),
-   "HTTP_SHIB_GIVEN_NAME": (True, "first_name"),
-   "HTTP_SHIP_SN": (True, "last_name"),
-   "HTTP_SHIB_MAIL": (False, "email"),
+   "educloud.oid": (True, "username"),
 }
 
 REST_FRAMEWORK = {
@@ -501,3 +498,10 @@ try:
     from settings_local import *
 except ImportError:
     pass
+
+AUTHENTICATION_BACKENDS = (
+    'apps.customer.auth_backends.ShibbolethRemoteUserBackend',
+    'oscar.apps.customer.auth_backends.Emailbackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+

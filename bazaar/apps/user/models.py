@@ -6,7 +6,7 @@ from django.utils import timezone
 from oscar.core import compat
 from oscar.apps.customer.abstract_models import AbstractUser
 
-class BazaarUser(AbstractUser):
+class User(AbstractUser):
     username = models.CharField(_('username'), max_length=255, unique=True,
         help_text=_('Required. 255 characters or fewer. Letters, digits and '
                     '@/./+/-/_ only.'),
