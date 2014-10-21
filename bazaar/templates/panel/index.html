@@ -1,0 +1,28 @@
+{% extends "layout_panel.html" %}
+{% load i18n %}
+{% block title %}
+    {{ summary }} Control Panel | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="panelBoxWrapper">
+        <div class="panelBox">
+            <div class="panelBoxTitle"><a href="/panel/products/">Products</h3></a></div>
+            <div class="panelBoxText">
+                See and manage your items
+            </div>
+        </div>
+        <div class="panelBox">
+            <div class="panelBoxTitle"><a href="/panel/stats/">Statistics</a></div>
+            <div class="panelBoxText">
+                    Find out how your products are doing
+            </div>
+        </div>
+        <div class="panelBox">
+             <div class="panelBoxTitle"><a href="/panel/help">Help</a></div>
+            <div class="panelBoxText">
+                Learn more about dashboard
+            </div>
+        </div>
+    </div>
+{% endblock content %}
