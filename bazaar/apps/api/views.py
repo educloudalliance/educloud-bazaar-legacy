@@ -702,5 +702,5 @@ class ProductMetadataView(APIView):
             d = {}
             d["message"] = "Error: No material with this uuid in the database."
             d["errorcode"] = 101
-            return Response(d, status=404)
+            return Response(d, status=200)
 

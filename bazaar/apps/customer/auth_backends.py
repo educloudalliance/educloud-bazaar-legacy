@@ -61,6 +61,7 @@ class ShibbolethRemoteUserBackend(RemoteUserBackend):
 	        'first_name': 'foo', #data['first_name'],
                 'last_name': 'foo', #data['last_name'],
                 'email': '%s@huuhaa.se' % username,
+                'oid': username,
 	    }
             user, created = User.objects.get_or_create(username=username, defaults=defaults)
             if created:
