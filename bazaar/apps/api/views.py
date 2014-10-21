@@ -1,4 +1,5 @@
 import urllib2, os, sys
+import html2text
 from PIL import Image, ImageChops
 from django.views.decorators.csrf import csrf_exempt
 import uuid as libuuid
@@ -25,6 +26,7 @@ from apps.api.permissions import IsOwner
 from rest_framework import generics
 from rest_framework import permissions
 from django.http import Http404
+
 from errorcodes import *
 
 User = get_user_model()
@@ -242,7 +244,8 @@ class CMSView(APIView):
 
 
                 visible = self.str2Bool(x["visible"], "visible")
-                product = Product(title=x["title"], upc=createdUPC, description=x["description"], materialUrl=x["materialUrl"],
+                stripped_description = html2text.html2text(x["description"])
+                product = Product(title=x["title"], upc=createdUPC, description=stripped_description, materialUrl=x["materialUrl"],
                                   moreInfoUrl=moreInfoUrl,  uuid=x["uuid"], version=x["version"],
                                   maximumAge=x["maximumAge"], minimumAge=x["minimumAge"], contentLicense=x["contentLicense"],
                                   dataLicense=x["dataLicense"], copyrightNotice=x["copyrightNotice"], attributionText=x["attributionText"],
@@ -469,7 +472,7 @@ class CMSView(APIView):
     #updates an existing Product with data provided in the request
     def updateExistingItem(self,obj, DATA):
         obj.title = DATA["title"]
-        obj.description = DATA["description"]
+        obj.description = html2text.html2text(DATA["description"])
         obj.materialUrl = DATA["materialUrl"]
         obj.version = DATA["version"]
 

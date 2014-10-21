@@ -1,0 +1,20 @@
+{% extends "layout_panel.html" %}
+{% load i18n %}
+{% block title %}
+    {{ summary }} | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="panelListWrapper">
+        <div class="panelCreateNewButton"><a href="/panel/products/new"><h3>{% trans "Create a new item" %}</h3></a></div>
+        {% if productList %}
+            <ul>
+            {% for product in productList %}
+                <li><div>{{ product.title }}</div><div class="panelEditLi"><a href="{{ product.get_absolute_url }}">{% trans "View" %} </a> <a href="edit/{{ product.upc }}">{% trans "Edit" %}</a></div></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>{% trans "No products found"%}</p>
+        {% endif %}
+    </div>
+{% endblock content %}

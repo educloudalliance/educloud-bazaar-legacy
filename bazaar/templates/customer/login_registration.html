@@ -5,27 +5,30 @@
     {% trans 'Login or register' %} | {{ block.super }}
 {% endblock %}
 
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{{ homepage_url }}">{% trans 'Home' %}</a>
+            <span class="divider">/</span>
+        </li>
+        <li class="active">{% trans 'Login or register' %}</li>
+    </ul>
+{% endblock %}
+
 {% block header %}{% endblock %}
 
 {% block content %}
-<div id="content" class="grayBackground">
 
-    <div class="flex-container">
-        <div class="flexItem"></div>
-        <div class="content-center back-button">
-            <a href="javascript:history.back()"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;{% trans "Go back"%}</a>
+    <div class="row-fluid">
+        <div class="span6 login_form">
+            <form id="login_form" action="{{ request.get_full_path }}" method="post" class="well" >
+                <h2>{% trans 'Log In' %}</h2>
+                {% csrf_token %}
+                {% include "partials/form_fields.html" with form=login_form %}
+                <p><a href="{% url 'password-reset' %}">{% trans "I've forgotten my password" %}</a></p>
+                <button name="login_submit" type="submit" value="Log In" class="btn btn-large btn-primary js-disable-on-click" data-loading-text="{% trans "Logging in..." %}">{% trans 'Log In' %}</button>
+            </form>
         </div>
-        <div class="flexItem"></div>
     </div>
-    <div class="flex-container">
-        <div class="flexItem"></div>
-        <div class="box-page content-center flex-container-vertical">
-            <h3>{% trans 'Please login by using the menu bar' %}
-            </h3>
-        </div>
-        <div class="flexItem"></div>
-    </div>
-
-</div>
 
 {% endblock content %}
