@@ -55,12 +55,12 @@ class ShibbolethRemoteUserBackend(RemoteUserBackend):
         data = request_meta['HTTP_USER_DATA']
         data = base64.b64decode(data)
         data = json.loads(data)
-
+	print repr(data)
         if self.create_unknown_user:
 	    defaults = {
-	        'first_name': 'foo', #data['first_name'],
-                'last_name': 'foo', #data['last_name'],
-                'email': '%s@huuhaa.se' % username,
+	        'first_name': data['first_name'],
+                'last_name': data['last_name'],
+                'email': '%s@educloudalliance.org' % username,
                 'oid': username,
 	    }
             user, created = User.objects.get_or_create(username=username, defaults=defaults)
