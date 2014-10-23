@@ -2,7 +2,7 @@ from django.contrib.auth.middleware import RemoteUserMiddleware
 from django.contrib import auth
 from django.core.exceptions import ImproperlyConfigured
 
-from shibboleth.app_settings import SHIB_ATTRIBUTE_MAP, LOGOUT_SESSION_KEY
+from app_settings import SHIB_ATTRIBUTE_MAP, LOGOUT_SESSION_KEY
 
 class ShibbolethRemoteUserMiddleware(RemoteUserMiddleware):
     """

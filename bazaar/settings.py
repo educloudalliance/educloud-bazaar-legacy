@@ -328,11 +328,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-#Shibboleth
-SHIBBOLETH_LOGIN_URL = 'https://test.pilvivayla.fi/Shibboleth.sso/Login'
-SHIBBOLETH_LOGOUT_URL = 'https://test.pilvivayla.fi/Shibboleth.sso/Logout'
-SHIBBOLETH_LOGOUT_REDIRECT_URL = '/'
-
 SHIBBOLETH_ATTRIBUTE_MAP = {
    "educloud.oid": (True, "username"),
 }
