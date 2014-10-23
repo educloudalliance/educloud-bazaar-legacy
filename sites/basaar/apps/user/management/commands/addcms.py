@@ -56,7 +56,7 @@ class Command(BaseCommand):
         rootNode = Node(uniquePath=username, objectType='collection', owner=user)
         rootNode.save()
 
-        url = 'http://demo.pilvivayla.fi/api/cms/' + username
+        url = 'https://demo.pilvivayla.fi/api/cms/' + username
 
         ''' #TODO
         # Create new token
