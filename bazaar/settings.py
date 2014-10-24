@@ -151,6 +151,9 @@ MIDDLEWARE_CLASSES = (
     # URL path to print out profile details
     #'oscar.profiling.middleware.ProfileMiddleware',
     'cookie_message.middleware.CookieMessageMiddleware',
+    # Security helper framework
+    'djangosecure.middleware.SecurityMiddleware',
+
 )
 
 ROOT_URLCONF = 'urls'
@@ -297,14 +300,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django_extensions',
-    #Shibboleth_test
-    'apps.test_shibboleth',
-    # Debug toolbar + extensions
-    'debug_toolbar',
+    'djangosecure', # Security check helper
+    'apps.test_shibboleth', # Shibboleth test app
+    'debug_toolbar', # Django debug toolbar
     'template_timings_panel',
     'south',
-    'compressor',       # Oscar's templates use compressor
-    'apps.gateway',     # For allowing dashboard access
+    'compressor',   # Oscar's templates use compressor
+    'apps.gateway', # For allowing dashboard access
     'apps.api',
     'apps.panel',
     'apps.info',
@@ -321,12 +323,6 @@ INSTALLED_APPS = [
 
 # Bazaar User model
 AUTH_USER_MODEL = "user.User"
-
-AUTHENTICATION_BACKENDS = (
-    'apps.customer.auth_backends.ShibbolethRemoteUserBackend',
-    'oscar.apps.customer.auth_backends.Emailbackend',
-    'django.contrib.auth.backends.ModelBackend',
-)
 
 SHIBBOLETH_ATTRIBUTE_MAP = {
    "educloud.oid": (True, "username"),
