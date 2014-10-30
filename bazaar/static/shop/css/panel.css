@@ -7766,3 +7766,73 @@ footer .content-center img {
 	position:relative;
 	top:1px;
 }
+
+.helpText {
+    padding: 0.6em;
+    background: #d6d8d2;
+    margin: 1em 0 0 2em;
+    width: 20em;
+    float: left;
+    font-size: 0.8em;
+    border: solid 1px #c7c7c7;
+    border-radius: 5px;
+}
+
+.fieldWrapper {
+    float: left;
+}
+
+ .inputWrapper {
+     clear: both;
+}
+
+.panelListWrapper input, select, textarea {
+    padding: 9px;
+    border: solid 1px #c7c7c7;
+    outline: 0;
+    font: normal 13px/100% Verdana, Tahoma, sans-serif;
+    width: 200px;
+    background: #FFFFFF;
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    }
+
+.panelListWrapper textarea {
+    width: 400px;
+    max-width: 400px;
+    height: 150px;
+    line-height: 150%;
+    }
+
+.panelListWrapper input:hover, textarea:hover,
+input:focus, textarea:focus {
+    border-color: #c7c7c7;
+    }
+
+.panelListWrapper label {
+    width: 4em;
+    float: left;
+    text-align: right;
+    margin-right: 1.8em;
+    display: block
+}
+
+.panelListWrapper input {
+    width: 20em;
+    padding: 9px 15px;
+    font-size: 14px;
+}
+
+.panelListWrapper fieldset
+{
+    border: 1px solid #747578;
+    width: 50em
+}
+
+.panelListWrapper legend
+{
+    font-size: 2em;
+    border: 1px solid #747578;
+    padding: 2px 6px
+}
