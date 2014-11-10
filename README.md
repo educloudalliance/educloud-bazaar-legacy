@@ -20,7 +20,7 @@ Instructions and scripts for setting up Bazaar development environment is descri
 
 ## Robot Framework tests
 
-Location [educloud-bazaar/robot](https://github.com/koulutuksenpilvivayla/pilvivayla-basaari/tree/devel/robot)
+Location [educloud-bazaar/robot](https://github.com/koulutuksenpilvivayla/pilvivayla-basaari/tree/master/robot)
 
 Required items:
 
@@ -28,7 +28,7 @@ Required items:
 * selenium2library `pip install robotframework-selenium2library`
 * browser (firefox, chrome, ie, etc)
 
-Example run, using [smoke.robot](https://github.com/educloudalliance/educloud-bazaar/blob/devel/robot/smoke.robot):
+Example run, using [smoke.robot](https://github.com/educloudalliance/educloud-bazaar/blob/master/robot/smoke.robot):
 `pybot --variable ENVIRONMENT:local_server --variable LANG:fi smoke.robot`
 
 Currently if you run with ENVIRONMENT:local_server the test relys on your [local server that is running on port 8000](http://localhost:8000) and language depends on the browser default language.
