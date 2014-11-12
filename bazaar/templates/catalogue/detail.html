@@ -109,12 +109,12 @@
                         <th>{% trans "Subjects" %}</th><td>{% blocktrans with category=product.categories.first %}{{ category }}{% endblocktrans %}</td>
                     </tr>
                     <tr>
-                        {%  if product.minimumAge > 14 %}
+                        {%  if product.minimumAge > 15 %}
                             <th>{% trans "Ages" %}</th>
                             <td>
                             {{product.minimumAge}} - {{product.maximumAge}}
                             </td>
-                        {%  elif product.maximumAge > 13 %}
+                        {%  elif product.maximumAge > 15 %}
                             <th>{% trans "Grade" %}</th>
                             {% if product.get_min_grade == product.get_max_grade %}
                                 <td>{{ product.get_min_grade }}</td>
