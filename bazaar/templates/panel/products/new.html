@@ -1,0 +1,238 @@
+{% extends "layout_panel.html" %}
+{% load i18n %}
+{% block title %}
+    {{ summary }} Control Panel | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="panelListWrapper">
+        <div style="margin: 1em 0 1em 0; font-size: 1.3em">
+            <a  href="/panel/products">{% trans "Go Back" %}</a>
+        </div>
+
+        {% if errors %}
+            <p style="color: red;">
+                {{ errors }}
+            </p>
+        {% endif %}
+
+        <form action="" method="post">
+            <fieldset>
+                <legend>{% trans "Create New Product" %}</legend>
+                {{ form.non_field_errors }}
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.uuid.errors }}
+                        <label for="UUID">{% trans "UUID" %}</label>
+                        {{ form.uuid }}
+                    </p>
+                    <div class="helpText">{% trans "Unique identifier for the product (Example: mycompany-myproduct)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.title.errors }}
+                        <label for="title">{% trans "Title" %}</label>
+                        {{ form.title }}
+                    </p>
+                    <div class="helpText">{% trans "Product's title" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.description.errors }}
+                        <label for="description">{% trans "Description" %}</label>
+                        {{ form.description }}
+                    </p>
+                    <div class="helpText">{% trans "Product's description" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.price.errors }}
+                        <label for="price">{% trans "Price" %}</label>
+                        {{ form.price }}
+                    </p>
+                    <div class="helpText">{% trans "Product's price (Must be between 0 and 9999)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.materialUrl.errors }}
+                        <label for="materialUrl">{% trans "Material's URL" %}</label>
+                        {{ form.materialUrl }}
+                    </p>
+                    <div class="helpText">{% trans "URL where material is located (Example: http://www.test.domain/material)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.iconUrl.errors }}
+                        <label for="iconUrl">{% trans "Icon URL" %}</label>
+                        {{ form.iconUrl }}
+                    </p>
+                    <div class="helpText">{% trans "URL where product's icon picture is located. URL must end with file extension (eg. .png, .jpg or .gif). (Example: http://www.test.domain/icon.png)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.version.errors }}
+                        <label for="version">{% trans "Version" %}</label>
+                        {{ form.version }}
+                    </p>
+                    <div class="helpText">{% trans "Product's version. (Example: 1.0)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.contributionDate.errors }}
+                        <label for="contributionDate">{% trans "Contribution Date" %}</label>
+                        {{ form.contributionDate }}
+                    </p>
+                    <div class="helpText">{% trans "The date when material was contributed. Must be given in YEAR-MONTH-DAY format. (Example: 2013-07-23)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.moreInfoUrl.errors }}
+                        <label for="moreInfoUrl">{% trans "More info URL" %}</label>
+                        {{ form.moreInfoUrl }}
+                    </p>
+                    <div class="helpText">{% trans "URL where customer can find more information about the product" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.maximumAge.errors }}
+                        <label for="maximumAge">{% trans "Maximum Age" %}</label>
+                        {{ form.maximumAge }}
+                    </p>
+                    <div class="helpText">{% trans "Maximum age of an individual, in number of chronological years since birth, for which the learning resource is intended or used. (Example: 18)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.minimumAge.errors }}
+                        <label for="minimumAge">{% trans "Minimum Age" %}</label>
+                        {{ form.minimumAge }}
+                    </p>
+                    <div class="helpText">{% trans "Minimum age of an individual, in number of chronological years since birth, for which the learning resource is intended or used. (Example: 7)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.product_format.errors }}
+                        <label for="product_format">{% trans "Product's Format" %}</label>
+                        {{ form.product_format }}
+                    </p>
+                    <div class="helpText">{% trans "Format of the product" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.product_class.errors }}
+                        <label for="product_class">{% trans "Product Type" %}</label>
+                        {{ form.product_class }}
+                    </p>
+                    <div class="helpText">{% trans "Type of the product" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.subjects.errors }}
+                        <label for="subjects">{% trans "Subjects" %}</label>
+                        {{ form.subjects }}
+                    </p>
+                    <div class="helpText">{% trans "Subjects of the product" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.language.errors }}
+                        <label for="language">{% trans "Language" %}</label>
+                        {{ form.language }}
+                    </p>
+                    <div class="helpText">{% trans "Product's languages. You can select multiple options by using the CTRL-key (or  Command(⌘)-key in Mac)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.tags.errors }}
+                        <label for="tags">{% trans "Tags" %}</label>
+                        {{ form.tags }}
+                    </p>
+                    <div class="helpText">{% trans "String of tags that are significant to identify the item. Only 0-10 tags can be specified. Must be given in tag1,tag2,tag3 -format. (Example: dog,animal,bone)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.embedMedia.errors }}
+                        <label for="embedMedia">{% trans "Embedded media" %}</label>
+                        {{ form.embedMedia }}
+                    </p>
+                    <div class="helpText">{% trans "String of oEmbed content (for example screenshots or product videos). Must be given in url1,url2,url3 -format. (Example: https://i.imgur.com/w0ZTeCk.png, https://www.youtube.com/watch?v=lf_l7G1N-aY)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.contentLicense.errors }}
+                        <label for="contentLicense">{% trans "Content's License" %}</label>
+                        {{ form.contentLicense }}
+                    </p>
+                    <div class="helpText">{% trans "License of the product's content. (Example: GNU Free Documentation License)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.dataLicense.errors }}
+                        <label for="dataLicense">{% trans "Data License" %}</label>
+                        {{ form.dataLicense }}
+                    </p>
+                    <div class="helpText">{% trans "License of the JSON-data used. (Example: Creative Commons Attribution 4.0 International License)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.copyrightNotice.errors }}
+                        <label for="copyrightNotice">{% trans "Copyright Notice" %}</label>
+                        {{ form.copyrightNotice }}
+                    </p>
+                    <div class="helpText">{% trans "Short copyright notice. (Example: (c) myCompany 2014)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.attributionText.errors }}
+                        <label for="attributionText">{% trans "Attribution Text" %}</label>
+                        {{ form.attributionText }}
+                    </p>
+                    <div class="helpText">{% trans "Short text of product's license. (Example: This work is licensed under a Creative Commons Attribution 4.0 International License.)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.attributionURL.errors }}
+                        <label for="attributionURL">{% trans "Attribution URL" %}</label>
+                        {{ form.attributionURL }}
+                    </p>
+                    <div class="helpText">{% trans "URL where customer can learn more about product's license. (Example: http://creativecommons.org/licenses/by/4.0/)" %}</div>
+                </div>
+
+                <div class="inputWrapper">
+                    <p class="fieldWrapper">
+                        {{ form.visible.errors }}
+                        <label for="visible">{% trans "Visibility" %}</label>
+                        {{ form.visible }}
+                    </p>
+                    <div class="helpText">{% trans "Product's visibility. If this is turned off, product cannot be found in the Bazaar." %}</div>
+                </div>
+
+                {% csrf_token %}
+                <div class="inputWrapper">
+                    <input type="submit" value="{% trans "Submit" %}">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock content %}
