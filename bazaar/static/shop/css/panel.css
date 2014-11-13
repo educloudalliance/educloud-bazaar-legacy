@@ -875,11 +875,11 @@ textarea, input {
 
 #uppermenu .menu-box .social-logins .flexItem {
     transition: all 0.5s;
-    text-align: center;
+    text-align: left;
     margin: 1px;
     background: #4d4d4d;
     color: white;
-    height: 35px;
+    height: 45px;
     line-height: 35px;
     font-size: 25px;
     border: 2px solid white
@@ -7835,4 +7835,8 @@ input:focus, textarea:focus {
     font-size: 2em;
     border: 1px solid #747578;
     padding: 2px 6px
+}
+
+#sso-login {
+    margin: 0.2em;
 }
