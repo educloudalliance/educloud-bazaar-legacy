@@ -3564,7 +3564,7 @@ msgid "Confirmation of order"
 msgstr ""
 
 #: templates/checkout/thank_you.html:31
-msgid "Your items are pending for approval."
+msgid "Your items can now be dowloaded to your learning management system."
 msgstr ""
 
 #: templates/checkout/thank_you.html:33
