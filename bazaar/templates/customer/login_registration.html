@@ -2,35 +2,23 @@
 {% load i18n %}
 
 {% block title %}
-    {% trans 'Login or register' %} | {{ block.super }}
-{% endblock %}
-
-{% block breadcrumbs %}
-    <ul class="breadcrumb">
-        <li>
-            <a href="{{ homepage_url }}">{% trans 'Home' %}</a>
-            <span class="divider">/</span>
-        </li>
-        <li class="active">{% trans 'Login or register' %}</li>
-    </ul>
+    {% trans 'Login' %} | {{ block.super }}
 {% endblock %}
 
 {% block header %}{% endblock %}
 
 {% block content %}
-
-    <div class="row-fluid">
-        <div class="span6 login_form">
-            <form id="login_form" action="{{ request.get_full_path }}" method="post" class="well" >
-                <h2>{% trans 'Log In' %}</h2>
-                {% csrf_token %}
-                {% include "partials/form_fields.html" with form=login_form %}
-                {% comment %}
-                <p><a href="{% url 'password-reset' %}">{% trans "I've forgotten my password" %}</a></p>
-                {% endcomment %}
-                <button name="login_submit" type="submit" value="Log In" class="btn btn-large btn-primary js-disable-on-click" data-loading-text="{% trans "Logging in..." %}">{% trans 'Log In' %}</button>
-            </form>
+<div class="flex-container-vertical" style="margin: auto; margin-top: 5em; color: #000000;">
+    <div class="menu-box-content flex-container-vertical">
+        <div class="flex-container social-logins">
+            <span style="font-size: 160%; margin-bottom: 1em;">{% trans "Log In"%}</span>
+        </div>
+        <div class="flex-container social-logins" style="background: #4d4d4d; border: 1px solid #000000;">
+            <a style="text-decoration: none; font-size: 160%; color: #ffffff; padding: 5px; margin-top: 0.3em;" href={{login_link}}><img id="sso-login" src="{{ STATIC_URL }}shop/img/educloud-logo.png" style="width: 32px; float: left; margin-top: -0.1em">EduCloud SSO</a>
+        </div>
+        <div class="flex-container social-logins">
+            <span style="margin: 0.3em;">Notice: Available only for Pilot organization members.</span>
         </div>
     </div>
-
+</div>
 {% endblock content %}
