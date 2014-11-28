@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% block title %}
+    {{ summary }} Rekisteriseloste | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="infoWrapper">
+    <h2>EduCloud -palvelun pilotoinnin käyttöehdot</h2>
+<p>Käyttääksesi EduCloud -palvelua (myöhemmin ”EC palvelu”) sinun tulee hyväksyä nämä ehdot. Mikäli edustat yritystä tai organisaatiota, sinulla tulee olla oikeus hyväksyä nämä ehdot edustamasi yrityksen tai organisaation puolesta. EC palvelun tuottaa EduCloud Alliance -konsortio (myöhemmin ”konsortio”), joka kokoaa yhteen oppimateriaalien ja palveluiden (myöhemmin ”Sisältö”) tuottajia sekä julkishallinnon toimijoita.</p>
+<p>EC palvelu on pilotointivaiheessa, joten EC palvelun toteutus, sisältö ja nämä käyttöehdot voivat muuttua, kun EC palvelua kehitetään. Ehtojen muuttumisesta tiedotetaan EC palveluun rekisteröityneitä käyttäjiä: muutokset sitovat käyttäjiä 30 päivän kuluttua muutoksesta tiedottamisesta, ellei tiedottamisen yhteydessä ole mainittu pidempää aikaa, jolloin muutokset sitovat mainitun pidemmän ajan kuluttua. Jos käyttäjä ei ole rekisteröitynyt, velvoittaa häntä EC palvelua käytettäessä kulloinkin esillä olevat käyttöehdot.</p>
+<p>Konsortio tai kukaan sen jäsen ei ota pilotointivaiheessa mitään vastuuta esimerkiksi EC palvelun toiminnasta, soveltuvuudesta tiettyyn tarkoitukseen tai sillä tarjotusta Sisällöstä, vaan EC palvelu tarjotaan sellaisena kuin se on. Sisällön tallentaminen EC palveluun tai tarjoaminen EC palvelulla tapahtuu toistaiseksi tallentajan tai tarjoajan omalla vastuulla. EC palveluun tallennettu Sisältö voi muuttua tai kadota kokonaan ja EC palvelua tulisi käyttää vain pilotointi- ja testaustarkoituksessa. Jos hankit Sisältöä EC palvelun kautta, ei Sisällön tarjoaja vastaa Sisällöstä muuta kuin siltä osin kuin tarjoaja on nimenomaisesti luvannut vastata Sisällöstä.</p>
+<p>Tekijänoikeutta loukkaavan tai muutoin lainvastaisen materiaalin tai palvelun tallentaminen EC palveluun tai tarjoaminen EC palvelulla on kielletty. Havaituista loukkauksista tulee ilmoittaa EC palvelun ylläpidolle.</p>
+<p>EC palveluun ja näiden ehtojen tulkintaan sovelletaan Suomen lakia, pois lukien lainvalintasäännöt, jotka saattaisivat johtaa jonkun muun maan lain soveltamiseen. EC palveluun liittyvät erimielisyydet pyritään ensisijaisesti ratkaisemaan riidan osapuolten välisillä neuvotteluilla. Mikäli neuvotteluissa ei löydetä ratkaisua 30 päivän kuluessa riidan osapuolen asiaa koskevasta kirjallisesta ilmoituksesta toiselle osapuolelle, riita ratkaistaan ensi asteena Helsingin käräjäoikeudessa.</p>
+
+    <div style="margin-top:5em"><a href="/">{%  trans "Palaa takaisin" %}</a></div>
+    </div>
+{% endblock content %}

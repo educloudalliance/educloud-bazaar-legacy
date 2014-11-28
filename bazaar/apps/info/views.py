@@ -10,8 +10,8 @@ def index(request):
     return render(request, 'info/index.html')
 
 
-def rekisteri(request):
+def disclaimer(request):
 
-    template = loader.get_template('info/rekisteri.html')
+    template = loader.get_template('info/disclaimer.html')
 
-    return render(request, 'info/rekisteri.html')
+    return render(request, 'info/disclaimer.html')
