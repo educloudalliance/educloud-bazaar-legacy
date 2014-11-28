@@ -84,28 +84,9 @@
                                 {% trans "Log In"%}</div>
                             <div class="menu-box-content flex-container-vertical">
                                 <div class="flex-container social-logins">
-                                    <div class="flexItem" id="sso-login">
-                                        <i class="fa"><a href={{login_link}}>EduCloud SSO</a></i>
-                                    </div>
-                                    <!--
-                                    <div class="flexItem" id="facebook-login">
-                                        <i class="fa fa-facebook"></i>
-                                    </div>
-                                    <div class="flexItem" id="twitter-login">
-                                        <i class="fa fa-twitter"></i>
-                                    </div>
-                                    <div class="flexItem" id="google-login">
-                                        <i class="fa fa-google-plus"></i>
-                                    </div>
-                                    <div class="flexItem" id="linkedin-login">
-                                        <i class="fa fa-linkedin"></i>
-                                    </div>
-                                    -->
+                                    <a class="flexItem" style="text-decoration: none; padding: 5px; padding-left: 2em;" href={{login_link}}><img id="sso-login" src="{{ STATIC_URL }}shop/img/educloud-logo.png" style="width: 32px; float: left; margin-top: -1px;">EduCloud SSO</a>
                                 </div>
-                                <div class="flex-container strong-logins">
-                                    <div class="mepin-login" data-theme="light" data-layout="standard"
-                                         data-applicationid="a4fdd84bc8c959788f781b3d81498059" data-cburl="https://demo.pilvivayla.fi/mepin"></div>
-                                </div>
+                              
                                 <div class="flex-container social-logins">
                                     <span style="margin: 0.3em;">Notice: Available only for Pilot organization members.</span>
                                 </div>
