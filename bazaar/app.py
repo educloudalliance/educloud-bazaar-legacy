@@ -4,7 +4,6 @@ import django
 from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
 from django.core.urlresolvers import reverse_lazy
-from bazaar.apps import customer
 from oscar.core.application import Application
 from oscar.apps.customer import forms
 from oscar.core.loading import get_class
