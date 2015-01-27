@@ -4,7 +4,7 @@ import django
 from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
 from django.core.urlresolvers import reverse_lazy
-
+from bazaar.apps import customer
 from oscar.core.application import Application
 from oscar.apps.customer import forms
 from oscar.core.loading import get_class
@@ -14,8 +14,8 @@ from oscar.views.decorators import login_forbidden
 class Shop(Application):
     name = None
 
+    customer_app = get_class('apps.customer.app', 'application')
     catalogue_app = get_class('catalogue.app', 'application')
-    customer_app = get_class('customer.app', 'application')
     basket_app = get_class('basket.app', 'application')
     checkout_app = get_class('checkout.app', 'application')
     promotions_app = get_class('promotions.app', 'application')

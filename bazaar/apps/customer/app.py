@@ -2,77 +2,18 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from django.views import generic
 
-from oscar.core.application import Application
 from oscar.core.loading import get_class
+from oscar.apps.customer.app import CustomerApplication as CoreCustomerApplication
 
 
-class CustomerApplication(Application):
+class CustomerApplication(CoreCustomerApplication):
     name = 'customer'
-    summary_view = get_class('customer.views', 'AccountSummaryView')
-    order_history_view = get_class('customer.views', 'OrderHistoryView')
-    order_detail_view = get_class('customer.views', 'OrderDetailView')
-    anon_order_detail_view = get_class('customer.views',
-                                       'AnonymousOrderDetailView')
-    order_line_view = get_class('customer.views', 'OrderLineView')
-
-    address_list_view = get_class('customer.views', 'AddressListView')
-    address_create_view = get_class('customer.views', 'AddressCreateView')
-    address_update_view = get_class('customer.views', 'AddressUpdateView')
-    address_delete_view = get_class('customer.views', 'AddressDeleteView')
-    address_change_status_view = get_class('customer.views',
-                                           'AddressChangeStatusView')
-
-    email_list_view = get_class('customer.views', 'EmailHistoryView')
-    email_detail_view = get_class('customer.views', 'EmailDetailView')
-    login_view = get_class('customer.views', 'AccountAuthView')
-    logout_view = get_class('customer.views', 'LogoutView')
-    register_view = get_class('customer.views', 'AccountRegistrationView')
-    profile_view = get_class('customer.views', 'ProfileView')
-    profile_update_view = get_class('customer.views', 'ProfileUpdateView')
-    profile_delete_view = get_class('customer.views', 'ProfileDeleteView')
-    change_password_view = get_class('customer.views', 'ChangePasswordView')
-
-    notification_inbox_view = get_class('customer.notifications.views',
-                                        'InboxView')
-    notification_archive_view = get_class('customer.notifications.views',
-                                          'ArchiveView')
-    notification_update_view = get_class('customer.notifications.views',
-                                         'UpdateView')
-    notification_detail_view = get_class('customer.notifications.views',
-                                         'DetailView')
-
-    alert_list_view = get_class('customer.alerts.views',
-                                'ProductAlertListView')
-    alert_create_view = get_class('customer.alerts.views',
-                                  'ProductAlertCreateView')
-    alert_confirm_view = get_class('customer.alerts.views',
-                                   'ProductAlertConfirmView')
-    alert_cancel_view = get_class('customer.alerts.views',
-                                  'ProductAlertCancelView')
-
-    wishlists_add_product_view = get_class('customer.wishlists.views',
-                                           'WishListAddProduct')
-    wishlists_list_view = get_class('customer.wishlists.views',
-                                    'WishListListView')
-    wishlists_detail_view = get_class('customer.wishlists.views',
-                                      'WishListDetailView')
-    wishlists_create_view = get_class('customer.wishlists.views',
-                                      'WishListCreateView')
-    wishlists_create_with_product_view = get_class('customer.wishlists.views',
-                                                   'WishListCreateView')
-    wishlists_update_view = get_class('customer.wishlists.views',
-                                      'WishListUpdateView')
-    wishlists_delete_view = get_class('customer.wishlists.views',
-                                      'WishListDeleteView')
-    wishlists_remove_product_view = get_class('customer.wishlists.views',
-                                              'WishListRemoveProduct')
-    wishlists_move_product_to_another_view = get_class(
-        'customer.wishlists.views', 'WishListMoveProductToAnotherWishList')
 
     def get_urls(self):
         urls = [
             # Login, logout and register doesn't require login
             url(r'^login/$', self.login_view.as_view(), name='login'),
+            url(r'^local/$', self.login_view.as_view(template_name='customer/local_registration.html'), name='login'),
             url(r'^logout/$', self.logout_view.as_view(), name='logout'),
             url(r'^register/$', self.register_view.as_view(), name='register'),
             url(r'^$', login_required(self.summary_view.as_view()),

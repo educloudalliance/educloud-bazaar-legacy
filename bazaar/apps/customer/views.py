@@ -180,22 +180,22 @@ class AccountAuthView(RegisterUserMixin, generic.TemplateView):
     redirect_field_name = 'next'
 
     #Old login
-    #def get(self, request, *args, **kwargs):
-    #    if request.user.is_authenticated():
-    #        return http.HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
-    #    return super(AccountAuthView, self).get(
-    #        request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated():
+            return http.HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
+        return super(AccountAuthView, self).get(
+            request, *args, **kwargs)
 
-    def get(self, *args, **kwargs):
-        #Remove session value that is forcing Shibboleth reauthentication.
-        self.request.session.pop(LOGOUT_SESSION_KEY, None)
-        login = SHIBBOLETH_LOGIN_URL + '?target=%s' % quote(self.request.GET.get(self.redirect_field_name))
-        if settings.DEBUG:
-            print "Here I go again."
-        user = authenticate(request_meta=self.request.META)
-        if user is not None:
-            auth_login(self.request, user)
-        return redirect(login)
+    # def get(self, *args, **kwargs):
+    #     #Remove session value that is forcing Shibboleth reauthentication.
+    #     self.request.session.pop(LOGOUT_SESSION_KEY, None)
+    #     login = SHIBBOLETH_LOGIN_URL + '?target=%s' % quote(self.request.GET.get(self.redirect_field_name))
+    #     if settings.DEBUG:
+    #         print "Here I go again."
+    #     user = authenticate(request_meta=self.request.META)
+    #     if user is not None:
+    #         auth_login(self.request, user)
+    #     return redirect(login)
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(AccountAuthView, self).get_context_data(*args, **kwargs)
