@@ -89,7 +89,7 @@ MEDIA_URL = '/media/'
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-#ADMIN_MEDIA_PREFIX = '/media/admin/'
+# ADMIN_MEDIA_PREFIX = '/media/admin/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = location('public/static')
@@ -149,7 +149,7 @@ MIDDLEWARE_CLASSES = (
     'oscar.apps.basket.middleware.BasketMiddleware',
     # Enable the ProfileMiddleware, then add ?cprofile to any
     # URL path to print out profile details
-    #'oscar.profiling.middleware.ProfileMiddleware',
+    # 'oscar.profiling.middleware.ProfileMiddleware',
     'cookie_message.middleware.CookieMessageMiddleware',
     # Security helper framework
     'djangosecure.middleware.SecurityMiddleware',
@@ -161,6 +161,7 @@ ROOT_URLCONF = 'urls'
 # Add another path to Oscar's templates.  This allows templates to be
 # customised easily.
 from oscar import OSCAR_MAIN_TEMPLATE_DIR
+
 TEMPLATE_DIRS = (
     location('templates'),
     OSCAR_MAIN_TEMPLATE_DIR,
@@ -289,50 +290,55 @@ LOGGING = {
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 from oscar import get_core_apps
+
 INSTALLED_APPS = [
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.admin',
-    'django.contrib.flatpages',
-    'django.contrib.staticfiles',
-    'django.contrib.sitemaps',
-    'django_extensions',
-    'djangosecure', # Security check helper
-    'apps.test_shibboleth', # Shibboleth test app
-    'debug_toolbar', # Django debug toolbar
-    'template_timings_panel',
-    'south',
-    'compressor',   # Oscar's templates use compressor
-    'apps.gateway', # For allowing dashboard access
-    'apps.api',
-    'apps.panel',
-    'apps.info',
-    'apps.library',
-    'rest_framework',
-    'provider',
-    'provider.oauth2',
-    'apps.user',
-    'cookie_message',
-    'rest_framework_swagger',
-    'haystack',
-    'json_field',       #https://github.com/derek-schaefer/django-json-field
-] + get_core_apps(['apps.catalogue', 'apps.search', 'apps.order', 'apps.customer.*', 'apps.checkout'])
+                     'django.contrib.auth',
+                     'django.contrib.contenttypes',
+                     'django.contrib.sessions',
+                     'django.contrib.sites',
+                     'django.contrib.messages',
+                     'django.contrib.admin',
+                     'django.contrib.flatpages',
+                     'django.contrib.staticfiles',
+                     'django.contrib.sitemaps',
+                     'django_extensions',
+                     'djangosecure',  # Security check helper
+                     'apps.test_shibboleth',  # Shibboleth test app
+                     'debug_toolbar',  # Django debug toolbar
+                     'template_timings_panel',
+                     'south',
+                     'compressor',  # Oscar's templates use compressor
+                     'apps.gateway',  # For allowing dashboard access
+                     'apps.api',
+                     'apps.panel',
+                     'apps.info',
+                     'apps.library',
+                     'rest_framework',
+                     'provider',
+                     'provider.oauth2',
+                     'apps.user',
+                     'cookie_message',
+                     'rest_framework_swagger',
+                     'haystack',
+                     'json_field',  # https://github.com/derek-schaefer/django-json-field
+                     'apps.customer.notifications',
+                     'apps.customer.wishlists',
+                     'apps.customer.alerts',
+                 ] + get_core_apps(
+    ['apps.catalogue', 'apps.search', 'apps.order', 'apps.customer', 'apps.checkout'])
 
 # Bazaar User model
 AUTH_USER_MODEL = "user.User"
 
 SHIBBOLETH_ATTRIBUTE_MAP = {
-   "educloud.oid": (True, "username"),
+    "educloud.oid": (True, "username"),
 }
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',
-    'rest_framework.permissions.DjangoModelPermissions',),
+                                   'rest_framework.permissions.DjangoModelPermissions',),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-    'rest_framework.authentication.OAuth2Authentication',),
+        'rest_framework.authentication.OAuth2Authentication',),
     'PAGINATE_BY': 10,
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.UnicodeJSONRenderer',
@@ -386,7 +392,7 @@ from oscar.defaults import *
 # Meta
 # ====
 
-#OSCAR_SHOP_TAGLINE = 'Bazaar'
+# OSCAR_SHOP_TAGLINE = 'Bazaar'
 OSCAR_SHOP_NAME = 'Bazaar'
 
 OSCAR_RECENTLY_VIEWED_PRODUCTS = 20
