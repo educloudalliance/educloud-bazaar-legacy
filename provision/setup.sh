@@ -78,8 +78,7 @@ sudo pip install html2text
 
 ### Start the Database
 
-cd ~
-cd ~/educloud-bazaar/bazaar
+cd /home/vagrant/educloud-bazaar/bazaar
 python manage.py syncdb --noinput
 python manage.py migrate
 
