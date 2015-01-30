@@ -23,7 +23,7 @@ EmbeddedMedia = get_model('catalogue', 'EmbeddedMedia')
 
 def index(request):
     if not request.user.is_authenticated():
-        return redirect('/accounts/login')
+        return redirect('/accounts/local')
 
     user = User.objects.get(username=request.user.username)
     try:

@@ -3,11 +3,14 @@ from django.contrib.auth.decorators import login_required
 from django.views import generic
 
 from oscar.core.loading import get_class
+
 from oscar.apps.customer.app import CustomerApplication as CoreCustomerApplication
+from apps.customer import views
 
 
 class CustomerApplication(CoreCustomerApplication):
     name = 'customer'
+    login_view = views.AccountAuthView
 
     def get_urls(self):
         urls = [
