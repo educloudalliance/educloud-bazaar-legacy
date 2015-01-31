@@ -1,0 +1,7 @@
+# Update apt packages
+# ====================================================
+- name: Change mirror
+  shell: "sed -i 's/us/fi/' /etc/apt/sources.list"
+   
+- name: Update apt package cache
+  action: apt update_cache=yes

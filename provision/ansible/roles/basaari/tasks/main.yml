@@ -1,0 +1,40 @@
+# Setup and install basaari from Github
+- name: Checkout from git
+  git: repo=https://github.com/koulutuksenpilvivayla/pilvivayla-basaari.git version={{ basaar_version }} dest={{ basaar_home }} depth=1
+
+- name: Install requirements
+  pip: requirements={{ basaar_home }}/requirements.txt extra_args="--user"
+
+- name: Remove unneeded requirements
+  command: "pip uninstall -y haystack"
+  command: "pip uninstall -y django-haystack"
+
+- name: Reinstall needed libraries
+  pip: name=django-haystack version=2.2.0 extra_args="--user"
+
+- name: Install pysolr
+  pip: name=pysolr extra_args="--user"
+
+- name: Syncdb
+  shell: "/home/vagrant/basaar/sites/basaar/manage.py syncdb --noinput && /home/vagrant/basaar/sites/basaar/manage.py schemamigration catalogue --initial && /home/vagrant/basaar/sites/basaar/manage.py migrate catalogue --fake &&  /home/vagrant/basaar/sites/basaar/manage.py migrate --fake"
+
+- name: Migrate promotions
+  shell: "/home/vagrant/basaar/sites/basaar/manage.py schemamigration promotions --initial && /home/vagrant/basaar/sites/basaar/manage.py migrate promotions"
+
+#- name: Populate variants
+#  django_manage: command=loaddata app_path={{ basaar_base }} fixtures={{ fixtures_variants }}
+
+#- name: Populate us countries
+#  django_manage: command=loaddata app_path={{ basaar_base }} fixtures={{ fixtures_us_countries }}
+
+#- name: Populate oscar countries
+#  django_manage: command=loaddata app_path={{ basaar_base }} fixtures={{ fixtures_oscar_countries }}
+
+#- name: Populate pages
+#  django_manage: command=loaddata app_path={{ basaar_base }} fixtures={{ fixtures_pages }}
+
+- name: Populate
+  command: "{{ basaar_home }}/sites/basaar/manage.py oscar_import_catalogue {{ basaar_home }}/sites/basaar/fixtures/*.csv"
+  command: "{{ basaar_home }}/sites/basaar/manage.py oscar_import_catalogue_images {{ basaar_home }}/sites/basaar/fixtures/images.tar.gz"
+  command: "{{ basaar_home }}/sites/basaar/manage.py clear_index --noinput"
+  command: "{{ basaar_home }}/sites/basaar/manage.py update_index catalogue"
