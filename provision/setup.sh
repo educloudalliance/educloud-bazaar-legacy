@@ -2,7 +2,6 @@
 
 # From Creating a Vagrant Box
 
-ln -s /var/www/educloud-bazaar
 cat << EOF | sudo tee -a /etc/motd.tail
 ***************************************
 
