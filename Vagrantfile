@@ -64,9 +64,9 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
- ============================================================================== 
- UNCOMMENT THE PROVISIONING YOU PREFER
- ==============================================================================
+  # ============================================================================== 
+  # UNCOMMENT THE PROVISIONING YOU PREFER
+  # ==============================================================================
   # Provisioning from Ansible (MacOS and Linux)
   # config.vm.box = "hashicorp/precise64"
   # config.vm.provision :ansible do |ansible|
