@@ -11,9 +11,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 SQL_DEBUG = True
 
-ALLOWED_HOSTS = ['latest.oscarcommerce.com',
-                 'sandbox.oscar.tangentlabs.co.uk',
-                 'master.oscarcommerce.com']
+ALLOWED_HOSTS = []
 
 ADMINS = (
     ('Admin Adminton', 'admin@admin.com'),
@@ -321,9 +319,6 @@ INSTALLED_APPS = [
                      'rest_framework_swagger',
                      'haystack',
                      'json_field',  # https://github.com/derek-schaefer/django-json-field
-                     'apps.customer.notifications',
-                     'apps.customer.wishlists',
-                     'apps.customer.alerts',
                  ] + get_core_apps(
     ['apps.catalogue', 'apps.search', 'apps.order', 'apps.customer', 'apps.checkout'])
 
@@ -403,8 +398,6 @@ OSCAR_EAGER_ALERTS = False
 OSCAR_SEND_REGISTRATION_EMAIL = False
 OSCAR_CURRENCY_LOCALE = 'fi_FI'
 OSCAR_DEFAULT_CURRENCY = 'EUR'
-OSCAR_CURRENCY_LOCALE = 'fi_FI'
-
 
 
 # This is added to each template context by the core context processor.  It is
@@ -503,3 +496,14 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+LOGIN_REDIRECT_URL = '/accounts/profile/'
+
+# Shibboleth
+SHIBBOLETH_LOGIN_URL = 'https://bazaardev.educloudalliance.org/Shibboleth.sso/Login'
+SHIBBOLETH_LOGOUT_URL = 'https://bazaardev.educloudalliance.org/Shibboleth.sso/Logout'
+SHIBBOLETH_LOGOUT_REDIRECT_URL = '/'
+
+LOCALE_PATHS = (
+    os.path.join(os.path.dirname(__file__), 'locale'),
+)
+DEBUG = True

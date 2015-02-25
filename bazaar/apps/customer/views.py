@@ -51,8 +51,9 @@ from django.views.generic import TemplateView
 
 from urllib import quote
 
-#Logout settings.
+# Logout settings.
 from app_settings import SHIBBOLETH_LOGIN_URL, SHIBBOLETH_LOGOUT_URL, LOGOUT_REDIRECT_URL, LOGOUT_SESSION_KEY
+
 
 class ShibbolethView(TemplateView):
     """
@@ -82,6 +83,7 @@ class ShibbolethView(TemplateView):
         context['user'] = self.request.user
         return context
 
+
 class ShibbolethLoginView(TemplateView):
     """
     Pass the user to the Shibboleth login page.
@@ -95,6 +97,7 @@ class ShibbolethLoginView(TemplateView):
         self.request.session.pop(LOGOUT_SESSION_KEY, None)
         login = SHIBBOLETH_LOGIN_URL + '?target=%s' % quote(self.request.GET.get(self.redirect_field_name))
         return redirect(login)
+
 
 class ShibbolethLogoutView(TemplateView):
     """
@@ -111,8 +114,8 @@ class ShibbolethLogoutView(TemplateView):
         #Shibboleth reauthentication.
         self.request.session[LOGOUT_SESSION_KEY] = True
         #Get target url in order of preference.
-        target = LOGOUT_REDIRECT_URL or\
-                 quote(self.request.GET.get(self.redirect_field_name)) or\
+        target = LOGOUT_REDIRECT_URL or \
+                 quote(self.request.GET.get(self.redirect_field_name)) or \
                  quote(request.build_absolute_uri())
         logout = SHIBBOLETH_LOGOUT_URL + '?target=%s' % target
         return redirect(logout)
@@ -181,21 +184,28 @@ class AccountAuthView(RegisterUserMixin, generic.TemplateView):
 
     #Old login
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated():
-            return http.HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
-        return super(AccountAuthView, self).get(
-            request, *args, **kwargs)
+        # If we come for a local login
+        if 'local' in kwargs:
+            if request.user.is_authenticated():
+                return http.HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
+            return super(AccountAuthView, self).get(
+                request, *args, **kwargs)
+        # If we want an SSO login
+        else:
+            # Remove session value that is forcing Shibboleth re-authentication.
+            self.request.session.pop(LOGOUT_SESSION_KEY, None)
+            next_target = self.request.GET.get(self.redirect_field_name)
+            # No target defined redirects to the root page
+            if next_target is None:
+                next_target = '/'
+            login = SHIBBOLETH_LOGIN_URL + '?target=%s' % quote(next_target)
+            if settings.DEBUG:
+                print "Here I go again."
+            user = authenticate(request_meta=self.request.META)
+            if user is not None:
+                auth_login(self.request, user)
+            return redirect(login)
 
-    # def get(self, *args, **kwargs):
-    #     #Remove session value that is forcing Shibboleth reauthentication.
-    #     self.request.session.pop(LOGOUT_SESSION_KEY, None)
-    #     login = SHIBBOLETH_LOGIN_URL + '?target=%s' % quote(self.request.GET.get(self.redirect_field_name))
-    #     if settings.DEBUG:
-    #         print "Here I go again."
-    #     user = authenticate(request_meta=self.request.META)
-    #     if user is not None:
-    #         auth_login(self.request, user)
-    #     return redirect(login)
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(AccountAuthView, self).get_context_data(*args, **kwargs)
@@ -537,7 +547,7 @@ class OrderHistoryView(PageTitleMixin, generic.ListView):
             # If the user has just entered an order number, try and look it up
             # and redirect immediately to the order detail page.
             if data['order_number'] and not (data['date_to'] or
-                                             data['date_from']):
+                                                 data['date_from']):
                 try:
                     order = Order.objects.get(
                         number=data['order_number'], user=self.request.user)

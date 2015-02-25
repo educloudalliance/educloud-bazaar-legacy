@@ -3716,7 +3716,7 @@ msgstr "Tilauksen vahvistus"
 
 #: templates/checkout/thank_you.html:31
 msgid "Your items can now be dowloaded to your learning management system."
-msgstr "Ostoksesi ovat ladattavissa oppimisympästöösi.”
+msgstr "Ostoksesi ovat ladattavissa oppimisympästöösi."
 
 #: templates/checkout/thank_you.html:33
 #, fuzzy

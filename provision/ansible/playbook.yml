@@ -1,0 +1,15 @@
+- hosts: all
+  sudo: yes
+  roles:
+    - apt
+    - base
+    - python
+    - apache
+    - security
+    - sqlite
+    - java
+    - solr
+
+- hosts: all
+  roles:
+    - basaari

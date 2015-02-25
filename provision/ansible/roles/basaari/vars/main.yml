@@ -1,0 +1,9 @@
+basaar_user: 'vagrant'
+basaar_version: 'devel'
+basaar_home: '/home/{{ basaar_user }}/basaar'
+basaar_base: '/home/{{ basaar_user }}/basaar/sites/basaar/'
+fixtures_variants: '/home/{{ basaar_user }}/basaar/sites/basaar/fixtures/variants.json'
+fixtures_us_countries: '{{ basaar_home }}//sites/us/fixtures/countries.json'
+fixtures_oscar_countries: '{{ basaar_home }}/oscar/fixtures/countries.json'
+fixtures_pages: '{{ basaar_home }}/sites/_fixtures/pages.json'
+

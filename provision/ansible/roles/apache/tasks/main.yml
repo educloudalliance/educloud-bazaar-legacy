@@ -1,0 +1,16 @@
+---
+- name: Install Apache2 and modules
+  apt: pkg={{ item }} state=latest
+  notify: Restart Apache
+  with_items:
+    - apache2
+    - apache2-mpm-worker
+    - apache2-threaded-dev
+    - libapr1-dev
+    - libaprutil1-dev
+
+- name: Disable default site
+  file:
+    path: "/etc/apache2/sites-enabled/000-default"
+    state: absent
+  notify: Restart Apache

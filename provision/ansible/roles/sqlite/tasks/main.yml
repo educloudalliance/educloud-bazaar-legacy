@@ -1,0 +1,8 @@
+# SQLite
+# =============================
+
+- name: Install
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - sqlite3
+    - libsqlite3-dev
