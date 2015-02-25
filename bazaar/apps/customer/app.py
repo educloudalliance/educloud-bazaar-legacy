@@ -16,7 +16,8 @@ class CustomerApplication(CoreCustomerApplication):
         urls = [
             # Login, logout and register doesn't require login
             url(r'^login/$', self.login_view.as_view(), name='login'),
-            url(r'^local/$', self.login_view.as_view(template_name='customer/local_registration.html'), name='login'),
+            url(r'^local/$', self.login_view.as_view(template_name='customer/local_registration.html'),
+                {'local': 'true'}, name='login'),
             url(r'^logout/$', self.logout_view.as_view(), name='logout'),
             url(r'^register/$', self.register_view.as_view(), name='register'),
             url(r'^$', login_required(self.summary_view.as_view()),
