@@ -498,3 +498,12 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_REDIRECT_URL = '/accounts/profile/'
 
+# Shibboleth
+SHIBBOLETH_LOGIN_URL = 'https://bazaardev.educloudalliance.org/Shibboleth.sso/Login'
+SHIBBOLETH_LOGOUT_URL = 'https://bazaardev.educloudalliance.org/Shibboleth.sso/Logout'
+SHIBBOLETH_LOGOUT_REDIRECT_URL = '/'
+
+LOCALE_PATHS = (
+    os.path.join(os.path.dirname(__file__), 'locale'),
+)
+DEBUG = True

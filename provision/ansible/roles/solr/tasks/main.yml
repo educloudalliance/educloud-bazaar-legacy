@@ -1,0 +1,3 @@
+---
+- name: Install Apache Solr
+  apt: pkg=solr-tomcat state=latest

@@ -1,0 +1,59 @@
+# Security
+# ====================================================
+
+# DEPLOY USER
+# ====================================================
+
+- name: Add deployment user
+  action: user name={{ createuser }} home="/home/{{ createuser }}" shell="/bin/bash"
+
+- name: Add authorized deploy key
+  authorized_key: user={{ createuser }} key='{{ lookup('file', '~/.ssh/id_rsa.pub') }}'
+
+- name: Remove sudo group rights
+  action: lineinfile dest=/etc/sudoers regexp="^%sudo" state=absent
+
+- name: Add deploy user to sudoers
+  action: lineinfile dest=/etc/sudoers regexp="deploy ALL" line="deploy ALL=(ALL) NOPASSWD:ALL" state=present
+
+- name: Update bashrc
+  lineinfile:
+    dest=/home/deploy/.bashrc
+    line="export RAILS_ENV=production"
+    owner=deploy
+    state=present
+    insertafter=EOF
+    create=no
+
+# MOSH AND FAIL2BAN
+# ====================================================
+
+- name: Install ufw
+  action: apt pkg=ufw state=installed
+
+- name: Install mosh
+  action: apt pkg=mosh state=installed
+
+- name: Install fail2ban
+  action: apt pkg=fail2ban state=installed
+
+# FIREWALL
+# ====================================================
+
+- name: Add ssh to ufw
+  action: shell ufw allow 22
+
+- name: Add http to ufw
+  action: shell ufw allow 80
+
+- name: Add https to ufw
+  action: shell ufw allow 443
+
+- name: Add tomcat to ufw
+  action: shell ufw allow 8080
+
+- name: Add django application to ufw
+  action: shell ufw allow 8000
+
+- name: Enable ufw
+  action: shell echo 'y' | ufw enable
