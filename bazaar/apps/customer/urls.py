@@ -5,10 +5,9 @@ if StrictVersion(django.get_version()) < StrictVersion('1.4'):
 else:
     from django.conf.urls import patterns, url
 
-from views import ShibbolethView, ShibbolethLogoutView, AccountAuthView
+from views import AccountAuthView, LogoutView
 
 urlpatterns = patterns('',
     url(r'^login/$', AccountAuthView.as_view(), name='login'),
-    url(r'^logout/$', ShibbolethLogoutView.as_view(), name='logout'),
-    url(r'^$', ShibbolethView.as_view(), name='info'),
+    url(r'^logout/$', LogoutView.as_view(), name='logout'),
 )

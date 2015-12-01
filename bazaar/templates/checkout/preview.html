@@ -19,9 +19,10 @@
         <div style="display:none">
             {% block hiddenforms %}{% endblock %}
         </div>
-
+	
         <div class="form-actions flex-container">
             <button id='place-order' type="submit" class="btn btn-primary btn-large btn-block js-disable-on-click" data-loading-text="{% trans 'Submitting...' %}">{% trans "Place order" %}</button>
         </div>
+	
     </form>
 {% endblock place_order %}

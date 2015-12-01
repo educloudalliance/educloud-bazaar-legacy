@@ -8,7 +8,6 @@ from oscar.views import handler500, handler404, handler403  # noqa
 
 from apps.sitemaps import base_sitemaps
 from apps.api import *
-from apps.test_shibboleth import views
 
 from django.contrib import admin
 admin.autodiscover()
@@ -39,7 +38,6 @@ urlpatterns += i18n_patterns('',
     url(r'^panel/', include('apps.panel.urls')),
     # Custom functionality to allow dashboard users to be created
     url(r'gateway/', include('apps.gateway.urls')),
-
     # Oscar's normal URLs
     url(r'', include(shop.urls)),
 )
@@ -61,7 +59,3 @@ if settings.DEBUG:
         url(r'^500$', handler500),
         url(r'^__debug__/', include(debug_toolbar.urls)),
     ]
-    # test_shibboleth attributes
-    urlpatterns += patterns('',
-        url(r'^shibboleth/login', 'apps.test_shibboleth.views.foo'),
-    )

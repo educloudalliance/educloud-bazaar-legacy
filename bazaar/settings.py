@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+
 import os, sys
 
 # Path helper
@@ -7,7 +10,7 @@ location = lambda x: os.path.join(
 
 USE_TZ = True
 
-DEBUG = True
+
 TEMPLATE_DEBUG = True
 SQL_DEBUG = True
 
@@ -17,7 +20,7 @@ ADMINS = (
     ('Admin Adminton', 'admin@admin.com'),
 )
 
-EMAIL_SUBJECT_PREFIX = '[Basaar] '
+EMAIL_SUBJECT_PREFIX = '[Bazaar] '
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MANAGERS = ADMINS
@@ -35,13 +38,11 @@ DATABASES = {
     }
 }
 
-
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
-
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -301,7 +302,6 @@ INSTALLED_APPS = [
                      'django.contrib.sitemaps',
                      'django_extensions',
                      'djangosecure',  # Security check helper
-                     'apps.test_shibboleth',  # Shibboleth test app
                      'debug_toolbar',  # Django debug toolbar
                      'template_timings_panel',
                      'south',
@@ -324,10 +324,6 @@ INSTALLED_APPS = [
 
 # Bazaar User model
 AUTH_USER_MODEL = "user.User"
-
-SHIBBOLETH_ATTRIBUTE_MAP = {
-    "educloud.oid": (True, "username"),
-}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',
@@ -399,12 +395,10 @@ OSCAR_SEND_REGISTRATION_EMAIL = False
 OSCAR_CURRENCY_LOCALE = 'fi_FI'
 OSCAR_DEFAULT_CURRENCY = 'EUR'
 
-
 # This is added to each template context by the core context processor.  It is
 # useful for test/stage/qa sites where you want to show the version of the site
 # in the page title.
 DISPLAY_VERSION = False
-
 
 # Order processing
 # ================
@@ -430,7 +424,6 @@ OSCAR_ORDER_STATUS_CASCADE = {
     'Cancelled': 'Cancelled',
     'Complete': 'Shipped',
 }
-
 
 # LESS/CSS/statics
 # ================
@@ -498,12 +491,6 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_REDIRECT_URL = '/accounts/profile/'
 
-# Shibboleth
-SHIBBOLETH_LOGIN_URL = 'https://bazaardev.educloudalliance.org/Shibboleth.sso/Login'
-SHIBBOLETH_LOGOUT_URL = 'https://bazaardev.educloudalliance.org/Shibboleth.sso/Logout'
-SHIBBOLETH_LOGOUT_REDIRECT_URL = '/'
-
 LOCALE_PATHS = (
     os.path.join(os.path.dirname(__file__), 'locale'),
 )
-DEBUG = True

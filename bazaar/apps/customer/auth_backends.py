@@ -43,35 +43,32 @@ class ShibbolethRemoteUserBackend(RemoteUserBackend):
         Returns None if ``create_unknown_user`` is ``False`` and a ``User``
         object with the given username is not found in the database.
         """
-	print repr(request_meta)
+        print repr(request_meta)
         print "Trying authenticate"
         if not request_meta:
             return None
         user = None
-	if 'HTTP_USER_OID' not in request_meta:
+        if 'HTTP_MPASS_OID' not in request_meta:
             return None
-	remote_user = request_meta['HTTP_USER_OID']
+        remote_user = request_meta['HTTP_MPASS_OID']
         username = self.clean_username(remote_user)
-        data = request_meta['HTTP_USER_DATA']
-        data = base64.b64decode(data)
-        data = json.loads(data)
-	print repr(data)
         if self.create_unknown_user:
-	    defaults = {
-	        'first_name': data['first_name'],
-                'last_name': data['last_name'],
+            defaults = {
+                'first_name': request_meta['HTTP_MPASS_GIVENNAME'],
+                'last_name': request_meta['HTTP_MPASS_SURNAME'],
                 'email': '%s@educloudalliance.org' % username,
                 'oid': username,
-	    }
+            }
             user, created = User.objects.get_or_create(username=username, defaults=defaults)
             if created:
                 user = self.configure_user(user)
-        else:
-            try:
-                user = User.objects.get(**shib_user_params)
-            except User.DoesNotExist:
-                pass
-        print "Authenticating"
+                print("User created.")
+            else:
+                try:
+                    user = User.objects.get(username=username)
+                except User.DoesNotExist:
+                    print("User not found.")
+                    pass
         return user
 
 

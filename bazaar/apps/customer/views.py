@@ -35,12 +35,6 @@ ProductAlert = get_model('customer', 'ProductAlert')
 CommunicationEventType = get_model('customer', 'CommunicationEventType')
 
 User = get_user_model()
-if settings.DEBUG:
-    print User
-
-# ==========
-# Shibboleth
-# ==========
 
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -51,80 +45,13 @@ from django.views.generic import TemplateView
 
 from urllib import quote
 
-# Logout settings.
+# Shibboleth settings variables.
+# Define/override in settings_local.py
 from app_settings import SHIBBOLETH_LOGIN_URL, SHIBBOLETH_LOGOUT_URL, LOGOUT_REDIRECT_URL, LOGOUT_SESSION_KEY
-
-
-class ShibbolethView(TemplateView):
-    """
-    This is here to offer a Shib protected page that we can
-    route users through to login.
-    """
-    template_name = 'shibboleth/user_info.html'
-
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        """
-        Django docs say to decorate the dispatch method for
-        class based views.
-        https://docs.djangoproject.com/en/dev/topics/auth/
-        """
-        return super(ShibbolethView, self).dispatch(request, *args, **kwargs)
-
-    def get(self, request, **kwargs):
-        """Process the request."""
-        next = self.request.GET.get('next', None)
-        if next is not None:
-            return redirect(next)
-        return super(ShibbolethView, self).get(request)
-
-    def get_context_data(self, **kwargs):
-        context = super(ShibbolethView, self).get_context_data(**kwargs)
-        context['user'] = self.request.user
-        return context
-
-
-class ShibbolethLoginView(TemplateView):
-    """
-    Pass the user to the Shibboleth login page.
-    Some code borrowed from:
-    https://github.com/stefanfoulis/django-class-based-auth-views.
-    """
-    redirect_field_name = "next"
-
-    def get(self, *args, **kwargs):
-        #Remove session value that is forcing Shibboleth reauthentication.
-        self.request.session.pop(LOGOUT_SESSION_KEY, None)
-        login = SHIBBOLETH_LOGIN_URL + '?target=%s' % quote(self.request.GET.get(self.redirect_field_name))
-        return redirect(login)
-
-
-class ShibbolethLogoutView(TemplateView):
-    """
-    Pass the user to the Shibboleth logout page.
-    Some code borrowed from:
-    https://github.com/stefanfoulis/django-class-based-auth-views.
-    """
-    redirect_field_name = "next"
-
-    def get(self, *args, **kwargs):
-        #Log the user out.
-        auth.logout(self.request)
-        #Set session key that middleware will use to force
-        #Shibboleth reauthentication.
-        self.request.session[LOGOUT_SESSION_KEY] = True
-        #Get target url in order of preference.
-        target = LOGOUT_REDIRECT_URL or \
-                 quote(self.request.GET.get(self.redirect_field_name)) or \
-                 quote(request.build_absolute_uri())
-        logout = SHIBBOLETH_LOGOUT_URL + '?target=%s' % target
-        return redirect(logout)
-
 
 # =======
 # Account
 # =======
-
 
 class AccountSummaryView(generic.RedirectView):
     """
@@ -134,7 +61,6 @@ class AccountSummaryView(generic.RedirectView):
     having to change a lot of templates.
     """
     url = reverse_lazy(settings.OSCAR_ACCOUNTS_REDIRECT_URL)
-
 
 class AccountRegistrationView(RegisterUserMixin, generic.FormView):
     form_class = EmailUserCreationForm
@@ -170,7 +96,6 @@ class AccountRegistrationView(RegisterUserMixin, generic.FormView):
         return http.HttpResponseRedirect(
             form.cleaned_data['redirect_url'])
 
-
 class AccountAuthView(RegisterUserMixin, generic.TemplateView):
     """
     This is actually a slightly odd double form view that allows a customer to
@@ -182,7 +107,6 @@ class AccountAuthView(RegisterUserMixin, generic.TemplateView):
     registration_form_class = EmailUserCreationForm
     redirect_field_name = 'next'
 
-    #Old login
     def get(self, request, *args, **kwargs):
         # If we come for a local login
         if 'local' in kwargs:
@@ -199,13 +123,11 @@ class AccountAuthView(RegisterUserMixin, generic.TemplateView):
             if next_target is None:
                 next_target = '/'
             login = SHIBBOLETH_LOGIN_URL + '?target=%s' % quote(next_target)
-            if settings.DEBUG:
-                print "Here I go again."
             user = authenticate(request_meta=self.request.META)
             if user is not None:
                 auth_login(self.request, user)
             return redirect(login)
-
+        return redirect('/')
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(AccountAuthView, self).get_context_data(*args, **kwargs)
@@ -324,25 +246,31 @@ class AccountAuthView(RegisterUserMixin, generic.TemplateView):
     def get_registration_success_url(self, form):
         return settings.LOGIN_REDIRECT_URL
 
-
-class LogoutView(generic.RedirectView):
+class LogoutView(TemplateView):
     url = settings.OSCAR_HOMEPAGE
     permanent = False
 
     def get(self, request, *args, **kwargs):
-        auth_logout(request)
-        response = super(LogoutView, self).get(request, *args, **kwargs)
+
+        #Log the user out.
+        auth.logout(self.request)
+        #Set session key that middleware will use to force
+        #Shibboleth reauthentication.
+        self.request.session[LOGOUT_SESSION_KEY] = True
+        #Get target url in order of preference.
+        target = LOGOUT_REDIRECT_URL or \
+                 quote(self.request.GET.get(self.redirect_field_name)) or \
+                 quote(request.build_absolute_uri())
+        logout = SHIBBOLETH_LOGOUT_URL + '?target=%s' % target
 
         for cookie in settings.OSCAR_COOKIES_DELETE_ON_LOGOUT:
             response.delete_cookie(cookie)
 
-        return response
-
+        return redirect(logout)
 
 # =============
 # Profile
 # =============
-
 
 class ProfileView(PageTitleMixin, generic.TemplateView):
     template_name = 'customer/profile/profile.html'
@@ -393,7 +321,6 @@ class ProfileView(PageTitleMixin, generic.TemplateView):
             'value': value,
         }
 
-
 class ProfileUpdateView(PageTitleMixin, generic.FormView):
     form_class = ProfileForm
     template_name = 'customer/profile/profile_form.html'
@@ -439,7 +366,6 @@ class ProfileUpdateView(PageTitleMixin, generic.FormView):
         messages.success(self.request, _("Profile updated"))
         return redirect(self.get_success_url())
 
-
 class ProfileDeleteView(PageTitleMixin, generic.FormView):
     form_class = ConfirmPasswordForm
     template_name = 'customer/profile/profile_delete.html'
@@ -458,7 +384,6 @@ class ProfileDeleteView(PageTitleMixin, generic.FormView):
             self.request,
             _("Your profile has now been deleted. Thanks for using the site."))
         return http.HttpResponseRedirect(self.get_success_url())
-
 
 class ChangePasswordView(PageTitleMixin, generic.FormView):
     form_class = PasswordChangeForm
@@ -488,7 +413,6 @@ class ChangePasswordView(PageTitleMixin, generic.FormView):
 
         return redirect(self.get_success_url())
 
-
 # =============
 # Email history
 # =============
@@ -517,7 +441,6 @@ class EmailDetailView(PageTitleMixin, generic.DetailView):
     def get_page_title(self):
         """Append email subject to page title"""
         return u'%s: %s' % (_('Email'), self.object.subject)
-
 
 # =============
 # Order history
@@ -571,7 +494,6 @@ class OrderHistoryView(PageTitleMixin, generic.ListView):
         ctx = super(OrderHistoryView, self).get_context_data(*args, **kwargs)
         ctx['form'] = self.form
         return ctx
-
 
 class OrderDetailView(PageTitleMixin, PostActionMixin, generic.DetailView):
     model = Order
@@ -646,7 +568,6 @@ class OrderDetailView(PageTitleMixin, PostActionMixin, generic.DetailView):
                   "as none of its lines are available to purchase") %
                 {'number': order.number})
 
-
 class OrderLineView(PostActionMixin, generic.DetailView):
     """Customer order line"""
 
@@ -689,7 +610,6 @@ class OrderLineView(PostActionMixin, generic.DetailView):
 
         messages.info(self.request, msg)
 
-
 class AnonymousOrderDetailView(generic.DetailView):
     model = Order
     template_name = "customer/anon_order.html"
@@ -701,7 +621,6 @@ class AnonymousOrderDetailView(generic.DetailView):
         if self.kwargs['hash'] != order.verification_hash():
             raise http.Http404()
         return order
-
 
 # ------------
 # Address book
@@ -718,7 +637,6 @@ class AddressListView(PageTitleMixin, generic.ListView):
     def get_queryset(self):
         """Return customer's addresses"""
         return UserAddress._default_manager.filter(user=self.request.user)
-
 
 class AddressCreateView(PageTitleMixin, generic.CreateView):
     form_class = UserAddressForm
@@ -742,7 +660,6 @@ class AddressCreateView(PageTitleMixin, generic.CreateView):
         messages.success(self.request,
                          _("Address '%s' created") % self.object.summary)
         return super(AddressCreateView, self).get_success_url()
-
 
 class AddressUpdateView(PageTitleMixin, generic.UpdateView):
     form_class = UserAddressForm
@@ -770,7 +687,6 @@ class AddressUpdateView(PageTitleMixin, generic.UpdateView):
                          _("Address '%s' updated") % self.object.summary)
         return super(AddressUpdateView, self).get_success_url()
 
-
 class AddressDeleteView(PageTitleMixin, generic.DeleteView):
     model = UserAddress
     template_name = "customer/address/address_delete.html"
@@ -786,7 +702,6 @@ class AddressDeleteView(PageTitleMixin, generic.DeleteView):
         messages.success(self.request,
                          _("Address '%s' deleted") % self.object.summary)
         return super(AddressDeleteView, self).get_success_url()
-
 
 class AddressChangeStatusView(generic.RedirectView):
     """
