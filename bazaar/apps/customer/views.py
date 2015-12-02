@@ -123,10 +123,11 @@ class AccountAuthView(RegisterUserMixin, generic.TemplateView):
             if next_target is None:
                 next_target = '/'
             login = SHIBBOLETH_LOGIN_URL + '?target=%s' % quote(next_target)
+            user = None
             user = authenticate(request_meta=self.request.META)
             if user is not None:
                 auth_login(self.request, user)
-            return redirect(login)
+                return redirect(login)
         return redirect('/')
 
     def get_context_data(self, *args, **kwargs):
