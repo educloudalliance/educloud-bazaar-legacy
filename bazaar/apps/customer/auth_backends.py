@@ -47,29 +47,34 @@ class ShibbolethRemoteUserBackend(RemoteUserBackend):
         print "Trying authenticate"
         if not request_meta:
             return None
-        user = None
-        if 'HTTP_MPASS_OID' not in request_meta:
+        elif 'HTTP_MPASS_OID' not in request_meta or not request_meta['HTTP_MPASS_OID']:
             return None
+        # MPASS OID found, create or get existing user by
+        user = None
         remote_user = request_meta['HTTP_MPASS_OID']
-        username = self.clean_username(remote_user)
-        if self.create_unknown_user:
+        oid = self.clean_username(remote_user)
+        if oid and self.create_unknown_user:
             defaults = {
                 'first_name': request_meta['HTTP_MPASS_GIVENNAME'],
                 'last_name': request_meta['HTTP_MPASS_SURNAME'],
-                'email': '%s@educloudalliance.org' % username,
-                'oid': username,
+                'email': '%s@educloudalliance.org' % oid,
+                'username': oid,
+                'oid': oid,
             }
-            user, created = User.objects.get_or_create(username=username, defaults=defaults)
+            user, created = User.objects.get_or_create(oid=oid, defaults=defaults)
             if created:
                 user = self.configure_user(user)
                 print("User created.")
+                return user
             else:
                 try:
-                    user = User.objects.get(username=username)
+                    user = User.objects.get(oid=oid)
+                    print("User found.")
+                    return user
                 except User.DoesNotExist:
                     print("User not found.")
-                    pass
-        return user
+                    return None
+        return None
 
 
 class EmailBackend(ModelBackend):
