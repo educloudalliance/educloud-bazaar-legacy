@@ -154,6 +154,7 @@ class ProductCategoryView(ListView):
         context = super(ProductCategoryView, self).get_context_data(**kwargs)
         context['category'] = self.category
         context['summary'] = self.get_summary()
+	context['PUBLISH_MPASS'] = settings.PUBLISH_MPASS
         return context
 
     def get_queryset(self):

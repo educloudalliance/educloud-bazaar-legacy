@@ -10,6 +10,8 @@ location = lambda x: os.path.join(
 
 USE_TZ = True
 
+# MPASS default, override in settings_local.py
+PUBLISH_MPASS = False
 
 TEMPLATE_DEBUG = True
 SQL_DEBUG = True

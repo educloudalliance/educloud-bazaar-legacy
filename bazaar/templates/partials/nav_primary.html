@@ -83,9 +83,18 @@
                             <div class="menu-box-header">
                                 {% trans "Log In"%}</div>
                             <div class="menu-box-content flex-container-vertical">
+                                {% if PUBLISH_MPASS %}
                                 <div class="flex-container social-logins">
                                     <a class="flexItem" style="text-decoration: none; height: 45px; padding: 5px; padding-left: 2em;" href={{login_link}}><img id="sso-login" src="{{ STATIC_URL }}shop/img/educloud-logo.png" style="width: 32px; float: left; margin-top: -1px;">MPASS SSO <span style="font-size: 80%;">beta</span></a>
                                 </div>
+                                {% else %}
+                                <div class="flex-container social-logins">
+                                    <a class="flexItem" style="text-decoration: none; height: 45px; padding: 5px; padding-left: 2em;" href=#><img id="sso-login" src="{{ STATIC_URL }}shop/img/educloud-logo.png" style="width: 32px; float: left; margin-top: -1px;">MPASS SSO <span style="font-size: 80%;">beta</span></a>
+                                </div>
+                                <div class="flex-container social-logins">
+                                    <span style="margin: 0.3em;">MPASS login disabled.</span>
+                                </div>
+                                {% endif %}
                             </div>
                         {% endif %}
                     </div>
